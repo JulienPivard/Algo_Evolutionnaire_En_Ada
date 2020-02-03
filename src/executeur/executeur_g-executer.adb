@@ -138,90 +138,90 @@ begin
 
    Boucle_Generation_Successive :
    loop
-   --  Utilisation d'un tri à bulle pour le premier prototype.
-   Boucle_De_Tri :
-   loop
-      Bloc_Tri_Bulle :
-      declare
-         subtype Intervalle_Tmp_T is Indice_T range
-            Indice_T'First .. Indice_T'Last - 1;
+      --  Utilisation d'un tri à bulle pour le premier prototype.
+      Boucle_De_Tri :
+      loop
+         Bloc_Tri_Bulle :
+         declare
+            subtype Intervalle_Tmp_T is Indice_T range
+               Indice_T'First .. Indice_T'Last - 1;
 
-         Echange : Boolean := False;
-      begin
-         Boucle_Tri_Bulle :
-         for I in Intervalle_Tmp_T loop
-            --  On cherche ici à minimiser le résultat.
-            if Resultats (I).V_Calcule > Resultats (I + 1).V_Calcule then
-               Bloc_Echange_Valeur :
-               declare
-                  Tmp : Element_T;
-               begin
-                  Tmp := Resultats (I);
-                  Resultats (I) := Resultats (I + 1);
-                  Resultats (I + 1) := Tmp;
-               end Bloc_Echange_Valeur;
+            Echange : Boolean := False;
+         begin
+            Boucle_Tri_Bulle :
+            for I in Intervalle_Tmp_T loop
+               --  On cherche ici à minimiser le résultat.
+               if Resultats (I).V_Calcule > Resultats (I + 1).V_Calcule then
+                  Bloc_Echange_Valeur :
+                  declare
+                     Tmp : Element_T;
+                  begin
+                     Tmp := Resultats (I);
+                     Resultats (I) := Resultats (I + 1);
+                     Resultats (I + 1) := Tmp;
+                  end Bloc_Echange_Valeur;
 
-               --  On note qu'un échange à été fait et que donc le tableau
-               --  n'est potentiellement pas totalement trié.
-               Echange := True;
-            end if;
-         end loop Boucle_Tri_Bulle;
+                  --  On note qu'un échange à été fait et que donc le tableau
+                  --  n'est potentiellement pas totalement trié.
+                  Echange := True;
+               end if;
+            end loop Boucle_Tri_Bulle;
 
-         exit Boucle_De_Tri when not Echange;
-      end Bloc_Tri_Bulle;
-   end loop Boucle_De_Tri;
+            exit Boucle_De_Tri when not Echange;
+         end Bloc_Tri_Bulle;
+      end loop Boucle_De_Tri;
 
-   Put_Line (Item => Resultats);
+      Put_Line (Item => Resultats);
 
-   Ada.Text_IO.Put_Line
-      (Item => "Nombre de tours : " & Natural'Image (Nombre_De_Tours));
+      Ada.Text_IO.Put_Line
+         (Item => "Nombre de tours : " & Natural'Image (Nombre_De_Tours));
 
       exit Boucle_Generation_Successive when
          Nombre_De_Tours > 10;
-   --  Génère deux valeurs aléatoires et les places dans les deux
-   --  dernières cases du tableau.
-   Bloc_Genere_Nouvelles_Valeurs_Alea :
-   declare
-      subtype Intervalle_Tmp_T is Indice_T range
-         Indice_T'Last - 2 .. Indice_T'Last - 1;
-   begin
-      Boucle_Genere_Nouvelles_Valeurs_Alea :
-      for I in Intervalle_Tmp_T loop
-         Resultats (I).V_Initial := Generer;
-      end loop Boucle_Genere_Nouvelles_Valeurs_Alea;
-   end Bloc_Genere_Nouvelles_Valeurs_Alea;
+      --  Génère deux valeurs aléatoires et les places dans les deux
+      --  dernières cases du tableau.
+      Bloc_Genere_Nouvelles_Valeurs_Alea :
+      declare
+         subtype Intervalle_Tmp_T is Indice_T range
+            Indice_T'Last - 2 .. Indice_T'Last - 1;
+      begin
+         Boucle_Genere_Nouvelles_Valeurs_Alea :
+         for I in Intervalle_Tmp_T loop
+            Resultats (I).V_Initial := Generer;
+         end loop Boucle_Genere_Nouvelles_Valeurs_Alea;
+      end Bloc_Genere_Nouvelles_Valeurs_Alea;
 
-   Bloc_Accouplement_Valeur :
-   declare
-      subtype Intervalle_Tmp_T is Indice_T range
-         Indice_T'First .. Indice_T'Last - 3;
+      Bloc_Accouplement_Valeur :
+      declare
+         subtype Intervalle_Tmp_T is Indice_T range
+            Indice_T'First .. Indice_T'Last - 3;
 
-      Moyenne : Calcul_T := 0.0;
-   begin
-      Boucle_Calcul_Moyenne :
-      for I in Intervalle_Tmp_T loop
-         Moyenne := Moyenne + Resultats (I).V_Initial;
-      end loop Boucle_Calcul_Moyenne;
-      Moyenne := Moyenne / Calcul_T (Resultats'Length - 1);
+         Moyenne : Calcul_T := 0.0;
+      begin
+         Boucle_Calcul_Moyenne :
+         for I in Intervalle_Tmp_T loop
+            Moyenne := Moyenne + Resultats (I).V_Initial;
+         end loop Boucle_Calcul_Moyenne;
+         Moyenne := Moyenne / Calcul_T (Resultats'Length - 1);
 
-      Resultats (Resultats'Last).V_Initial := Moyenne;
-   end Bloc_Accouplement_Valeur;
+         Resultats (Resultats'Last).V_Initial := Moyenne;
+      end Bloc_Accouplement_Valeur;
 
-   Nombre_De_Tours := Nombre_De_Tours + 1;
+      Nombre_De_Tours := Nombre_De_Tours + 1;
 
-   --  Il est inutile de recalculer toutes les valeurs. Seul les 3
-   --  dernières sont nouvelles.
-   Bloc_Calcul_Partiel :
-   declare
-      subtype Intervalle_Tmp_T is Indice_T range
-         Indice_T'Last - 3 .. Indice_T'Last;
-   begin
-      Boucle_Calcul_Partiel :
-      for I in Intervalle_Tmp_T loop
-         Resultats (I).V_Calcule :=
-            Formule_Surface (D => Resultats (I).V_Initial);
-      end loop Boucle_Calcul_Partiel;
-   end Bloc_Calcul_Partiel;
+      --  Il est inutile de recalculer toutes les valeurs. Seul les 3
+      --  dernières sont nouvelles.
+      Bloc_Calcul_Partiel :
+      declare
+         subtype Intervalle_Tmp_T is Indice_T range
+            Indice_T'Last - 3 .. Indice_T'Last;
+      begin
+         Boucle_Calcul_Partiel :
+         for I in Intervalle_Tmp_T loop
+            Resultats (I).V_Calcule :=
+               Formule_Surface (D => Resultats (I).V_Initial);
+         end loop Boucle_Calcul_Partiel;
+      end Bloc_Calcul_Partiel;
 
    end loop Boucle_Generation_Successive;
 
