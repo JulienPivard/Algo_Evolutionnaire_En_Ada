@@ -19,7 +19,7 @@ is
 
    package Aleatoire_R renames Ada.Numerics.Float_Random;
 
-   package Math_IO is new Ada.Text_IO.Float_IO (Calcul_T);
+   package Math_IO is new Ada.Text_IO.Float_IO (Num => Calcul_T);
    package Math_P  is new Ada.Numerics.Generic_Elementary_Functions
       (Calcul_T);
 
@@ -46,7 +46,8 @@ is
       Resultat : Calcul_T;
    begin
       --  Pour un résultat entre 1.0 et 4.0;
-      Resultat := Calcul_T (3.0 * Aleatoire_R.Random (Generateur) + 1.0);
+      Resultat := Calcul_T
+         (3.0 * Aleatoire_R.Random (Gen => Generateur) + 1.0);
       return Resultat;
    end Generer;
    ---------------------------------------------------------------------------
@@ -63,9 +64,9 @@ is
    is
    begin
       for E of Item loop
-         Ada.Text_IO.Put ("I : ");
+         Ada.Text_IO.Put (Item => "I : ");
          Math_IO.Put     (Item => E.V_Initial, Fore => 3, Aft => 3, Exp => 0);
-         Ada.Text_IO.Put (" R : ");
+         Ada.Text_IO.Put (Item => " R : ");
          Math_IO.Put     (Item => E.V_Calcule, Fore => 3, Aft => 3, Exp => 0);
 
          Ada.Text_IO.New_Line (Spacing => 1);
@@ -125,7 +126,7 @@ begin
    Math_IO.Put          (Item    => R, Fore => 3, Aft => 3, Exp => 0);
    Ada.Text_IO.New_Line (Spacing => 1);
 
-   Aleatoire_R.Reset (Generateur);
+   Aleatoire_R.Reset (Gen => Generateur);
    Boucle_Initialisation :
    for E of Resultats loop
       E.V_Initial := Generer;
