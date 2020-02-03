@@ -28,11 +28,10 @@ is
 
    R : Calcul_T;
 
-   Resultats : Table_Calcul_T;
+   Resultats  : Table_Calcul_T;
+   Generateur : Aleatoire_R.Generator;
 
    Nombre_De_Tours : Natural := Natural'First;
-
-   Generateur : Aleatoire_R.Generator;
 
    ---------------------------------------------------------------------------
    function Generer
