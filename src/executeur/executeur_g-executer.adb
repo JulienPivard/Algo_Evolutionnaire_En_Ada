@@ -129,5 +129,10 @@ begin
       E.V_Initial := Generer;
    end loop Boucle_Initialisation;
 
+   Boucle_Calcul :
+   for E of Resultats loop
+      E.V_Calcule := Formule_Surface (D => E.V_Initial);
+   end loop Boucle_Calcul;
+
    Put_Line (Item => Resultats);
 end Executer;
