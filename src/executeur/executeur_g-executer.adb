@@ -8,8 +8,14 @@ procedure Executer
 is
    type Calcul_T is digits 5;
 
+   type Element_T is
+      record
+         V_Initial : Calcul_T := 0.0;
+         V_Calcule : Calcul_T := 0.0;
+      end record;
+
    type Indice_T       is range 1 .. 10;
-   type Table_Calcul_T is array (Indice_T) of Calcul_T;
+   type Table_Calcul_T is array (Indice_T) of Element_T;
 
    package Aleatoire_R renames Ada.Numerics.Float_Random;
 
@@ -21,7 +27,7 @@ is
    D : constant Calcul_T := 2.0;
    R : Calcul_T;
 
-   Resultats : Table_Calcul_T := Table_Calcul_T'(others => 0.0);
+   Resultats : Table_Calcul_T;
 
    Generateur : Aleatoire_R.Generator;
 
@@ -49,10 +55,13 @@ is
    is
    begin
       for E of Item loop
-         Math_IO.Put     (Item => E, Fore => 3, Aft => 3, Exp => 0);
-         Ada.Text_IO.Put (Item => " ");
+         Ada.Text_IO.Put ("I : ");
+         Math_IO.Put     (Item => E.V_Initial, Fore => 3, Aft => 3, Exp => 0);
+         Ada.Text_IO.Put (" R : ");
+         Math_IO.Put     (Item => E.V_Calcule, Fore => 3, Aft => 3, Exp => 0);
+
+         Ada.Text_IO.New_Line (Spacing => 1);
       end loop;
-      Ada.Text_IO.New_Line (Spacing => 1);
    end Put_Line;
    ---------------------------------------------------------------------------
 begin
@@ -68,7 +77,7 @@ begin
 
    Aleatoire_R.Reset (Generateur);
    for E of Resultats loop
-      E := Generer;
+      E.V_Initial := Generer;
    end loop;
 
    Put_Line (Item => Resultats);
