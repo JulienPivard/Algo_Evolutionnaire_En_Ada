@@ -23,8 +23,9 @@ is
    package Math_P  is new Ada.Numerics.Generic_Elementary_Functions
       (Calcul_T);
 
-   X : constant Calcul_T := 5.0;
-   D : constant Calcul_T := 2.0;
+   X_1 : constant Calcul_T := 5.0;
+   X_2 : constant Calcul_T := 2.0;
+
    R : Calcul_T;
 
    Resultats : Table_Calcul_T;
@@ -81,12 +82,12 @@ is
    end Formule_Surface;
    ---------------------------------------------------------------------------
 begin
-   R := 10.0 + (X**2) - 10.0 * Math_P.Cos (X => 2.0 * Ada.Numerics.Pi * X);
+   R := 10.0 + (X_1**2) - 10.0 * Math_P.Cos (X => 2.0 * Ada.Numerics.Pi * X_1);
 
    Math_IO.Put          (Item    => R, Fore => 3, Aft => 3, Exp => 0);
    Ada.Text_IO.New_Line (Spacing => 1);
 
-   R := Ada.Numerics.Pi * ((D**2) / 2.0) + 4.0 * (160.0 / D);
+   R := Ada.Numerics.Pi * ((X_2**2) / 2.0) + 4.0 * (160.0 / X_2);
 
    Math_IO.Put          (Item    => R, Fore => 3, Aft => 3, Exp => 0);
    Ada.Text_IO.New_Line (Spacing => 1);
