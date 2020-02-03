@@ -35,6 +35,8 @@ is
    ---------------------------------------------------------------------------
    function Generer
       return Calcul_T;
+   --  Génère une valeur aléatoire comprise entre les bornes.
+   --  @return La valeur aléatoire généré.
 
    function Generer
       return Calcul_T
@@ -50,6 +52,9 @@ is
    ---------------------------------------------------------------------------
    procedure Put_Line
       (Item : in Table_Calcul_T);
+   --  Affiche le contenu d'un tableau de valeurs.
+   --  @param Item
+   --  Le tableau.
 
    procedure Put_Line
       (Item : in Table_Calcul_T)
@@ -70,6 +75,10 @@ is
    function Formule_Surface
       (D : in Calcul_T)
       return Calcul_T;
+   --  Calcul une surface en fonction du diamètre D donné.
+   --  @param D
+   --  Le diamètre de la boite.
+   --  @return La surface de la boite.
 
    function Formule_Surface
       (D : in Calcul_T)
@@ -86,6 +95,10 @@ is
    function Formule_Anonyme
       (X : in Calcul_T)
       return Calcul_T;
+   --  Un autre calcul.
+   --  @param X
+   --  La valeur de l'inconnue X.
+   --  @return Le résultats de la formule en fonction de X.
 
    function Formule_Anonyme
       (X : in Calcul_T)
