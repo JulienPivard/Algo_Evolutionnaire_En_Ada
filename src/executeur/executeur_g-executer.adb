@@ -91,12 +91,11 @@ is
       (X : in Calcul_T)
       return Calcul_T
    is
+      Pi : constant := Ada.Numerics.Pi;
+
       Resultat : Calcul_T;
    begin
-      Resultat :=
-         10.0 + (X**2)
-         -
-         (10.0 * Math_P.Cos (X => 2.0 * Ada.Numerics.Pi * X));
+      Resultat := 10.0 + (X**2) - 10.0 * Math_P.Cos (X => 2.0 * Pi * X);
       return Resultat;
    end Formule_Anonyme;
    ---------------------------------------------------------------------------
