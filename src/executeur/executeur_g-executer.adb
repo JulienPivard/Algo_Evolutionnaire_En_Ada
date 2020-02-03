@@ -87,7 +87,7 @@ begin
    Math_IO.Put          (Item    => R, Fore => 3, Aft => 3, Exp => 0);
    Ada.Text_IO.New_Line (Spacing => 1);
 
-   R := Ada.Numerics.Pi * ((X_2**2) / 2.0) + 4.0 * (160.0 / X_2);
+   R := Formule_Surface (D => X_2);
 
    Math_IO.Put          (Item    => R, Fore => 3, Aft => 3, Exp => 0);
    Ada.Text_IO.New_Line (Spacing => 1);
