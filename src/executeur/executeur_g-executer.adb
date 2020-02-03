@@ -122,11 +122,13 @@ is
 begin
    R := Formule_Anonyme (X => X_1);
 
+   Ada.Text_IO.Put_Line (Item    => "Formule arbitraire : ");
    Math_IO.Put          (Item    => R, Fore => 3, Aft => 3, Exp => 0);
    Ada.Text_IO.New_Line (Spacing => 1);
 
    R := Formule_Surface (D => X_2);
 
+   Ada.Text_IO.Put_Line (Item    => "Formule surface : ");
    Math_IO.Put          (Item    => R, Fore => 3, Aft => 3, Exp => 0);
    Ada.Text_IO.New_Line (Spacing => 3);
 
