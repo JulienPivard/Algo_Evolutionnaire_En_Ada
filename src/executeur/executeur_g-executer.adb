@@ -172,11 +172,6 @@ begin
          end Bloc_Tri_Bulle;
       end loop Boucle_De_Tri;
 
-      Put_Line (Item => Resultats);
-
-      Ada.Text_IO.Put_Line
-         (Item => "Nombre de tours : " & Natural'Image (Nombre_De_Tours));
-
       --  Toutes les valeurs survivantes doivent se trouver autour
       --  de la valeur minimum du tableau +/-1
       Bloc_Verification_Convergence :
