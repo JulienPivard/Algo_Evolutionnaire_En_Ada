@@ -30,6 +30,8 @@ is
 
    Resultats : Table_Calcul_T;
 
+   Nombre_De_Tours : Natural := Natural'First;
+
    Generateur : Aleatoire_R.Generator;
 
    ---------------------------------------------------------------------------
@@ -168,6 +170,10 @@ begin
    end loop Boucle_De_Tri;
 
    Put_Line (Item => Resultats);
+
+   Ada.Text_IO.Put_Line
+      (Item => "Nombre de tours : " & Natural'Image (Nombre_De_Tours));
+
    --  Génère deux valeurs aléatoires et les places dans les deux
    --  dernières cases du tableau.
    Bloc_Genere_Nouvelles_Valeurs_Alea :
@@ -180,6 +186,8 @@ begin
          Resultats (I).V_Initial := Generer;
       end loop Boucle_Genere_Nouvelles_Valeurs_Alea;
    end Bloc_Genere_Nouvelles_Valeurs_Alea;
+
+   Nombre_De_Tours := Nombre_De_Tours + 1;
 
    --  Il est inutile de recalculer toutes les valeurs. Seul les 3
    --  dernières sont nouvelles.
@@ -197,4 +205,6 @@ begin
 
    Put_Line (Item => Resultats);
 
+   Ada.Text_IO.Put_Line
+      (Item => "Nombre de tours : " & Natural'Image (Nombre_De_Tours));
 end Executer;
