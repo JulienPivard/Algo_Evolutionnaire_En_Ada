@@ -119,6 +119,12 @@ is
       return Resultat;
    end Formule_Anonyme;
    ---------------------------------------------------------------------------
+
+   --  Deux inconnues
+   --  Formule à ajouter : sin (x+y) + (x-y)^2 -1,5x + 2,5y + 1
+   --  Convergence en :
+   --   - x = -0,55
+   --   - y = -1,55
 begin
    R := Formule_Anonyme (X => X_1);
 
