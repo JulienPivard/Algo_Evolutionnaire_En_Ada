@@ -179,7 +179,7 @@ begin
    Bloc_Genere_Nouvelles_Valeurs_Alea :
    declare
       subtype Intervalle_Tmp_T is Indice_T range
-         Indice_T'Last - 3 .. Indice_T'Last - 1;
+         Indice_T'Last - 2 .. Indice_T'Last - 1;
    begin
       Boucle_Genere_Nouvelles_Valeurs_Alea :
       for I in Intervalle_Tmp_T loop
@@ -190,7 +190,7 @@ begin
    Bloc_Accouplement_Valeur :
    declare
       subtype Intervalle_Tmp_T is Indice_T range
-         Indice_T'First .. Indice_T'Last - 1;
+         Indice_T'First .. Indice_T'Last - 3;
 
       Moyenne : Calcul_T := 0.0;
    begin
