@@ -76,9 +76,10 @@ begin
    Ada.Text_IO.New_Line (Spacing => 1);
 
    Aleatoire_R.Reset (Generateur);
+   Boucle_Initialisation :
    for E of Resultats loop
       E.V_Initial := Generer;
-   end loop;
+   end loop Boucle_Initialisation;
 
    Put_Line (Item => Resultats);
 end Executer;
