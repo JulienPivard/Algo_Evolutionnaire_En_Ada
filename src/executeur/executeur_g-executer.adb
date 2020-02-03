@@ -11,8 +11,8 @@ is
    package Math_P  is new Ada.Numerics.Generic_Elementary_Functions
       (Calcul_T);
 
-   X : Calcul_T := 5.0;
-   D : Calcul_T := 2.0;
+   X : constant Calcul_T := 5.0;
+   D : constant Calcul_T := 2.0;
    R : Calcul_T;
 begin
    R := 10.0 + (X**2) - 10.0 * Math_P.Cos (X => 2.0 * Ada.Numerics.Pi * X);
