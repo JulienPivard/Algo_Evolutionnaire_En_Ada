@@ -81,6 +81,7 @@ is
       (D : in Calcul_T)
       return Calcul_T;
    --  Calcul une surface en fonction du diamètre D donné.
+   --  Convergera vers X = 5.9.
    --  @param D
    --  Le diamètre de la boite.
    --  @return La surface de la boite.
@@ -101,6 +102,7 @@ is
       (X : in Calcul_T)
       return Calcul_T;
    --  Un autre calcul.
+   --  Convergera vers X = 0.0.
    --  @param X
    --  La valeur de l'inconnue X.
    --  @return Le résultats de la formule en fonction de X.
