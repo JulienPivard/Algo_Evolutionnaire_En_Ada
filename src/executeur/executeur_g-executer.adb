@@ -168,4 +168,17 @@ begin
    end loop Boucle_De_Tri;
 
    Put_Line (Item => Resultats);
+   --  Génère deux valeurs aléatoires et les places dans les deux
+   --  dernières cases du tableau.
+   Bloc_Genere_Nouvelles_Valeurs_Alea :
+   declare
+      subtype Intervalle_Tmp_T is Indice_T range
+         Indice_T'Last - 3 .. Indice_T'Last - 1;
+   begin
+      Boucle_Genere_Nouvelles_Valeurs_Alea :
+      for I in Intervalle_Tmp_T loop
+         Resultats (I).V_Initial := Generer;
+      end loop Boucle_Genere_Nouvelles_Valeurs_Alea;
+   end Bloc_Genere_Nouvelles_Valeurs_Alea;
+
 end Executer;
