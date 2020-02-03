@@ -81,8 +81,27 @@ is
       return Resultat;
    end Formule_Surface;
    ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   function Formule_Anonyme
+      (X : in Calcul_T)
+      return Calcul_T;
+
+   function Formule_Anonyme
+      (X : in Calcul_T)
+      return Calcul_T
+   is
+      Resultat : Calcul_T;
+   begin
+      Resultat :=
+         10.0 + (X**2)
+         -
+         (10.0 * Math_P.Cos (X => 2.0 * Ada.Numerics.Pi * X));
+      return Resultat;
+   end Formule_Anonyme;
+   ---------------------------------------------------------------------------
 begin
-   R := 10.0 + (X_1**2) - 10.0 * Math_P.Cos (X => 2.0 * Ada.Numerics.Pi * X_1);
+   R := Formule_Anonyme (X => X_1);
 
    Math_IO.Put          (Item    => R, Fore => 3, Aft => 3, Exp => 0);
    Ada.Text_IO.New_Line (Spacing => 1);
