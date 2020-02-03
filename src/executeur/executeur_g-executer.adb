@@ -128,7 +128,7 @@ begin
    R := Formule_Surface (D => X_2);
 
    Math_IO.Put          (Item    => R, Fore => 3, Aft => 3, Exp => 0);
-   Ada.Text_IO.New_Line (Spacing => 1);
+   Ada.Text_IO.New_Line (Spacing => 3);
 
    Aleatoire_R.Reset (Gen => Generateur);
    Boucle_Initialisation :
