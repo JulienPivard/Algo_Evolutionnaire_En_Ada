@@ -181,4 +181,18 @@ begin
       end loop Boucle_Genere_Nouvelles_Valeurs_Alea;
    end Bloc_Genere_Nouvelles_Valeurs_Alea;
 
+   --  Il est inutile de recalculer toutes les valeurs. Seul les 3
+   --  dernières sont nouvelles.
+   Bloc_Calcul_Partiel :
+   declare
+      subtype Intervalle_Tmp_T is Indice_T range
+         Indice_T'Last - 3 .. Indice_T'Last;
+   begin
+      Boucle_Calcul_Partiel :
+      for I in Intervalle_Tmp_T loop
+         Resultats (I).V_Calcule :=
+            Formule_Surface (D => Resultats (I).V_Initial);
+      end loop Boucle_Calcul_Partiel;
+   end Bloc_Calcul_Partiel;
+
 end Executer;
