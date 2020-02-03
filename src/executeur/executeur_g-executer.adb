@@ -64,6 +64,22 @@ is
       end loop;
    end Put_Line;
    ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   function Formule_Surface
+      (D : in Calcul_T)
+      return Calcul_T;
+
+   function Formule_Surface
+      (D : in Calcul_T)
+      return Calcul_T
+   is
+      Resultat : Calcul_T;
+   begin
+      Resultat := Ada.Numerics.Pi * ((D**2) / 2.0) + 4.0 * (160.0 / D);
+      return Resultat;
+   end Formule_Surface;
+   ---------------------------------------------------------------------------
 begin
    R := 10.0 + (X**2) - 10.0 * Math_P.Cos (X => 2.0 * Ada.Numerics.Pi * X);
 
