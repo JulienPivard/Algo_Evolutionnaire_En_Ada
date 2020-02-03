@@ -176,8 +176,15 @@ begin
       Ada.Text_IO.Put_Line
          (Item => "Nombre de tours : " & Natural'Image (Nombre_De_Tours));
 
-      exit Boucle_Generation_Successive when
-         Nombre_De_Tours > 10;
+      --  Toutes les valeurs survivantes doivent se trouver autour
+      --  de la valeur minimum du tableau +/-1
+      Bloc_Verification_Convergence :
+      declare
+      begin
+         exit Boucle_Generation_Successive when
+            Nombre_De_Tours > 10;
+      end Bloc_Verification_Convergence;
+
       --  Génère deux valeurs aléatoires et les places dans les deux
       --  dernières cases du tableau.
       Bloc_Genere_Nouvelles_Valeurs_Alea :
