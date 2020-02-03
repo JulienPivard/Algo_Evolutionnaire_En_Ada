@@ -134,5 +134,38 @@ begin
       E.V_Calcule := Formule_Surface (D => E.V_Initial);
    end loop Boucle_Calcul;
 
+   --  Utilisation d'un tri à bulle pour le premier prototype.
+   Boucle_De_Tri :
+   loop
+      Bloc_Tri_Bulle :
+      declare
+         subtype Intervalle_Tmp_T is Indice_T range
+            Indice_T'First .. Indice_T'Last - 1;
+
+         Echange : Boolean := False;
+      begin
+         Boucle_Tri_Bulle :
+         for I in Intervalle_Tmp_T loop
+            --  On cherche ici à minimiser le résultat.
+            if Resultats (I).V_Calcule > Resultats (I + 1).V_Calcule then
+               Bloc_Echange_Valeur :
+               declare
+                  Tmp : Element_T;
+               begin
+                  Tmp := Resultats (I);
+                  Resultats (I) := Resultats (I + 1);
+                  Resultats (I + 1) := Tmp;
+               end Bloc_Echange_Valeur;
+
+               --  On note qu'un échange à été fait et que donc le tableau
+               --  n'est potentiellement pas totalement trié.
+               Echange := True;
+            end if;
+         end loop Boucle_Tri_Bulle;
+
+         exit Boucle_De_Tri when not Echange;
+      end Bloc_Tri_Bulle;
+   end loop Boucle_De_Tri;
+
    Put_Line (Item => Resultats);
 end Executer;
