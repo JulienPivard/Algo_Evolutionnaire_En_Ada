@@ -1,6 +1,7 @@
 with Ada.Text_IO;
 with Ada.Numerics.Generic_Elementary_Functions;
 with Ada.Numerics.Float_Random;
+with Ada.Real_Time;
 
 separate (Executeur_G)
 procedure Executer
@@ -18,6 +19,7 @@ is
    type Table_Calcul_T is array (Indice_T) of Element_T;
 
    package Aleatoire_R renames Ada.Numerics.Float_Random;
+   package R_T_R       renames Ada.Real_Time;
 
    package Math_IO is new Ada.Text_IO.Float_IO (Num => Calcul_T);
    package Math_P  is new Ada.Numerics.Generic_Elementary_Functions
@@ -30,6 +32,7 @@ is
 
    Resultats  : Table_Calcul_T;
    Generateur : Aleatoire_R.Generator;
+   Debut, Fin : R_T_R.Time;
 
    Nombre_De_Tours : Natural := Natural'First;
 
@@ -136,6 +139,7 @@ begin
       E.V_Calcule := Formule_Surface (D => E.V_Initial);
    end loop Boucle_Calcul;
 
+   Debut := R_T_R.Clock;
    Boucle_Generation_Successive :
    loop
       --  Utilisation d'un tri à bulle pour le premier prototype.
@@ -235,9 +239,63 @@ begin
       end Bloc_Calcul_Partiel;
 
    end loop Boucle_Generation_Successive;
+   Fin := R_T_R.Clock;
 
    Put_Line (Item => Resultats);
 
    Ada.Text_IO.Put_Line
       (Item => "Nombre de tours : " & Natural'Image (Nombre_De_Tours));
+
+   --------------------------------------
+   Ada.Text_IO.New_Line (Spacing => 1);
+   --  Affiche le temps de filtrage du fichier.
+   Ada.Text_IO.Put (Item => "Temps total : ");
+   Ada.Text_IO.New_Line (Spacing => 1);
+   --  Conversion du temps pour faciliter l'affichage.
+
+   Affichage_Temps :
+   declare
+      use type R_T_R.Time;
+
+      type Temps_T is new Natural;
+
+      Duree_Exact : constant Duration  :=
+         R_T_R.To_Duration (TS => Fin - Debut);
+      Duree       : constant Temps_T   := Temps_T (Duree_Exact);
+      Minuttes    : constant Temps_T   := 60;
+      Indentation : constant String    := "         ";
+
+      package Duree_IO is new Ada.Text_IO.Fixed_IO    (Duration);
+      package Temps_IO is new Ada.Text_IO.Integer_IO  (Temps_T);
+   begin
+      Ada.Text_IO.Put (Item => Indentation);
+      Duree_IO.Put    (Item => Duree_Exact, Fore => 0, Aft => 4);
+      Ada.Text_IO.Put_Line (Item => " s");
+
+      --  Affichage en minutes.
+      if Duree_Exact > 60.0 then
+         Ada.Text_IO.Put (Item => Indentation);
+         Temps_IO.Put    (Item => Duree / Minuttes, Width => 0);
+         Ada.Text_IO.Put (Item => " min et ");
+         Temps_IO.Put    (Item => Duree mod Minuttes, Width => 0);
+         Ada.Text_IO.Put_Line (Item => " s");
+      end if;
+
+      --  Affichage en heures.
+      if Duree_Exact > 3600.0 then
+         Decoupage_En_Heures :
+         declare
+            Heures : constant Temps_T := 3600;
+         begin
+            Ada.Text_IO.Put (Item => Indentation);
+            Temps_IO.Put    (Item => Duree / Heures, Width => 0);
+            Ada.Text_IO.Put (Item => " h et ");
+            Temps_IO.Put
+               (Item => (Duree mod Heures) / Minuttes, Width => 0);
+            Ada.Text_IO.Put_Line (Item => " m");
+         end Decoupage_En_Heures;
+      end if;
+   end Affichage_Temps;
+   Ada.Text_IO.New_Line (Spacing => 1);
+   --------------------------------------
 end Executer;
