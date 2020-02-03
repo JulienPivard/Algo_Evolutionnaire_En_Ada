@@ -187,6 +187,22 @@ begin
       end loop Boucle_Genere_Nouvelles_Valeurs_Alea;
    end Bloc_Genere_Nouvelles_Valeurs_Alea;
 
+   Bloc_Accouplement_Valeur :
+   declare
+      subtype Intervalle_Tmp_T is Indice_T range
+         Indice_T'First .. Indice_T'Last - 1;
+
+      Moyenne : Calcul_T := 0.0;
+   begin
+      Boucle_Calcul_Moyenne :
+      for I in Intervalle_Tmp_T loop
+         Moyenne := Moyenne + Resultats (I).V_Initial;
+      end loop Boucle_Calcul_Moyenne;
+      Moyenne := Moyenne / Calcul_T (Resultats'Length - 1);
+
+      Resultats (Resultats'Last).V_Initial := Moyenne;
+   end Bloc_Accouplement_Valeur;
+
    Nombre_De_Tours := Nombre_De_Tours + 1;
 
    --  Il est inutile de recalculer toutes les valeurs. Seul les 3
