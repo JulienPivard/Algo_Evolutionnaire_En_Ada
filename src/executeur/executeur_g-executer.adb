@@ -64,14 +64,19 @@ is
    procedure Put_Line
       (Item : in Table_Calcul_T)
    is
+      package Natural_IO is new Ada.Text_IO.Integer_IO (Natural);
+
+      I : Natural := 1;
    begin
       for E of Item loop
-         Ada.Text_IO.Put (Item => "I : ");
+         Natural_IO.Put  (Item => I, Width => 2);
+         Ada.Text_IO.Put (Item => " I : ");
          Math_IO.Put     (Item => E.V_Initial, Fore => 3, Aft => 3, Exp => 0);
          Ada.Text_IO.Put (Item => " R : ");
          Math_IO.Put     (Item => E.V_Calcule, Fore => 3, Aft => 3, Exp => 0);
 
          Ada.Text_IO.New_Line (Spacing => 1);
+         I := I + 1;
       end loop;
    end Put_Line;
    ---------------------------------------------------------------------------
