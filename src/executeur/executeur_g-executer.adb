@@ -195,4 +195,6 @@ begin
       end loop Boucle_Calcul_Partiel;
    end Bloc_Calcul_Partiel;
 
+   Put_Line (Item => Resultats);
+
 end Executer;
