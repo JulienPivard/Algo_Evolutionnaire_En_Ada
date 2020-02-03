@@ -180,9 +180,18 @@ begin
       --  de la valeur minimum du tableau +/-1
       Bloc_Verification_Convergence :
       declare
+         subtype Intervalle_Tmp_T is Indice_T range
+            Indice_T'First .. Indice_T'Last - 3;
+
+         V_Ref : constant Calcul_T := Resultats (Resultats'First).V_Calcule;
       begin
          exit Boucle_Generation_Successive when
-            Nombre_De_Tours > 10;
+            (
+               for all I in Intervalle_Tmp_T =>
+                  Resultats (I).V_Calcule <= V_Ref + 1.0
+                  and then
+                  Resultats (I).V_Calcule >= V_Ref - 1.0
+            );
       end Bloc_Verification_Convergence;
 
       --  Génère deux valeurs aléatoires et les places dans les deux
