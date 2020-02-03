@@ -136,6 +136,8 @@ begin
       E.V_Calcule := Formule_Surface (D => E.V_Initial);
    end loop Boucle_Calcul;
 
+   Boucle_Generation_Successive :
+   loop
    --  Utilisation d'un tri à bulle pour le premier prototype.
    Boucle_De_Tri :
    loop
@@ -174,6 +176,8 @@ begin
    Ada.Text_IO.Put_Line
       (Item => "Nombre de tours : " & Natural'Image (Nombre_De_Tours));
 
+      exit Boucle_Generation_Successive when
+         Nombre_De_Tours > 10;
    --  Génère deux valeurs aléatoires et les places dans les deux
    --  dernières cases du tableau.
    Bloc_Genere_Nouvelles_Valeurs_Alea :
@@ -218,6 +222,8 @@ begin
             Formule_Surface (D => Resultats (I).V_Initial);
       end loop Boucle_Calcul_Partiel;
    end Bloc_Calcul_Partiel;
+
+   end loop Boucle_Generation_Successive;
 
    Put_Line (Item => Resultats);
 
