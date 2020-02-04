@@ -150,6 +150,10 @@ begin
       E.V_Calcule := Formule_Surface (D => E.V_Initial);
    end loop Boucle_Calcul;
 
+   Ada.Text_IO.Put_Line (Item    => "Valeurs de départ.");
+   Put_Line             (Item    => Resultats);
+   Ada.Text_IO.New_Line (Spacing => 1);
+
    Debut := R_T_R.Clock;
    Boucle_Generation_Successive :
    loop
