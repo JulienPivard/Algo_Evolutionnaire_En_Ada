@@ -8,10 +8,11 @@ procedure Executer
    --  (Arguments)
 is
    type Calcul_T    is digits 5;
+   type V_Initial_T is new Calcul_T;
 
    type Element_T is
       record
-         V_Initial : Calcul_T := 0.0;
+         V_Initial : V_Initial_T := 0.0;
          V_Calcule : Calcul_T := 0.0;
       end record;
 
@@ -21,12 +22,13 @@ is
    package Aleatoire_R renames Ada.Numerics.Float_Random;
    package R_T_R       renames Ada.Real_Time;
 
+   package V_Initial_IO is new Ada.Text_IO.Float_IO (Num => V_Initial_T);
    package Math_IO is new Ada.Text_IO.Float_IO (Num => Calcul_T);
    package Math_P       is new Ada.Numerics.Generic_Elementary_Functions
       (Calcul_T);
 
-   X_1 : constant Calcul_T := 5.0;
-   X_2 : constant Calcul_T := 2.0;
+   X_1 : constant V_Initial_T := 5.0;
+   X_2 : constant V_Initial_T := 2.0;
 
    R : Calcul_T;
 
@@ -38,17 +40,17 @@ is
 
    ---------------------------------------------------------------------------
    function Generer
-      return Calcul_T;
+      return V_Initial_T;
    --  Génère une valeur aléatoire comprise entre les bornes.
    --  @return La valeur aléatoire généré.
 
    function Generer
-      return Calcul_T
+      return V_Initial_T
    is
-      Resultat : Calcul_T;
+      Resultat : V_Initial_T;
    begin
       --  Pour un résultat entre 1.0 et 61.0;
-      Resultat := Calcul_T
+      Resultat := V_Initial_T
          (60.0 * Aleatoire_R.Random (Gen => Generateur) + 1.0);
       return Resultat;
    end Generer;
@@ -71,7 +73,7 @@ is
       for E of Item loop
          Natural_IO.Put   (Item => I, Width => 2);
          Ada.Text_IO.Put  (Item => " Initial : ");
-         Math_IO.Put      (Item => E.V_Initial, Fore => 3, Aft => 3, Exp => 0);
+         V_Initial_IO.Put (Item => E.V_Initial, Fore => 3, Aft => 3, Exp => 0);
          Ada.Text_IO.Put  (Item => " | Résultat : ");
          Math_IO.Put      (Item => E.V_Calcule, Fore => 3, Aft => 3, Exp => 0);
 
@@ -83,7 +85,7 @@ is
 
    ---------------------------------------------------------------------------
    function Formule_Surface
-      (D : in Calcul_T)
+      (D : in V_Initial_T)
       return Calcul_T;
    --  Calcul une surface en fonction du diamètre D donné.
    --  Convergera vers X = 5.9.
@@ -92,18 +94,19 @@ is
    --  @return La surface de la boite.
 
    function Formule_Surface
-      (D : in Calcul_T)
+      (D : in V_Initial_T)
       return Calcul_T
    is
-      Pi : constant          := Ada.Numerics.Pi;
+      Pi : constant        := Ada.Numerics.Pi;
+      Di : constant Math_T := Math_T (D);
    begin
-      return Pi * ((D**2) / 2.0) + 4.0 * (160.0 / D);
+      return Pi * ((Di**2) / 2.0) + 4.0 * (160.0 / Di);
    end Formule_Surface;
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
    function Formule_Anonyme
-      (X : in Calcul_T)
+      (X : in V_Initial_T)
       return Calcul_T;
    --  Un autre calcul.
    --  Convergera vers X = 0.0.
@@ -112,12 +115,13 @@ is
    --  @return Le résultats de la formule en fonction de X.
 
    function Formule_Anonyme
-      (X : in Calcul_T)
+      (X : in V_Initial_T)
       return Calcul_T
    is
-      Pi : constant          := Ada.Numerics.Pi;
+      Pi : constant        := Ada.Numerics.Pi;
+      Xi : constant Math_T := Math_T (X);
    begin
-      return 10.0 + (X**2) - 10.0 * Math_P.Cos (X => 2.0 * Pi * X);
+      return 10.0 + (Xi**2) - 10.0 * Math_P.Cos (X => 2.0 * Pi * Xi);
    end Formule_Anonyme;
    ---------------------------------------------------------------------------
 
@@ -226,13 +230,13 @@ begin
          subtype Intervalle_Tmp_T is Indice_T range
             Indice_T'First .. Indice_T'Last - 3;
 
-         Moyenne : Calcul_T := 0.0;
+         Moyenne : V_Initial_T := 0.0;
       begin
          Boucle_Calcul_Moyenne :
          for I in Intervalle_Tmp_T loop
             Moyenne := Moyenne + Resultats (I).V_Initial;
          end loop Boucle_Calcul_Moyenne;
-         Moyenne := Moyenne / Calcul_T (Resultats'Length - 3);
+         Moyenne := Moyenne / V_Initial_T (Resultats'Length - 3);
          --  Les 3 dernières valeurs ne font pas partit des survivantes
 
          Resultats (Resultats'Last).V_Initial := Moyenne;
