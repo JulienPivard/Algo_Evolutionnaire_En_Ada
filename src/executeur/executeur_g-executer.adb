@@ -70,9 +70,9 @@ is
    begin
       for E of Item loop
          Natural_IO.Put  (Item => I, Width => 2);
-         Ada.Text_IO.Put (Item => " I : ");
+         Ada.Text_IO.Put (Item => " Initial : ");
          Math_IO.Put     (Item => E.V_Initial, Fore => 3, Aft => 3, Exp => 0);
-         Ada.Text_IO.Put (Item => " R : ");
+         Ada.Text_IO.Put (Item => " | Résultat : ");
          Math_IO.Put     (Item => E.V_Calcule, Fore => 3, Aft => 3, Exp => 0);
 
          Ada.Text_IO.New_Line (Spacing => 1);
