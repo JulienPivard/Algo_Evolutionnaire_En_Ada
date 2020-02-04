@@ -47,9 +47,9 @@ is
    is
       Resultat : Calcul_T;
    begin
-      --  Pour un résultat entre 1.0 et 7.0;
+      --  Pour un résultat entre 1.0 et 61.0;
       Resultat := Calcul_T
-         (6.0 * Aleatoire_R.Random (Gen => Generateur) + 1.0);
+         (60.0 * Aleatoire_R.Random (Gen => Generateur) + 1.0);
       return Resultat;
    end Generer;
    ---------------------------------------------------------------------------
