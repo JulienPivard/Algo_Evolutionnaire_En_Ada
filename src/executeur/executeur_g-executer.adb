@@ -7,9 +7,9 @@ separate (Executeur_G)
 procedure Executer
    --  (Arguments)
 is
-   type Calcul_T    is digits 5;
-   type V_Initial_T is new Calcul_T;
-   type V_Calcule_T is new Calcul_T;
+   type Math_T      is digits 5;
+   type V_Initial_T is new Math_T;
+   type V_Calcule_T is new Math_T;
 
    type Element_T is
       record
@@ -26,8 +26,7 @@ is
    package V_Initial_IO is new Ada.Text_IO.Float_IO (Num => V_Initial_T);
    package V_Calcule_IO is new Ada.Text_IO.Float_IO (Num => V_Calcule_T);
 
-   package Math_P       is new Ada.Numerics.Generic_Elementary_Functions
-      (Calcul_T);
+   package Math_P is new Ada.Numerics.Generic_Elementary_Functions (Math_T);
 
    X_1 : constant V_Initial_T := 5.0;
    X_2 : constant V_Initial_T := 2.0;
