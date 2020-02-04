@@ -280,8 +280,8 @@ begin
       Minuttes    : constant Temps_T   := 60;
       Indentation : constant String    := "         ";
 
-      package Duree_IO is new Ada.Text_IO.Fixed_IO    (Duration);
-      package Temps_IO is new Ada.Text_IO.Integer_IO  (Temps_T);
+      package Duree_IO is new Ada.Text_IO.Fixed_IO   (Duration);
+      package Temps_IO is new Ada.Text_IO.Integer_IO (Temps_T);
    begin
       Ada.Text_IO.Put (Item => Indentation);
       Duree_IO.Put    (Item => Duree_Exact, Fore => 0, Aft => 4);
@@ -290,7 +290,7 @@ begin
       --  Affichage en minutes.
       if Duree_Exact > 60.0 then
          Ada.Text_IO.Put (Item => Indentation);
-         Temps_IO.Put    (Item => Duree / Minuttes, Width => 0);
+         Temps_IO.Put    (Item => Duree / Minuttes,   Width => 0);
          Ada.Text_IO.Put (Item => " min et ");
          Temps_IO.Put    (Item => Duree mod Minuttes, Width => 0);
          Ada.Text_IO.Put_Line (Item => " s");
@@ -303,7 +303,7 @@ begin
             Heures : constant Temps_T := 3600;
          begin
             Ada.Text_IO.Put (Item => Indentation);
-            Temps_IO.Put    (Item => Duree / Heures, Width => 0);
+            Temps_IO.Put    (Item => Duree / Heures,   Width => 0);
             Ada.Text_IO.Put (Item => " h et ");
             Temps_IO.Put
                (Item => (Duree mod Heures) / Minuttes, Width => 0);
