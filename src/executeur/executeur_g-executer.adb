@@ -96,8 +96,10 @@ is
       return Calcul_T
    is
       Resultat : Calcul_T;
+
+      Pi : constant := Ada.Numerics.Pi;
    begin
-      Resultat := Ada.Numerics.Pi * ((D**2) / 2.0) + 4.0 * (160.0 / D);
+      Resultat := Pi * ((D**2) / 2.0) + 4.0 * (160.0 / D);
       return Resultat;
    end Formule_Surface;
    ---------------------------------------------------------------------------
