@@ -9,11 +9,12 @@ procedure Executer
 is
    type Calcul_T    is digits 5;
    type V_Initial_T is new Calcul_T;
+   type V_Calcule_T is new Calcul_T;
 
    type Element_T is
       record
          V_Initial : V_Initial_T := 0.0;
-         V_Calcule : Calcul_T := 0.0;
+         V_Calcule : V_Calcule_T := 0.0;
       end record;
 
    type Indice_T       is range 1 .. 10;
@@ -23,14 +24,15 @@ is
    package R_T_R       renames Ada.Real_Time;
 
    package V_Initial_IO is new Ada.Text_IO.Float_IO (Num => V_Initial_T);
-   package Math_IO is new Ada.Text_IO.Float_IO (Num => Calcul_T);
+   package V_Calcule_IO is new Ada.Text_IO.Float_IO (Num => V_Calcule_T);
+
    package Math_P       is new Ada.Numerics.Generic_Elementary_Functions
       (Calcul_T);
 
    X_1 : constant V_Initial_T := 5.0;
    X_2 : constant V_Initial_T := 2.0;
 
-   R : Calcul_T;
+   R : V_Calcule_T;
 
    Resultats  : Table_Calcul_T;
    Generateur : Aleatoire_R.Generator;
@@ -75,7 +77,7 @@ is
          Ada.Text_IO.Put  (Item => " Initial : ");
          V_Initial_IO.Put (Item => E.V_Initial, Fore => 3, Aft => 3, Exp => 0);
          Ada.Text_IO.Put  (Item => " | Résultat : ");
-         Math_IO.Put      (Item => E.V_Calcule, Fore => 3, Aft => 3, Exp => 0);
+         V_Calcule_IO.Put (Item => E.V_Calcule, Fore => 3, Aft => 3, Exp => 0);
 
          Ada.Text_IO.New_Line (Spacing => 1);
          I := I + 1;
@@ -86,7 +88,7 @@ is
    ---------------------------------------------------------------------------
    function Formule_Surface
       (D : in V_Initial_T)
-      return Calcul_T;
+      return V_Calcule_T;
    --  Calcul une surface en fonction du diamètre D donné.
    --  Convergera vers X = 5.9.
    --  @param D
@@ -95,19 +97,19 @@ is
 
    function Formule_Surface
       (D : in V_Initial_T)
-      return Calcul_T
+      return V_Calcule_T
    is
       Pi : constant        := Ada.Numerics.Pi;
       Di : constant Math_T := Math_T (D);
    begin
-      return Pi * ((Di**2) / 2.0) + 4.0 * (160.0 / Di);
+      return V_Calcule_T (Pi * ((Di**2) / 2.0) + 4.0 * (160.0 / Di));
    end Formule_Surface;
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
    function Formule_Anonyme
       (X : in V_Initial_T)
-      return Calcul_T;
+      return V_Calcule_T;
    --  Un autre calcul.
    --  Convergera vers X = 0.0.
    --  @param X
@@ -116,12 +118,13 @@ is
 
    function Formule_Anonyme
       (X : in V_Initial_T)
-      return Calcul_T
+      return V_Calcule_T
    is
       Pi : constant        := Ada.Numerics.Pi;
       Xi : constant Math_T := Math_T (X);
    begin
-      return 10.0 + (Xi**2) - 10.0 * Math_P.Cos (X => 2.0 * Pi * Xi);
+      return V_Calcule_T
+         (10.0 + (Xi**2) - 10.0 * Math_P.Cos (X => 2.0 * Pi * Xi));
    end Formule_Anonyme;
    ---------------------------------------------------------------------------
 
@@ -134,13 +137,13 @@ begin
    R := Formule_Anonyme (X => X_1);
 
    Ada.Text_IO.Put_Line (Item    => "Formule arbitraire : ");
-   Math_IO.Put          (Item    => R, Fore => 3, Aft => 3, Exp => 0);
+   V_Calcule_IO.Put     (Item    => R, Fore => 3, Aft => 3, Exp => 0);
    Ada.Text_IO.New_Line (Spacing => 1);
 
    R := Formule_Surface (D => X_2);
 
    Ada.Text_IO.Put_Line (Item    => "Formule surface : ");
-   Math_IO.Put          (Item    => R, Fore => 3, Aft => 3, Exp => 0);
+   V_Calcule_IO.Put     (Item    => R, Fore => 3, Aft => 3, Exp => 0);
    Ada.Text_IO.New_Line (Spacing => 3);
 
    Aleatoire_R.Reset (Gen => Generateur);
@@ -201,7 +204,7 @@ begin
          subtype Intervalle_Tmp_T is Indice_T range
             Indice_T'First .. Indice_T'Last - 3;
 
-         V_Ref : constant Calcul_T := Resultats (Resultats'First).V_Calcule;
+         V_Ref : constant V_Calcule_T := Resultats (Resultats'First).V_Calcule;
       begin
          exit Boucle_Generation_Successive when
             (
