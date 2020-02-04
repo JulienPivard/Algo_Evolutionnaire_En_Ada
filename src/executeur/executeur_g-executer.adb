@@ -95,12 +95,9 @@ is
       (D : in Calcul_T)
       return Calcul_T
    is
-      Resultat : Calcul_T;
-
       Pi : constant := Ada.Numerics.Pi;
    begin
-      Resultat := Pi * ((D**2) / 2.0) + 4.0 * (160.0 / D);
-      return Resultat;
+      return Pi * ((D**2) / 2.0) + 4.0 * (160.0 / D);
    end Formule_Surface;
    ---------------------------------------------------------------------------
 
@@ -119,11 +116,8 @@ is
       return Calcul_T
    is
       Pi : constant := Ada.Numerics.Pi;
-
-      Resultat : Calcul_T;
    begin
-      Resultat := 10.0 + (X**2) - 10.0 * Math_P.Cos (X => 2.0 * Pi * X);
-      return Resultat;
+      return 10.0 + (X**2) - 10.0 * Math_P.Cos (X => 2.0 * Pi * X);
    end Formule_Anonyme;
    ---------------------------------------------------------------------------
 
