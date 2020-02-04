@@ -232,7 +232,8 @@ begin
          for I in Intervalle_Tmp_T loop
             Moyenne := Moyenne + Resultats (I).V_Initial;
          end loop Boucle_Calcul_Moyenne;
-         Moyenne := Moyenne / Calcul_T (Resultats'Length - 1);
+         Moyenne := Moyenne / Calcul_T (Resultats'Length - 3);
+         --  Les 3 dernières valeurs ne font pas partit des survivantes
 
          Resultats (Resultats'Last).V_Initial := Moyenne;
       end Bloc_Accouplement_Valeur;
