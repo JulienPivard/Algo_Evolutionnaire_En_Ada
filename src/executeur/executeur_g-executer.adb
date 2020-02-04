@@ -7,7 +7,7 @@ separate (Executeur_G)
 procedure Executer
    --  (Arguments)
 is
-   type Calcul_T is digits 5;
+   type Calcul_T    is digits 5;
 
    type Element_T is
       record
@@ -22,7 +22,7 @@ is
    package R_T_R       renames Ada.Real_Time;
 
    package Math_IO is new Ada.Text_IO.Float_IO (Num => Calcul_T);
-   package Math_P  is new Ada.Numerics.Generic_Elementary_Functions
+   package Math_P       is new Ada.Numerics.Generic_Elementary_Functions
       (Calcul_T);
 
    X_1 : constant Calcul_T := 5.0;
@@ -69,11 +69,11 @@ is
       I : Natural := 1;
    begin
       for E of Item loop
-         Natural_IO.Put  (Item => I, Width => 2);
-         Ada.Text_IO.Put (Item => " Initial : ");
-         Math_IO.Put     (Item => E.V_Initial, Fore => 3, Aft => 3, Exp => 0);
-         Ada.Text_IO.Put (Item => " | Résultat : ");
-         Math_IO.Put     (Item => E.V_Calcule, Fore => 3, Aft => 3, Exp => 0);
+         Natural_IO.Put   (Item => I, Width => 2);
+         Ada.Text_IO.Put  (Item => " Initial : ");
+         Math_IO.Put      (Item => E.V_Initial, Fore => 3, Aft => 3, Exp => 0);
+         Ada.Text_IO.Put  (Item => " | Résultat : ");
+         Math_IO.Put      (Item => E.V_Calcule, Fore => 3, Aft => 3, Exp => 0);
 
          Ada.Text_IO.New_Line (Spacing => 1);
          I := I + 1;
@@ -95,7 +95,7 @@ is
       (D : in Calcul_T)
       return Calcul_T
    is
-      Pi : constant := Ada.Numerics.Pi;
+      Pi : constant          := Ada.Numerics.Pi;
    begin
       return Pi * ((D**2) / 2.0) + 4.0 * (160.0 / D);
    end Formule_Surface;
@@ -115,7 +115,7 @@ is
       (X : in Calcul_T)
       return Calcul_T
    is
-      Pi : constant := Ada.Numerics.Pi;
+      Pi : constant          := Ada.Numerics.Pi;
    begin
       return 10.0 + (X**2) - 10.0 * Math_P.Cos (X => 2.0 * Pi * X);
    end Formule_Anonyme;
@@ -175,8 +175,8 @@ begin
                   declare
                      Tmp : Element_T;
                   begin
-                     Tmp := Resultats (I);
-                     Resultats (I) := Resultats (I + 1);
+                     Tmp               := Resultats (I);
+                     Resultats (I)     := Resultats (I + 1);
                      Resultats (I + 1) := Tmp;
                   end Bloc_Echange_Valeur;
 
