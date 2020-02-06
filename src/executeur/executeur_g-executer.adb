@@ -42,6 +42,7 @@ is
    ---------------------------------------------------------------------------
    generic
       type Valeur_T is digits <>;
+      --  Le type dont on veut générer une valeur aléatoirement.
    function Generer_Flottant
       (
          Borne_Inf : in Valeur_T := Valeur_T'First;
@@ -174,7 +175,7 @@ begin
    Ada.Text_IO.New_Line (Spacing => 3);
 
    Aleatoire_R.Reset (Gen => Generateur);
-   --  Initialistion du tableau avec des valeurs initial
+   --  Initialisation du tableau avec des valeurs initial
    Boucle_Initialisation :
    for E of Resultats loop
       E.V_Initial := Generer;
@@ -258,6 +259,7 @@ begin
          end loop Boucle_Genere_Nouvelles_Valeurs_Alea;
       end Bloc_Genere_Nouvelles_Valeurs_Alea;
 
+      --  Génère une nouvelle valeur à partir de plusieurs autres.
       Bloc_Accouplement_Valeur :
       declare
          subtype Intervalle_Tmp_T is Indice_T range
