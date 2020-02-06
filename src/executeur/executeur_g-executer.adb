@@ -262,8 +262,8 @@ begin
    --  Affiche le temps de filtrage du fichier.
    Ada.Text_IO.Put      (Item => "Temps total : ");
    Ada.Text_IO.New_Line (Spacing => 1);
-   --  Conversion du temps pour faciliter l'affichage.
 
+   --  Conversion du temps pour faciliter l'affichage.
    Affichage_Temps :
    declare
       use type Ada.Real_Time.Time;
@@ -307,6 +307,7 @@ begin
          end Decoupage_En_Heures;
       end if;
    end Affichage_Temps;
+
    Ada.Text_IO.New_Line (Spacing => 1);
    --------------------------------------
 end Executer;
