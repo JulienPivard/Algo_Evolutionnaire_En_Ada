@@ -156,7 +156,8 @@ begin
       E.V_Calcule := Formule_Surface (D => E.V_Initial);
    end loop Boucle_Calcul;
 
-   Ada.Text_IO.Put_Line (Item    => "Valeurs de départ.");
+   Ada.Text_IO.Put_Line (Item    => "========== Valeurs de départ ==========");
+   Ada.Text_IO.New_Line (Spacing => 1);
    Put_Line             (Item    => Resultats);
    Ada.Text_IO.New_Line (Spacing => 1);
 
@@ -263,7 +264,10 @@ begin
    end loop Boucle_Generation_Successive;
    Fin := R_T_R.Clock;
 
-   Put_Line (Item => Resultats);
+   Ada.Text_IO.Put_Line (Item    => "======= Valeurs après évolution =======");
+   Ada.Text_IO.New_Line (Spacing => 1);
+   Put_Line             (Item => Resultats);
+   Ada.Text_IO.New_Line (Spacing => 1);
 
    Ada.Text_IO.Put_Line
       (Item => "Nombre de tours : " & Natural'Image (Nombre_De_Tours));
