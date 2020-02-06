@@ -1,7 +1,8 @@
 with Ada.Text_IO;
 with Ada.Real_Time;
 with Ada.Numerics.Generic_Elementary_Functions;
-with Ada.Numerics.Float_Random;
+
+with Aleatoire_P;
 
 separate (Executeur_G)
 procedure Executer
@@ -20,7 +21,6 @@ is
    type Indice_T       is range 1 .. 10;
    type Table_Calcul_T is array (Indice_T) of Element_T;
 
-   package Aleatoire_R renames Ada.Numerics.Float_Random;
    package R_T_R       renames Ada.Real_Time;
 
    package V_Initial_IO is new Ada.Text_IO.Float_IO (Num => V_Initial_T);
@@ -34,53 +34,9 @@ is
    R : V_Calcule_T;
 
    Resultats  : Table_Calcul_T;
-   Generateur : Aleatoire_R.Generator;
    Debut, Fin : R_T_R.Time;
 
    Nombre_De_Tours : Natural := Natural'First;
-
-   ---------------------------------------------------------------------------
-   generic
-      type Valeur_T is digits <>;
-      --  Le type dont on veut générer une valeur aléatoirement.
-   function Generer_Flottant
-      (
-         Borne_Inf : in Valeur_T := Valeur_T'First;
-         Borne_Sup : in Valeur_T := Valeur_T'Last
-      )
-      return Valeur_T;
-   --  Génère une valeur aléatoire comprise entre les bornes.
-   --  @param Borne_Inf
-   --  La borne inférieur de la valeur à générer.
-   --  @param Borne_Sup
-   --  La borne supérieur de la valeur à générer.
-   --  @return La valeur aléatoire généré.
-
-   function Generer_Flottant
-      (
-         Borne_Inf : in Valeur_T := Valeur_T'First;
-         Borne_Sup : in Valeur_T := Valeur_T'Last
-      )
-      return Valeur_T
-   is
-      type F_Tmp_T is digits 10;
-
-      Borne_Inferieur : constant F_Tmp_T := F_Tmp_T (Borne_Inf);
-      Borne_Superieur : constant F_Tmp_T := F_Tmp_T (Borne_Sup);
-      Val_Aleatoire   : constant F_Tmp_T :=
-         F_Tmp_T (Aleatoire_R.Random (Gen => Generateur));
-
-      Resultat : F_Tmp_T;
-   begin
-      Resultat :=
-         (Borne_Superieur - Borne_Inferieur)
-         *
-         Val_Aleatoire
-         +
-         Borne_Inferieur;
-      return Valeur_T (Resultat);
-   end Generer_Flottant;
-   ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
    procedure Put_Line
@@ -160,7 +116,7 @@ is
 
    subtype Interval_Initial_T is V_Initial_T range 0.0 .. 110.0;
 
-   function Generer is new Generer_Flottant (Interval_Initial_T);
+   function Generer is new Aleatoire_P.Generer_Flottant (Interval_Initial_T);
 begin
    R := Formule_Anonyme (X => X_1);
 
@@ -174,7 +130,6 @@ begin
    V_Calcule_IO.Put     (Item    => R, Fore => 3, Aft => 3, Exp => 0);
    Ada.Text_IO.New_Line (Spacing => 3);
 
-   Aleatoire_R.Reset (Gen => Generateur);
    --  Initialisation du tableau avec des valeurs initial
    Boucle_Initialisation :
    for E of Resultats loop
