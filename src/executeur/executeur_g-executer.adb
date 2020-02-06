@@ -146,11 +146,13 @@ begin
    Ada.Text_IO.New_Line (Spacing => 3);
 
    Aleatoire_R.Reset (Gen => Generateur);
+   --  Initialistion du tableau avec des valeurs initial
    Boucle_Initialisation :
    for E of Resultats loop
       E.V_Initial := Generer;
    end loop Boucle_Initialisation;
 
+   --  Premier calcul de toutes la valeurs.
    Boucle_Calcul :
    for E of Resultats loop
       E.V_Calcule := Formule_Surface (D => E.V_Initial);
