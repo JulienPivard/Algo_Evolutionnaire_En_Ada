@@ -1,7 +1,7 @@
 with Ada.Text_IO;
+with Ada.Real_Time;
 with Ada.Numerics.Generic_Elementary_Functions;
 with Ada.Numerics.Float_Random;
-with Ada.Real_Time;
 
 separate (Executeur_G)
 procedure Executer
