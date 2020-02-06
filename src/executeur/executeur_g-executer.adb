@@ -40,21 +40,45 @@ is
    Nombre_De_Tours : Natural := Natural'First;
 
    ---------------------------------------------------------------------------
-   function Generer
-      return V_Initial_T;
+   generic
+      type Valeur_T is digits <>;
+   function Generer_Flottant
+      (
+         Borne_Inf : in Valeur_T := Valeur_T'First;
+         Borne_Sup : in Valeur_T := Valeur_T'Last
+      )
+      return Valeur_T;
    --  Génère une valeur aléatoire comprise entre les bornes.
+   --  @param Borne_Inf
+   --  La borne inférieur de la valeur à générer.
+   --  @param Borne_Sup
+   --  La borne supérieur de la valeur à générer.
    --  @return La valeur aléatoire généré.
 
-   function Generer
-      return V_Initial_T
+   function Generer_Flottant
+      (
+         Borne_Inf : in Valeur_T := Valeur_T'First;
+         Borne_Sup : in Valeur_T := Valeur_T'Last
+      )
+      return Valeur_T
    is
-      Resultat : V_Initial_T;
+      type F_Tmp_T is digits 10;
+
+      Borne_Inferieur : constant F_Tmp_T := F_Tmp_T (Borne_Inf);
+      Borne_Superieur : constant F_Tmp_T := F_Tmp_T (Borne_Sup);
+      Val_Aleatoire   : constant F_Tmp_T :=
+         F_Tmp_T (Aleatoire_R.Random (Gen => Generateur));
+
+      Resultat : F_Tmp_T;
    begin
-      --  Pour un résultat entre 1.0 et 61.0;
-      Resultat := V_Initial_T
-         (60.0 * Aleatoire_R.Random (Gen => Generateur) + 1.0);
-      return Resultat;
-   end Generer;
+      Resultat :=
+         (Borne_Superieur - Borne_Inferieur)
+         *
+         Val_Aleatoire
+         +
+         Borne_Inferieur;
+      return Valeur_T (Resultat);
+   end Generer_Flottant;
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
@@ -132,6 +156,10 @@ is
    --  Convergence en :
    --   - x = -0,55
    --   - y = -1,55
+
+   subtype Interval_Initial_T is V_Initial_T range 0.0 .. 110.0;
+
+   function Generer is new Generer_Flottant (Interval_Initial_T);
 begin
    R := Formule_Anonyme (X => X_1);
 
