@@ -21,8 +21,6 @@ is
    type Indice_T       is range 1 .. 10;
    type Table_Calcul_T is array (Indice_T) of Element_T;
 
-   package R_T_R       renames Ada.Real_Time;
-
    package V_Initial_IO is new Ada.Text_IO.Float_IO (Num => V_Initial_T);
    package V_Calcule_IO is new Ada.Text_IO.Float_IO (Num => V_Calcule_T);
 
@@ -34,7 +32,7 @@ is
    R : V_Calcule_T;
 
    Resultats  : Table_Calcul_T;
-   Debut, Fin : R_T_R.Time;
+   Debut, Fin : Ada.Real_Time.Time;
 
    Nombre_De_Tours : Natural := Natural'First;
 
@@ -147,7 +145,7 @@ begin
    Put_Line             (Item    => Resultats);
    Ada.Text_IO.New_Line (Spacing => 1);
 
-   Debut := R_T_R.Clock;
+   Debut := Ada.Real_Time.Clock;
    Boucle_Generation_Successive :
    loop
       --  Utilisation d'un tri à bulle pour le premier prototype.
@@ -249,7 +247,7 @@ begin
       end Bloc_Calcul_Partiel;
 
    end loop Boucle_Generation_Successive;
-   Fin := R_T_R.Clock;
+   Fin := Ada.Real_Time.Clock;
 
    Ada.Text_IO.Put_Line (Item    => "======= Valeurs après évolution =======");
    Ada.Text_IO.New_Line (Spacing => 1);
@@ -268,12 +266,12 @@ begin
 
    Affichage_Temps :
    declare
-      use type R_T_R.Time;
+      use type Ada.Real_Time.Time;
 
       type Temps_T is new Natural;
 
       Duree_Exact : constant Duration  :=
-         R_T_R.To_Duration (TS => Fin - Debut);
+         Ada.Real_Time.To_Duration (TS => Fin - Debut);
       Duree       : constant Temps_T   := Temps_T (Duree_Exact);
       Minuttes    : constant Temps_T   := 60;
       Indentation : constant String    := "         ";
