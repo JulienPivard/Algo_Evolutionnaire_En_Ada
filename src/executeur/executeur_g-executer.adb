@@ -37,7 +37,7 @@ is
 
    Nb_Generations : Natural := Natural'First;
 
-   Population        : constant Indice_Population_T :=
+   Taille_Population : constant Indice_Population_T :=
       (Indice_Population_T'Last - Indice_Population_T'First) + 1;
    --  La population total d'individu.
    --  Chaque individu est une case du tableau.
@@ -55,7 +55,7 @@ is
 
       I : Indice_Population_T := 1;
    begin
-      if Population <= 100 then
+      if Taille_Population <= 100 then
          for E of Item loop
             Indice_IO.Put    (Item => I, Width => 3);
             Ada.Text_IO.Put  (Item => " | X : ");
