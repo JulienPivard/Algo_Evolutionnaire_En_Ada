@@ -369,14 +369,10 @@ begin
 
       --  Génère deux valeurs aléatoires et les places dans les deux
       --  dernières cases du tableau.
-      Bloc_Genere_Nouvelles_Valeurs_Alea :
-      declare
-      begin
       Boucle_Genere_Nouvelles_Valeurs_Alea :
       for I in Intervalle_Mutants_T loop
          Population (I).V_Param := Generer;
       end loop Boucle_Genere_Nouvelles_Valeurs_Alea;
-      end Bloc_Genere_Nouvelles_Valeurs_Alea;
 
       --  Génère une nouvelle valeur à partir de plusieurs autres.
       Bloc_Calcul_Moyenne :
@@ -397,15 +393,11 @@ begin
 
       --  Il est inutile de recalculer toutes les valeurs. Seul les 3
       --  dernières sont nouvelles.
-      Bloc_Calcul_Partiel :
-      declare
-      begin
       Boucle_Calcul_Partiel :
       for I in Intervalle_Naissance_T loop
          Population (I).V_Calcule :=
             Formule_Surface (D => Population (I).V_Param);
       end loop Boucle_Calcul_Partiel;
-      end Bloc_Calcul_Partiel;
 
    end loop Boucle_Generation_Successive;
    Fin := Ada.Real_Time.Clock;
