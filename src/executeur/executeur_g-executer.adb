@@ -250,6 +250,7 @@ begin
 
       --  Toutes les valeurs survivantes doivent se trouver autour
       --  de la valeur minimum du tableau +/-1
+      --  Intervalle de convergence
       Bloc_Verification_Convergence :
       declare
          V_Ref : constant V_Calcule_T :=
