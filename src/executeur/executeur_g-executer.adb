@@ -53,6 +53,9 @@ is
       Nb_Morts - Enfant_Moyenne;
    --  Le total d'enfants "naturel" qui seront conçu pour
    --  la prochaine génération.
+   Nb_Accouplements  : constant Indice_Population_T := Future_Nb_Enfants / 2;
+   --  Le nombre d'enfants par accouplement de deux valeur
+   --  prises au hasard parmi les survivantes.
 
    subtype Intervalle_Survivants_T     is Indice_Population_T        range
       Indice_Population_T'First .. Nb_Survivants;
@@ -66,6 +69,11 @@ is
       Intervalle_Naissance_T'Last;
 
    subtype Intervalle_Mort_T           is Intervalle_Naissance_T;
+
+   subtype Intervalle_Accouplements_T  is Intervalle_Future_Enfant_T range
+      Intervalle_Future_Enfant_T'First
+      ..
+      Intervalle_Future_Enfant_T'First + Nb_Accouplements - 1;
 
    subtype Intervalle_Enfant_Moyenne_T is Intervalle_Naissance_T     range
       Intervalle_Naissance_T'First .. Intervalle_Naissance_T'First;
@@ -94,6 +102,8 @@ is
             end if;
             if I in Intervalle_Enfant_Moyenne_T then
                Ada.Text_IO.Put (Item => " Moy");
+            elsif I in Intervalle_Accouplements_T then
+               Ada.Text_IO.Put (Item => " A  ");
             else
                Ada.Text_IO.Put (Item => "    ");
             end if;
@@ -190,6 +200,7 @@ begin
    Ada.Text_IO.Put_Line (Item => "Survivants   : " & Nb_Survivants'Img);
    Ada.Text_IO.Put_Line (Item => "Morts        : " & Nb_Morts'Img);
    Ada.Text_IO.Put_Line (Item => "Future       : " & Future_Nb_Enfants'Img);
+   Ada.Text_IO.Put_Line (Item => "Accouplement : " & Nb_Accouplements'Img);
 
    if Taille_Population <= 60 then
       Ada.Text_IO.New_Line  (Spacing => 1);
@@ -230,6 +241,17 @@ begin
       Ada.Text_IO.Put       (Item => "Enfant moyen  : ");
       for I in Indice_Population_T loop
          if I in Intervalle_Enfant_Moyenne_T then
+            Ada.Text_IO.Put (Item => "|");
+            Indice_IO.Put   (Item => I, Width => 2);
+         else
+            Ada.Text_IO.Put (Item => "|  ");
+         end if;
+      end loop;
+      Ada.Text_IO.Put_Line  (Item => "|");
+
+      Ada.Text_IO.Put       (Item => "Accouplements : ");
+      for I in Indice_Population_T loop
+         if I in Intervalle_Accouplements_T then
             Ada.Text_IO.Put (Item => "|");
             Indice_IO.Put   (Item => I, Width => 2);
          else
