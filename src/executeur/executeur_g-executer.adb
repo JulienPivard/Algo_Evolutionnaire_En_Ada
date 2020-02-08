@@ -49,12 +49,21 @@ is
    Nb_Morts          : constant Indice_Population_T :=
       Taille_Population - Nb_Survivants;
    --  Le reste de la population que n'as pas survécu.
+   Future_Nb_Enfants : constant Indice_Population_T :=
+      Nb_Morts - Enfant_Moyenne;
+   --  Le total d'enfants "naturel" qui seront conçu pour
+   --  la prochaine génération.
 
    subtype Intervalle_Survivants_T     is Indice_Population_T        range
       Indice_Population_T'First .. Nb_Survivants;
 
    subtype Intervalle_Naissance_T      is Indice_Population_T        range
       Nb_Survivants + 1 .. Indice_Population_T'Last;
+
+   subtype Intervalle_Future_Enfant_T  is Intervalle_Naissance_T     range
+      Intervalle_Naissance_T'First + Enfant_Moyenne
+      ..
+      Intervalle_Naissance_T'Last;
 
    subtype Intervalle_Mort_T           is Intervalle_Naissance_T;
 
@@ -180,6 +189,7 @@ begin
    Ada.Text_IO.Put_Line (Item => "Population   : " & Taille_Population'Img);
    Ada.Text_IO.Put_Line (Item => "Survivants   : " & Nb_Survivants'Img);
    Ada.Text_IO.Put_Line (Item => "Morts        : " & Nb_Morts'Img);
+   Ada.Text_IO.Put_Line (Item => "Future       : " & Future_Nb_Enfants'Img);
 
    if Taille_Population <= 60 then
       Ada.Text_IO.New_Line  (Spacing => 1);
