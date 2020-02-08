@@ -70,6 +70,9 @@ is
       if Taille_Population <= 100 then
          for E of Item loop
             Indice_IO.Put    (Item => I, Width => 3);
+            if I in Intervalle_Survivants_T then
+               Ada.Text_IO.Put (Item => " S   ");
+            end if;
             Ada.Text_IO.Put  (Item => " | X : ");
             V_Initial_IO.Put
                (Item => E.V_Param,   Fore => 3, Aft => 3, Exp => 0);
