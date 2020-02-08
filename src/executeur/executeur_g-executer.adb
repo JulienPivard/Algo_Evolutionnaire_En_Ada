@@ -46,6 +46,9 @@ is
    Nb_Survivants     : constant Indice_Population_T :=
       Taille_Population - ((Taille_Population * 25) / 100) - Enfant_Moyenne;
    --  Le nombre de survivants (environ 75%)
+   Nb_Morts          : constant Indice_Population_T :=
+      Taille_Population - Nb_Survivants;
+   --  Le reste de la population que n'as pas survécu.
 
    subtype Intervalle_Survivants_T     is Indice_Population_T        range
       Indice_Population_T'First .. Nb_Survivants;
@@ -79,6 +82,11 @@ is
                Ada.Text_IO.Put (Item => " S   ");
             elsif I in Intervalle_Mort_T then
                Ada.Text_IO.Put (Item => " Mort");
+            end if;
+            if I in Intervalle_Enfant_Moyenne_T then
+               Ada.Text_IO.Put (Item => " Moy");
+            else
+               Ada.Text_IO.Put (Item => "    ");
             end if;
             Ada.Text_IO.Put  (Item => " | X : ");
             V_Initial_IO.Put
@@ -201,6 +209,17 @@ begin
       Ada.Text_IO.Put       (Item => "Naissance     : ");
       for I in Indice_Population_T loop
          if I in Intervalle_Naissance_T then
+            Ada.Text_IO.Put (Item => "|");
+            Indice_IO.Put   (Item => I, Width => 2);
+         else
+            Ada.Text_IO.Put (Item => "|  ");
+         end if;
+      end loop;
+      Ada.Text_IO.Put_Line  (Item => "|");
+
+      Ada.Text_IO.Put       (Item => "Enfant moyen  : ");
+      for I in Indice_Population_T loop
+         if I in Intervalle_Enfant_Moyenne_T then
             Ada.Text_IO.Put (Item => "|");
             Indice_IO.Put   (Item => I, Width => 2);
          else
