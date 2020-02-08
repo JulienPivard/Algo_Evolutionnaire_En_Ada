@@ -113,9 +113,9 @@ is
    --   - x = -0,55
    --   - y = -1,55
 
-   subtype Interval_Initial_T is V_Initial_T range 0.0 .. 110.0;
+   subtype Intervalle_Initial_T is V_Initial_T range 0.0 .. 110.0;
 
-   function Generer is new Aleatoire_P.Generer_Flottant (Interval_Initial_T);
+   function Generer is new Aleatoire_P.Generer_Flottant (Intervalle_Initial_T);
 begin
    R := Formule_Anonyme (X => X_1);
 
