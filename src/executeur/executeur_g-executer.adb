@@ -19,8 +19,8 @@ is
          V_Calcule : V_Calcule_T := 0.0;
       end record;
 
-   type Indice_T       is range 1 .. 10;
-   type Table_Calcul_T is array (Indice_T) of Individu_T;
+   type Indice_Population_T is range 1 .. 10;
+   type Table_Calcul_T is array (Indice_Population_T) of Individu_T;
 
    package V_Initial_IO is new Ada.Text_IO.Float_IO (Num => V_Initial_T);
    package V_Calcule_IO is new Ada.Text_IO.Float_IO (Num => V_Calcule_T);
@@ -154,8 +154,8 @@ begin
       loop
          Bloc_Tri_Bulle :
          declare
-            subtype Intervalle_Tmp_T is Indice_T range
-               Indice_T'First .. Indice_T'Last - 1;
+            subtype Intervalle_Tmp_T is Indice_Population_T range
+               Indice_Population_T'First .. Indice_Population_T'Last - 1;
 
             Echange : Boolean := False;
          begin
@@ -186,8 +186,8 @@ begin
       --  de la valeur minimum du tableau +/-1
       Bloc_Verification_Convergence :
       declare
-         subtype Intervalle_Tmp_T is Indice_T range
-            Indice_T'First .. Indice_T'Last - 3;
+         subtype Intervalle_Tmp_T is Indice_Population_T range
+            Indice_Population_T'First .. Indice_Population_T'Last - 3;
 
          V_Ref : constant V_Calcule_T := Resultats (Resultats'First).V_Calcule;
       begin
@@ -204,8 +204,8 @@ begin
       --  dernières cases du tableau.
       Bloc_Genere_Nouvelles_Valeurs_Alea :
       declare
-         subtype Intervalle_Tmp_T is Indice_T range
-            Indice_T'Last - 2 .. Indice_T'Last - 1;
+         subtype Intervalle_Tmp_T is Indice_Population_T range
+            Indice_Population_T'Last - 2 .. Indice_Population_T'Last - 1;
       begin
          Boucle_Genere_Nouvelles_Valeurs_Alea :
          for I in Intervalle_Tmp_T loop
@@ -216,8 +216,8 @@ begin
       --  Génère une nouvelle valeur à partir de plusieurs autres.
       Bloc_Accouplement_Valeur :
       declare
-         subtype Intervalle_Tmp_T is Indice_T range
-            Indice_T'First .. Indice_T'Last - 3;
+         subtype Intervalle_Tmp_T is Indice_Population_T range
+            Indice_Population_T'First .. Indice_Population_T'Last - 3;
 
          Moyenne : V_Initial_T := 0.0;
       begin
@@ -237,8 +237,8 @@ begin
       --  dernières sont nouvelles.
       Bloc_Calcul_Partiel :
       declare
-         subtype Intervalle_Tmp_T is Indice_T range
-            Indice_T'Last - 3 .. Indice_T'Last;
+         subtype Intervalle_Tmp_T is Indice_Population_T range
+            Indice_Population_T'Last - 3 .. Indice_Population_T'Last;
       begin
          Boucle_Calcul_Partiel :
          for I in Intervalle_Tmp_T loop
