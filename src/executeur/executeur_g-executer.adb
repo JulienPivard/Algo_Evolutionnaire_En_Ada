@@ -20,7 +20,7 @@ is
       end record;
 
    type Indice_Population_T is range 1 .. 10;
-   type Table_Calcul_T is array (Indice_Population_T) of Individu_T;
+   type Population_T        is array (Indice_Population_T) of Individu_T;
 
    package V_Initial_IO is new Ada.Text_IO.Float_IO (Num => V_Initial_T);
    package V_Calcule_IO is new Ada.Text_IO.Float_IO (Num => V_Calcule_T);
@@ -32,20 +32,20 @@ is
 
    R : V_Calcule_T;
 
-   Resultats  : Table_Calcul_T;
+   Resultats  : Population_T;
    Debut, Fin : Ada.Real_Time.Time;
 
    Nombre_De_Tours : Natural := Natural'First;
 
    ---------------------------------------------------------------------------
    procedure Put_Line
-      (Item : in Table_Calcul_T);
+      (Item : in Population_T);
    --  Affiche le contenu d'un tableau de valeurs.
    --  @param Item
    --  Le tableau.
 
    procedure Put_Line
-      (Item : in Table_Calcul_T)
+      (Item : in Population_T)
    is
       package Natural_IO is new Ada.Text_IO.Integer_IO (Natural);
 
