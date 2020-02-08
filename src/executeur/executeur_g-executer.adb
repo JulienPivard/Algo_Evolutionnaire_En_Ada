@@ -32,7 +32,7 @@ is
 
    R : V_Calcule_T;
 
-   Resultats  : Population_T;
+   Population : Population_T;
    Debut, Fin : Ada.Real_Time.Time;
 
    Nb_Generations : Natural := Natural'First;
@@ -141,19 +141,19 @@ begin
 
    --  Initialisation du tableau avec des valeurs initial
    Boucle_Initialisation :
-   for E of Resultats loop
+   for E of Population loop
       E.V_Param := Generer;
    end loop Boucle_Initialisation;
 
    --  Premier calcul de toutes la valeurs.
    Boucle_Calcul :
-   for E of Resultats loop
+   for E of Population loop
       E.V_Calcule := Formule_Surface (D => E.V_Param);
    end loop Boucle_Calcul;
 
    Ada.Text_IO.Put_Line (Item    => "========== Valeurs de départ ==========");
    Ada.Text_IO.New_Line (Spacing => 1);
-   Put_Line             (Item    => Resultats);
+   Put_Line             (Item    => Population);
    Ada.Text_IO.New_Line (Spacing => 1);
 
    Debut := Ada.Real_Time.Clock;
@@ -172,14 +172,14 @@ begin
             Boucle_Tri_Bulle :
             for I in Intervalle_Tmp_T loop
                --  On cherche ici à minimiser le résultat.
-               if Resultats (I).V_Calcule > Resultats (I + 1).V_Calcule then
+               if Population (I).V_Calcule > Population (I + 1).V_Calcule then
                   Bloc_Echange_Valeur :
                   declare
                      Tmp : Individu_T;
                   begin
-                     Tmp               := Resultats (I);
-                     Resultats (I)     := Resultats (I + 1);
-                     Resultats (I + 1) := Tmp;
+                     Tmp                := Population (I);
+                     Population (I)     := Population (I + 1);
+                     Population (I + 1) := Tmp;
                   end Bloc_Echange_Valeur;
 
                   --  On note qu'un échange à été fait et que donc le tableau
@@ -199,14 +199,15 @@ begin
          subtype Intervalle_Tmp_T is Indice_Population_T range
             Indice_Population_T'First .. Indice_Population_T'Last - 3;
 
-         V_Ref : constant V_Calcule_T := Resultats (Resultats'First).V_Calcule;
+         V_Ref : constant V_Calcule_T :=
+            Population (Population'First).V_Calcule;
       begin
          exit Boucle_Generation_Successive when
             (
                for all I in Intervalle_Tmp_T =>
-                  Resultats (I).V_Calcule <= V_Ref + 1.0
+                  Population (I).V_Calcule <= V_Ref + 1.0
                   and then
-                  Resultats (I).V_Calcule >= V_Ref - 1.0
+                  Population (I).V_Calcule >= V_Ref - 1.0
             );
       end Bloc_Verification_Convergence;
 
@@ -219,7 +220,7 @@ begin
       begin
          Boucle_Genere_Nouvelles_Valeurs_Alea :
          for I in Intervalle_Tmp_T loop
-            Resultats (I).V_Param := Generer;
+            Population (I).V_Param := Generer;
          end loop Boucle_Genere_Nouvelles_Valeurs_Alea;
       end Bloc_Genere_Nouvelles_Valeurs_Alea;
 
@@ -233,12 +234,12 @@ begin
       begin
          Boucle_Calcul_Moyenne :
          for I in Intervalle_Tmp_T loop
-            Moyenne := Moyenne + Resultats (I).V_Param;
+            Moyenne := Moyenne + Population (I).V_Param;
          end loop Boucle_Calcul_Moyenne;
-         Moyenne := Moyenne / V_Initial_T (Resultats'Length - 3);
+         Moyenne := Moyenne / V_Initial_T (Population'Length - 3);
          --  Les 3 dernières valeurs ne font pas partit des survivantes
 
-         Resultats (Resultats'Last).V_Param := Moyenne;
+         Population (Resultats'Last).V_Param := Moyenne;
       end Bloc_Calcul_Moyenne;
 
       Nb_Generations := Nb_Generations + 1;
@@ -252,8 +253,8 @@ begin
       begin
          Boucle_Calcul_Partiel :
          for I in Intervalle_Tmp_T loop
-            Resultats (I).V_Calcule :=
-               Formule_Surface (D => Resultats (I).V_Param);
+            Population (I).V_Calcule :=
+               Formule_Surface (D => Population (I).V_Param);
          end loop Boucle_Calcul_Partiel;
       end Bloc_Calcul_Partiel;
 
@@ -262,7 +263,7 @@ begin
 
    Ada.Text_IO.Put_Line (Item    => "======= Valeurs après évolution =======");
    Ada.Text_IO.New_Line (Spacing => 1);
-   Put_Line             (Item => Resultats);
+   Put_Line             (Item    => Population);
    Ada.Text_IO.New_Line (Spacing => 1);
 
    Ada.Text_IO.Put_Line
