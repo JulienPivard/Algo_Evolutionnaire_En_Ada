@@ -13,14 +13,14 @@ is
    type V_Initial_T is new Math_T;
    type V_Calcule_T is new Math_T;
 
-   type Element_T is
+   type Individu_T is
       record
          V_Initial : V_Initial_T := 0.0;
          V_Calcule : V_Calcule_T := 0.0;
       end record;
 
    type Indice_T       is range 1 .. 10;
-   type Table_Calcul_T is array (Indice_T) of Element_T;
+   type Table_Calcul_T is array (Indice_T) of Individu_T;
 
    package V_Initial_IO is new Ada.Text_IO.Float_IO (Num => V_Initial_T);
    package V_Calcule_IO is new Ada.Text_IO.Float_IO (Num => V_Calcule_T);
@@ -165,7 +165,7 @@ begin
                if Resultats (I).V_Calcule > Resultats (I + 1).V_Calcule then
                   Bloc_Echange_Valeur :
                   declare
-                     Tmp : Element_T;
+                     Tmp : Individu_T;
                   begin
                      Tmp               := Resultats (I);
                      Resultats (I)     := Resultats (I + 1);
