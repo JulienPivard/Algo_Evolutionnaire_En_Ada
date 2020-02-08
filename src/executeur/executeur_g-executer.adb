@@ -53,6 +53,8 @@ is
    subtype Intervalle_Enfant_Moyenne_T is Intervalle_Naissance_T     range
       Intervalle_Naissance_T'First .. Intervalle_Naissance_T'First;
 
+   package Indice_IO is new Ada.Text_IO.Integer_IO (Indice_Population_T);
+
    ---------------------------------------------------------------------------
    procedure Put_Line
       (Item : in Population_T);
@@ -63,8 +65,6 @@ is
    procedure Put_Line
       (Item : in Population_T)
    is
-      package Indice_IO is new Ada.Text_IO.Integer_IO (Indice_Population_T);
-
       I : Indice_Population_T := 1;
    begin
       if Taille_Population <= 100 then
@@ -160,6 +160,23 @@ is
    function Generer is new Aleatoire_P.Generer_Flottant (Intervalle_Initial_T);
 begin
    Ada.Text_IO.Put_Line (Item => "Population   : " & Taille_Population'Img);
+   Ada.Text_IO.Put_Line (Item => "Survivants   : " & Nb_Survivants'Img);
+
+   if Taille_Population <= 60 then
+      Ada.Text_IO.New_Line  (Spacing => 1);
+
+      Ada.Text_IO.Put       (Item => "Survivants    : ");
+      for I in Indice_Population_T loop
+         if I in Intervalle_Survivants_T then
+            Ada.Text_IO.Put (Item => "|");
+            Indice_IO.Put   (Item => I, Width => 2);
+         else
+            Ada.Text_IO.Put (Item => "|  ");
+         end if;
+      end loop;
+      Ada.Text_IO.Put_Line  (Item => "|");
+
+   end if;
 
    Ada.Text_IO.New_Line (Spacing => 1);
 
