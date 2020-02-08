@@ -15,7 +15,7 @@ is
 
    type Individu_T is
       record
-         V_Initial : V_Initial_T := 0.0;
+         V_Param   : V_Initial_T := 0.0;
          V_Calcule : V_Calcule_T := 0.0;
       end record;
 
@@ -47,19 +47,21 @@ is
    procedure Put_Line
       (Item : in Population_T)
    is
-      package Natural_IO is new Ada.Text_IO.Integer_IO (Natural);
+      package Indice_IO is new Ada.Text_IO.Integer_IO (Indice_Population_T);
 
-      I : Natural := 1;
+      I : Indice_Population_T := 1;
    begin
       for E of Item loop
-         Natural_IO.Put   (Item => I, Width => 2);
+         Indice_IO.Put    (Item => I, Width => 3);
          Ada.Text_IO.Put  (Item => " Initial : ");
-         V_Initial_IO.Put (Item => E.V_Initial, Fore => 3, Aft => 3, Exp => 0);
+         V_Initial_IO.Put (Item => E.V_Param, Fore => 3, Aft => 3, Exp => 0);
          Ada.Text_IO.Put  (Item => " | Résultat : ");
          V_Calcule_IO.Put (Item => E.V_Calcule, Fore => 3, Aft => 3, Exp => 0);
 
          Ada.Text_IO.New_Line (Spacing => 1);
-         I := I + 1;
+         if I < Indice_Population_T'Last then
+            I := I + 1;
+         end if;
       end loop;
    end Put_Line;
    ---------------------------------------------------------------------------
@@ -132,13 +134,13 @@ begin
    --  Initialisation du tableau avec des valeurs initial
    Boucle_Initialisation :
    for E of Resultats loop
-      E.V_Initial := Generer;
+      E.V_Param := Generer;
    end loop Boucle_Initialisation;
 
    --  Premier calcul de toutes la valeurs.
    Boucle_Calcul :
    for E of Resultats loop
-      E.V_Calcule := Formule_Surface (D => E.V_Initial);
+      E.V_Calcule := Formule_Surface (D => E.V_Param);
    end loop Boucle_Calcul;
 
    Ada.Text_IO.Put_Line (Item    => "========== Valeurs de départ ==========");
@@ -209,7 +211,7 @@ begin
       begin
          Boucle_Genere_Nouvelles_Valeurs_Alea :
          for I in Intervalle_Tmp_T loop
-            Resultats (I).V_Initial := Generer;
+            Resultats (I).V_Param := Generer;
          end loop Boucle_Genere_Nouvelles_Valeurs_Alea;
       end Bloc_Genere_Nouvelles_Valeurs_Alea;
 
@@ -223,12 +225,12 @@ begin
       begin
          Boucle_Calcul_Moyenne :
          for I in Intervalle_Tmp_T loop
-            Moyenne := Moyenne + Resultats (I).V_Initial;
+            Moyenne := Moyenne + Resultats (I).V_Param;
          end loop Boucle_Calcul_Moyenne;
          Moyenne := Moyenne / V_Initial_T (Resultats'Length - 3);
          --  Les 3 dernières valeurs ne font pas partit des survivantes
 
-         Resultats (Resultats'Last).V_Initial := Moyenne;
+         Resultats (Resultats'Last).V_Param := Moyenne;
       end Bloc_Accouplement_Valeur;
 
       Nombre_De_Tours := Nombre_De_Tours + 1;
@@ -243,7 +245,7 @@ begin
          Boucle_Calcul_Partiel :
          for I in Intervalle_Tmp_T loop
             Resultats (I).V_Calcule :=
-               Formule_Surface (D => Resultats (I).V_Initial);
+               Formule_Surface (D => Resultats (I).V_Param);
          end loop Boucle_Calcul_Partiel;
       end Bloc_Calcul_Partiel;
 
