@@ -70,6 +70,26 @@ is
                I := I + 1;
             end if;
          end loop;
+      else
+         Ada.Text_IO.Put (Item => "Minimum : ");
+         Ada.Text_IO.Put (Item => " | X : ");
+         V_Initial_IO.Put
+            (
+               Item => Item (Indice_Population_T'First).V_Param,
+               Fore => 3,
+               Aft  => 3,
+               Exp  => 0
+            );
+         Ada.Text_IO.Put (Item => " | Résultat : ");
+         V_Calcule_IO.Put
+            (
+               Item => Item (Indice_Population_T'First).V_Calcule,
+               Fore => 3,
+               Aft  => 3,
+               Exp  => 0
+            );
+         Ada.Text_IO.New_Line (Spacing => 1);
+
       end if;
    end Put_Line;
    ---------------------------------------------------------------------------
