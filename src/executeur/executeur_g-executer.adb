@@ -37,7 +37,7 @@ is
 
    Nb_Generations : Natural := Natural'First;
 
-   Population        : constant :=
+   Population        : constant Indice_Population_T :=
       (Indice_Population_T'Last - Indice_Population_T'First) + 1;
    --  La population total d'individu.
    --  Chaque individu est une case du tableau.
@@ -224,7 +224,7 @@ begin
       end Bloc_Genere_Nouvelles_Valeurs_Alea;
 
       --  Génère une nouvelle valeur à partir de plusieurs autres.
-      Bloc_Accouplement_Valeur :
+      Bloc_Calcul_Moyenne :
       declare
          subtype Intervalle_Tmp_T is Indice_Population_T range
             Indice_Population_T'First .. Indice_Population_T'Last - 3;
@@ -239,7 +239,7 @@ begin
          --  Les 3 dernières valeurs ne font pas partit des survivantes
 
          Resultats (Resultats'Last).V_Param := Moyenne;
-      end Bloc_Accouplement_Valeur;
+      end Bloc_Calcul_Moyenne;
 
       Nb_Generations := Nb_Generations + 1;
 
