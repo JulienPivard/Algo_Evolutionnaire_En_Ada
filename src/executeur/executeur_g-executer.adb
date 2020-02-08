@@ -41,6 +41,18 @@ is
       (Indice_Population_T'Last - Indice_Population_T'First) + 1;
    --  La population total d'individu.
    --  Chaque individu est une case du tableau.
+   Enfant_Moyenne    : constant Indice_Population_T := 1;
+   --  L'enfant issu de la moyenne de tous les survivants.
+   Nb_Survivants     : constant Indice_Population_T :=
+      Taille_Population - ((Taille_Population * 25) / 100) - Enfant_Moyenne;
+   --  Le nombre de survivants (environ 75%)
+
+   subtype Intervalle_Survivants_T     is Indice_Population_T        range
+      Indice_Population_T'First .. Nb_Survivants;
+
+   subtype Intervalle_Enfant_Moyenne_T is Intervalle_Naissance_T     range
+      Intervalle_Naissance_T'First .. Intervalle_Naissance_T'First;
+
    ---------------------------------------------------------------------------
    procedure Put_Line
       (Item : in Population_T);
@@ -220,15 +232,12 @@ begin
       --  de la valeur minimum du tableau +/-1
       Bloc_Verification_Convergence :
       declare
-         subtype Intervalle_Tmp_T is Indice_Population_T range
-            Indice_Population_T'First .. Indice_Population_T'Last - 3;
-
          V_Ref : constant V_Calcule_T :=
             Population (Population'First).V_Calcule;
       begin
          exit Boucle_Generation_Successive when
             (
-               for all I in Intervalle_Tmp_T =>
+               for all I in Intervalle_Survivants_T =>
                   Population (I).V_Calcule <= V_Ref + 1.0
                   and then
                   Population (I).V_Calcule >= V_Ref - 1.0
@@ -251,19 +260,16 @@ begin
       --  Génère une nouvelle valeur à partir de plusieurs autres.
       Bloc_Calcul_Moyenne :
       declare
-         subtype Intervalle_Tmp_T is Indice_Population_T range
-            Indice_Population_T'First .. Indice_Population_T'Last - 3;
-
          Moyenne : V_Initial_T := 0.0;
       begin
          Boucle_Calcul_Moyenne :
-         for I in Intervalle_Tmp_T loop
+         for I in Intervalle_Survivants_T loop
             Moyenne := Moyenne + Population (I).V_Param;
          end loop Boucle_Calcul_Moyenne;
-         Moyenne := Moyenne / V_Initial_T (Population'Length - 3);
+         Moyenne := Moyenne / V_Initial_T (Nb_Survivants);
          --  Les 3 dernières valeurs ne font pas partit des survivantes
 
-         Population (Resultats'Last).V_Param := Moyenne;
+         Population (Intervalle_Enfant_Moyenne_T'First).V_Param := Moyenne;
       end Bloc_Calcul_Moyenne;
 
       Nb_Generations := Nb_Generations + 1;
