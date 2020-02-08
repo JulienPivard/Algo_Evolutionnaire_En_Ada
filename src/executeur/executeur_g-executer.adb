@@ -147,6 +147,10 @@ is
 
    function Generer is new Aleatoire_P.Generer_Flottant (Intervalle_Initial_T);
 begin
+   Ada.Text_IO.Put_Line (Item => "Population   : " & Taille_Population'Img);
+
+   Ada.Text_IO.New_Line (Spacing => 1);
+
    R := Formule_Anonyme (X => X_1);
 
    Ada.Text_IO.Put_Line (Item    => "Formule arbitraire : ");
