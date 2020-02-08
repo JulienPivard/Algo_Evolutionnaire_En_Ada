@@ -35,7 +35,7 @@ is
    Resultats  : Population_T;
    Debut, Fin : Ada.Real_Time.Time;
 
-   Nombre_De_Tours : Natural := Natural'First;
+   Nb_Generations : Natural := Natural'First;
 
    Population        : constant :=
       (Indice_Population_T'Last - Indice_Population_T'First) + 1;
@@ -241,7 +241,7 @@ begin
          Resultats (Resultats'Last).V_Param := Moyenne;
       end Bloc_Accouplement_Valeur;
 
-      Nombre_De_Tours := Nombre_De_Tours + 1;
+      Nb_Generations := Nb_Generations + 1;
 
       --  Il est inutile de recalculer toutes les valeurs. Seul les 3
       --  dernières sont nouvelles.
@@ -266,7 +266,7 @@ begin
    Ada.Text_IO.New_Line (Spacing => 1);
 
    Ada.Text_IO.Put_Line
-      (Item => "Nombre de tours : " & Natural'Image (Nombre_De_Tours));
+      (Item => "Nombre de générations : " & Natural'Image (Nb_Generations));
 
    --------------------------------------
    Ada.Text_IO.New_Line (Spacing => 1);
