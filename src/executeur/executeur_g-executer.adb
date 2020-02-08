@@ -395,7 +395,7 @@ begin
       end Bloc_Calcul_Moyenne;
 
       --  Pour chaque valeurs dans l'intervalle d'accouplement,
-      --  on selectionne deux parents et on fait la moyenne
+      --  on sélectionne deux parents et on fait la moyenne
       --  des deux.
       Bloc_Accouplement_Valeurs :
       declare
