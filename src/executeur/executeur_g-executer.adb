@@ -372,10 +372,10 @@ begin
       Bloc_Genere_Nouvelles_Valeurs_Alea :
       declare
       begin
-         Boucle_Genere_Nouvelles_Valeurs_Alea :
-         for I in Intervalle_Mutants_T loop
-            Population (I).V_Param := Generer;
-         end loop Boucle_Genere_Nouvelles_Valeurs_Alea;
+      Boucle_Genere_Nouvelles_Valeurs_Alea :
+      for I in Intervalle_Mutants_T loop
+         Population (I).V_Param := Generer;
+      end loop Boucle_Genere_Nouvelles_Valeurs_Alea;
       end Bloc_Genere_Nouvelles_Valeurs_Alea;
 
       --  Génère une nouvelle valeur à partir de plusieurs autres.
