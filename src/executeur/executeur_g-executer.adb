@@ -37,6 +37,10 @@ is
 
    Nombre_De_Tours : Natural := Natural'First;
 
+   Population        : constant :=
+      (Indice_Population_T'Last - Indice_Population_T'First) + 1;
+   --  La population total d'individu.
+   --  Chaque individu est une case du tableau.
    ---------------------------------------------------------------------------
    procedure Put_Line
       (Item : in Population_T);
@@ -51,20 +55,22 @@ is
 
       I : Indice_Population_T := 1;
    begin
-      for E of Item loop
-         Indice_IO.Put    (Item => I, Width => 3);
-         Ada.Text_IO.Put  (Item => " | X : ");
-         V_Initial_IO.Put
-            (Item => E.V_Param,   Fore => 3, Aft => 3, Exp => 0);
-         Ada.Text_IO.Put  (Item => " | Résultat : ");
-         V_Calcule_IO.Put
-            (Item => E.V_Calcule, Fore => 3, Aft => 3, Exp => 0);
+      if Population <= 100 then
+         for E of Item loop
+            Indice_IO.Put    (Item => I, Width => 3);
+            Ada.Text_IO.Put  (Item => " | X : ");
+            V_Initial_IO.Put
+               (Item => E.V_Param,   Fore => 3, Aft => 3, Exp => 0);
+            Ada.Text_IO.Put  (Item => " | Résultat : ");
+            V_Calcule_IO.Put
+               (Item => E.V_Calcule, Fore => 3, Aft => 3, Exp => 0);
 
-         Ada.Text_IO.New_Line (Spacing => 1);
-         if I < Indice_Population_T'Last then
-            I := I + 1;
-         end if;
-      end loop;
+            Ada.Text_IO.New_Line (Spacing => 1);
+            if I < Indice_Population_T'Last then
+               I := I + 1;
+            end if;
+         end loop;
+      end if;
    end Put_Line;
    ---------------------------------------------------------------------------
 
