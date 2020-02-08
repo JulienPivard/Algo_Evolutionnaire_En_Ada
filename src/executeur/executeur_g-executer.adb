@@ -54,9 +54,11 @@ is
       for E of Item loop
          Indice_IO.Put    (Item => I, Width => 3);
          Ada.Text_IO.Put  (Item => " | X : ");
-         V_Initial_IO.Put (Item => E.V_Param, Fore => 3, Aft => 3, Exp => 0);
+         V_Initial_IO.Put
+            (Item => E.V_Param,   Fore => 3, Aft => 3, Exp => 0);
          Ada.Text_IO.Put  (Item => " | Résultat : ");
-         V_Calcule_IO.Put (Item => E.V_Calcule, Fore => 3, Aft => 3, Exp => 0);
+         V_Calcule_IO.Put
+            (Item => E.V_Calcule, Fore => 3, Aft => 3, Exp => 0);
 
          Ada.Text_IO.New_Line (Spacing => 1);
          if I < Indice_Population_T'Last then
