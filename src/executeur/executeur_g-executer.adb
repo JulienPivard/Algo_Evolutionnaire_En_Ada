@@ -1,6 +1,7 @@
 with Ada.Text_IO;
 with Ada.Real_Time;
 with Ada.Numerics.Generic_Elementary_Functions;
+with Ada.Numerics.Discrete_Random;
 
 with Aleatoire_P;
 with Chrono_P;
@@ -87,6 +88,10 @@ is
       Intervalle_Naissance_T'First .. Intervalle_Naissance_T'First;
 
    package Indice_IO is new Ada.Text_IO.Integer_IO (Indice_Population_T);
+   package Alea_P    is new Ada.Numerics.Discrete_Random
+      (Intervalle_Survivants_T);
+
+   Alea_Survivant : Alea_P.Generator;
 
    ---------------------------------------------------------------------------
    procedure Put_Line
@@ -388,6 +393,27 @@ begin
 
          Population (Intervalle_Enfant_Moyenne_T'First).V_Param := Moyenne;
       end Bloc_Calcul_Moyenne;
+
+      --  Pour chaque valeurs dans l'intervalle d'accouplement,
+      --  on selectionne deux parents et on fait la moyenne
+      --  des deux.
+      Bloc_Accouplement_Valeurs :
+      declare
+         Parent_1, Parent_2 : Individu_T;
+         Moyenne            : V_Initial_T;
+      begin
+         Alea_P.Reset (Gen => Alea_Survivant);
+
+         Boucle_Accouplement_Valeurs :
+         for I in Intervalle_Accouplements_T loop
+            Parent_1 := Population (Alea_P.Random (Gen => Alea_Survivant));
+            Parent_2 := Population (Alea_P.Random (Gen => Alea_Survivant));
+
+            Moyenne  := (Parent_1.V_Param + Parent_2.V_Param) / 2.0;
+
+            Population (I).V_Param := Moyenne;
+         end loop Boucle_Accouplement_Valeurs;
+      end Bloc_Accouplement_Valeurs;
 
       Nb_Generations := Nb_Generations + 1;
 
