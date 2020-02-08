@@ -28,11 +28,6 @@ is
 
    package Math_P is new Ada.Numerics.Generic_Elementary_Functions (Math_T);
 
-   X_1 : constant V_Initial_T := 5.0;
-   X_2 : constant V_Initial_T := 2.0;
-
-   R : V_Calcule_T;
-
    Population : Population_T;
    Debut, Fin : Ada.Real_Time.Time;
 
@@ -199,6 +194,7 @@ is
       return V_Calcule_T
          (10.0 + (Xi**2) - 10.0 * Math_P.Cos (X => 2.0 * Pi * Xi));
    end Formule_Anonyme;
+   pragma Unreferenced (Formule_Anonyme);
    ---------------------------------------------------------------------------
 
    --  Deux inconnues
@@ -289,18 +285,6 @@ begin
    end if;
 
    Ada.Text_IO.New_Line (Spacing => 1);
-
-   R := Formule_Anonyme (X => X_1);
-
-   Ada.Text_IO.Put_Line (Item    => "Formule arbitraire : ");
-   V_Calcule_IO.Put     (Item    => R, Fore => 3, Aft => 3, Exp => 0);
-   Ada.Text_IO.New_Line (Spacing => 1);
-
-   R := Formule_Surface (D => X_2);
-
-   Ada.Text_IO.Put_Line (Item    => "Formule surface : ");
-   V_Calcule_IO.Put     (Item    => R, Fore => 3, Aft => 3, Exp => 0);
-   Ada.Text_IO.New_Line (Spacing => 3);
 
    --  Initialisation du tableau avec des valeurs initial
    Boucle_Initialisation :
