@@ -77,6 +77,8 @@ is
             Indice_IO.Put    (Item => I, Width => 3);
             if I in Intervalle_Survivants_T then
                Ada.Text_IO.Put (Item => " S   ");
+            elsif I in Intervalle_Mort_T then
+               Ada.Text_IO.Put (Item => " Mort");
             end if;
             Ada.Text_IO.Put  (Item => " | X : ");
             V_Initial_IO.Put
@@ -169,6 +171,7 @@ is
 begin
    Ada.Text_IO.Put_Line (Item => "Population   : " & Taille_Population'Img);
    Ada.Text_IO.Put_Line (Item => "Survivants   : " & Nb_Survivants'Img);
+   Ada.Text_IO.Put_Line (Item => "Morts        : " & Nb_Morts'Img);
 
    if Taille_Population <= 60 then
       Ada.Text_IO.New_Line  (Spacing => 1);
@@ -176,6 +179,28 @@ begin
       Ada.Text_IO.Put       (Item => "Survivants    : ");
       for I in Indice_Population_T loop
          if I in Intervalle_Survivants_T then
+            Ada.Text_IO.Put (Item => "|");
+            Indice_IO.Put   (Item => I, Width => 2);
+         else
+            Ada.Text_IO.Put (Item => "|  ");
+         end if;
+      end loop;
+      Ada.Text_IO.Put_Line  (Item => "|");
+
+      Ada.Text_IO.Put       (Item => "Morts         : ");
+      for I in Indice_Population_T loop
+         if I in Intervalle_Mort_T then
+            Ada.Text_IO.Put (Item => "|");
+            Indice_IO.Put   (Item => I, Width => 2);
+         else
+            Ada.Text_IO.Put (Item => "|  ");
+         end if;
+      end loop;
+      Ada.Text_IO.Put_Line  (Item => "|");
+
+      Ada.Text_IO.Put       (Item => "Naissance     : ");
+      for I in Indice_Population_T loop
+         if I in Intervalle_Naissance_T then
             Ada.Text_IO.Put (Item => "|");
             Indice_IO.Put   (Item => I, Width => 2);
          else
@@ -305,11 +330,11 @@ begin
       Bloc_Calcul_Partiel :
       declare
       begin
-         Boucle_Calcul_Partiel :
-         for I in Intervalle_Naissance_T loop
-            Population (I).V_Calcule :=
-               Formule_Surface (D => Population (I).V_Param);
-         end loop Boucle_Calcul_Partiel;
+      Boucle_Calcul_Partiel :
+      for I in Intervalle_Naissance_T loop
+         Population (I).V_Calcule :=
+            Formule_Surface (D => Population (I).V_Param);
+      end loop Boucle_Calcul_Partiel;
       end Bloc_Calcul_Partiel;
 
    end loop Boucle_Generation_Successive;
