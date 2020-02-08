@@ -56,6 +56,9 @@ is
    Nb_Accouplements  : constant Indice_Population_T := Future_Nb_Enfants / 2;
    --  Le nombre d'enfants par accouplement de deux valeur
    --  prises au hasard parmi les survivantes.
+   Nb_Mutants        : constant Indice_Population_T :=
+      Future_Nb_Enfants - Nb_Accouplements;
+   --  Nombre de valeurs qui seront généré aléatoirement.
 
    subtype Intervalle_Survivants_T     is Indice_Population_T        range
       Indice_Population_T'First .. Nb_Survivants;
@@ -74,6 +77,11 @@ is
       Intervalle_Future_Enfant_T'First
       ..
       Intervalle_Future_Enfant_T'First + Nb_Accouplements - 1;
+
+   subtype Intervalle_Mutants_T        is Intervalle_Future_Enfant_T range
+      Intervalle_Future_Enfant_T'Last - Nb_Mutants + 1
+      ..
+      Intervalle_Future_Enfant_T'Last;
 
    subtype Intervalle_Enfant_Moyenne_T is Intervalle_Naissance_T     range
       Intervalle_Naissance_T'First .. Intervalle_Naissance_T'First;
@@ -104,6 +112,8 @@ is
                Ada.Text_IO.Put (Item => " Moy");
             elsif I in Intervalle_Accouplements_T then
                Ada.Text_IO.Put (Item => " A  ");
+            elsif I in Intervalle_Mutants_T then
+               Ada.Text_IO.Put (Item => " Mut");
             else
                Ada.Text_IO.Put (Item => "    ");
             end if;
@@ -201,6 +211,7 @@ begin
    Ada.Text_IO.Put_Line (Item => "Morts        : " & Nb_Morts'Img);
    Ada.Text_IO.Put_Line (Item => "Future       : " & Future_Nb_Enfants'Img);
    Ada.Text_IO.Put_Line (Item => "Accouplement : " & Nb_Accouplements'Img);
+   Ada.Text_IO.Put_Line (Item => "Mutants      : " & Nb_Mutants'Img);
 
    if Taille_Population <= 60 then
       Ada.Text_IO.New_Line  (Spacing => 1);
@@ -260,6 +271,16 @@ begin
       end loop;
       Ada.Text_IO.Put_Line  (Item => "|");
 
+      Ada.Text_IO.Put       (Item => "Mutants       : ");
+      for I in Indice_Population_T loop
+         if I in Intervalle_Mutants_T then
+            Ada.Text_IO.Put (Item => "|");
+            Indice_IO.Put   (Item => I, Width => 2);
+         else
+            Ada.Text_IO.Put (Item => "|  ");
+         end if;
+      end loop;
+      Ada.Text_IO.Put_Line  (Item => "|");
    end if;
 
    Ada.Text_IO.New_Line (Spacing => 1);
@@ -350,11 +371,9 @@ begin
       --  dernières cases du tableau.
       Bloc_Genere_Nouvelles_Valeurs_Alea :
       declare
-         subtype Intervalle_Tmp_T is Indice_Population_T range
-            Indice_Population_T'Last - 2 .. Indice_Population_T'Last - 1;
       begin
          Boucle_Genere_Nouvelles_Valeurs_Alea :
-         for I in Intervalle_Tmp_T loop
+         for I in Intervalle_Mutants_T loop
             Population (I).V_Param := Generer;
          end loop Boucle_Genere_Nouvelles_Valeurs_Alea;
       end Bloc_Genere_Nouvelles_Valeurs_Alea;
