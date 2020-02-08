@@ -50,6 +50,11 @@ is
    subtype Intervalle_Survivants_T     is Indice_Population_T        range
       Indice_Population_T'First .. Nb_Survivants;
 
+   subtype Intervalle_Naissance_T      is Indice_Population_T        range
+      Nb_Survivants + 1 .. Indice_Population_T'Last;
+
+   subtype Intervalle_Mort_T           is Intervalle_Naissance_T;
+
    subtype Intervalle_Enfant_Moyenne_T is Intervalle_Naissance_T     range
       Intervalle_Naissance_T'First .. Intervalle_Naissance_T'First;
 
@@ -299,11 +304,9 @@ begin
       --  dernières sont nouvelles.
       Bloc_Calcul_Partiel :
       declare
-         subtype Intervalle_Tmp_T is Indice_Population_T range
-            Indice_Population_T'Last - 3 .. Indice_Population_T'Last;
       begin
          Boucle_Calcul_Partiel :
-         for I in Intervalle_Tmp_T loop
+         for I in Intervalle_Naissance_T loop
             Population (I).V_Calcule :=
                Formule_Surface (D => Population (I).V_Param);
          end loop Boucle_Calcul_Partiel;
