@@ -20,7 +20,7 @@ is
          V_Calcule : V_Calcule_T := 0.0;
       end record;
 
-   type Indice_Population_T is range 1 .. 10;
+   type Indice_Population_T is range 1 .. 25;
    type Population_T        is array (Indice_Population_T) of Individu_T;
 
    package V_Initial_IO is new Ada.Text_IO.Float_IO (Num => V_Initial_T);
@@ -207,7 +207,7 @@ is
    --   - x = -0,55
    --   - y = -1,55
 
-   subtype Intervalle_Initial_T is V_Initial_T range 0.0 .. 110.0;
+   subtype Intervalle_Initial_T is V_Initial_T range 0.0 .. 1100.0;
 
    function Generer is new Aleatoire_P.Generer_Flottant (Intervalle_Initial_T);
 begin
