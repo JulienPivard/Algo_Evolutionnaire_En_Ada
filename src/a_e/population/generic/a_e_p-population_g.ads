@@ -107,33 +107,47 @@ private
 
    subtype Intervalle_Survivants_T     is Indice_Population_T        range
       Indice_Population_T'First .. Nb_Survivants;
+   --  Défini l'intervalle de valeur des individu survivant.
 
    subtype Intervalle_Naissance_T      is Indice_Population_T        range
       Nb_Survivants + 1 .. Indice_Population_T'Last;
+   --  Défini l'intervalle de valeurs des individu qui naitront
+   --  lors de la prochaine génération.
 
    subtype Intervalle_Future_Enfant_T  is Intervalle_Naissance_T     range
       Intervalle_Naissance_T'First + Enfant_Moyenne
       ..
       Intervalle_Naissance_T'Last;
+   --  Intervalle des futures enfant. L'enfant issue de la moyenne
+   --  de tous les survivant n'est pas compté.
 
    subtype Intervalle_Mort_T           is Intervalle_Naissance_T;
+   --  Correspond au même intervalle que celui des naissance car
+   --  la population est constante dans le temps, il doit donc
+   --  y avoir autant de mort que de naissances.
 
    subtype Intervalle_Accouplements_T  is Intervalle_Future_Enfant_T range
       Intervalle_Future_Enfant_T'First
       ..
       Intervalle_Future_Enfant_T'First + Nb_Accouplements - 1;
+   --  Défini le nombre d'individu à naitre qui seront issus
+   --  d'accouplement de deux individus survivant existant.
 
    subtype Intervalle_Mutants_T        is Intervalle_Future_Enfant_T range
       Intervalle_Future_Enfant_T'Last - Nb_Mutants + 1
       ..
       Intervalle_Future_Enfant_T'Last;
+   --  Défini les futur individu à naitre que seront issu de mutations.
 
    subtype Intervalle_Enfant_Moyenne_T is Intervalle_Naissance_T     range
       Intervalle_Naissance_T'First .. Intervalle_Naissance_T'First;
+   --  La position de l'enfant issu du calcul de la moyenne de tous
+   --  les survivants.
 
    type Table_Population_T is
       array (Indice_Population_T range <>)
       of A_E_P.Individu_P.Individu_T;
+   --  Contient la population.
 
    procedure Appliquer_Formule
       (
@@ -148,10 +162,12 @@ private
    --  La formule à appliquer à toute la population.
 
    subtype Sous_Population_T is Table_Population_T (Indice_Population_T);
+   --  Contient toute la population existante.
 
    type Population_T is
       record
          Table : Sous_Population_T;
+         --  La totalité de la population.
       end record;
 
 end A_E_P.Population_G;
