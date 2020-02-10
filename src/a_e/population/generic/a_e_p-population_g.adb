@@ -172,35 +172,14 @@ is
          Formule    : in     A_E_P.Formule_P.Formule_T
       )
    is
-      ------------------------------------
-      function Lire_Parametre
-         (Position : in Indice_Population_T)
-         return V_Param_T
-         with Inline => True;
-
-      ----------------------
-      function Lire_Parametre
-         (Position : in Indice_Population_T)
-         return V_Param_T
-      is
-         Individu : constant A_E_P.Individu_P.Individu_T :=
-            Population.Table (Position);
-      begin
-         return A_E_P.Individu_P.Lire_Parametre (Individu => Individu);
-      end Lire_Parametre;
-      ------------------------------------
    begin
       --  Il est inutile de recalculer toutes les valeurs.
       --  Seul les 25% dernières sont nouvelles.
-      Boucle_Calcul_Partiel :
-      for I in Intervalle_Naissance_T loop
-         A_E_P.Individu_P.Modifier_Resultat
-            (
-               Individu => Population.Table (I),
-               Valeur   => Formule (P => Lire_Parametre (Position => I))
-            );
-      end loop Boucle_Calcul_Partiel;
-
+      Appliquer_Formule
+         (
+            Population => Population.Table (Intervalle_Naissance_T),
+            Formule    => Formule
+         );
    end Calcul_Formule_Sur_Enfant;
    ---------------------------------------------------------------------------
 
