@@ -1,12 +1,12 @@
 with Ada.Text_IO;
 with Ada.Real_Time;
-with Ada.Numerics.Generic_Elementary_Functions;
 with Ada.Numerics.Discrete_Random;
 
 with A_E_P.Aleatoire_P;
 with Chrono_P;
 with A_E_P;
 with A_E_P.Individu_P;
+with A_E_P.Formule_P;
 
 separate (Executeur_G)
 procedure Executer
@@ -22,7 +22,8 @@ is
    package V_Initial_IO is new Ada.Text_IO.Float_IO (Num => A_E_P.V_Param_T);
    package V_Calcule_IO is new Ada.Text_IO.Float_IO (Num => A_E_P.V_Calcule_T);
 
-   package Math_P is new Ada.Numerics.Generic_Elementary_Functions (A_E_P.Math_T);
+   Formule : constant A_E_P.Formule_P.Formule_T :=
+      A_E_P.Formule_P.Formule_Surface'Access;
 
    Population : Population_T;
    Debut, Fin : Ada.Real_Time.Time;
@@ -158,56 +159,6 @@ is
       end if;
    end Put_Line;
    ---------------------------------------------------------------------------
-
-   ---------------------------------------------------------------------------
-   function Formule_Surface
-      (D : in A_E_P.V_Param_T)
-      return A_E_P.V_Calcule_T;
-   --  Calcul une surface en fonction du diamètre D donné.
-   --  Convergera vers X = 5.9.
-   --  @param D
-   --  Le diamètre de la boite.
-   --  @return La surface de la boite.
-
-   function Formule_Surface
-      (D : in A_E_P.V_Param_T)
-      return A_E_P.V_Calcule_T
-   is
-      Pi : constant              := Ada.Numerics.Pi;
-      Di : constant A_E_P.Math_T := A_E_P.Math_T (D);
-   begin
-      return A_E_P.V_Calcule_T (Pi * ((Di**2) / 2.0) + 4.0 * (160.0 / Di));
-   end Formule_Surface;
-   ---------------------------------------------------------------------------
-
-   ---------------------------------------------------------------------------
-   function Formule_Anonyme
-      (X : in A_E_P.V_Param_T)
-      return A_E_P.V_Calcule_T;
-   --  Un autre calcul.
-   --  Convergera vers X = 0.0.
-   --  @param X
-   --  La valeur de l'inconnue X.
-   --  @return Le résultats de la formule en fonction de X.
-
-   function Formule_Anonyme
-      (X : in A_E_P.V_Param_T)
-      return A_E_P.V_Calcule_T
-   is
-      Pi : constant              := Ada.Numerics.Pi;
-      Xi : constant A_E_P.Math_T := A_E_P.Math_T (X);
-   begin
-      return A_E_P.V_Calcule_T
-         (10.0 + (Xi**2) - 10.0 * Math_P.Cos (X => 2.0 * Pi * Xi));
-   end Formule_Anonyme;
-   pragma Unreferenced (Formule_Anonyme);
-   ---------------------------------------------------------------------------
-
-   --  Deux inconnues
-   --  Formule à ajouter : sin (x+y) + (x-y)^2 -1,5x + 2,5y + 1
-   --  Convergence en :
-   --   - x = -0,55
-   --   - y = -1,55
 begin
    Ada.Text_IO.Put_Line (Item => "Population   : " & Taille_Population'Img);
    Ada.Text_IO.Put_Line (Item => "Survivants   : " & Nb_Survivants'Img);
@@ -304,7 +255,7 @@ begin
       A_E_P.Individu_P.Modifier_Resultat
          (
             Individu => E,
-            Valeur   => Formule_Surface (D => A_E_P.Individu_P.Lire_Parametre (Individu => E))
+            Valeur   => Formule (P => A_E_P.Individu_P.Lire_Parametre (Individu => E))
          );
    end loop Boucle_Calcul;
 
@@ -445,8 +396,8 @@ begin
          A_E_P.Individu_P.Modifier_Resultat
             (
                Individu => Population (I),
-               Valeur   => Formule_Surface
-                  (D => A_E_P.Individu_P.Lire_Parametre (Individu =>  Population (I)))
+               Valeur   => Formule
+                  (P => A_E_P.Individu_P.Lire_Parametre (Individu =>  Population (I)))
             );
       end loop Boucle_Calcul_Partiel;
 
