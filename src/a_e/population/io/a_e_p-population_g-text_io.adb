@@ -87,12 +87,24 @@ is
    ---------------------------------------------------------------------------
    procedure Afficher_Details is
    begin
-      Ada.Text_IO.Put_Line (Item => "Population   : " & Taille_Population'Img);
-      Ada.Text_IO.Put_Line (Item => "Survivants   : " & Nb_Survivants'Img);
-      Ada.Text_IO.Put_Line (Item => "Morts        : " & Nb_Morts'Img);
-      Ada.Text_IO.Put_Line (Item => "Future       : " & Future_Nb_Enfants'Img);
-      Ada.Text_IO.Put_Line (Item => "Accouplement : " & Nb_Accouplements'Img);
-      Ada.Text_IO.Put_Line (Item => "Mutants      : " & Nb_Mutants'Img);
+      Ada.Text_IO.Put      (Item    => "Population   : ");
+      Indice_IO.Put        (Item    => Taille_Population);
+      Ada.Text_IO.New_Line (Spacing => 1);
+      Ada.Text_IO.Put      (Item    => "Survivants   : ");
+      Indice_IO.Put        (Item    => Nb_Survivants);
+      Ada.Text_IO.New_Line (Spacing => 1);
+      Ada.Text_IO.Put      (Item    => "Morts        : ");
+      Indice_IO.Put        (Item    => Nb_Morts);
+      Ada.Text_IO.New_Line (Spacing => 1);
+      Ada.Text_IO.Put      (Item    => "Future       : ");
+      Indice_IO.Put        (Item    => Future_Nb_Enfants);
+      Ada.Text_IO.New_Line (Spacing => 1);
+      Ada.Text_IO.Put      (Item    => "Accouplement : ");
+      Indice_IO.Put        (Item    => Nb_Accouplements);
+      Ada.Text_IO.New_Line (Spacing => 1);
+      Ada.Text_IO.Put      (Item    => "Mutants      : ");
+      Indice_IO.Put        (Item    => Nb_Mutants);
+      Ada.Text_IO.New_Line (Spacing => 1);
 
       if Taille_Population <= 50 then
          Ada.Text_IO.New_Line  (Spacing => 1);
