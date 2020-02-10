@@ -195,14 +195,12 @@ is
                   >
                   Lire_Resultat (Position => I + 1)
                then
-                  Bloc_Echange_Valeur :
-                  declare
-                     Tmp : A_E_P.Individu_P.Individu_T;
-                  begin
-                     Tmp                      := Population.Table (I);
-                     Population.Table (I)     := Population.Table (I + 1);
-                     Population.Table (I + 1) := Tmp;
-                  end Bloc_Echange_Valeur;
+                  Echanger
+                     (
+                        Population => Population.Table,
+                        Gauche     => I,
+                        Droite     => I + 1
+                     );
 
                   --  On note qu'un échange à été fait et que donc le
                   --  tableau n'est potentiellement pas totalement trié.
