@@ -80,6 +80,8 @@ is
    --  Affiche la répartition détaillé des populations,
    --  des morts, des naissances et des mutants.
 
+private
+
    Taille_Population : constant Indice_Population_T :=
       (Indice_Population_T'Last - Indice_Population_T'First) + 1;
    --  La population total d'individu.
@@ -128,8 +130,6 @@ is
 
    subtype Intervalle_Enfant_Moyenne_T is Intervalle_Naissance_T     range
       Intervalle_Naissance_T'First .. Intervalle_Naissance_T'First;
-
-private
 
    procedure Appliquer_Formule
       (
