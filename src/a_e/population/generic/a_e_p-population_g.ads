@@ -75,16 +75,6 @@ is
    --  @param Population
    --  La population.
 
-   procedure Put_Line
-      (Item : in Population_T);
-   --  Affiche le contenu d'un tableau de valeurs.
-   --  @param Item
-   --  La population à afficher.
-
-   procedure Afficher_Details;
-   --  Affiche la répartition détaillé des populations,
-   --  des morts, des naissances et des mutants.
-
 private
 
    Taille_Population : constant Indice_Population_T :=

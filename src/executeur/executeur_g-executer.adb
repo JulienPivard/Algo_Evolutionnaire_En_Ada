@@ -4,6 +4,7 @@ with Ada.Real_Time;
 with A_E_P;
 with A_E_P.Intervalle_P;
 with A_E_P.Population_G;
+with A_E_P.Population_G.Text_IO;
 with A_E_P.Formule_P;
 
 with Chrono_P;
@@ -16,6 +17,7 @@ procedure Executer
 is
    package Population_P  is new A_E_P.Population_G
       (Indice_Population_T => A_E_P.Intervalle_P.Indice_T);
+   package Population_IO is new Population_P.Text_IO;
 
    Formule : constant A_E_P.Formule_P.Formule_T :=
       A_E_P.Formule_P.Formule_Surface'Access;
@@ -25,7 +27,7 @@ is
 
    Nb_Generations : Natural := Natural'First;
 begin
-   Population_P.Afficher_Details;
+   Population_IO.Afficher_Details;
 
    Population_P.Initialiser
       (
@@ -36,7 +38,7 @@ begin
    Ada.Text_IO.Put_Line (Item    => "========== Valeurs de départ ==========");
 
    Ada.Text_IO.New_Line    (Spacing => 1);
-   Population_P.Put_Line   (Item    => Population);
+   Population_IO.Put_Line  (Item    => Population);
    Ada.Text_IO.New_Line    (Spacing => 1);
 
    Debut := Ada.Real_Time.Clock;
@@ -67,7 +69,7 @@ begin
    Ada.Text_IO.Put_Line (Item    => "======= Valeurs après évolution =======");
 
    Ada.Text_IO.New_Line    (Spacing => 1);
-   Population_P.Put_Line   (Item    => Population);
+   Population_IO.Put_Line  (Item    => Population);
    Ada.Text_IO.New_Line    (Spacing => 1);
 
    Ada.Text_IO.Put_Line
