@@ -200,7 +200,7 @@ is
          Ada.Text_IO.Put (Item => " | X : ");
          V_Initial_IO.Put
             (
-               Item => Item (Indice_Population_T'First).V_Param,
+               Item => Item (Item'First).V_Param,
                Fore => 3,
                Aft  => 3,
                Exp  => 0
@@ -208,7 +208,7 @@ is
          Ada.Text_IO.Put (Item => " | Résultat : ");
          V_Calcule_IO.Put
             (
-               Item => Item (Indice_Population_T'First).V_Calcule,
+               Item => Item (Item'First).V_Calcule,
                Fore => 3,
                Aft  => 3,
                Exp  => 0
