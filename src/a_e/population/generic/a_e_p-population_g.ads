@@ -1,6 +1,11 @@
 with A_E_P.Formule_P;
 with A_E_P.Individu_P;
 
+private with Sorte_De_Tri_P;
+private with Tri_Rapide_G;
+
+pragma Elaborate_All (Tri_Rapide_G);
+
 generic
 
    type Indice_Population_T is range <>;
@@ -167,6 +172,34 @@ private
    --  @param Formule
    --  La formule à appliquer à toute la population.
 
+   function Comparer_Minimiser
+      (
+         Population     : in Table_Population_T;
+         Gauche, Droite : in Indice_Population_T
+      )
+      return Boolean;
+   --  Compare deux individus.
+   --  @param Population
+   --  La population.
+   --  @param Gauche
+   --  L'individu à gauche de la comparaison.
+   --  @param Gauche
+   --  L'individu à droite de la comparaison.
+   --  @return Vrais si l'individu de gauche est < à celui de droite.
+
+   procedure Echanger
+      (
+         Population     : in out Table_Population_T;
+         Gauche, Droite : in     Indice_Population_T
+      );
+   --  Échange deux individus.
+   --  @param Population
+   --  La population.
+   --  @param Gauche
+   --  L'individu à échanger.
+   --  @param Gauche
+   --  L'individu à échanger.
+
    subtype Sous_Population_T is Table_Population_T (Indice_Population_T);
    --  Contient toute la population existante.
 
@@ -175,5 +208,15 @@ private
          Table : Sous_Population_T;
          --  La totalité de la population.
       end record;
+
+   package Tri_Rapide_P is new Tri_Rapide_G
+      (
+         Sorte_De_Tri => Sorte_De_Tri_P.Aleatoire,
+         Indice_G_T   => Indice_Population_T,
+         Element_G_T  => Individu_P.Individu_T,
+         Table_G_T    => Table_Population_T,
+         Comparer     => Comparer_Minimiser,
+         Echanger     => Echanger
+      );
 
 end A_E_P.Population_G;

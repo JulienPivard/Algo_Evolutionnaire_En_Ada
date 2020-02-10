@@ -442,4 +442,47 @@ is
    end Appliquer_Formule;
    ---------------------------------------------------------------------------
 
+   ---------------------------------------------------------------------------
+   function Comparer_Minimiser
+      (
+         Population     : in Table_Population_T;
+         Gauche, Droite : in Indice_Population_T
+      )
+      return Boolean
+   is
+      ------------------------------------
+      function Lire_Resultat
+         (Pos : in Indice_Population_T)
+         return V_Calcule_T
+         with Inline => True;
+
+      ----------------------
+      function Lire_Resultat
+         (Pos : in Indice_Population_T)
+         return V_Calcule_T
+      is
+         Individu : constant A_E_P.Individu_P.Individu_T := Population (Pos);
+      begin
+         return A_E_P.Individu_P.Lire_Resultat (Individu => Individu);
+      end Lire_Resultat;
+      ------------------------------------
+   begin
+      return Lire_Resultat (Pos => Gauche) < Lire_Resultat (Pos => Droite);
+   end Comparer_Minimiser;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   procedure Echanger
+      (
+         Population     : in out Table_Population_T;
+         Gauche, Droite : in     Indice_Population_T
+      )
+   is
+      Tmp : constant A_E_P.Individu_P.Individu_T := Population (Gauche);
+   begin
+      Population (Gauche) := Population (Droite);
+      Population (Droite) := Tmp;
+   end Echanger;
+   ---------------------------------------------------------------------------
+
 end A_E_P.Population_G;
