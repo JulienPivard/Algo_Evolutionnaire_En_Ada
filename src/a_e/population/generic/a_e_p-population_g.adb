@@ -28,6 +28,10 @@ is
             (
                Individu => E,
                Valeur   => Generer
+                  (
+                     Borne_Inferieur => Intervalle_Initial_T'First,
+                     Borne_Superieur => Intervalle_Initial_T'Last
+                  )
             );
       end loop Boucle_Initialisation;
 
@@ -65,6 +69,10 @@ is
             (
                Individu => Population.Table (I),
                Valeur   => Generer
+                  (
+                     Borne_Inferieur => Intervalle_Initial_T'First,
+                     Borne_Superieur => Intervalle_Initial_T'Last
+                  )
             );
       end loop Boucle_Genere_Nouvelles_Valeurs_Alea;
 

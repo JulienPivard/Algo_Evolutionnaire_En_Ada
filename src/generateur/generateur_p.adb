@@ -11,8 +11,8 @@ is
    ---------------------------------------------------------------------------
    function Generer_Flottant
       (
-         Borne_Inferieur : in Valeur_T := Valeur_T'First;
-         Borne_Superieur : in Valeur_T := Valeur_T'Last
+         Borne_Inferieur : in Valeur_T;
+         Borne_Superieur : in Valeur_T
       )
       return Valeur_T
    is
