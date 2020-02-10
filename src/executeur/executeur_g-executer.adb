@@ -2,9 +2,9 @@ with Ada.Text_IO;
 with Ada.Real_Time;
 with Ada.Numerics.Discrete_Random;
 
-with A_E_P.Aleatoire_P;
 with Chrono_P;
 with A_E_P;
+with A_E_P.Aleatoire_P;
 with A_E_P.Individu_P;
 with A_E_P.Formule_P;
 
