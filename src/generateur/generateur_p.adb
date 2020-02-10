@@ -11,12 +11,12 @@ is
    ---------------------------------------------------------------------------
    function Generer_Flottant
       (
-         Borne_Inf : in Valeur_T := Valeur_T'First;
-         Borne_Sup : in Valeur_T := Valeur_T'Last
+         Borne_Inferieur : in Valeur_T := Valeur_T'First;
+         Borne_Superieur : in Valeur_T := Valeur_T'Last
       )
       return Valeur_T
    is
-      Val_Aleatoire   : constant Valeur_T :=
+      Val_Aleatoire : constant Valeur_T :=
          Valeur_T (Aleatoire_R.Random (Gen => Generateur));
    begin
       --  Le calcul :
@@ -30,11 +30,11 @@ is
       --  que le calcul Borne_Sup - Borne_Inf pouvait causer.
       return Resultat : Valeur_T do
          Resultat :=
-            (Borne_Sup * Val_Aleatoire)
+            (Borne_Superieur * Val_Aleatoire)
             -
-            (Borne_Inf * Val_Aleatoire)
+            (Borne_Inferieur * Val_Aleatoire)
             +
-            Borne_Inf;
+            Borne_Inferieur;
       end return;
    end Generer_Flottant;
    ---------------------------------------------------------------------------

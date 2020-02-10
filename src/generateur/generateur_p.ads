@@ -18,14 +18,14 @@ is
       --  Le type dont on veut générer une valeur aléatoirement.
    function Generer_Flottant
       (
-         Borne_Inf : in Valeur_T := Valeur_T'First;
-         Borne_Sup : in Valeur_T := Valeur_T'Last
+         Borne_Inferieur : in Valeur_T := Valeur_T'First;
+         Borne_Superieur : in Valeur_T := Valeur_T'Last
       )
       return Valeur_T;
    --  Génère une valeur aléatoire comprise entre les bornes.
-   --  @param Borne_Inf
+   --  @param Borne_Inferieur
    --  La borne inférieur de la valeur à générer.
-   --  @param Borne_Sup
+   --  @param Borne_Superieur
    --  La borne supérieur de la valeur à générer.
    --  @return La valeur aléatoire généré.
 
