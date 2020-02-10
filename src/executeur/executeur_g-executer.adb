@@ -11,10 +11,6 @@ separate (Executeur_G)
 procedure Executer
    --  (Arguments)
 is
-   use type A_E_P.Math_T;
-   use type A_E_P.V_Param_T;
-   use type A_E_P.V_Calcule_T;
-
    Formule : constant A_E_P.Formule_P.Formule_T :=
       A_E_P.Formule_P.Formule_Surface'Access;
 
@@ -41,6 +37,7 @@ begin
    Debut := Ada.Real_Time.Clock;
    Boucle_Generation_Successive :
    loop
+
       A_E_P.Population_P.Trier (Population => Population);
 
       --  Toutes les valeurs survivantes doivent se trouver autour
@@ -49,9 +46,9 @@ begin
       exit Boucle_Generation_Successive when
          A_E_P.Population_P.Verifier_Convergence (Population => Population);
 
-      A_E_P.Population_P.Remplacer_Morts (Population => Population);
-
       Nb_Generations := Nb_Generations + 1;
+
+      A_E_P.Population_P.Remplacer_Morts (Population => Population);
 
       A_E_P.Population_P.Calcul_Formule_Sur_Enfant
          (
