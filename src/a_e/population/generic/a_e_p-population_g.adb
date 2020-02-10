@@ -179,40 +179,40 @@ is
       end Lire_Resultat;
       ------------------------------------
    begin
-         Boucle_De_Tri :
-         loop
-            Bloc_Tri_Bulle :
-            declare
-               subtype Intervalle_Tmp_T is Indice_Population_T range
-                  Indice_Population_T'First .. Indice_Population_T'Last - 1;
+      Boucle_De_Tri :
+      loop
+         Bloc_Tri_Bulle :
+         declare
+            subtype Intervalle_Tmp_T is Indice_Population_T range
+               Indice_Population_T'First .. Indice_Population_T'Last - 1;
 
-               Echange : Boolean := False;
-            begin
-               Boucle_Tri_Bulle :
-               for I in Intervalle_Tmp_T loop
-                  --  On cherche ici à minimiser le résultat.
-                  if Lire_Resultat (Position => I)
-                     >
-                     Lire_Resultat (Position => I + 1)
-                  then
-                     Bloc_Echange_Valeur :
-                     declare
-                        Tmp : A_E_P.Individu_P.Individu_T;
-                     begin
-                        Tmp                      := Population.Table (I);
-                        Population.Table (I)     := Population.Table (I + 1);
-                        Population.Table (I + 1) := Tmp;
-                     end Bloc_Echange_Valeur;
+            Echange : Boolean := False;
+         begin
+            Boucle_Tri_Bulle :
+            for I in Intervalle_Tmp_T loop
+               --  On cherche ici à minimiser le résultat.
+               if Lire_Resultat (Position => I)
+                  >
+                  Lire_Resultat (Position => I + 1)
+               then
+                  Bloc_Echange_Valeur :
+                  declare
+                     Tmp : A_E_P.Individu_P.Individu_T;
+                  begin
+                     Tmp                      := Population.Table (I);
+                     Population.Table (I)     := Population.Table (I + 1);
+                     Population.Table (I + 1) := Tmp;
+                  end Bloc_Echange_Valeur;
 
-                     --  On note qu'un échange à été fait et que donc le
-                     --  tableau n'est potentiellement pas totalement trié.
-                     Echange := True;
-                  end if;
-               end loop Boucle_Tri_Bulle;
+                  --  On note qu'un échange à été fait et que donc le
+                  --  tableau n'est potentiellement pas totalement trié.
+                  Echange := True;
+               end if;
+            end loop Boucle_Tri_Bulle;
 
-               exit Boucle_De_Tri when not Echange;
-            end Bloc_Tri_Bulle;
-         end loop Boucle_De_Tri;
+            exit Boucle_De_Tri when not Echange;
+         end Bloc_Tri_Bulle;
+      end loop Boucle_De_Tri;
    end Trier;
    ---------------------------------------------------------------------------
 
