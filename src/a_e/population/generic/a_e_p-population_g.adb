@@ -22,32 +22,6 @@ is
       (Intervalle_Initial_T);
 
    ---------------------------------------------------------------------------
-   procedure Appliquer_Formule
-      (
-         Population : in out Table_Population_T;
-         Formule    : in     A_E_P.Formule_P.Formule_T
-      )
-   is
-   begin
-      --  Premier calcul de toutes la valeurs.
-      Boucle_Calcul :
-      for E of Population loop
-         Bloc_Calcul :
-         declare
-            Param : constant V_Param_T :=
-               A_E_P.Individu_P.Lire_Parametre (Individu => E);
-         begin
-            A_E_P.Individu_P.Modifier_Resultat
-               (
-                  Individu => E,
-                  Valeur   => Formule (P => Param)
-               );
-         end Bloc_Calcul;
-      end loop Boucle_Calcul;
-   end Appliquer_Formule;
-   ---------------------------------------------------------------------------
-
-   ---------------------------------------------------------------------------
    procedure Initialiser
       (
          Population : in out Population_T;
@@ -430,6 +404,32 @@ is
 
       Ada.Text_IO.New_Line (Spacing => 1);
    end Afficher_Details;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   procedure Appliquer_Formule
+      (
+         Population : in out Table_Population_T;
+         Formule    : in     A_E_P.Formule_P.Formule_T
+      )
+   is
+   begin
+      --  Premier calcul de toutes la valeurs.
+      Boucle_Calcul :
+      for E of Population loop
+         Bloc_Calcul :
+         declare
+            Param : constant V_Param_T :=
+               A_E_P.Individu_P.Lire_Parametre (Individu => E);
+         begin
+            A_E_P.Individu_P.Modifier_Resultat
+               (
+                  Individu => E,
+                  Valeur   => Formule (P => Param)
+               );
+         end Bloc_Calcul;
+      end loop Boucle_Calcul;
+   end Appliquer_Formule;
    ---------------------------------------------------------------------------
 
 end A_E_P.Population_G;
