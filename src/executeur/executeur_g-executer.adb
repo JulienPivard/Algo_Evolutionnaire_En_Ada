@@ -6,6 +6,7 @@ with Ada.Numerics.Discrete_Random;
 with Aleatoire_P;
 with Chrono_P;
 with A_E_P;
+with A_E_P.Individu_P;
 
 separate (Executeur_G)
 procedure Executer
@@ -15,80 +16,8 @@ is
    use type A_E_P.V_Param_T;
    use type A_E_P.V_Calcule_T;
 
-   type Individu_T is
-      record
-         V_Param   : A_E_P.V_Param_T   := 0.0;
-         V_Calcule : A_E_P.V_Calcule_T := 0.0;
-      end record;
-
-   ---------------------------------------------------------------------------
-   procedure Modifier_Resultat
-      (
-         Individu : in out Individu_T;
-         Valeur   : in     A_E_P.V_Calcule_T
-      );
-
-   function Lire_Resultat
-      (Individu : in Individu_T)
-      return A_E_P.V_Calcule_T;
-
-   procedure Modifier_Parametre
-      (
-         Individu : in out Individu_T;
-         Valeur   : in     A_E_P.V_Param_T
-      );
-
-   function Lire_Parametre
-      (Individu : in Individu_T)
-      return A_E_P.V_Param_T;
-
-   ---------------------------
-   procedure Modifier_Resultat
-      (
-         Individu : in out Individu_T;
-         Valeur   : in     A_E_P.V_Calcule_T
-      )
-   is
-   begin
-      Individu.V_Calcule := Valeur;
-   end Modifier_Resultat;
-   ---------------------------
-
-   ---------------------------
-   function Lire_Resultat
-      (Individu : in Individu_T)
-      return A_E_P.V_Calcule_T
-   is
-   begin
-      return Individu.V_Calcule;
-   end Lire_Resultat;
-   ---------------------------
-
-   ---------------------------
-   procedure Modifier_Parametre
-      (
-         Individu : in out Individu_T;
-         Valeur   : in     A_E_P.V_Param_T
-      )
-   is
-   begin
-      Individu.V_Param := Valeur;
-   end Modifier_Parametre;
-   ---------------------------
-
-   ---------------------------
-   function Lire_Parametre
-      (Individu : in Individu_T)
-      return A_E_P.V_Param_T
-   is
-   begin
-      return Individu.V_Param;
-   end Lire_Parametre;
-   ---------------------------
-
-
    type Indice_Population_T is range 1 .. 25;
-   type Population_T        is array (Indice_Population_T) of Individu_T;
+   type Population_T        is array (Indice_Population_T) of A_E_P.Individu_P.Individu_T;
 
    package V_Initial_IO is new Ada.Text_IO.Float_IO (Num => A_E_P.V_Param_T);
    package V_Calcule_IO is new Ada.Text_IO.Float_IO (Num => A_E_P.V_Calcule_T);
@@ -187,7 +116,7 @@ is
             Ada.Text_IO.Put  (Item => " | X : ");
             V_Initial_IO.Put
                (
-                  Item => Lire_Parametre (Individu => E),
+                  Item => A_E_P.Individu_P.Lire_Parametre (Individu => E),
                   Fore => 3,
                   Aft  => 3,
                   Exp  => 0
@@ -195,7 +124,7 @@ is
             Ada.Text_IO.Put  (Item => " | Résultat : ");
             V_Calcule_IO.Put
                (
-                  Item => Lire_Resultat (Individu => E),
+                  Item => A_E_P.Individu_P.Lire_Resultat (Individu => E),
                   Fore => 3,
                   Aft  => 3,
                   Exp  => 0
@@ -211,7 +140,7 @@ is
          Ada.Text_IO.Put (Item => " | X : ");
          V_Initial_IO.Put
             (
-               Item => Lire_Parametre (Individu => Item (Item'First)),
+               Item => A_E_P.Individu_P.Lire_Parametre (Individu => Item (Item'First)),
                Fore => 3,
                Aft  => 3,
                Exp  => 0
@@ -219,7 +148,7 @@ is
          Ada.Text_IO.Put (Item => " | Résultat : ");
          V_Calcule_IO.Put
             (
-               Item => Lire_Resultat (Individu => Item (Item'First)),
+               Item => A_E_P.Individu_P.Lire_Resultat (Individu => Item (Item'First)),
                Fore => 3,
                Aft  => 3,
                Exp  => 0
@@ -366,7 +295,7 @@ begin
    --  Initialisation du tableau avec des valeurs initial
    Boucle_Initialisation :
    for E of Population loop
-      Modifier_Parametre
+      A_E_P.Individu_P.Modifier_Parametre
          (
             Individu => E,
             Valeur   => Generer
@@ -376,10 +305,10 @@ begin
    --  Premier calcul de toutes la valeurs.
    Boucle_Calcul :
    for E of Population loop
-      Modifier_Resultat
+      A_E_P.Individu_P.Modifier_Resultat
          (
             Individu => E,
-            Valeur   => Formule_Surface (D => Lire_Parametre (Individu => E))
+            Valeur   => Formule_Surface (D => A_E_P.Individu_P.Lire_Parametre (Individu => E))
          );
    end loop Boucle_Calcul;
 
@@ -404,13 +333,13 @@ begin
             Boucle_Tri_Bulle :
             for I in Intervalle_Tmp_T loop
                --  On cherche ici à minimiser le résultat.
-               if Lire_Resultat (Individu => Population (I))
+               if A_E_P.Individu_P.Lire_Resultat (Individu => Population (I))
                   >
-                  Lire_Resultat (Individu => Population (I + 1))
+                  A_E_P.Individu_P.Lire_Resultat (Individu => Population (I + 1))
                then
                   Bloc_Echange_Valeur :
                   declare
-                     Tmp : Individu_T;
+                     Tmp : A_E_P.Individu_P.Individu_T;
                   begin
                      Tmp                := Population (I);
                      Population (I)     := Population (I + 1);
@@ -433,14 +362,14 @@ begin
       Bloc_Verification_Convergence :
       declare
          V_Ref : constant A_E_P.V_Calcule_T :=
-            Lire_Resultat (Individu => Population (Population'First));
+            A_E_P.Individu_P.Lire_Resultat (Individu => Population (Population'First));
       begin
          exit Boucle_Generation_Successive when
             (
                for all I in Intervalle_Survivants_T =>
-                  Lire_Resultat (Individu => Population (I)) <= V_Ref + 1.0
+                  A_E_P.Individu_P.Lire_Resultat (Individu => Population (I)) <= V_Ref + 1.0
                   and then
-                  Lire_Resultat (Individu => Population (I)) >= V_Ref - 1.0
+                  A_E_P.Individu_P.Lire_Resultat (Individu => Population (I)) >= V_Ref - 1.0
             );
       end Bloc_Verification_Convergence;
 
@@ -448,7 +377,7 @@ begin
       --  des 25% dernières cases du tableau.
       Boucle_Genere_Nouvelles_Valeurs_Alea :
       for I in Intervalle_Mutants_T loop
-         Modifier_Parametre
+         A_E_P.Individu_P.Modifier_Parametre
             (
                Individu => Population (I),
                Valeur   => Generer
@@ -462,12 +391,12 @@ begin
       begin
          Boucle_Calcul_Moyenne :
          for I in Intervalle_Survivants_T loop
-            Moyenne := Moyenne + Lire_Parametre (Individu => Population (I));
+            Moyenne := Moyenne + A_E_P.Individu_P.Lire_Parametre (Individu => Population (I));
          end loop Boucle_Calcul_Moyenne;
          Moyenne := Moyenne / A_E_P.V_Param_T (Nb_Survivants);
          --  Les 3 dernières valeurs ne font pas partit des survivantes
 
-         Modifier_Parametre
+         A_E_P.Individu_P.Modifier_Parametre
             (
                Individu => Population (Intervalle_Enfant_Moyenne_T'First),
                Valeur   => Moyenne
@@ -488,13 +417,13 @@ begin
             Bloc_Moyenne_Parents :
             declare
                Valeur_1 : constant A_E_P.V_Param_T :=
-                  Lire_Parametre
+                  A_E_P.Individu_P.Lire_Parametre
                      (
                         Individu => Population
                            (Alea_P.Random (Gen => Alea_Survivant))
                      );
                Valeur_2 : constant A_E_P.V_Param_T :=
-                  Lire_Parametre
+                  A_E_P.Individu_P.Lire_Parametre
                      (
                         Individu => Population
                            (Alea_P.Random (Gen => Alea_Survivant))
@@ -503,7 +432,7 @@ begin
                Moyenne := (Valeur_1 + Valeur_2) / 2.0;
             end Bloc_Moyenne_Parents;
 
-            Modifier_Parametre
+            A_E_P.Individu_P.Modifier_Parametre
                (
                   Individu => Population (I),
                   Valeur   => Moyenne
@@ -517,11 +446,11 @@ begin
       --  Seul les 25% dernières sont nouvelles.
       Boucle_Calcul_Partiel :
       for I in Intervalle_Naissance_T loop
-         Modifier_Resultat
+         A_E_P.Individu_P.Modifier_Resultat
             (
                Individu => Population (I),
                Valeur   => Formule_Surface
-                  (D => Lire_Parametre (Individu =>  Population (I)))
+                  (D => A_E_P.Individu_P.Lire_Parametre (Individu =>  Population (I)))
             );
       end loop Boucle_Calcul_Partiel;
 
