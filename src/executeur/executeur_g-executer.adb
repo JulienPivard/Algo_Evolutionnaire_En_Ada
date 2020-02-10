@@ -469,10 +469,14 @@ begin
 
          Boucle_Accouplement_Valeurs :
          for I in Intervalle_Accouplements_T loop
-            Parent_1 := Population (Alea_P.Random (Gen => Alea_Survivant));
-            Parent_2 := Population (Alea_P.Random (Gen => Alea_Survivant));
+            Bloc_Moyenne_Parents :
+            declare
+            begin
+               Parent_1 := Population (Alea_P.Random (Gen => Alea_Survivant));
+               Parent_2 := Population (Alea_P.Random (Gen => Alea_Survivant));
 
-            Moyenne  := (Parent_1.V_Param + Parent_2.V_Param) / 2.0;
+               Moyenne  := (Parent_1.V_Param + Parent_2.V_Param) / 2.0;
+            end Bloc_Moyenne_Parents;
 
             Population (I).V_Param := Moyenne;
          end loop Boucle_Accouplement_Valeurs;
