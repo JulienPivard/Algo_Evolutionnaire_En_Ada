@@ -365,7 +365,11 @@ begin
    --  Initialisation du tableau avec des valeurs initial
    Boucle_Initialisation :
    for E of Population loop
-      E.V_Param := Generer;
+      Modifier_Parametre
+         (
+            Individu => E,
+            Valeur   => Generer
+         );
    end loop Boucle_Initialisation;
 
    --  Premier calcul de toutes la valeurs.
@@ -439,7 +443,11 @@ begin
       --  des 25% dernières cases du tableau.
       Boucle_Genere_Nouvelles_Valeurs_Alea :
       for I in Intervalle_Mutants_T loop
-         Population (I).V_Param := Generer;
+         Modifier_Parametre
+            (
+               Individu => Population (I),
+               Valeur   => Generer
+            );
       end loop Boucle_Genere_Nouvelles_Valeurs_Alea;
 
       --  Génère une nouvelle valeur à partir de plusieurs autres.
@@ -454,7 +462,11 @@ begin
          Moyenne := Moyenne / V_Initial_T (Nb_Survivants);
          --  Les 3 dernières valeurs ne font pas partit des survivantes
 
-         Population (Intervalle_Enfant_Moyenne_T'First).V_Param := Moyenne;
+         Modifier_Parametre
+            (
+               Individu => Population (Intervalle_Enfant_Moyenne_T'First),
+               Valeur   => Moyenne
+            );
       end Bloc_Calcul_Moyenne;
 
       --  Pour chaque valeurs dans l'intervalle d'accouplement,
@@ -486,7 +498,11 @@ begin
                Moyenne := (Valeur_1 + Valeur_2) / 2.0;
             end Bloc_Moyenne_Parents;
 
-            Population (I).V_Param := Moyenne;
+            Modifier_Parametre
+               (
+                  Individu => Population (I),
+                  Valeur   => Moyenne
+               );
          end loop Boucle_Accouplement_Valeurs;
       end Bloc_Accouplement_Valeurs;
 
