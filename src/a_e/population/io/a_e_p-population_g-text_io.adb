@@ -4,7 +4,7 @@ package body A_E_P.Population_G.Text_IO
    with Spark_Mode => Off
 is
 
-   package V_Param_IO is new Ada.Text_IO.Float_IO
+   package V_Param_IO   is new Ada.Text_IO.Float_IO
       (Num => A_E_P.V_Param_T);
    package V_Calcule_IO is new Ada.Text_IO.Float_IO
       (Num => A_E_P.V_Calcule_T);
@@ -107,73 +107,73 @@ is
       Ada.Text_IO.New_Line (Spacing => 1);
 
       if Taille_Population <= 50 then
-         Ada.Text_IO.New_Line  (Spacing => 1);
+            Ada.Text_IO.New_Line  (Spacing => 1);
 
-         Ada.Text_IO.Put       (Item => "Survivants    : ");
-         for I in Indice_Population_T loop
-            if I in Intervalle_Survivants_T then
-               Ada.Text_IO.Put (Item => "|");
-               Indice_IO.Put   (Item => I, Width => 2);
-            else
-               Ada.Text_IO.Put (Item => "|  ");
-            end if;
-         end loop;
-         Ada.Text_IO.Put_Line  (Item => "|");
+            Ada.Text_IO.Put (Item => "Survivants    : ");
+            for I in Indice_Population_T loop
+               if I in Intervalle_Survivants_T then
+                  Ada.Text_IO.Put (Item => "|");
+                  Indice_IO.Put   (Item => I, Width => 2);
+               else
+                  Ada.Text_IO.Put (Item => "|  ");
+               end if;
+            end loop;
+            Ada.Text_IO.Put_Line  (Item => "|");
 
-         Ada.Text_IO.Put       (Item => "Morts         : ");
-         for I in Indice_Population_T loop
-            if I in Intervalle_Mort_T then
-               Ada.Text_IO.Put (Item => "|");
-               Indice_IO.Put   (Item => I, Width => 2);
-            else
-               Ada.Text_IO.Put (Item => "|  ");
-            end if;
-         end loop;
-         Ada.Text_IO.Put_Line  (Item => "|");
+            Ada.Text_IO.Put (Item => "Morts         : ");
+            for I in Indice_Population_T loop
+               if I in Intervalle_Mort_T then
+                  Ada.Text_IO.Put (Item => "|");
+                  Indice_IO.Put   (Item => I, Width => 2);
+               else
+                  Ada.Text_IO.Put (Item => "|  ");
+               end if;
+            end loop;
+            Ada.Text_IO.Put_Line  (Item => "|");
 
-         Ada.Text_IO.Put       (Item => "Naissance     : ");
-         for I in Indice_Population_T loop
-            if I in Intervalle_Naissance_T then
-               Ada.Text_IO.Put (Item => "|");
-               Indice_IO.Put   (Item => I, Width => 2);
-            else
-               Ada.Text_IO.Put (Item => "|  ");
-            end if;
-         end loop;
-         Ada.Text_IO.Put_Line  (Item => "|");
+            Ada.Text_IO.Put (Item => "Naissance     : ");
+            for I in Indice_Population_T loop
+               if I in Intervalle_Naissance_T then
+                  Ada.Text_IO.Put (Item => "|");
+                  Indice_IO.Put   (Item => I, Width => 2);
+               else
+                  Ada.Text_IO.Put (Item => "|  ");
+               end if;
+            end loop;
+            Ada.Text_IO.Put_Line  (Item => "|");
 
-         Ada.Text_IO.Put       (Item => "Enfant moyen  : ");
-         for I in Indice_Population_T loop
-            if I in Intervalle_Enfant_Moyenne_T then
-               Ada.Text_IO.Put (Item => "|");
-               Indice_IO.Put   (Item => I, Width => 2);
-            else
-               Ada.Text_IO.Put (Item => "|  ");
-            end if;
-         end loop;
-         Ada.Text_IO.Put_Line  (Item => "|");
+            Ada.Text_IO.Put (Item => "Enfant moyen  : ");
+            for I in Indice_Population_T loop
+               if I in Intervalle_Enfant_Moyenne_T then
+                  Ada.Text_IO.Put (Item => "|");
+                  Indice_IO.Put   (Item => I, Width => 2);
+               else
+                  Ada.Text_IO.Put (Item => "|  ");
+               end if;
+            end loop;
+            Ada.Text_IO.Put_Line  (Item => "|");
 
-         Ada.Text_IO.Put       (Item => "Accouplements : ");
-         for I in Indice_Population_T loop
-            if I in Intervalle_Accouplements_T then
-               Ada.Text_IO.Put (Item => "|");
-               Indice_IO.Put   (Item => I, Width => 2);
-            else
-               Ada.Text_IO.Put (Item => "|  ");
-            end if;
-         end loop;
-         Ada.Text_IO.Put_Line  (Item => "|");
+            Ada.Text_IO.Put (Item => "Accouplements : ");
+            for I in Indice_Population_T loop
+               if I in Intervalle_Accouplements_T then
+                  Ada.Text_IO.Put (Item => "|");
+                  Indice_IO.Put   (Item => I, Width => 2);
+               else
+                  Ada.Text_IO.Put (Item => "|  ");
+               end if;
+            end loop;
+            Ada.Text_IO.Put_Line  (Item => "|");
 
-         Ada.Text_IO.Put       (Item => "Mutants       : ");
-         for I in Indice_Population_T loop
-            if I in Intervalle_Mutants_T then
-               Ada.Text_IO.Put (Item => "|");
-               Indice_IO.Put   (Item => I, Width => 2);
-            else
-               Ada.Text_IO.Put (Item => "|  ");
-            end if;
-         end loop;
-         Ada.Text_IO.Put_Line  (Item => "|");
+            Ada.Text_IO.Put (Item => "Mutants       : ");
+            for I in Indice_Population_T loop
+               if I in Intervalle_Mutants_T then
+                  Ada.Text_IO.Put (Item => "|");
+                  Indice_IO.Put   (Item => I, Width => 2);
+               else
+                  Ada.Text_IO.Put (Item => "|  ");
+               end if;
+            end loop;
+            Ada.Text_IO.Put_Line  (Item => "|");
       end if;
 
       Ada.Text_IO.New_Line (Spacing => 1);
