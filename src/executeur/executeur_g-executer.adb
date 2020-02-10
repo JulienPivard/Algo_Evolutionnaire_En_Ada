@@ -11,12 +11,12 @@ procedure Executer
    --  (Arguments)
 is
    type Math_T      is digits 5;
-   type V_Initial_T is new Math_T;
+   type V_Param_T   is new Math_T;
    type V_Calcule_T is new Math_T;
 
    type Individu_T is
       record
-         V_Param   : V_Initial_T := 0.0;
+         V_Param   : V_Param_T   := 0.0;
          V_Calcule : V_Calcule_T := 0.0;
       end record;
 
@@ -34,12 +34,12 @@ is
    procedure Modifier_Parametre
       (
          Individu : in out Individu_T;
-         Valeur   : in     V_Initial_T
+         Valeur   : in     V_Param_T
       );
 
    function Lire_Parametre
       (Individu : in Individu_T)
-      return V_Initial_T;
+      return V_Param_T;
 
    ---------------------------
    procedure Modifier_Resultat
@@ -67,7 +67,7 @@ is
    procedure Modifier_Parametre
       (
          Individu : in out Individu_T;
-         Valeur   : in     V_Initial_T
+         Valeur   : in     V_Param_T
       )
    is
    begin
@@ -78,7 +78,7 @@ is
    ---------------------------
    function Lire_Parametre
       (Individu : in Individu_T)
-      return V_Initial_T
+      return V_Param_T
    is
    begin
       return Individu.V_Param;
@@ -89,7 +89,7 @@ is
    type Indice_Population_T is range 1 .. 25;
    type Population_T        is array (Indice_Population_T) of Individu_T;
 
-   package V_Initial_IO is new Ada.Text_IO.Float_IO (Num => V_Initial_T);
+   package V_Initial_IO is new Ada.Text_IO.Float_IO (Num => V_Param_T);
    package V_Calcule_IO is new Ada.Text_IO.Float_IO (Num => V_Calcule_T);
 
    package Math_P is new Ada.Numerics.Generic_Elementary_Functions (Math_T);
@@ -231,7 +231,7 @@ is
 
    ---------------------------------------------------------------------------
    function Formule_Surface
-      (D : in V_Initial_T)
+      (D : in V_Param_T)
       return V_Calcule_T;
    --  Calcul une surface en fonction du diamètre D donné.
    --  Convergera vers X = 5.9.
@@ -240,7 +240,7 @@ is
    --  @return La surface de la boite.
 
    function Formule_Surface
-      (D : in V_Initial_T)
+      (D : in V_Param_T)
       return V_Calcule_T
    is
       Pi : constant        := Ada.Numerics.Pi;
@@ -252,7 +252,7 @@ is
 
    ---------------------------------------------------------------------------
    function Formule_Anonyme
-      (X : in V_Initial_T)
+      (X : in V_Param_T)
       return V_Calcule_T;
    --  Un autre calcul.
    --  Convergera vers X = 0.0.
@@ -261,7 +261,7 @@ is
    --  @return Le résultats de la formule en fonction de X.
 
    function Formule_Anonyme
-      (X : in V_Initial_T)
+      (X : in V_Param_T)
       return V_Calcule_T
    is
       Pi : constant        := Ada.Numerics.Pi;
@@ -279,7 +279,7 @@ is
    --   - x = -0,55
    --   - y = -1,55
 
-   subtype Intervalle_Initial_T is V_Initial_T range 0.0 .. 1100.0;
+   subtype Intervalle_Initial_T is V_Param_T range 0.0 .. 1100.0;
 
    function Generer is new Aleatoire_P.Generer_Flottant (Intervalle_Initial_T);
 begin
@@ -457,13 +457,13 @@ begin
       --  Génère une nouvelle valeur à partir de plusieurs autres.
       Bloc_Calcul_Moyenne :
       declare
-         Moyenne : V_Initial_T := 0.0;
+         Moyenne : V_Param_T := 0.0;
       begin
          Boucle_Calcul_Moyenne :
          for I in Intervalle_Survivants_T loop
             Moyenne := Moyenne + Lire_Parametre (Individu => Population (I));
          end loop Boucle_Calcul_Moyenne;
-         Moyenne := Moyenne / V_Initial_T (Nb_Survivants);
+         Moyenne := Moyenne / V_Param_T (Nb_Survivants);
          --  Les 3 dernières valeurs ne font pas partit des survivantes
 
          Modifier_Parametre
@@ -478,7 +478,7 @@ begin
       --  des deux.
       Bloc_Accouplement_Valeurs :
       declare
-         Moyenne : V_Initial_T;
+         Moyenne : V_Param_T;
       begin
          Alea_P.Reset (Gen => Alea_Survivant);
 
@@ -486,13 +486,13 @@ begin
          for I in Intervalle_Accouplements_T loop
             Bloc_Moyenne_Parents :
             declare
-               Valeur_1 : constant V_Initial_T :=
+               Valeur_1 : constant V_Param_T :=
                   Lire_Parametre
                      (
                         Individu => Population
                            (Alea_P.Random (Gen => Alea_Survivant))
                      );
-               Valeur_2 : constant V_Initial_T :=
+               Valeur_2 : constant V_Param_T :=
                   Lire_Parametre
                      (
                         Individu => Population
