@@ -161,6 +161,19 @@ is
    procedure Trier
       (Population : in out Population_T)
    is
+   begin
+      if Taille_Population <= 1000 then
+         Tri_A_Bulle (Tableau => Population.Table);
+      else
+         Tri_Rapide_P.Tri_Rapide (Tableau => Population.Table);
+      end if;
+   end Trier;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   procedure Tri_A_Bulle
+      (Tableau : in out Table_Population_T)
+   is
       ------------------------------------
       function Lire_Resultat
          (Position : in Indice_Population_T)
@@ -172,8 +185,7 @@ is
          (Position : in Indice_Population_T)
          return V_Calcule_T
       is
-         Individu : constant A_E_P.Individu_P.Individu_T :=
-            Population.Table (Position);
+         Individu : constant A_E_P.Individu_P.Individu_T := Tableau (Position);
       begin
          return A_E_P.Individu_P.Lire_Resultat (Individu => Individu);
       end Lire_Resultat;
@@ -197,7 +209,7 @@ is
                then
                   Echanger
                      (
-                        Population => Population.Table,
+                        Population => Tableau,
                         Gauche     => I,
                         Droite     => I + 1
                      );
@@ -211,7 +223,7 @@ is
             exit Boucle_De_Tri when not Echange;
          end Bloc_Tri_Bulle;
       end loop Boucle_De_Tri;
-   end Trier;
+   end Tri_A_Bulle;
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------

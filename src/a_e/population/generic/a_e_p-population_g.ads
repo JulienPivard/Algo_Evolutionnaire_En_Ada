@@ -149,6 +149,12 @@ private
       of A_E_P.Individu_P.Individu_T;
    --  Contient la population.
 
+   procedure Tri_A_Bulle
+      (Tableau : in out Table_Population_T);
+   --  Tri la population à l'aide d'un tri à bulle.
+   --  @param Tableau
+   --  La population.
+
    procedure Appliquer_Formule
       (
          Population : in out Table_Population_T;
