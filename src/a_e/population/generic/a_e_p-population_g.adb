@@ -24,7 +24,7 @@ is
    ---------------------------------------------------------------------------
    procedure Appliquer_Formule
       (
-         Population : in out Population_T;
+         Population : in out Table_Population_T;
          Formule    : in     A_E_P.Formule_P.Formule_T
       )
    is
@@ -57,7 +57,7 @@ is
    begin
       --  Initialisation du tableau avec des valeurs initial
       Boucle_Initialisation :
-      for E of Population loop
+      for E of Population.Table loop
          A_E_P.Individu_P.Modifier_Parametre
             (
                Individu => E,
@@ -65,7 +65,7 @@ is
             );
       end loop Boucle_Initialisation;
 
-      Appliquer_Formule (Population => Population, Formule => Formule);
+      Appliquer_Formule (Population => Population.Table, Formule => Formule);
    end Initialiser;
    ---------------------------------------------------------------------------
 
@@ -85,7 +85,7 @@ is
          return V_Param_T
       is
          Individu : constant A_E_P.Individu_P.Individu_T :=
-            Population (Position);
+            Population.Table (Position);
       begin
          return A_E_P.Individu_P.Lire_Parametre (Individu => Individu);
       end Lire_Parametre;
@@ -97,7 +97,7 @@ is
       for I in Intervalle_Mutants_T loop
          A_E_P.Individu_P.Modifier_Parametre
             (
-               Individu => Population (I),
+               Individu => Population.Table (I),
                Valeur   => Generer
             );
       end loop Boucle_Genere_Nouvelles_Valeurs_Alea;
@@ -116,7 +116,8 @@ is
 
          A_E_P.Individu_P.Modifier_Parametre
             (
-               Individu => Population (Intervalle_Enfant_Moyenne_T'First),
+               Individu => Population.Table
+                  (Intervalle_Enfant_Moyenne_T'First),
                Valeur   => Moyenne
             );
       end Bloc_Calcul_Enfant_Moyenne;
@@ -141,13 +142,13 @@ is
                Valeur_1 : constant A_E_P.V_Param_T :=
                   A_E_P.Individu_P.Lire_Parametre
                      (
-                        Individu => Population
+                        Individu => Population.Table
                            (Alea_P.Random (Gen => Alea_Survivant))
                      );
                Valeur_2 : constant A_E_P.V_Param_T :=
                   A_E_P.Individu_P.Lire_Parametre
                      (
-                        Individu => Population
+                        Individu => Population.Table
                            (Alea_P.Random (Gen => Alea_Survivant))
                      );
             begin
@@ -156,7 +157,7 @@ is
 
             A_E_P.Individu_P.Modifier_Parametre
                (
-                  Individu => Population (I),
+                  Individu => Population.Table (I),
                   Valeur   => Moyenne
                );
          end loop Boucle_Accouplement_Valeurs;
@@ -183,7 +184,7 @@ is
          return V_Param_T
       is
          Individu : constant A_E_P.Individu_P.Individu_T :=
-            Population (Position);
+            Population.Table (Position);
       begin
          return A_E_P.Individu_P.Lire_Parametre (Individu => Individu);
       end Lire_Parametre;
@@ -195,7 +196,7 @@ is
       for I in Intervalle_Naissance_T loop
          A_E_P.Individu_P.Modifier_Resultat
             (
-               Individu => Population (I),
+               Individu => Population.Table (I),
                Valeur   => Formule (P => Lire_Parametre (Position => I))
             );
       end loop Boucle_Calcul_Partiel;
@@ -219,13 +220,12 @@ is
          return V_Calcule_T
       is
          Individu : constant A_E_P.Individu_P.Individu_T :=
-            Population (Position);
+            Population.Table (Position);
       begin
          return A_E_P.Individu_P.Lire_Resultat (Individu => Individu);
       end Lire_Resultat;
       ------------------------------------
    begin
-      --  Utilisation d'un tri à bulle pour le premier prototype.
       Boucle_De_Tri :
       loop
          Bloc_Tri_Bulle :
@@ -246,13 +246,13 @@ is
                   declare
                      Tmp : A_E_P.Individu_P.Individu_T;
                   begin
-                     Tmp                := Population (I);
-                     Population (I)     := Population (I + 1);
-                     Population (I + 1) := Tmp;
+                     Tmp                      := Population.Table (I);
+                     Population.Table (I)     := Population.Table (I + 1);
+                     Population.Table (I + 1) := Tmp;
                   end Bloc_Echange_Valeur;
 
-                  --  On note qu'un échange à été fait et que donc le tableau
-                  --  n'est potentiellement pas totalement trié.
+                  --  On note qu'un échange à été fait et que donc le
+                  --  tableau n'est potentiellement pas totalement trié.
                   Echange := True;
                end if;
             end loop Boucle_Tri_Bulle;
@@ -280,14 +280,14 @@ is
          return V_Calcule_T
       is
          Individu : constant A_E_P.Individu_P.Individu_T :=
-            Population (Position);
+            Population.Table (Position);
       begin
          return A_E_P.Individu_P.Lire_Resultat (Individu => Individu);
       end Lire_Resultat;
       ------------------------------------
 
       V_Ref : constant V_Calcule_T :=
-         Lire_Resultat (Position => Population'First);
+         Lire_Resultat (Position => Population.Table'First);
    begin
       return (for all I in Intervalle_Survivants_T =>
          Lire_Resultat (Position => I) <= V_Ref + 1.0
@@ -303,7 +303,7 @@ is
       I : Indice_Population_T := Indice_Population_T'First;
    begin
       if Taille_Population <= 100 then
-         for E of Item loop
+         for E of Item.Table loop
             Indice_IO.Put      (Item => I, Width => 3);
 
             if I in Intervalle_Survivants_T then
@@ -349,7 +349,7 @@ is
          V_Param_IO.Put
             (
                Item => A_E_P.Individu_P.Lire_Parametre
-                  (Individu => Item (Item'First)),
+                  (Individu => Item.Table (Item.Table'First)),
                Fore => 3,
                Aft  => 3,
                Exp  => 0
@@ -358,7 +358,7 @@ is
          V_Calcule_IO.Put
             (
                Item => A_E_P.Individu_P.Lire_Resultat
-                  (Individu => Item (Item'First)),
+                  (Individu => Item.Table (Item.Table'First)),
                Fore => 3,
                Aft  => 3,
                Exp  => 0

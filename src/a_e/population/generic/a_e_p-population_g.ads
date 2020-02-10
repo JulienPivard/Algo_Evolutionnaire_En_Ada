@@ -131,9 +131,13 @@ private
    subtype Intervalle_Enfant_Moyenne_T is Intervalle_Naissance_T     range
       Intervalle_Naissance_T'First .. Intervalle_Naissance_T'First;
 
+   type Table_Population_T is
+      array (Indice_Population_T range <>)
+      of A_E_P.Individu_P.Individu_T;
+
    procedure Appliquer_Formule
       (
-         Population : in out Population_T;
+         Population : in out Table_Population_T;
          Formule    : in     A_E_P.Formule_P.Formule_T
       );
    --  Applique une formule à toute une population.
@@ -143,8 +147,11 @@ private
    --  @param Formule
    --  La formule à appliquer à toute la population.
 
+   subtype Sous_Population_T is Table_Population_T (Indice_Population_T);
+
    type Population_T is
-      array (Indice_Population_T)
-      of A_E_P.Individu_P.Individu_T;
+      record
+         Table : Sous_Population_T;
+      end record;
 
 end A_E_P.Population_G;
