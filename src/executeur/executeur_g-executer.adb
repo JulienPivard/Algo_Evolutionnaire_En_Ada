@@ -194,7 +194,7 @@ is
             Ada.Text_IO.Put  (Item => " | Résultat : ");
             V_Calcule_IO.Put
                (
-                  Item => E.V_Calcule,
+                  Item => Lire_Resultat (Individu => E),
                   Fore => 3,
                   Aft  => 3,
                   Exp  => 0
@@ -218,7 +218,7 @@ is
          Ada.Text_IO.Put (Item => " | Résultat : ");
          V_Calcule_IO.Put
             (
-               Item => Item (Item'First).V_Calcule,
+               Item => Lire_Resultat (Individu => Item (Item'First)),
                Fore => 3,
                Aft  => 3,
                Exp  => 0
@@ -399,9 +399,9 @@ begin
             Boucle_Tri_Bulle :
             for I in Intervalle_Tmp_T loop
                --  On cherche ici à minimiser le résultat.
-               if Population (I).V_Calcule
+               if Lire_Resultat (Individu => Population (I))
                   >
-                  Population (I + 1).V_Calcule
+                  Lire_Resultat (Individu => Population (I + 1))
                then
                   Bloc_Echange_Valeur :
                   declare
@@ -428,14 +428,14 @@ begin
       Bloc_Verification_Convergence :
       declare
          V_Ref : constant V_Calcule_T :=
-            Population (Population'First).V_Calcule;
+            Lire_Resultat (Individu => Population (Population'First));
       begin
          exit Boucle_Generation_Successive when
             (
                for all I in Intervalle_Survivants_T =>
-                  Population (I).V_Calcule <= V_Ref + 1.0
+                  Lire_Resultat (Individu => Population (I)) <= V_Ref + 1.0
                   and then
-                  Population (I).V_Calcule >= V_Ref - 1.0
+                  Lire_Resultat (Individu => Population (I)) >= V_Ref - 1.0
             );
       end Bloc_Verification_Convergence;
 
