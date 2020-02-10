@@ -185,10 +185,20 @@ is
             end if;
             Ada.Text_IO.Put  (Item => " | X : ");
             V_Initial_IO.Put
-               (Item => E.V_Param,   Fore => 3, Aft => 3, Exp => 0);
+               (
+                  Item => E.V_Param,
+                  Fore => 3,
+                  Aft  => 3,
+                  Exp  => 0
+               );
             Ada.Text_IO.Put  (Item => " | Résultat : ");
             V_Calcule_IO.Put
-               (Item => E.V_Calcule, Fore => 3, Aft => 3, Exp => 0);
+               (
+                  Item => E.V_Calcule,
+                  Fore => 3,
+                  Aft  => 3,
+                  Exp  => 0
+               );
 
             Ada.Text_IO.New_Line (Spacing => 1);
             if I < Indice_Population_T'Last then
@@ -385,7 +395,10 @@ begin
             Boucle_Tri_Bulle :
             for I in Intervalle_Tmp_T loop
                --  On cherche ici à minimiser le résultat.
-               if Population (I).V_Calcule > Population (I + 1).V_Calcule then
+               if Population (I).V_Calcule
+                  >
+                  Population (I + 1).V_Calcule
+               then
                   Bloc_Echange_Valeur :
                   declare
                      Tmp : Individu_T;
