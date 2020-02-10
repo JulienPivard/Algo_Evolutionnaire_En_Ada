@@ -11,7 +11,7 @@ is
    subtype Intervalle_Initial_T is A_E_P.V_Param_T range 0.0 .. 1100.0;
 
    function Generer is new Generateur_P.Generer_Flottant
-      (Intervalle_Initial_T);
+      (Valeur_T => V_Param_T);
 
    ---------------------------------------------------------------------------
    procedure Initialiser
