@@ -3,7 +3,7 @@ with Ada.Real_Time;
 with Ada.Numerics.Generic_Elementary_Functions;
 with Ada.Numerics.Discrete_Random;
 
-with Aleatoire_P;
+with A_E_P.Aleatoire_P;
 with Chrono_P;
 with A_E_P;
 with A_E_P.Individu_P;
@@ -208,10 +208,6 @@ is
    --  Convergence en :
    --   - x = -0,55
    --   - y = -1,55
-
-   subtype Intervalle_Initial_T is A_E_P.V_Param_T range 0.0 .. 1100.0;
-
-   function Generer is new Aleatoire_P.Generer_Flottant (Intervalle_Initial_T);
 begin
    Ada.Text_IO.Put_Line (Item => "Population   : " & Taille_Population'Img);
    Ada.Text_IO.Put_Line (Item => "Survivants   : " & Nb_Survivants'Img);
@@ -298,7 +294,7 @@ begin
       A_E_P.Individu_P.Modifier_Parametre
          (
             Individu => E,
-            Valeur   => Generer
+            Valeur   => A_E_P.Aleatoire_P.Generer
          );
    end loop Boucle_Initialisation;
 
@@ -380,7 +376,7 @@ begin
          A_E_P.Individu_P.Modifier_Parametre
             (
                Individu => Population (I),
-               Valeur   => Generer
+               Valeur   => A_E_P.Aleatoire_P.Generer
             );
       end loop Boucle_Genere_Nouvelles_Valeurs_Alea;
 
