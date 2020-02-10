@@ -462,8 +462,7 @@ begin
       --  des deux.
       Bloc_Accouplement_Valeurs :
       declare
-         Parent_1, Parent_2 : Individu_T;
-         Moyenne            : V_Initial_T;
+         Moyenne : V_Initial_T;
       begin
          Alea_P.Reset (Gen => Alea_Survivant);
 
@@ -471,10 +470,11 @@ begin
          for I in Intervalle_Accouplements_T loop
             Bloc_Moyenne_Parents :
             declare
+               Parent_1 : constant Individu_T :=
+                  Population (Alea_P.Random (Gen => Alea_Survivant));
+               Parent_2 : constant Individu_T :=
+                  Population (Alea_P.Random (Gen => Alea_Survivant));
             begin
-               Parent_1 := Population (Alea_P.Random (Gen => Alea_Survivant));
-               Parent_2 := Population (Alea_P.Random (Gen => Alea_Survivant));
-
                Moyenne  := (Parent_1.V_Param + Parent_2.V_Param) / 2.0;
             end Bloc_Moyenne_Parents;
 
