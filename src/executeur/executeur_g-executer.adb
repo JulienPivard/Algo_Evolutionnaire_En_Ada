@@ -375,7 +375,11 @@ begin
    --  Premier calcul de toutes la valeurs.
    Boucle_Calcul :
    for E of Population loop
-      E.V_Calcule := Formule_Surface (D => Lire_Parametre (Individu => E));
+      Modifier_Resultat
+         (
+            Individu => E,
+            Valeur   => Formule_Surface (D => Lire_Parametre (Individu => E))
+         );
    end loop Boucle_Calcul;
 
    Ada.Text_IO.Put_Line (Item    => "========== Valeurs de départ ==========");
@@ -512,9 +516,12 @@ begin
       --  dernières sont nouvelles.
       Boucle_Calcul_Partiel :
       for I in Intervalle_Naissance_T loop
-         Population (I).V_Calcule :=
-            Formule_Surface
-               (D => Lire_Parametre (Individu =>  Population (I)));
+         Modifier_Resultat
+            (
+               Individu => Population (I),
+               Valeur   => Formule_Surface
+                  (D => Lire_Parametre (Individu =>  Population (I)))
+            );
       end loop Boucle_Calcul_Partiel;
 
    end loop Boucle_Generation_Successive;
