@@ -173,6 +173,50 @@ is
                   Fin   => Intervalle_Mutants_T'Last
                );
          end Bloc_Affichage_Detaillee;
+      else
+         Bloc_Affichage_Stylise :
+         declare
+            type Indice_Tmp_T is range 1 .. 50;
+
+            ------------------------------------
+            procedure Afficher_Table
+               (Debut, Fin : in Indice_Tmp_T);
+
+            ------------------------
+            procedure Afficher_Table
+               (Debut, Fin : in Indice_Tmp_T)
+            is
+               subtype Sous_Indice_T is Indice_Tmp_T range Debut .. Fin;
+            begin
+               for I in Indice_Tmp_T loop
+                  if I in Sous_Indice_T then
+                     Ada.Text_IO.Put (Item => "|##");
+                  else
+                     Ada.Text_IO.Put (Item => "|  ");
+                  end if;
+               end loop;
+               Ada.Text_IO.Put_Line  (Item => "|");
+            end Afficher_Table;
+            ------------------------------------
+         begin
+            Ada.Text_IO.Put (Item => "Survivants    : ");
+            Afficher_Table  (Debut => 1, Fin => 37);
+
+            Ada.Text_IO.Put (Item => "Morts         : ");
+            Afficher_Table  (Debut => 38, Fin => 50);
+
+            Ada.Text_IO.Put (Item => "Naissance     : ");
+            Afficher_Table  (Debut => 38, Fin => 50);
+
+            Ada.Text_IO.Put (Item => "Enfant moyen  : ");
+            Afficher_Table  (Debut => 38, Fin => 38);
+
+            Ada.Text_IO.Put (Item => "Accouplements : ");
+            Afficher_Table  (Debut => 39, Fin => 44);
+
+            Ada.Text_IO.Put (Item => "Mutants       : ");
+            Afficher_Table  (Debut => 45, Fin => 50);
+         end Bloc_Affichage_Stylise;
       end if;
 
       Ada.Text_IO.New_Line (Spacing => 1);
