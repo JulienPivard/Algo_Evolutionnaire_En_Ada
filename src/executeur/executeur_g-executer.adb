@@ -512,8 +512,8 @@ begin
 
       Nb_Generations := Nb_Generations + 1;
 
-      --  Il est inutile de recalculer toutes les valeurs. Seul les 25%
-      --  dernières sont nouvelles.
+      --  Il est inutile de recalculer toutes les valeurs.
+      --  Seul les 25% dernières sont nouvelles.
       Boucle_Calcul_Partiel :
       for I in Intervalle_Naissance_T loop
          Modifier_Resultat
