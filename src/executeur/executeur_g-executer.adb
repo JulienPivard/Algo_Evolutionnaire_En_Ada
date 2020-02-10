@@ -20,6 +20,72 @@ is
          V_Calcule : V_Calcule_T := 0.0;
       end record;
 
+   ---------------------------------------------------------------------------
+   procedure Modifier_Resultat
+      (
+         Individu : in out Individu_T;
+         Valeur   : in     V_Calcule_T
+      );
+
+   function Lire_Resultat
+      (Individu : in Individu_T)
+      return V_Calcule_T;
+
+   procedure Modifier_Parametre
+      (
+         Individu : in out Individu_T;
+         Valeur   : in     V_Initial_T
+      );
+
+   function Lire_Parametre
+      (Individu : in Individu_T)
+      return V_Initial_T;
+
+   ---------------------------
+   procedure Modifier_Resultat
+      (
+         Individu : in out Individu_T;
+         Valeur   : in     V_Calcule_T
+      )
+   is
+   begin
+      Individu.V_Calcule := Valeur;
+   end Modifier_Resultat;
+   ---------------------------
+
+   ---------------------------
+   function Lire_Resultat
+      (Individu : in Individu_T)
+      return V_Calcule_T
+   is
+   begin
+      return Individu.V_Calcule;
+   end Lire_Resultat;
+   ---------------------------
+
+   ---------------------------
+   procedure Modifier_Parametre
+      (
+         Individu : in out Individu_T;
+         Valeur   : in     V_Initial_T
+      )
+   is
+   begin
+      Individu.V_Param := Valeur;
+   end Modifier_Parametre;
+   ---------------------------
+
+   ---------------------------
+   function Lire_Parametre
+      (Individu : in Individu_T)
+      return V_Initial_T
+   is
+   begin
+      return Individu.V_Param;
+   end Lire_Parametre;
+   ---------------------------
+
+
    type Indice_Population_T is range 1 .. 25;
    type Population_T        is array (Indice_Population_T) of Individu_T;
 
@@ -356,8 +422,8 @@ begin
             );
       end Bloc_Verification_Convergence;
 
-      --  Génère deux valeurs aléatoires et les places dans les deux
-      --  dernières cases du tableau.
+      --  Génère des valeurs aléatoires et les places dans la moitié
+      --  des 25% dernières cases du tableau.
       Boucle_Genere_Nouvelles_Valeurs_Alea :
       for I in Intervalle_Mutants_T loop
          Population (I).V_Param := Generer;
@@ -401,7 +467,7 @@ begin
 
       Nb_Generations := Nb_Generations + 1;
 
-      --  Il est inutile de recalculer toutes les valeurs. Seul les 3
+      --  Il est inutile de recalculer toutes les valeurs. Seul les 25%
       --  dernières sont nouvelles.
       Boucle_Calcul_Partiel :
       for I in Intervalle_Naissance_T loop
