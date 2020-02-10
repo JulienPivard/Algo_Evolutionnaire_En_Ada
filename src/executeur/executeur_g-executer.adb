@@ -470,12 +470,20 @@ begin
          for I in Intervalle_Accouplements_T loop
             Bloc_Moyenne_Parents :
             declare
-               Parent_1 : constant Individu_T :=
-                  Population (Alea_P.Random (Gen => Alea_Survivant));
-               Parent_2 : constant Individu_T :=
-                  Population (Alea_P.Random (Gen => Alea_Survivant));
+               Valeur_1 : constant V_Initial_T :=
+                  Lire_Parametre
+                     (
+                        Individu => Population
+                           (Alea_P.Random (Gen => Alea_Survivant))
+                     );
+               Valeur_2 : constant V_Initial_T :=
+                  Lire_Parametre
+                     (
+                        Individu => Population
+                           (Alea_P.Random (Gen => Alea_Survivant))
+                     );
             begin
-               Moyenne  := (Parent_1.V_Param + Parent_2.V_Param) / 2.0;
+               Moyenne := (Valeur_1 + Valeur_2) / 2.0;
             end Bloc_Moyenne_Parents;
 
             Population (I).V_Param := Moyenne;
