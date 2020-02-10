@@ -186,7 +186,7 @@ is
             Ada.Text_IO.Put  (Item => " | X : ");
             V_Initial_IO.Put
                (
-                  Item => E.V_Param,
+                  Item => Lire_Parametre (Individu => E),
                   Fore => 3,
                   Aft  => 3,
                   Exp  => 0
@@ -210,7 +210,7 @@ is
          Ada.Text_IO.Put (Item => " | X : ");
          V_Initial_IO.Put
             (
-               Item => Item (Item'First).V_Param,
+               Item => Lire_Parametre (Individu => Item (Item'First)),
                Fore => 3,
                Aft  => 3,
                Exp  => 0
@@ -371,7 +371,7 @@ begin
    --  Premier calcul de toutes la valeurs.
    Boucle_Calcul :
    for E of Population loop
-      E.V_Calcule := Formule_Surface (D => E.V_Param);
+      E.V_Calcule := Formule_Surface (D => Lire_Parametre (Individu => E));
    end loop Boucle_Calcul;
 
    Ada.Text_IO.Put_Line (Item    => "========== Valeurs de départ ==========");
@@ -449,7 +449,7 @@ begin
       begin
          Boucle_Calcul_Moyenne :
          for I in Intervalle_Survivants_T loop
-            Moyenne := Moyenne + Population (I).V_Param;
+            Moyenne := Moyenne + Lire_Parametre (Individu => Population (I));
          end loop Boucle_Calcul_Moyenne;
          Moyenne := Moyenne / V_Initial_T (Nb_Survivants);
          --  Les 3 dernières valeurs ne font pas partit des survivantes
@@ -497,7 +497,8 @@ begin
       Boucle_Calcul_Partiel :
       for I in Intervalle_Naissance_T loop
          Population (I).V_Calcule :=
-            Formule_Surface (D => Population (I).V_Param);
+            Formule_Surface
+               (D => Lire_Parametre (Individu =>  Population (I)));
       end loop Boucle_Calcul_Partiel;
 
    end loop Boucle_Generation_Successive;
