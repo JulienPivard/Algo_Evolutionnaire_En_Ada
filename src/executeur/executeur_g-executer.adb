@@ -2,11 +2,14 @@ with Ada.Text_IO;
 with Ada.Real_Time;
 with Ada.Numerics.Discrete_Random;
 
-with Chrono_P;
 with A_E_P;
-with A_E_P.Aleatoire_P;
 with A_E_P.Individu_P;
 with A_E_P.Formule_P;
+
+with Chrono_P;
+with Generateur_P;
+
+pragma Elaborate_All (Generateur_P);
 
 separate (Executeur_G)
 procedure Executer
@@ -84,6 +87,11 @@ is
       (Intervalle_Survivants_T);
 
    Alea_Survivant : Alea_P.Generator;
+
+   subtype Intervalle_Initial_T is A_E_P.V_Param_T range 0.0 .. 1100.0;
+
+   function Generer is new Generateur_P.Generer_Flottant
+      (Intervalle_Initial_T);
 
    ---------------------------------------------------------------------------
    procedure Put_Line
@@ -245,7 +253,7 @@ begin
       A_E_P.Individu_P.Modifier_Parametre
          (
             Individu => E,
-            Valeur   => A_E_P.Aleatoire_P.Generer
+            Valeur   => Generer
          );
    end loop Boucle_Initialisation;
 
@@ -327,7 +335,7 @@ begin
          A_E_P.Individu_P.Modifier_Parametre
             (
                Individu => Population (I),
-               Valeur   => A_E_P.Aleatoire_P.Generer
+               Valeur   => Generer
             );
       end loop Boucle_Genere_Nouvelles_Valeurs_Alea;
 

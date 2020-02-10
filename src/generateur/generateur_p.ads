@@ -5,7 +5,7 @@
 --  aléatoire compris entre deux bornes qui peuvent être
 --  passé en paramètres lors de l'appel de la fonction.
 --  @group Nombre aléatoire
-package A_E_P.Generateur_P
+package Generateur_P
    with
       Pure           => False,
       Preelaborate   => False,
@@ -29,4 +29,4 @@ is
    --  La borne supérieur de la valeur à générer.
    --  @return La valeur aléatoire généré.
 
-end A_E_P.Generateur_P;
+end Generateur_P;
