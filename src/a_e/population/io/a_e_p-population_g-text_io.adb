@@ -94,7 +94,7 @@ is
       Ada.Text_IO.Put_Line (Item => "Accouplement : " & Nb_Accouplements'Img);
       Ada.Text_IO.Put_Line (Item => "Mutants      : " & Nb_Mutants'Img);
 
-      if Taille_Population <= 60 then
+      if Taille_Population <= 50 then
          Ada.Text_IO.New_Line  (Spacing => 1);
 
          Ada.Text_IO.Put       (Item => "Survivants    : ");
