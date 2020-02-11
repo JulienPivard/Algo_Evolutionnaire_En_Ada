@@ -305,6 +305,7 @@ is
       (Population : in out Table_Population_T)
    is
    begin
+      Boucle_Generation_Individus :
       for E of Population loop
          A_E_P.Individu_P.Modifier_Parametre
             (
@@ -315,7 +316,7 @@ is
                      Borne_Superieur => Intervalle_Initial_T'Last
                   )
             );
-      end loop Boucle_Initialisation;
+      end loop Boucle_Generation_Individus;
    end Generer_Individus_Aleatoire;
    ---------------------------------------------------------------------------
 
