@@ -57,24 +57,7 @@ is
       Generer_Individus_Mutants (Population => Population);
 
       --  Génère une nouvelle valeur à partir de plusieurs autres.
-      Bloc_Calcul_Enfant_Moyenne :
-      declare
-         Moyenne : A_E_P.V_Param_T := 0.0;
-      begin
-         Boucle_Calcul_Moyenne :
-         for I in Intervalle_Survivants_T loop
-            Moyenne := Moyenne + Lire_Parametre (Position => I);
-         end loop Boucle_Calcul_Moyenne;
-         Moyenne := Moyenne / A_E_P.V_Param_T (Nb_Survivants);
-         --  Les 3 dernières valeurs ne font pas partit des survivantes
-
-         A_E_P.Individu_P.Modifier_Parametre
-            (
-               Individu => Population.Table
-                  (Intervalle_Enfant_Moyenne_T'First),
-               Valeur   => Moyenne
-            );
-      end Bloc_Calcul_Enfant_Moyenne;
+      Generer_Enfant_Moyenne    (Population => Population);
 
       --  Pour chaque valeurs dans l'intervalle d'accouplement,
       --  on sélectionne deux parents et on fait la moyenne
@@ -249,6 +232,46 @@ is
       Generer_Individus_Aleatoire
          (Population => Population.Table (Intervalle_Mutants_T));
    end Generer_Individus_Mutants;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   procedure Generer_Enfant_Moyenne
+      (Population : in out Population_T)
+   is
+      ------------------------------------
+      function Lire_Parametre
+         (Position : in Indice_Population_T)
+         return V_Param_T
+         with Inline => True;
+
+      ----------------------
+      function Lire_Parametre
+         (Position : in Indice_Population_T)
+         return V_Param_T
+      is
+         Individu : constant A_E_P.Individu_P.Individu_T :=
+            Population.Table (Position);
+      begin
+         return A_E_P.Individu_P.Lire_Parametre (Individu => Individu);
+      end Lire_Parametre;
+      ------------------------------------
+
+      Moyenne : A_E_P.V_Param_T := 0.0;
+   begin
+      Boucle_Calcul_Moyenne :
+      for I in Intervalle_Survivants_T loop
+         Moyenne := Moyenne + Lire_Parametre (Position => I);
+      end loop Boucle_Calcul_Moyenne;
+      Moyenne := Moyenne / A_E_P.V_Param_T (Nb_Survivants);
+      --  Les 3 dernières valeurs ne font pas partit des survivantes
+
+      A_E_P.Individu_P.Modifier_Parametre
+         (
+            Individu => Population.Table
+               (Intervalle_Enfant_Moyenne_T'First),
+            Valeur   => Moyenne
+         );
+   end Generer_Enfant_Moyenne;
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------

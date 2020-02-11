@@ -159,6 +159,13 @@ private
    --  @param Population
    --  La population.
 
+   procedure Generer_Enfant_Moyenne
+      (Population : in out Population_T);
+   --  Génère un individu en faisant la moyenne des paramètres
+   --  de tous les individus.
+   --  @param Population
+   --  La population.
+
    procedure Appliquer_Formule
       (
          Population : in out Table_Population_T;
