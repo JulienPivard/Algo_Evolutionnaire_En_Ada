@@ -8,7 +8,7 @@ package body A_E_P.Population_G
    with Spark_Mode => Off
 is
 
-   subtype Intervalle_Initial_T is A_E_P.V_Param_T range 0.0 .. 1100.0;
+   subtype Intervalle_Initial_T is V_Param_T range 0.0 .. 1100.0;
 
    function Generer is new Generateur_P.Generer_Flottant
       (Valeur_T => V_Param_T);
