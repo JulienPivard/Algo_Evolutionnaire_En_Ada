@@ -166,6 +166,13 @@ private
    --  @param Population
    --  La population.
 
+   procedure Generer_Enfants_Accouplement
+      (Population : in out Population_T);
+   --  Génère des enfants par accouplement de deux individus
+   --  pris au hasard parmi les survivants.
+   --  @param Population
+   --  La population.
+
    procedure Appliquer_Formule
       (
          Population : in out Table_Population_T;

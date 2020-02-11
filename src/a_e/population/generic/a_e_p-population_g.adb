@@ -36,69 +36,16 @@ is
    procedure Remplacer_Morts
       (Population : in out Population_T)
    is
-      ------------------------------------
-      function Lire_Parametre
-         (Position : in Indice_Population_T)
-         return V_Param_T
-         with Inline => True;
-
-      ----------------------
-      function Lire_Parametre
-         (Position : in Indice_Population_T)
-         return V_Param_T
-      is
-         Individu : constant A_E_P.Individu_P.Individu_T :=
-            Population.Table (Position);
-      begin
-         return A_E_P.Individu_P.Lire_Parametre (Individu => Individu);
-      end Lire_Parametre;
-      ------------------------------------
    begin
-      Generer_Individus_Mutants (Population => Population);
+      Generer_Individus_Mutants     (Population => Population);
 
       --  Génère une nouvelle valeur à partir de plusieurs autres.
-      Generer_Enfant_Moyenne    (Population => Population);
+      Generer_Enfant_Moyenne        (Population => Population);
 
       --  Pour chaque valeurs dans l'intervalle d'accouplement,
       --  on sélectionne deux parents et on fait la moyenne
       --  des deux.
-      Bloc_Accouplement_Valeurs :
-      declare
-         package Alea_P    is new Ada.Numerics.Discrete_Random
-            (Intervalle_Survivants_T);
-
-         Moyenne        : A_E_P.V_Param_T;
-         Alea_Survivant : Alea_P.Generator;
-      begin
-         Alea_P.Reset (Gen => Alea_Survivant);
-
-         Boucle_Accouplement_Valeurs :
-         for I in Intervalle_Accouplements_T loop
-            Bloc_Moyenne_Parents :
-            declare
-               Valeur_1 : constant A_E_P.V_Param_T :=
-                  A_E_P.Individu_P.Lire_Parametre
-                     (
-                        Individu => Population.Table
-                           (Alea_P.Random (Gen => Alea_Survivant))
-                     );
-               Valeur_2 : constant A_E_P.V_Param_T :=
-                  A_E_P.Individu_P.Lire_Parametre
-                     (
-                        Individu => Population.Table
-                           (Alea_P.Random (Gen => Alea_Survivant))
-                     );
-            begin
-               Moyenne := (Valeur_1 + Valeur_2) / 2.0;
-            end Bloc_Moyenne_Parents;
-
-            A_E_P.Individu_P.Modifier_Parametre
-               (
-                  Individu => Population.Table (I),
-                  Valeur   => Moyenne
-               );
-         end loop Boucle_Accouplement_Valeurs;
-      end Bloc_Accouplement_Valeurs;
+      Generer_Enfants_Accouplement  (Population => Population);
    end Remplacer_Morts;
    ---------------------------------------------------------------------------
 
@@ -272,6 +219,47 @@ is
             Valeur   => Moyenne
          );
    end Generer_Enfant_Moyenne;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   procedure Generer_Enfants_Accouplement
+      (Population : in out Population_T)
+   is
+      package Alea_P is new Ada.Numerics.Discrete_Random
+         (Intervalle_Survivants_T);
+
+      Moyenne        : A_E_P.V_Param_T;
+      Alea_Survivant : Alea_P.Generator;
+   begin
+      Alea_P.Reset (Gen => Alea_Survivant);
+
+      Boucle_Accouplement_Valeurs :
+      for I in Intervalle_Accouplements_T loop
+         Bloc_Moyenne_Parents :
+         declare
+            Valeur_1 : constant A_E_P.V_Param_T :=
+               A_E_P.Individu_P.Lire_Parametre
+                  (
+                     Individu => Population.Table
+                        (Alea_P.Random (Gen => Alea_Survivant))
+                  );
+            Valeur_2 : constant A_E_P.V_Param_T :=
+               A_E_P.Individu_P.Lire_Parametre
+                  (
+                     Individu => Population.Table
+                        (Alea_P.Random (Gen => Alea_Survivant))
+                  );
+         begin
+            Moyenne := (Valeur_1 + Valeur_2) / 2.0;
+         end Bloc_Moyenne_Parents;
+
+         A_E_P.Individu_P.Modifier_Parametre
+            (
+               Individu => Population.Table (I),
+               Valeur   => Moyenne
+            );
+      end loop Boucle_Accouplement_Valeurs;
+   end Generer_Enfants_Accouplement;
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
