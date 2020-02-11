@@ -35,7 +35,11 @@ is
             );
       end loop Boucle_Initialisation;
 
-      Appliquer_Formule (Population => Population.Table, Formule => Formule);
+      Appliquer_Formule
+         (
+            Population => Population.Table,
+            Formule    => Formule
+         );
    end Initialiser;
    ---------------------------------------------------------------------------
 
