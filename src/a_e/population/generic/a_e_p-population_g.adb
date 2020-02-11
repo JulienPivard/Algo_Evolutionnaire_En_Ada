@@ -22,18 +22,7 @@ is
    is
    begin
       --  Initialisation du tableau avec des valeurs initial
-      Boucle_Initialisation :
-      for E of Population.Table loop
-         A_E_P.Individu_P.Modifier_Parametre
-            (
-               Individu => E,
-               Valeur   => Generer
-                  (
-                     Borne_Inferieur => Intervalle_Initial_T'First,
-                     Borne_Superieur => Intervalle_Initial_T'Last
-                  )
-            );
-      end loop Boucle_Initialisation;
+      Generer_Individus_Aleatoire (Population => Population.Table);
 
       Appliquer_Formule
          (
@@ -65,20 +54,7 @@ is
       end Lire_Parametre;
       ------------------------------------
    begin
-      --  Génère des valeurs aléatoires et les places dans la moitié
-      --  des 25% dernières cases du tableau.
-      Boucle_Genere_Nouvelles_Valeurs_Alea :
-      for I in Intervalle_Mutants_T loop
-         A_E_P.Individu_P.Modifier_Parametre
-            (
-               Individu => Population.Table (I),
-               Valeur   => Generer
-                  (
-                     Borne_Inferieur => Intervalle_Initial_T'First,
-                     Borne_Superieur => Intervalle_Initial_T'Last
-                  )
-            );
-      end loop Boucle_Genere_Nouvelles_Valeurs_Alea;
+      Generer_Individus_Mutants (Population => Population);
 
       --  Génère une nouvelle valeur à partir de plusieurs autres.
       Bloc_Calcul_Enfant_Moyenne :
@@ -264,6 +240,18 @@ is
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
+   procedure Generer_Individus_Mutants
+      (Population : in out Population_T)
+   is
+   begin
+      --  Génère des valeurs aléatoires et les places dans la moitié
+      --  des 25% dernières cases du tableau.
+      Generer_Individus_Aleatoire
+         (Population => Population.Table (Intervalle_Mutants_T));
+   end Generer_Individus_Mutants;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
    procedure Appliquer_Formule
       (
          Population : in out Table_Population_T;
@@ -287,6 +275,25 @@ is
          end Bloc_Calcul;
       end loop Boucle_Calcul;
    end Appliquer_Formule;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   procedure Generer_Individus_Aleatoire
+      (Population : in out Table_Population_T)
+   is
+   begin
+      for E of Population loop
+         A_E_P.Individu_P.Modifier_Parametre
+            (
+               Individu => E,
+               Valeur   => Generer
+                  (
+                     Borne_Inferieur => Intervalle_Initial_T'First,
+                     Borne_Superieur => Intervalle_Initial_T'Last
+                  )
+            );
+      end loop Boucle_Initialisation;
+   end Generer_Individus_Aleatoire;
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------

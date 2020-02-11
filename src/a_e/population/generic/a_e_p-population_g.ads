@@ -150,6 +150,15 @@ private
    --  @param Tableau
    --  La population.
 
+   procedure Generer_Individus_Mutants
+      (Population : in out Population_T)
+      with Inline => True;
+   --  Génère des individus en attribuant des valeurs
+   --  aléatoire à leurs variables. Ils sont placé dans
+   --  la dernière moitié des 25% dernières cases du tableau.
+   --  @param Population
+   --  La population.
+
    procedure Appliquer_Formule
       (
          Population : in out Table_Population_T;
@@ -161,6 +170,13 @@ private
    --  La population.
    --  @param Formule
    --  La formule à appliquer à toute la population.
+
+   procedure Generer_Individus_Aleatoire
+      (Population : in out Table_Population_T);
+   --  Génère des individu avec des caractéristique
+   --  choisie au hasard pour chaque case de la population.
+   --  @param Population
+   --  La population.
 
    function Comparer_Minimiser
       (
