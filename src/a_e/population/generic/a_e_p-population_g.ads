@@ -81,16 +81,13 @@ private
       (Indice_Population_T'Last - Indice_Population_T'First) + 1;
    --  La population total d'individu.
    --  Chaque individu est une case du tableau.
-   Enfant_Moyenne    : constant Indice_Population_T := 1;
-   --  L'enfant issu de la moyenne de tous les survivants.
    Nb_Survivants     : constant Indice_Population_T :=
-      Taille_Population - ((Taille_Population * 25) / 100) - Enfant_Moyenne;
+      Taille_Population - ((Taille_Population * 25) / 100);
    --  Le nombre de survivants (environ 75%)
    Nb_Morts          : constant Indice_Population_T :=
       Taille_Population - Nb_Survivants;
    --  Le reste de la population que n'as pas survécu.
-   Future_Nb_Enfants : constant Indice_Population_T :=
-      Nb_Morts - Enfant_Moyenne;
+   Future_Nb_Enfants : constant Indice_Population_T := Nb_Morts;
    --  Le total d'enfants "naturel" qui seront conçu pour
    --  la prochaine génération.
    Nb_Accouplements  : constant Indice_Population_T := Future_Nb_Enfants / 2;
@@ -110,7 +107,7 @@ private
    --  lors de la prochaine génération.
 
    subtype Intervalle_Future_Enfant_T  is Intervalle_Naissance_T     range
-      Intervalle_Naissance_T'First + Enfant_Moyenne
+      Intervalle_Naissance_T'First
       ..
       Intervalle_Naissance_T'Last;
    --  Intervalle des futures enfant. L'enfant issue de la moyenne
@@ -156,13 +153,6 @@ private
    --  Génère des individus en attribuant des valeurs
    --  aléatoire à leurs variables. Ils sont placé dans
    --  la dernière moitié des 25% dernières cases du tableau.
-   --  @param Population
-   --  La population.
-
-   procedure Generer_Enfant_Moyenne
-      (Population : in out Population_T);
-   --  Génère un individu en faisant la moyenne des paramètres
-   --  de tous les individus.
    --  @param Population
    --  La population.
 

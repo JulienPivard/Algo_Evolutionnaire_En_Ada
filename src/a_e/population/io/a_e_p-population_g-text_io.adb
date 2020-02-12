@@ -26,9 +26,7 @@ is
             elsif I in Intervalle_Mort_T then
                Ada.Text_IO.Put (Item => " Mort");
             end if;
-            if I in Intervalle_Enfant_Moyenne_T then
-               Ada.Text_IO.Put (Item => " Moy");
-            elsif I in Intervalle_Accouplements_T then
+            if I in Intervalle_Accouplements_T then
                Ada.Text_IO.Put (Item => " A  ");
             elsif I in Intervalle_Mutants_T then
                Ada.Text_IO.Put (Item => " Mut");
@@ -145,13 +143,6 @@ is
                   Fin   => Intervalle_Naissance_T'Last
                );
 
-            Ada.Text_IO.Put (Item => "Enfant moyen     : ");
-            Afficher_Table
-               (
-                  Debut => Intervalle_Enfant_Moyenne_T'First,
-                  Fin   => Intervalle_Enfant_Moyenne_T'Last
-               );
-
             Ada.Text_IO.Put (Item => "Accouplements   : ");
             Afficher_Table
                (
@@ -193,13 +184,10 @@ is
             ------------------------------------
          begin
             Ada.Text_IO.Put (Item => "Survivants      : ");
-            Afficher_Table  (Debut => 1, Fin => 37);
+            Afficher_Table  (Debut => 1, Fin => 38);
 
             Ada.Text_IO.Put (Item => "Naissance/Morts : ");
-            Afficher_Table  (Debut => 38, Fin => 50);
-
-            Ada.Text_IO.Put (Item => "Enfant moyen    : ");
-            Afficher_Table  (Debut => 38, Fin => 38);
+            Afficher_Table  (Debut => 39, Fin => 50);
 
             Ada.Text_IO.Put (Item => "Accouplements   : ");
             Afficher_Table  (Debut => 39, Fin => 44);
