@@ -131,42 +131,35 @@ is
             end Afficher_Table;
             ------------------------------------
          begin
-            Ada.Text_IO.Put (Item => "Survivants    : ");
+            Ada.Text_IO.Put (Item => "Survivants      : ");
             Afficher_Table
                (
                   Debut => Intervalle_Survivants_T'First,
                   Fin   => Intervalle_Survivants_T'Last
                );
 
-            Ada.Text_IO.Put (Item => "Morts         : ");
-            Afficher_Table
-               (
-                  Debut => Intervalle_Mort_T'First,
-                  Fin   => Intervalle_Mort_T'Last
-               );
-
-            Ada.Text_IO.Put (Item => "Naissance     : ");
+            Ada.Text_IO.Put (Item => "Naissance/Morts : ");
             Afficher_Table
                (
                   Debut => Intervalle_Naissance_T'First,
                   Fin   => Intervalle_Naissance_T'Last
                );
 
-            Ada.Text_IO.Put (Item => "Enfant moyen  : ");
+            Ada.Text_IO.Put (Item => "Enfant moyen     : ");
             Afficher_Table
                (
                   Debut => Intervalle_Enfant_Moyenne_T'First,
                   Fin   => Intervalle_Enfant_Moyenne_T'Last
                );
 
-            Ada.Text_IO.Put (Item => "Accouplements : ");
+            Ada.Text_IO.Put (Item => "Accouplements   : ");
             Afficher_Table
                (
                   Debut => Intervalle_Accouplements_T'First,
                   Fin   => Intervalle_Accouplements_T'Last
                );
 
-            Ada.Text_IO.Put (Item => "Mutants       : ");
+            Ada.Text_IO.Put (Item => "Mutants         : ");
             Afficher_Table
                (
                   Debut => Intervalle_Mutants_T'First,
@@ -199,22 +192,19 @@ is
             end Afficher_Table;
             ------------------------------------
          begin
-            Ada.Text_IO.Put (Item => "Survivants    : ");
+            Ada.Text_IO.Put (Item => "Survivants      : ");
             Afficher_Table  (Debut => 1, Fin => 37);
 
-            Ada.Text_IO.Put (Item => "Morts         : ");
+            Ada.Text_IO.Put (Item => "Naissance/Morts : ");
             Afficher_Table  (Debut => 38, Fin => 50);
 
-            Ada.Text_IO.Put (Item => "Naissance     : ");
-            Afficher_Table  (Debut => 38, Fin => 50);
-
-            Ada.Text_IO.Put (Item => "Enfant moyen  : ");
+            Ada.Text_IO.Put (Item => "Enfant moyen    : ");
             Afficher_Table  (Debut => 38, Fin => 38);
 
-            Ada.Text_IO.Put (Item => "Accouplements : ");
+            Ada.Text_IO.Put (Item => "Accouplements   : ");
             Afficher_Table  (Debut => 39, Fin => 44);
 
-            Ada.Text_IO.Put (Item => "Mutants       : ");
+            Ada.Text_IO.Put (Item => "Mutants         : ");
             Afficher_Table  (Debut => 45, Fin => 50);
          end Bloc_Affichage_Stylise;
       end if;
