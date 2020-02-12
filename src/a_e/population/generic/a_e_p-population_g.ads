@@ -185,7 +185,7 @@ private
    --  @param Formule
    --  La formule à appliquer à toute la population.
 
-   procedure Generer_Individus_Aleatoire
+   procedure Generer_Individus_Aleatoirement
       (Population : in out Table_Population_T);
    --  Génère des individu avec des caractéristique
    --  choisie au hasard pour chaque case de la population.

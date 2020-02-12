@@ -22,7 +22,7 @@ is
    is
    begin
       --  Initialisation du tableau avec des valeurs initial
-      Generer_Individus_Aleatoire (Population => Population.Table);
+      Generer_Individus_Aleatoirement (Population => Population.Table);
 
       Appliquer_Formule
          (
@@ -176,7 +176,7 @@ is
    begin
       --  Génère des valeurs aléatoires et les places dans la moitié
       --  des 25% dernières cases du tableau.
-      Generer_Individus_Aleatoire
+      Generer_Individus_Aleatoirement
          (Population => Population.Table (Intervalle_Mutants_T));
    end Generer_Individus_Mutants;
    ---------------------------------------------------------------------------
@@ -289,7 +289,7 @@ is
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
-   procedure Generer_Individus_Aleatoire
+   procedure Generer_Individus_Aleatoirement
       (Population : in out Table_Population_T)
    is
    begin
@@ -305,7 +305,7 @@ is
                   )
             );
       end loop Boucle_Generation_Individus;
-   end Generer_Individus_Aleatoire;
+   end Generer_Individus_Aleatoirement;
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
