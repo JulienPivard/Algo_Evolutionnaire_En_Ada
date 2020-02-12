@@ -257,11 +257,11 @@ is
          Bloc_Calcul :
          declare
          begin
-            A_E_P.Individu_P.Appliquer_Formule
-               (
-                  Individu => E,
-                  Formule  => Formule
-               );
+         A_E_P.Individu_P.Appliquer_Formule
+            (
+               Individu => E,
+               Formule  => Formule
+            );
          end Bloc_Calcul;
       end loop Boucle_Calcul;
    end Appliquer_Formule;
