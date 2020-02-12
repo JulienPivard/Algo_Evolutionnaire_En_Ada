@@ -292,6 +292,8 @@ is
    procedure Generer_Individus_Aleatoirement
       (Population : in out Table_Population_T)
    is
+      Min : constant V_Param_T := Intervalle_Initial_T'First;
+      Max : constant V_Param_T := Intervalle_Initial_T'Last;
    begin
       Boucle_Generation_Individus :
       for E of Population loop
@@ -300,8 +302,8 @@ is
                Individu => E,
                Valeur   => Generer
                   (
-                     Borne_Inferieur => Intervalle_Initial_T'First,
-                     Borne_Superieur => Intervalle_Initial_T'Last
+                     Borne_Inferieur => Min,
+                     Borne_Superieur => Max
                   )
             );
       end loop Boucle_Generation_Individus;
