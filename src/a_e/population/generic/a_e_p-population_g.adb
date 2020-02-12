@@ -219,7 +219,6 @@ is
       package Alea_P is new Ada.Numerics.Discrete_Random
          (Intervalle_Survivants_T);
 
-      Moyenne        : A_E_P.V_Param_T;
       Alea_Survivant : Alea_P.Generator;
    begin
       Alea_P.Reset (Gen => Alea_Survivant);
@@ -228,27 +227,18 @@ is
       for I in Intervalle_Accouplements_T loop
          Bloc_Moyenne_Parents :
          declare
-            Valeur_1 : constant A_E_P.V_Param_T :=
-               A_E_P.Individu_P.Lire_Parametre
-                  (
-                     Individu => Population.Table
-                        (Alea_P.Random (Gen => Alea_Survivant))
-                  );
-            Valeur_2 : constant A_E_P.V_Param_T :=
-               A_E_P.Individu_P.Lire_Parametre
-                  (
-                     Individu => Population.Table
-                        (Alea_P.Random (Gen => Alea_Survivant))
-                  );
+            Individu_1 : constant A_E_P.Individu_P.Individu_T :=
+               Population.Table (Alea_P.Random (Gen => Alea_Survivant));
+            Individu_2 : constant A_E_P.Individu_P.Individu_T :=
+               Population.Table (Alea_P.Random (Gen => Alea_Survivant));
          begin
-            Moyenne := (Valeur_1 + Valeur_2) / 2.0;
+            Population.Table (I) :=
+               Individu_P.Accoupler
+                  (
+                     Individu => Individu_1,
+                     Autre    => Individu_2
+                  );
          end Bloc_Moyenne_Parents;
-
-         A_E_P.Individu_P.Modifier_Parametre
-            (
-               Individu => Population.Table (I),
-               Valeur   => Moyenne
-            );
       end loop Boucle_Accouplement_Valeurs;
    end Generer_Enfants_Accouplement;
    ---------------------------------------------------------------------------

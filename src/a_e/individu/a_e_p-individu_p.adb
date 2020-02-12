@@ -46,6 +46,21 @@ is
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
+   function Accoupler
+      (
+         Individu : in Individu_T;
+         Autre    : in Individu_T
+      )
+      return Individu_T
+   is
+      Bebe : Individu_T;
+   begin
+      Bebe.V_Param := (Individu.V_Param + Autre.V_Param) / 2.0;
+      return Bebe;
+   end Accoupler;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
    procedure Modifier_Parametre
       (
          Individu : in out Individu_T;

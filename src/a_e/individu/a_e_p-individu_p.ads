@@ -44,6 +44,19 @@ is
    --  @param Individu
    --  L'individu dont il faut régénérer les valeurs.
 
+   function Accoupler
+      (
+         Individu : in Individu_T;
+         Autre    : in Individu_T
+      )
+      return Individu_T;
+   --  Accouple deux individus pour en obtenir un 3ieme.
+   --  @param Individu
+   --  Le premier membre du couple.
+   --  @param Autre
+   --  Le second membre du couple.
+   --  @return Le résultat de l'union des deux Individu.
+
    procedure Modifier_Parametre
       (
          Individu : in out Individu_T;
