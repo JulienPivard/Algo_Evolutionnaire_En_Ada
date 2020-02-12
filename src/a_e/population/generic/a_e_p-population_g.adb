@@ -73,7 +73,7 @@ is
    is
    begin
       if Taille_Population <= 1000 then
-         Tri_A_Bulle (Tableau => Population.Table);
+         Tri_A_Bulle             (Tableau => Population.Table);
       else
          Tri_Rapide_P.Tri_Rapide (Tableau => Population.Table);
       end if;
