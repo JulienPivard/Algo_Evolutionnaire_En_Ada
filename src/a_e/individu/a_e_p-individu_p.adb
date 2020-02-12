@@ -1,6 +1,14 @@
+with A_E_P.Intervalle_P;
+with Generateur_P;
+
+pragma Elaborate_All (Generateur_P);
+
 package body A_E_P.Individu_P
    with Spark_Mode => Off
 is
+
+   function Generer is new Generateur_P.Generer_Flottant
+      (Valeur_T => V_Param_T);
 
    ---------------------------------------------------------------------------
    procedure Modifier_Resultat
@@ -22,6 +30,19 @@ is
    begin
       return Individu.V_Calcule;
    end Lire_Resultat;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   procedure Generer_Parametres
+      (Individu : in out Individu_T)
+   is
+   begin
+      Individu.V_Param := Generer
+         (
+            Borne_Inferieur => Intervalle_P.Intervalle_Initial_T'First,
+            Borne_Superieur => Intervalle_P.Intervalle_Initial_T'Last
+         );
+   end Generer_Parametres;
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------

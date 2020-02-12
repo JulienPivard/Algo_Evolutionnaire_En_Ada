@@ -37,6 +37,13 @@ is
    --  L'individu d'une population.
    --  @return La valeur du résultat.
 
+   procedure Generer_Parametres
+      (Individu : in out Individu_T);
+   --  Permet de générer de nouvelles valeurs pour chaque
+   --  paramètres aléatoirement.
+   --  @param Individu
+   --  L'individu dont il faut régénérer les valeurs.
+
    procedure Modifier_Parametre
       (
          Individu : in out Individu_T;

@@ -1,16 +1,8 @@
 with Ada.Numerics.Discrete_Random;
 
-with A_E_P.Intervalle_P;
-with Generateur_P;
-
-pragma Elaborate_All (Generateur_P);
-
 package body A_E_P.Population_G
    with Spark_Mode => Off
 is
-
-   function Generer is new Generateur_P.Generer_Flottant
-      (Valeur_T => V_Param_T);
 
    ---------------------------------------------------------------------------
    procedure Initialiser
@@ -291,20 +283,10 @@ is
    procedure Generer_Individus_Aleatoirement
       (Population : in out Table_Population_T)
    is
-      Min : constant V_Param_T := Intervalle_P.Intervalle_Initial_T'First;
-      Max : constant V_Param_T := Intervalle_P.Intervalle_Initial_T'Last;
    begin
       Boucle_Generation_Individus :
       for E of Population loop
-         A_E_P.Individu_P.Modifier_Parametre
-            (
-               Individu => E,
-               Valeur   => Generer
-                  (
-                     Borne_Inferieur => Min,
-                     Borne_Superieur => Max
-                  )
-            );
+         A_E_P.Individu_P.Generer_Parametres (Individu => E);
       end loop Boucle_Generation_Individus;
    end Generer_Individus_Aleatoirement;
    ---------------------------------------------------------------------------
