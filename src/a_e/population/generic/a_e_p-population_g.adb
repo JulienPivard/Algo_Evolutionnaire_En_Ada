@@ -256,13 +256,11 @@ is
       for E of Population loop
          Bloc_Calcul :
          declare
-            Param : constant V_Param_T :=
-               A_E_P.Individu_P.Lire_Parametre (Individu => E);
          begin
-            A_E_P.Individu_P.Modifier_Resultat
+            A_E_P.Individu_P.Appliquer_Formule
                (
                   Individu => E,
-                  Valeur   => Formule (P => Param)
+                  Formule  => Formule
                );
          end Bloc_Calcul;
       end loop Boucle_Calcul;

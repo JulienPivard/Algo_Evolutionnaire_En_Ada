@@ -61,6 +61,18 @@ is
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
+   procedure Appliquer_Formule
+      (
+         Individu : in out Individu_T;
+         Formule  : in     A_E_P.Formule_P.Formule_T
+      )
+   is
+   begin
+      Individu.V_Calcule := Formule (P => Individu.V_Param);
+   end Appliquer_Formule;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
    procedure Modifier_Parametre
       (
          Individu : in out Individu_T;
