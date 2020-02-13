@@ -70,6 +70,10 @@ private
 
    procedure Generer
       (Valeur : in out Valeur_T);
+   --  Remplace sa valeur actuelle par une nouvelle valeur
+   --  prise au hasard dans son intervalle.
+   --  @param Valeur
+   --  La valeur à modifier.
 
    function Accoupler
       (
@@ -77,6 +81,12 @@ private
          Autre  : in Valeur_T
       )
       return Valeur_T;
+   --  Crée une nouvelle valeur à partir des deux valeur parente.
+   --  @param Valeur
+   --  La première valeur.
+   --  @param Autre
+   --  La seconde valeur.
+   --  @return Le résultat de l'accouplement des deux valeurs.
 
    type Parametres_T is
       record
