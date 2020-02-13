@@ -1,4 +1,3 @@
-with A_E_P.Intervalle_P;
 with Generateur_P;
 
 pragma Elaborate_All (Generateur_P);
