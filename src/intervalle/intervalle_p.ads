@@ -1,8 +1,7 @@
 --  @summary
 --  Définition d'intervalle de valeurs.
 --  @description
---  Défini l'intervalle de valeurs de la population,
---  et celui des valeurs des variables de la fonction.
+--  Défini l'intervalle de valeurs de la population.
 --  @group Population
 package Intervalle_P
    with
