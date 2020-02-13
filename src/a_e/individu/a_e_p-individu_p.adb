@@ -1,14 +1,6 @@
-with A_E_P.Intervalle_P;
-with Generateur_P;
-
-pragma Elaborate_All (Generateur_P);
-
 package body A_E_P.Individu_P
    with Spark_Mode => Off
 is
-
-   function Generer is new Generateur_P.Generer_Flottant
-      (Valeur_T => V_Param_T);
 
    ---------------------------------------------------------------------------
    procedure Modifier_Resultat
@@ -37,11 +29,7 @@ is
       (Individu : in out Individu_T)
    is
    begin
-      Individu.V_Param := Generer
-         (
-            Borne_Inferieur => Intervalle_P.Intervalle_Initial_T'First,
-            Borne_Superieur => Intervalle_P.Intervalle_Initial_T'Last
-         );
+      A_E_P.Parametres_P.Generer (Parametres => Individu.V_Param);
    end Generer_Parametres;
    ---------------------------------------------------------------------------
 
@@ -55,7 +43,11 @@ is
    is
       Bebe : Individu_T;
    begin
-      Bebe.V_Param := (Individu.V_Param + Autre.V_Param) / 2.0;
+      Bebe.V_Param := A_E_P.Parametres_P.Accoupler
+         (
+            Parametres => Individu.V_Param,
+            Autre      => Autre.V_Param
+         );
       return Bebe;
    end Accoupler;
    ---------------------------------------------------------------------------
@@ -68,20 +60,8 @@ is
       )
    is
    begin
-      Individu.V_Calcule := Formule (P => Individu.V_Param);
+      Individu.V_Calcule := Formule (P => Lire_Parametre (Individu));
    end Appliquer_Formule;
-   ---------------------------------------------------------------------------
-
-   ---------------------------------------------------------------------------
-   procedure Modifier_Parametre
-      (
-         Individu : in out Individu_T;
-         Valeur   : in     V_Param_T
-      )
-   is
-   begin
-      Individu.V_Param := Valeur;
-   end Modifier_Parametre;
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
@@ -90,7 +70,8 @@ is
       return V_Param_T
    is
    begin
-      return Individu.V_Param;
+      return A_E_P.Parametres_P.Lire_Parametre
+         (Parametres => Individu.V_Param);
    end Lire_Parametre;
    ---------------------------------------------------------------------------
 

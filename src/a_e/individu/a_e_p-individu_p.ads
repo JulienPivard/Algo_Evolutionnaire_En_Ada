@@ -1,3 +1,4 @@
+with A_E_P.Parametres_P;
 with A_E_P.Formule_P;
 
 --  @summary
@@ -70,18 +71,6 @@ is
    --  @param Formule
    --  La formule à appliquer.
 
-   procedure Modifier_Parametre
-      (
-         Individu : in out Individu_T;
-         Valeur   : in     V_Param_T
-      )
-      with Inline => True;
-   --  Modifie le paramètre stocké dans l'individu.
-   --  @param Individu
-   --  L'individu d'une population.
-   --  @param Valeur
-   --  La valeur du paramètre à stocker.
-
    function Lire_Parametre
       (Individu : in Individu_T)
       return V_Param_T
@@ -95,7 +84,7 @@ private
 
    type Individu_T is
       record
-         V_Param   : V_Param_T   := 0.0;
+         V_Param   : A_E_P.Parametres_P.Parametres_T;
          --  L'inconnue utilisé par la fonction.
          V_Calcule : V_Calcule_T := 0.0;
          --  Le résultat de la fonction appliqué au paramètre.
