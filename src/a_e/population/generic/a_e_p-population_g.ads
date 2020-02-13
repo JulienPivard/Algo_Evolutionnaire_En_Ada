@@ -81,6 +81,14 @@ private
       (Indice_Population_T'Last - Indice_Population_T'First) + 1;
    --  La population total d'individu.
    --  Chaque individu est une case du tableau.
+
+   pragma Compile_Time_Error
+      (
+         Taille_Population < 25,
+         "La taille de la population est trop faible. " &
+         "25 individus au minimum."
+      );
+
    Nb_Survivants     : constant Indice_Population_T :=
       Taille_Population - ((Taille_Population * 25) / 100);
    --  Le nombre de survivants (environ 75%)
