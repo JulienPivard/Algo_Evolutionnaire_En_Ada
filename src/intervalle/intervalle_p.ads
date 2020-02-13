@@ -4,7 +4,7 @@
 --  Défini l'intervalle de valeurs de la population,
 --  et celui des valeurs des variables de la fonction.
 --  @group Population
-package A_E_P.Intervalle_P
+package Intervalle_P
    with
       Pure           => True,
       Preelaborate   => False,
@@ -15,4 +15,4 @@ is
    type Indice_T is range 1 .. 25;
    --  L'intervalle de valeurs de la population.
 
-end A_E_P.Intervalle_P;
+end Intervalle_P;

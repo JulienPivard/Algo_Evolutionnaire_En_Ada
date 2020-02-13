@@ -2,12 +2,12 @@ with Ada.Text_IO;
 with Ada.Real_Time;
 
 with A_E_P;
-with A_E_P.Intervalle_P;
 with A_E_P.Population_G;
 with A_E_P.Population_G.Text_IO;
 with A_E_P.Formule_P;
 
 with Chrono_P;
+with Intervalle_P;
 
 pragma Elaborate_All (A_E_P.Population_G);
 
@@ -16,7 +16,7 @@ procedure Executer
    --  (Arguments)
 is
    package Population_P  is new A_E_P.Population_G
-      (Indice_Population_T => A_E_P.Intervalle_P.Indice_T);
+      (Indice_Population_T => Intervalle_P.Indice_T);
    package Population_IO is new Population_P.Text_IO;
 
    Formule : constant A_E_P.Formule_P.Formule_T :=
