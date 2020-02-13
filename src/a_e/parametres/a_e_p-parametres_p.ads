@@ -62,11 +62,14 @@ private
          --  La valeur du paramètre.
          Debut_Intervalle : V_Param_T := 0.0;
          --  Le début de l'intervalle de valeurs.
-         Fin_Intervalle   : V_Param_T := 0.0;
+         Fin_Intervalle   : V_Param_T := 1100.0;
          --  La fin de l'intervalle de valeurs.
       end record;
    --  Chaque paramètre est composé d'une valeur, et de son
    --  intervalle de valeurs autorisé.
+
+   procedure Generer
+      (Valeur : in out Valeur_T);
 
    function Accoupler
       (

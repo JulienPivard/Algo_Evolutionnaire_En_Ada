@@ -15,11 +15,7 @@ is
       (Parametres : in out Parametres_T)
    is
    begin
-      Parametres.Param_1.Valeur := Generer
-         (
-            Borne_Inferieur => Intervalle_P.Intervalle_Initial_T'First,
-            Borne_Superieur => Intervalle_P.Intervalle_Initial_T'Last
-         );
+      Generer (Valeur => Parametres.Param_1);
    end Generer;
    ---------------------------------------------------------------------------
 
@@ -62,6 +58,19 @@ is
    begin
       return Parametres.Param_1.Valeur;
    end Lire_Parametre;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   procedure Generer
+      (Valeur : in out Valeur_T)
+   is
+   begin
+      Valeur.Valeur := Generer
+         (
+            Borne_Inferieur => Valeur.Debut_Intervalle,
+            Borne_Superieur => Valeur.Fin_Intervalle
+         );
+   end Generer;
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
