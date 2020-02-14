@@ -1,20 +1,13 @@
-with Generateur_P;
-
-pragma Elaborate_All (Generateur_P);
-
 package body A_E_P.Parametres_P
    with Spark_Mode => Off
 is
-
-   function Generer is new Generateur_P.Generer_Flottant
-      (Valeur_T => V_Param_T);
 
    ---------------------------------------------------------------------------
    procedure Generer
       (Parametres : in out Parametres_T)
    is
    begin
-      Generer (Valeur => Parametres.Param_1);
+      A_E_P.Valeur_Param_P.Generer (Parametre => Parametres.Param_1);
    end Generer;
    ---------------------------------------------------------------------------
 
@@ -28,10 +21,10 @@ is
    is
       Bebe : Parametres_T;
    begin
-      Bebe.Param_1 := Accoupler
+      Bebe.Param_1 := A_E_P.Valeur_Param_P.Accoupler
          (
-            Valeur => Parametres.Param_1,
-            Autre  => Autre.Param_1
+            Parametre => Parametres.Param_1,
+            Autre     => Autre.Param_1
          );
       return Bebe;
    end Accoupler;
@@ -45,7 +38,11 @@ is
       )
    is
    begin
-      Parametres.Param_1.Valeur := Valeur;
+      A_E_P.Valeur_Param_P.Modifier_Valeur
+         (
+            Parametre       => Parametres.Param_1,
+            Nouvelle_Valeur => Valeur
+         );
    end Modifier_Parametre;
    ---------------------------------------------------------------------------
 
@@ -55,36 +52,9 @@ is
       return V_Param_T
    is
    begin
-      return Parametres.Param_1.Valeur;
+      return A_E_P.Valeur_Param_P.Lire_Valeur
+         (Parametre => Parametres.Param_1);
    end Lire_Parametre;
-   ---------------------------------------------------------------------------
-
-   ---------------------------------------------------------------------------
-   procedure Generer
-      (Valeur : in out Valeur_T)
-   is
-   begin
-      Valeur.Valeur := Generer
-         (
-            Borne_Inferieur => Valeur.Debut_Intervalle,
-            Borne_Superieur => Valeur.Fin_Intervalle
-         );
-   end Generer;
-   ---------------------------------------------------------------------------
-
-   ---------------------------------------------------------------------------
-   function Accoupler
-      (
-         Valeur : in Valeur_T;
-         Autre  : in Valeur_T
-      )
-      return Valeur_T
-   is
-      Bebe : Valeur_T;
-   begin
-      Bebe.Valeur := (Valeur.Valeur + Autre.Valeur) / 2.0;
-      return Bebe;
-   end Accoupler;
    ---------------------------------------------------------------------------
 
 end A_E_P.Parametres_P;

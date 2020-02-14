@@ -1,3 +1,5 @@
+with A_E_P.Valeur_Param_P;
+
 --  @summary
 --  Gestion des paramètres d'une fonction.
 --  @description
@@ -56,41 +58,9 @@ is
 
 private
 
-   type Valeur_T is
-      record
-         Valeur           : V_Param_T := 0.0;
-         --  La valeur du paramètre.
-         Debut_Intervalle : V_Param_T := 0.0;
-         --  Le début de l'intervalle de valeurs.
-         Fin_Intervalle   : V_Param_T := 1100.0;
-         --  La fin de l'intervalle de valeurs.
-      end record;
-   --  Chaque paramètre est composé d'une valeur, et de son
-   --  intervalle de valeurs autorisé.
-
-   procedure Generer
-      (Valeur : in out Valeur_T);
-   --  Remplace sa valeur actuelle par une nouvelle valeur
-   --  prise au hasard dans son intervalle.
-   --  @param Valeur
-   --  La valeur à modifier.
-
-   function Accoupler
-      (
-         Valeur : in Valeur_T;
-         Autre  : in Valeur_T
-      )
-      return Valeur_T;
-   --  Crée une nouvelle valeur à partir des deux valeur parente.
-   --  @param Valeur
-   --  La première valeur.
-   --  @param Autre
-   --  La seconde valeur.
-   --  @return Le résultat de l'accouplement des deux valeurs.
-
    type Parametres_T is
       record
-         Param_1 : Valeur_T;
+         Param_1 : A_E_P.Valeur_Param_P.Valeur_Param_T;
          --  L'unique paramètre (Pour le moment)
       end record;
 
