@@ -184,16 +184,16 @@ is
       for I in Intervalle_Accouplements_T loop
          Bloc_Moyenne_Parents :
          declare
-            Individu_1 : constant A_E_P.Individu_P.Individu_T :=
-               Population.Table (Alea_P.Random (Gen => Alea_Survivant));
-            Individu_2 : constant A_E_P.Individu_P.Individu_T :=
-               Population.Table (Alea_P.Random (Gen => Alea_Survivant));
+            Position_Parent_1 : constant Intervalle_Survivants_T :=
+               Alea_P.Random (Gen => Alea_Survivant);
+            Position_Parent_2 : constant Intervalle_Survivants_T :=
+               Alea_P.Random (Gen => Alea_Survivant);
          begin
             Population.Table (I) :=
                Individu_P.Accoupler
                   (
-                     Individu => Individu_1,
-                     Autre    => Individu_2
+                     Individu => Population.Table (Position_Parent_1),
+                     Autre    => Population.Table (Position_Parent_2)
                   );
          end Bloc_Moyenne_Parents;
       end loop Boucle_Accouplement_Valeurs;
