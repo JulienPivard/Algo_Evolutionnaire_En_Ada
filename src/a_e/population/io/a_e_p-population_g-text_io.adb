@@ -17,7 +17,7 @@ is
    is
       I : Indice_Population_T := Indice_Population_T'First;
    begin
-      if Taille_Population <= 100 then
+      if Taille_Population <= 50 then
          for E of Item.Table loop
             Indice_IO.Put      (Item => I, Width => 3);
 
