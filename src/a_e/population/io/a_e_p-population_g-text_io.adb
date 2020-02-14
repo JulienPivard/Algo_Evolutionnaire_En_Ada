@@ -1,14 +1,12 @@
 with Ada.Text_IO;
 
+with A_E_P.Individu_P.Text_IO;
+
 package body A_E_P.Population_G.Text_IO
    with Spark_Mode => Off
 is
 
-   package V_Param_IO   is new Ada.Text_IO.Float_IO
-      (Num => A_E_P.V_Param_T);
-   package V_Calcule_IO is new Ada.Text_IO.Float_IO
-      (Num => A_E_P.V_Calcule_T);
-   package Indice_IO    is new Ada.Text_IO.Integer_IO
+   package Indice_IO is new Ada.Text_IO.Integer_IO
       (Num => Indice_Population_T);
 
    ---------------------------------------------------------------------------
@@ -34,50 +32,16 @@ is
                Ada.Text_IO.Put (Item => "    ");
             end if;
 
-            Ada.Text_IO.Put    (Item => " | X : ");
-            V_Param_IO.Put
-               (
-                  Item => A_E_P.Individu_P.Lire_Parametre (Individu => E),
-                  Fore => 3,
-                  Aft  => 3,
-                  Exp  => 0
-               );
-            Ada.Text_IO.Put  (Item => " | Résultat : ");
-            V_Calcule_IO.Put
-               (
-                  Item => A_E_P.Individu_P.Lire_Resultat (Individu => E),
-                  Fore => 3,
-                  Aft  => 3,
-                  Exp  => 0
-               );
+            A_E_P.Individu_P.Text_IO.Put_Line (Item => E);
 
-            Ada.Text_IO.New_Line (Spacing => 1);
             if I < Indice_Population_T'Last then
                I := I + 1;
             end if;
          end loop;
       else
          Ada.Text_IO.Put (Item => "Minimum : ");
-         Ada.Text_IO.Put (Item => " | X : ");
-         V_Param_IO.Put
-            (
-               Item => A_E_P.Individu_P.Lire_Parametre
-                  (Individu => Item.Table (Item.Table'First)),
-               Fore => 3,
-               Aft  => 3,
-               Exp  => 0
-            );
-         Ada.Text_IO.Put (Item => " | Résultat : ");
-         V_Calcule_IO.Put
-            (
-               Item => A_E_P.Individu_P.Lire_Resultat
-                  (Individu => Item.Table (Item.Table'First)),
-               Fore => 3,
-               Aft  => 3,
-               Exp  => 0
-            );
-         Ada.Text_IO.New_Line (Spacing => 1);
-
+         A_E_P.Individu_P.Text_IO.Put_Line
+            (Item => Item.Table (Item.Table'First));
       end if;
    end Put_Line;
    ---------------------------------------------------------------------------

@@ -71,6 +71,8 @@ is
    --  @param Formule
    --  La formule à appliquer.
 
+private
+
    function Lire_Parametre
       (Individu : in Individu_T)
       return V_Param_T
@@ -79,8 +81,6 @@ is
    --  @param Individu
    --  L'individu d'une population.
    --  @return La valeur du paramètre demandé.
-
-private
 
    type Individu_T is
       record
