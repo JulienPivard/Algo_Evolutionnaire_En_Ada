@@ -173,21 +173,21 @@ is
    procedure Generer_Enfants_Accouplement
       (Population : in out Population_T)
    is
-      package Alea_P is new Ada.Numerics.Discrete_Random
+      package Alea_Survivants_P is new Ada.Numerics.Discrete_Random
          (Result_Subtype => Intervalle_Survivants_T);
 
-      Alea_Survivant : Alea_P.Generator;
+      Alea_Survivant : Alea_Survivants_P.Generator;
    begin
-      Alea_P.Reset (Gen => Alea_Survivant);
+      Alea_Survivants_P.Reset (Gen => Alea_Survivant);
 
       Boucle_Accouplement_Valeurs :
       for I in Intervalle_Accouplements_T loop
          Bloc_Moyenne_Parents :
          declare
             Position_Parent_1 : constant Intervalle_Survivants_T :=
-               Alea_P.Random (Gen => Alea_Survivant);
+               Alea_Survivants_P.Random (Gen => Alea_Survivant);
             Position_Parent_2 : constant Intervalle_Survivants_T :=
-               Alea_P.Random (Gen => Alea_Survivant);
+               Alea_Survivants_P.Random (Gen => Alea_Survivant);
          begin
             Population.Table (I) :=
                Individu_P.Accoupler
