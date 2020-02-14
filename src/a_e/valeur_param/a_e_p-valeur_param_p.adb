@@ -1,20 +1,19 @@
-with Generateur_P;
+with Generateur_G;
 
-pragma Elaborate_All (Generateur_P);
+pragma Elaborate_All (Generateur_G);
 
 package body A_E_P.Valeur_Param_P
    with Spark_Mode => Off
 is
 
-   function Generer is new Generateur_P.Generer_Flottant
-      (Valeur_T => V_Param_T);
+   package Generateur_P is new Generateur_G (Valeur_T => V_Param_T);
 
    ---------------------------------------------------------------------------
    procedure Generer
       (Parametre : in out Valeur_Param_T)
    is
    begin
-      Parametre.Valeur := Generer
+      Parametre.Valeur := Generateur_P.Generer_Flottant
          (
             Borne_Inferieur => Parametre.Debut_Intervalle,
             Borne_Superieur => Parametre.Fin_Intervalle

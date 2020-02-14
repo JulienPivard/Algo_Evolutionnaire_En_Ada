@@ -1,3 +1,7 @@
+generic
+   type Valeur_T is digits <>;
+   --  Le type dont on veut générer une valeur aléatoirement.
+
 --  @summary
 --  Générateur de nombre flottant aléatoire.
 --  @description
@@ -5,7 +9,7 @@
 --  aléatoire compris entre deux bornes qui peuvent être
 --  passé en paramètres lors de l'appel de la fonction.
 --  @group Nombre aléatoire
-package Generateur_P
+package Generateur_G
    with
       Pure           => False,
       Preelaborate   => False,
@@ -13,9 +17,6 @@ package Generateur_P
       Spark_Mode     => Off
 is
 
-   generic
-      type Valeur_T is digits <>;
-      --  Le type dont on veut générer une valeur aléatoirement.
    function Generer_Flottant
       (
          Borne_Inferieur : in Valeur_T;
@@ -29,4 +30,4 @@ is
    --  La borne supérieur de la valeur à générer.
    --  @return La valeur aléatoire généré.
 
-end Generateur_P;
+end Generateur_G;
