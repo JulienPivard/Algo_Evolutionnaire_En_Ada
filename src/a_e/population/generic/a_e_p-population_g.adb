@@ -174,7 +174,7 @@ is
       (Population : in out Population_T)
    is
       package Alea_P is new Ada.Numerics.Discrete_Random
-         (Intervalle_Survivants_T);
+         (Result_Subtype => Intervalle_Survivants_T);
 
       Alea_Survivant : Alea_P.Generator;
    begin
