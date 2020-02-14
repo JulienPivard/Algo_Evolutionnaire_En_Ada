@@ -4,6 +4,11 @@ package body A_E_P.Population_G
    with Spark_Mode => Off
 is
 
+   package Alea_Survivants_P is new Ada.Numerics.Discrete_Random
+      (Result_Subtype => Intervalle_Survivants_T);
+
+   Alea_Survivant : Alea_Survivants_P.Generator;
+
    ---------------------------------------------------------------------------
    procedure Initialiser
       (
@@ -173,13 +178,7 @@ is
    procedure Generer_Enfants_Accouplement
       (Population : in out Population_T)
    is
-      package Alea_Survivants_P is new Ada.Numerics.Discrete_Random
-         (Result_Subtype => Intervalle_Survivants_T);
-
-      Alea_Survivant : Alea_Survivants_P.Generator;
    begin
-      Alea_Survivants_P.Reset (Gen => Alea_Survivant);
-
       Boucle_Accouplement_Valeurs :
       for I in Intervalle_Accouplements_T loop
          Bloc_Moyenne_Parents :
@@ -274,5 +273,9 @@ is
       Population (Droite) := Tmp;
    end Echanger;
    ---------------------------------------------------------------------------
+
+begin
+
+   Alea_Survivants_P.Reset (Gen => Alea_Survivant);
 
 end A_E_P.Population_G;
