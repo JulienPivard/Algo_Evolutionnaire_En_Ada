@@ -73,15 +73,6 @@ is
 
 private
 
-   function Lire_Parametre
-      (Individu : in Individu_T)
-      return V_Param_T
-      with Inline => True;
-   --  Lit le paramètre stocké dans l'individu.
-   --  @param Individu
-   --  L'individu d'une population.
-   --  @return La valeur du paramètre demandé.
-
    type Individu_T is
       record
          V_Param   : A_E_P.Parametres_P.Parametres_T;

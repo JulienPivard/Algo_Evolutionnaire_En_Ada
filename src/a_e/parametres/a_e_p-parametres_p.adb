@@ -31,6 +31,19 @@ is
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
+   function Calculer
+      (
+         Parametres : in Parametres_T;
+         Formule    : in A_E_P.Formule_P.Formule_T
+      )
+      return V_Calcule_T
+   is
+   begin
+      return Formule (P => Lire_Parametre (Parametres => Parametres));
+   end Calculer;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
    procedure Modifier_Parametre
       (
          Parametres  : in out Parametres_T;

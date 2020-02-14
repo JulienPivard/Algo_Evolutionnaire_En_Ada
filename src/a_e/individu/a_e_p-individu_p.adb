@@ -60,19 +60,13 @@ is
       )
    is
    begin
-      Individu.V_Calcule := Formule (P => Lire_Parametre (Individu));
+      Individu.V_Calcule :=
+         A_E_P.Parametres_P.Calculer
+            (
+               Parametres => Individu.V_Param,
+               Formule    => Formule
+            );
    end Appliquer_Formule;
-   ---------------------------------------------------------------------------
-
-   ---------------------------------------------------------------------------
-   function Lire_Parametre
-      (Individu : in Individu_T)
-      return V_Param_T
-   is
-   begin
-      return A_E_P.Parametres_P.Lire_Parametre
-         (Parametres => Individu.V_Param);
-   end Lire_Parametre;
    ---------------------------------------------------------------------------
 
 end A_E_P.Individu_P;
