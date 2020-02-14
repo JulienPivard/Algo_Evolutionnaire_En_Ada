@@ -7,7 +7,7 @@ is
    package Alea_Survivants_P is new Ada.Numerics.Discrete_Random
       (Result_Subtype => Intervalle_Survivants_T);
 
-   Alea_Survivant : Alea_Survivants_P.Generator;
+   Generateur_Survivant : Alea_Survivants_P.Generator;
 
    ---------------------------------------------------------------------------
    procedure Initialiser
@@ -184,9 +184,9 @@ is
          Bloc_Moyenne_Parents :
          declare
             Position_Parent_1 : constant Intervalle_Survivants_T :=
-               Alea_Survivants_P.Random (Gen => Alea_Survivant);
+               Alea_Survivants_P.Random (Gen => Generateur_Survivant);
             Position_Parent_2 : constant Intervalle_Survivants_T :=
-               Alea_Survivants_P.Random (Gen => Alea_Survivant);
+               Alea_Survivants_P.Random (Gen => Generateur_Survivant);
          begin
             Population.Table (I) :=
                Individu_P.Accoupler
@@ -276,6 +276,6 @@ is
 
 begin
 
-   Alea_Survivants_P.Reset (Gen => Alea_Survivant);
+   Alea_Survivants_P.Reset (Gen => Generateur_Survivant);
 
 end A_E_P.Population_G;
