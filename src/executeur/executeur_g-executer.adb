@@ -4,6 +4,10 @@ with Ada.Real_Time;
 with A_E_P;
 with A_E_P.Population_G;
 with A_E_P.Population_G.Text_IO;
+with A_E_P.Individu_G;
+with A_E_P.Individu_G.Text_IO;
+with A_E_P.Parametres_P.Surface_P;
+with A_E_P.Parametres_P.Surface_P.Text_IO;
 
 with Chrono_P;
 with Intervalle_P;
@@ -14,9 +18,17 @@ separate (Executeur_G)
 procedure Executer
    --  (Arguments)
 is
+   package Individu_P    is new A_E_P.Individu_G
+      (Parametres_G_T => A_E_P.Parametres_P.Surface_P.Surface_T);
+   package Individu_IO   is new Individu_P.Text_IO
+      (Put => A_E_P.Parametres_P.Surface_P.Text_IO.Put);
    package Population_P  is new A_E_P.Population_G
-      (Indice_Population_T => Intervalle_P.Indice_T);
-   package Population_IO is new Population_P.Text_IO;
+      (
+         Indice_Population_T => Intervalle_P.Indice_T,
+         Individu_P          => Individu_P
+      );
+   package Population_IO is new Population_P.Text_IO
+      (Individu_IO => Individu_IO);
 
    Population : Population_P.Population_T;
    Debut, Fin : Ada.Real_Time.Time;

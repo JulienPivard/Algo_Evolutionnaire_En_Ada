@@ -1,4 +1,4 @@
-package body A_E_P.Individu_P
+package body A_E_P.Individu_G
    with Spark_Mode => Off
 is
 
@@ -29,7 +29,7 @@ is
       (Individu : in out Individu_T)
    is
    begin
-      A_E_P.Parametres_P.Generer (Parametres => Individu.V_Param);
+      Individu.V_Param.Generer;
    end Generer_Parametres;
    ---------------------------------------------------------------------------
 
@@ -43,11 +43,7 @@ is
    is
       Bebe : Individu_T;
    begin
-      Bebe.V_Param := A_E_P.Parametres_P.Accoupler
-         (
-            Parametres => Individu.V_Param,
-            Autre      => Autre.V_Param
-         );
+      Bebe.V_Param := Individu.V_Param.Accoupler (Autre => Autre.V_Param);
       return Bebe;
    end Accoupler;
    ---------------------------------------------------------------------------
@@ -57,9 +53,8 @@ is
       (Individu : in out Individu_T)
    is
    begin
-      Individu.V_Calcule :=
-         A_E_P.Parametres_P.Calculer (Parametres => Individu.V_Param);
+      Individu.V_Calcule := Individu.V_Param.Calculer;
    end Appliquer_Formule;
    ---------------------------------------------------------------------------
 
-end A_E_P.Individu_P;
+end A_E_P.Individu_G;

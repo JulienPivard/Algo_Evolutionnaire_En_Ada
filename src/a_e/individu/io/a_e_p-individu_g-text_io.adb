@@ -1,8 +1,6 @@
 with Ada.Text_IO;
 
-with A_E_P.Parametres_P.Text_IO;
-
-package body A_E_P.Individu_P.Text_IO
+package body A_E_P.Individu_G.Text_IO
    with Spark_Mode => Off
 is
 
@@ -14,7 +12,7 @@ is
       (Item : in Individu_T)
    is
    begin
-      A_E_P.Parametres_P.Text_IO.Put (Item => Item.V_Param);
+      Put (Item => Item.V_Param);
 
       Ada.Text_IO.Put  (Item => " | Résultat : ");
       V_Calcule_IO.Put
@@ -29,4 +27,4 @@ is
    end Put_Line;
    ---------------------------------------------------------------------------
 
-end A_E_P.Individu_P.Text_IO;
+end A_E_P.Individu_G.Text_IO;

@@ -1,4 +1,8 @@
+with A_E_P.Individu_G.Text_IO;
+
 generic
+   with package Individu_IO is new Individu_P.Text_IO (<>);
+
 --  @summary
 --  Affichage de la population.
 --  @description

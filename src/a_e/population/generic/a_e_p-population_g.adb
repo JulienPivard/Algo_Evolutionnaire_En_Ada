@@ -76,10 +76,10 @@ is
          (Position : in Indice_Population_T)
          return V_Calcule_T
       is
-         Individu : constant A_E_P.Individu_P.Individu_T :=
+         Individu : constant Individu_P.Individu_T :=
             Population.Table (Position);
       begin
-         return A_E_P.Individu_P.Lire_Resultat (Individu => Individu);
+         return Individu_P.Lire_Resultat (Individu => Individu);
       end Lire_Resultat;
       ------------------------------------
 
@@ -112,9 +112,9 @@ is
          (Position : in Indice_Population_T)
          return V_Calcule_T
       is
-         Individu : constant A_E_P.Individu_P.Individu_T := Tableau (Position);
+         Individu : constant Individu_P.Individu_T := Tableau (Position);
       begin
-         return A_E_P.Individu_P.Lire_Resultat (Individu => Individu);
+         return Individu_P.Lire_Resultat (Individu => Individu);
       end Lire_Resultat;
       ------------------------------------
    begin
@@ -198,7 +198,7 @@ is
       --  Premier calcul de toutes la valeurs.
       Boucle_Calcul :
       for E of Population loop
-         A_E_P.Individu_P.Appliquer_Formule (Individu => E);
+         Individu_P.Appliquer_Formule (Individu => E);
       end loop Boucle_Calcul;
    end Appliquer_Formule;
    ---------------------------------------------------------------------------
@@ -210,7 +210,7 @@ is
    begin
       Boucle_Generation_Individus :
       for E of Population loop
-         A_E_P.Individu_P.Generer_Parametres (Individu => E);
+         Individu_P.Generer_Parametres (Individu => E);
       end loop Boucle_Generation_Individus;
    end Generer_Individus_Aleatoirement;
    ---------------------------------------------------------------------------
@@ -234,9 +234,9 @@ is
          (Pos : in Indice_Population_T)
          return V_Calcule_T
       is
-         Individu : constant A_E_P.Individu_P.Individu_T := Population (Pos);
+         Individu : constant Individu_P.Individu_T := Population (Pos);
       begin
-         return A_E_P.Individu_P.Lire_Resultat (Individu => Individu);
+         return Individu_P.Lire_Resultat (Individu => Individu);
       end Lire_Resultat;
       ------------------------------------
    begin
@@ -251,7 +251,7 @@ is
          Gauche, Droite : in     Indice_Population_T
       )
    is
-      Tmp : constant A_E_P.Individu_P.Individu_T := Population (Gauche);
+      Tmp : constant Individu_P.Individu_T := Population (Gauche);
    begin
       Population (Gauche) := Population (Droite);
       Population (Droite) := Tmp;

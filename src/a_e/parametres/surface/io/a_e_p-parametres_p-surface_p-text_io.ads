@@ -3,7 +3,7 @@
 --  @description
 --  Affiche le contenu d'un paramètre.
 --  @group Affichage
-package A_E_P.Parametres_P.Text_IO
+package A_E_P.Parametres_P.Surface_P.Text_IO
    with
       Pure           => False,
       Preelaborate   => False,
@@ -12,6 +12,6 @@ package A_E_P.Parametres_P.Text_IO
 is
 
    procedure Put
-      (Item : in Parametres_T);
+      (Item : in Surface_T);
 
-end A_E_P.Parametres_P.Text_IO;
+end A_E_P.Parametres_P.Surface_P.Text_IO;

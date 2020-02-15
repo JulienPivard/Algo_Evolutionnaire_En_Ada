@@ -1,7 +1,5 @@
 with Ada.Text_IO;
 
-with A_E_P.Individu_P.Text_IO;
-
 package body A_E_P.Population_G.Text_IO
    with Spark_Mode => Off
 is
@@ -32,7 +30,7 @@ is
                Ada.Text_IO.Put (Item => "    ");
             end if;
 
-            A_E_P.Individu_P.Text_IO.Put_Line (Item => E);
+            Individu_IO.Put_Line (Item => E);
 
             if I < Indice_Population_T'Last then
                I := I + 1;
@@ -40,7 +38,7 @@ is
          end loop;
       else
          Ada.Text_IO.Put (Item => "Minimum : ");
-         A_E_P.Individu_P.Text_IO.Put_Line
+         Individu_IO.Put_Line
             (Item => Item.Table (Item.Table'First));
       end if;
    end Put_Line;

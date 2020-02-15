@@ -1,4 +1,4 @@
-with A_E_P.Individu_P;
+with A_E_P.Individu_G;
 
 private with Sorte_De_Tri_P;
 private with Tri_Rapide_G;
@@ -9,6 +9,10 @@ generic
 
    type Indice_Population_T is range <>;
    --  L'intervalle de valeurs de la population.
+
+   with package Individu_P is new A_E_P.Individu_G (<>);
+   --  La liste des paramètres à donner en entré de
+   --  la fonction à optimiser.
 
 --  @summary
 --  Opérations réalisable sur une population d'individu.
@@ -135,7 +139,7 @@ private
 
    type Table_Population_T is
       array (Indice_Population_T range <>)
-      of A_E_P.Individu_P.Individu_T;
+      of Individu_P.Individu_T;
    --  Contient la population.
 
    procedure Tri_A_Bulle

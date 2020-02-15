@@ -1,5 +1,9 @@
 with A_E_P.Parametres_P;
 
+generic
+   type Parametres_G_T is new A_E_P.Parametres_P.Parametres_T with private;
+   --  Les paramètres qui représentent le génome de l'individu.
+
 --  @summary
 --  Un individu de la population.
 --  @description
@@ -7,11 +11,11 @@ with A_E_P.Parametres_P;
 --  tel que les paramètres de la fonction et son
 --  résultat en fonction de ceux-ci.
 --  @group Population
-package A_E_P.Individu_P
+package A_E_P.Individu_G
    with
       Pure           => False,
       Preelaborate   => False,
-      Elaborate_Body => True,
+      Elaborate_Body => False,
       Spark_Mode     => Off
 is
 
@@ -69,10 +73,10 @@ private
 
    type Individu_T is
       record
-         V_Param   : A_E_P.Parametres_P.Parametres_T;
+         V_Param   : Parametres_G_T;
          --  L'inconnue utilisé par la fonction.
          V_Calcule : V_Calcule_T := 0.0;
          --  Le résultat de la fonction appliqué au paramètre.
       end record;
 
-end A_E_P.Individu_P;
+end A_E_P.Individu_G;
