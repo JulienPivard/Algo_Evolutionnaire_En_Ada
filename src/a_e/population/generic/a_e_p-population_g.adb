@@ -61,6 +61,43 @@ is
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
+   function Verifier_Convergence
+      (Population : in Population_T)
+      return Boolean
+   is
+      ------------------------------------
+      function Lire_Resultat
+         (Position : in Indice_Population_T)
+         return V_Calcule_T
+         with Inline => True;
+
+      ----------------------
+      function Lire_Resultat
+         (Position : in Indice_Population_T)
+         return V_Calcule_T
+      is
+         Individu : constant A_E_P.Individu_P.Individu_T :=
+            Population.Table (Position);
+      begin
+         return A_E_P.Individu_P.Lire_Resultat (Individu => Individu);
+      end Lire_Resultat;
+      ------------------------------------
+
+      V_Ref : constant V_Calcule_T :=
+         Lire_Resultat (Position => Population.Table'First);
+   begin
+      return (for all I in Intervalle_Survivants_T =>
+         Lire_Resultat (Position => I) <= V_Ref + 1.0
+         and then
+         Lire_Resultat (Position => I) >= V_Ref - 1.0);
+   end Verifier_Convergence;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   --                               Partie privée                           --
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
    procedure Tri_A_Bulle
       (Tableau : in out Table_Population_T)
    is
@@ -114,39 +151,6 @@ is
          end Bloc_Tri_Bulle;
       end loop Boucle_De_Tri;
    end Tri_A_Bulle;
-   ---------------------------------------------------------------------------
-
-   ---------------------------------------------------------------------------
-   function Verifier_Convergence
-      (Population : in Population_T)
-      return Boolean
-   is
-      ------------------------------------
-      function Lire_Resultat
-         (Position : in Indice_Population_T)
-         return V_Calcule_T
-         with Inline => True;
-
-      ----------------------
-      function Lire_Resultat
-         (Position : in Indice_Population_T)
-         return V_Calcule_T
-      is
-         Individu : constant A_E_P.Individu_P.Individu_T :=
-            Population.Table (Position);
-      begin
-         return A_E_P.Individu_P.Lire_Resultat (Individu => Individu);
-      end Lire_Resultat;
-      ------------------------------------
-
-      V_Ref : constant V_Calcule_T :=
-         Lire_Resultat (Position => Population.Table'First);
-   begin
-      return (for all I in Intervalle_Survivants_T =>
-         Lire_Resultat (Position => I) <= V_Ref + 1.0
-         and then
-         Lire_Resultat (Position => I) >= V_Ref - 1.0);
-   end Verifier_Convergence;
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
