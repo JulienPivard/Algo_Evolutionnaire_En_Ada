@@ -60,12 +60,7 @@ is
       )
    is
    begin
-      Individu.V_Calcule :=
-         A_E_P.Parametres_P.Calculer
-            (
-               Parametres => Individu.V_Param,
-               Formule    => Formule
-            );
+      Individu.V_Calcule := Formule (P => Individu.V_Param);
    end Appliquer_Formule;
    ---------------------------------------------------------------------------
 

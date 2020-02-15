@@ -1,4 +1,3 @@
-with A_E_P.Formule_P;
 with A_E_P.Valeur_Param_P;
 
 --  @summary
@@ -37,19 +36,6 @@ is
    --  @param Autre
    --  Les paramètres, second parent.
    --  @return Le jeu de paramètres issus de la combinaison des parents.
-
-   function Calculer
-      (
-         Parametres : in Parametres_T;
-         Formule    : in A_E_P.Formule_P.Formule_T
-      )
-      return V_Calcule_T;
-   --  Utilise une formule et lui applique les paramètres
-   --  pour résoudre l'équation.
-   --  @param Parametres
-   --  Les paramètres.
-   --  @param Formule
-   --  La formule à résoudre.
 
    procedure Modifier_Parametre
       (

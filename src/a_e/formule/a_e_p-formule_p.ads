@@ -1,3 +1,5 @@
+with A_E_P.Parametres_P;
+
 --  @summary
 --  Interface de la formule à résoudre.
 --  @description
@@ -7,20 +9,20 @@
 --  @group Formule
 package A_E_P.Formule_P
    with
-      Pure           => True,
+      Pure           => False,
       Preelaborate   => False,
-      Elaborate_Body => False,
+      Elaborate_Body => True,
       Spark_Mode     => Off
 is
 
    type Formule_T is not null access
       function
-         (P : in V_Param_T)
+         (P : in Parametres_P.Parametres_T)
          return V_Calcule_T;
    --  Interface généraliste d'une fonction à résoudre.
 
    function Formule_Surface
-      (D : in V_Param_T)
+      (P : in Parametres_P.Parametres_T)
       return V_Calcule_T;
    --  Calcul une surface en fonction du diamètre D donné.
    --  Convergera vers X = 5.9.
@@ -29,7 +31,7 @@ is
    --  @return La surface de la boite.
 
    function Formule_Anonyme
-      (X : in V_Param_T)
+      (P : in Parametres_P.Parametres_T)
       return V_Calcule_T;
    --  Un autre calcul.
    --  Convergera vers X = 0.0.
