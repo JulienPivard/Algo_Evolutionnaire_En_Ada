@@ -11,20 +11,13 @@ is
 
    ---------------------------------------------------------------------------
    procedure Initialiser
-      (
-         Population : in out Population_T;
-         Formule    : in     A_E_P.Formule_P.Formule_T
-      )
+      (Population : in out Population_T)
    is
    begin
       --  Initialisation du tableau avec des valeurs initial
       Generer_Individus_Aleatoirement (Population => Population.Table);
 
-      Appliquer_Formule
-         (
-            Population => Population.Table,
-            Formule    => Formule
-         );
+      Appliquer_Formule (Population => Population.Table);
    end Initialiser;
    ---------------------------------------------------------------------------
 
@@ -44,19 +37,13 @@ is
 
    ---------------------------------------------------------------------------
    procedure Calcul_Formule_Sur_Enfant
-      (
-         Population : in out Population_T;
-         Formule    : in     A_E_P.Formule_P.Formule_T
-      )
+      (Population : in out Population_T)
    is
    begin
       --  Il est inutile de recalculer toutes les valeurs.
       --  Seul les 25% dernières sont nouvelles.
       Appliquer_Formule
-         (
-            Population => Population.Table (Intervalle_Naissance_T),
-            Formule    => Formule
-         );
+         (Population => Population.Table (Intervalle_Naissance_T));
    end Calcul_Formule_Sur_Enfant;
    ---------------------------------------------------------------------------
 
@@ -201,20 +188,13 @@ is
 
    ---------------------------------------------------------------------------
    procedure Appliquer_Formule
-      (
-         Population : in out Table_Population_T;
-         Formule    : in     A_E_P.Formule_P.Formule_T
-      )
+      (Population : in out Table_Population_T)
    is
    begin
       --  Premier calcul de toutes la valeurs.
       Boucle_Calcul :
       for E of Population loop
-         A_E_P.Individu_P.Appliquer_Formule
-            (
-               Individu => E,
-               Formule  => Formule
-            );
+         A_E_P.Individu_P.Appliquer_Formule (Individu => E);
       end loop Boucle_Calcul;
    end Appliquer_Formule;
    ---------------------------------------------------------------------------

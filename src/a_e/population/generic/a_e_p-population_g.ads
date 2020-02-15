@@ -1,4 +1,3 @@
-with A_E_P.Formule_P;
 with A_E_P.Individu_P;
 
 private with Sorte_De_Tri_P;
@@ -31,15 +30,10 @@ is
    --  dans le temps.
 
    procedure Initialiser
-      (
-         Population : in out Population_T;
-         Formule    : in     A_E_P.Formule_P.Formule_T
-      );
+      (Population : in out Population_T);
    --  Initialise les paramètres de toute une population.
    --  @param Population
    --  La population.
-   --  @param Formule
-   --  La formule à appliquer à toute la population.
 
    procedure Remplacer_Morts
       (Population : in out Population_T);
@@ -49,17 +43,12 @@ is
    --  La population total.
 
    procedure Calcul_Formule_Sur_Enfant
-      (
-         Population : in out Population_T;
-         Formule    : in     A_E_P.Formule_P.Formule_T
-      );
+      (Population : in out Population_T);
    --  Applique la formule à la population nouvellement née.
    --  Il est inutile de recalculer toutes les valeurs,
    --  seul les 25% dernières sont nouvelles.
    --  @param Population
    --  La population.
-   --  @param Formule
-   --  La formule à appliquer à la nouvelle population.
 
    procedure Trier
       (Population : in out Population_T);
@@ -172,16 +161,11 @@ private
    --  La population.
 
    procedure Appliquer_Formule
-      (
-         Population : in out Table_Population_T;
-         Formule    : in     A_E_P.Formule_P.Formule_T
-      );
+      (Population : in out Table_Population_T);
    --  Applique une formule à toute une population.
    --  Le résultat sera conservé dans chaque individu.
    --  @param Population
    --  La population.
-   --  @param Formule
-   --  La formule à appliquer à toute la population.
 
    procedure Generer_Individus_Aleatoirement
       (Population : in out Table_Population_T);

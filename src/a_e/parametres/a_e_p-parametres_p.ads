@@ -37,6 +37,14 @@ is
    --  Les paramètres, second parent.
    --  @return Le jeu de paramètres issus de la combinaison des parents.
 
+   function Calculer
+      (Parametres : in Parametres_T)
+      return V_Calcule_T;
+   --  Calcul la formule en utilisant les valeurs de ses
+   --  paramètres comme entrées de la fonction de la formule.
+   --  @param Parametres
+   --  Les paramètres de la fonction.
+
    procedure Modifier_Parametre
       (
          Parametres  : in out Parametres_T;
@@ -63,5 +71,31 @@ private
          Param_1 : A_E_P.Valeur_Param_P.Valeur_Param_T;
          --  L'unique paramètre (Pour le moment)
       end record;
+
+   type Formule_T is not null access
+      function
+         (P : in Parametres_P.Parametres_T)
+         return V_Calcule_T;
+   --  Interface généraliste d'une fonction à résoudre.
+
+   function Formule_Surface
+      (P : in Parametres_P.Parametres_T)
+      return V_Calcule_T;
+   --  Calcul une surface en fonction du diamètre D donné.
+   --  Convergera vers X = 5.9.
+   --  @param D
+   --  Le diamètre de la boite.
+   --  @return La surface de la boite.
+
+   function Formule_Anonyme
+      (P : in Parametres_P.Parametres_T)
+      return V_Calcule_T;
+   --  Un autre calcul.
+   --  Convergera vers X = 0.0.
+   --  @param X
+   --  La valeur de l'inconnue X.
+   --  @return Le résultats de la formule en fonction de X.
+
+   Formule : constant Formule_T := Formule_Surface'Access;
 
 end A_E_P.Parametres_P;

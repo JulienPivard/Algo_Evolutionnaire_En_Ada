@@ -1,5 +1,4 @@
 with A_E_P.Parametres_P;
-with A_E_P.Formule_P;
 
 --  @summary
 --  Un individu de la population.
@@ -61,15 +60,10 @@ is
    --  @return Le résultat de l'union des deux Individu.
 
    procedure Appliquer_Formule
-      (
-         Individu : in out Individu_T;
-         Formule  : in     A_E_P.Formule_P.Formule_T
-      );
+      (Individu : in out Individu_T);
    --  Applique la formule sur l'individu.
    --  @param Individu
    --  L'individu.
-   --  @param Formule
-   --  La formule à appliquer.
 
 private
 

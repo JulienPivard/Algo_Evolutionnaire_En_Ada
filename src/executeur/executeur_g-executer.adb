@@ -4,7 +4,6 @@ with Ada.Real_Time;
 with A_E_P;
 with A_E_P.Population_G;
 with A_E_P.Population_G.Text_IO;
-with A_E_P.Formule_P;
 
 with Chrono_P;
 with Intervalle_P;
@@ -19,9 +18,6 @@ is
       (Indice_Population_T => Intervalle_P.Indice_T);
    package Population_IO is new Population_P.Text_IO;
 
-   Formule : constant A_E_P.Formule_P.Formule_T :=
-      A_E_P.Formule_P.Formule_Surface'Access;
-
    Population : Population_P.Population_T;
    Debut, Fin : Ada.Real_Time.Time;
 
@@ -29,11 +25,7 @@ is
 begin
    Population_IO.Afficher_Details;
 
-   Population_P.Initialiser
-      (
-         Population => Population,
-         Formule    => Formule
-      );
+   Population_P.Initialiser (Population => Population);
 
    Ada.Text_IO.Put_Line (Item    => "========== Valeurs de départ ==========");
 
@@ -57,11 +49,7 @@ begin
 
       Population_P.Remplacer_Morts (Population => Population);
 
-      Population_P.Calcul_Formule_Sur_Enfant
-         (
-            Population => Population,
-            Formule    => Formule
-         );
+      Population_P.Calcul_Formule_Sur_Enfant (Population => Population);
 
    end loop Boucle_Generation_Successive;
    Fin := Ada.Real_Time.Clock;

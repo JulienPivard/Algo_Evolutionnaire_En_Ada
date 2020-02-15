@@ -54,13 +54,11 @@ is
 
    ---------------------------------------------------------------------------
    procedure Appliquer_Formule
-      (
-         Individu : in out Individu_T;
-         Formule  : in     A_E_P.Formule_P.Formule_T
-      )
+      (Individu : in out Individu_T)
    is
    begin
-      Individu.V_Calcule := Formule (P => Individu.V_Param);
+      Individu.V_Calcule :=
+         A_E_P.Parametres_P.Calculer (Parametres => Individu.V_Param);
    end Appliquer_Formule;
    ---------------------------------------------------------------------------
 
