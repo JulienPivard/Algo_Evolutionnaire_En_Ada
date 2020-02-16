@@ -40,6 +40,7 @@ is
 
       Ada.Text_IO.New_Line    (Spacing => 1);
       Population_P.Put_Line   (Item    => Population);
+      Ada.Text_IO.Put_Line    (Item    => "=======");
       Ada.Text_IO.New_Line    (Spacing => 1);
 
       Population_P.Faire_Evoluer
@@ -55,6 +56,7 @@ is
 
       Ada.Text_IO.New_Line    (Spacing => 1);
       Population_P.Put_Line   (Item    => Population);
+      Ada.Text_IO.Put_Line    (Item    => "=======");
       Ada.Text_IO.New_Line    (Spacing => 1);
 
       Ada.Text_IO.Put_Line
@@ -69,7 +71,7 @@ is
       --  Conversion du temps pour faciliter l'affichage.
       Chrono_P.Affichage_Temps (Debut => Debut, Fin => Fin);
 
-      Ada.Text_IO.New_Line (Spacing => 1);
+      Ada.Text_IO.New_Line (Spacing => 4);
       --------------------------------------
    end Determiner_Min;
    ---------------------------------------------------------------------------
