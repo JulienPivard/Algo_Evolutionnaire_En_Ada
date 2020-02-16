@@ -42,7 +42,7 @@ begin
 
    Population_Surface_P.Initialiser (Population => Population_Surface);
 
-   Ada.Text_IO.Put_Line (Item    => "========== Valeurs de départ ==========");
+   Ada.Text_IO.Put_Line (Item => "========== Valeurs de départ ==========");
 
    Ada.Text_IO.New_Line          (Spacing => 1);
    Population_Surface_P.Put_Line (Item    => Population_Surface);
@@ -56,7 +56,7 @@ begin
          Nb_Generations  => Nb_Generations
       );
 
-   Ada.Text_IO.Put_Line (Item    => "======= Valeurs après évolution =======");
+   Ada.Text_IO.Put_Line (Item => "======= Valeurs après évolution =======");
 
    Ada.Text_IO.New_Line          (Spacing => 1);
    Population_Surface_P.Put_Line (Item    => Population_Surface);
@@ -81,7 +81,7 @@ begin
 
    Population_Anonyme_1_P.Initialiser (Population => Population_Anonyme);
 
-   Ada.Text_IO.Put_Line (Item    => "========== Valeurs de départ ==========");
+   Ada.Text_IO.Put_Line (Item => "========== Valeurs de départ ==========");
 
    Ada.Text_IO.New_Line             (Spacing => 1);
    Population_Anonyme_1_P.Put_Line  (Item    => Population_Anonyme);
@@ -95,7 +95,7 @@ begin
          Nb_Generations  => Nb_Generations
       );
 
-   Ada.Text_IO.Put_Line (Item    => "======= Valeurs après évolution =======");
+   Ada.Text_IO.Put_Line (Item => "======= Valeurs après évolution =======");
 
    Ada.Text_IO.New_Line             (Spacing => 1);
    Population_Anonyme_1_P.Put_Line  (Item    => Population_Anonyme);
