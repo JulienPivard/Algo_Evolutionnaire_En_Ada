@@ -10,6 +10,9 @@ with A_E_P.Algo_Evolutionnaire_G;
 with A_E_P.Parametres_P.Formule_A_1_P;
 with A_E_P.Parametres_P.Formule_A_1_P.Text_IO;
 
+with A_E_P.Parametres_P.Formule_A_2_P;
+with A_E_P.Parametres_P.Formule_A_2_P.Text_IO;
+
 with Chrono_P;
 with Intervalle_P;
 
@@ -94,8 +97,20 @@ is
 
    procedure Min_Anonyme_1 is new Determiner_Min
       (Population_P => Population_Anonyme_1_P);
+
+   package Population_Anonyme_2_P  is new A_E_P.Algo_Evolutionnaire_G
+      (
+         Indice_Population_T => Intervalle_P.Indice_T,
+         Parametres_G_T      => A_E_P.Parametres_P.Formule_A_2_P.Anonyme_T,
+         Put                 => A_E_P.Parametres_P.Formule_A_2_P.Text_IO.Put
+      );
+
+   procedure Min_Anonyme_2 is new Determiner_Min
+      (Population_P => Population_Anonyme_2_P);
 begin
    Min_Surface (Min => "5.88");
 
    Min_Anonyme_1 (Min => "0.0");
+
+   Min_Anonyme_2 (Min => "X : -0.55, Y : -1,55");
 end Executer;
