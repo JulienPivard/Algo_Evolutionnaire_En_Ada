@@ -3,13 +3,12 @@ private with A_E_P.Valeur_Param_G;
 pragma Elaborate_All (A_E_P.Valeur_Param_G);
 
 --  @summary
---  Définit une sous classe de paramètre.
+--  Définit une sous classe de paramètres.
 --  @description
---  Contient un enfant de la classe Parametres_T, définie
---  pour résoudre la minimisation d'une surface en
---  fonction d'un diamètre.
+--  Définie une formule pour avoir un autre tests sur
+--  une fonction à un paramètre.
 --  @group Formule
-package A_E_P.Parametres_P.Surface_P
+package A_E_P.Parametres_P.Formule_A_1_P
    with
       Pure           => False,
       Preelaborate   => False,
@@ -17,11 +16,11 @@ package A_E_P.Parametres_P.Surface_P
       Spark_Mode     => Off
 is
 
-   type Surface_T is new Parametres_T with private;
+   type Anonyme_T is new Parametres_T with private;
 
    overriding
    procedure Generer
-      (Parametres : in out Surface_T);
+      (Parametres : in out Anonyme_T);
    --  Génère des valeurs aléatoires pour les paramètres stocké.
    --  @param Parametres
    --  Les paramètres.
@@ -29,10 +28,10 @@ is
    overriding
    function Accoupler
       (
-         Parametres : in Surface_T;
-         Autre      : in Surface_T
+         Parametres : in Anonyme_T;
+         Autre      : in Anonyme_T
       )
-      return Surface_T;
+      return Anonyme_T;
    --  Accouple deux paramètres pour obtenir un nouveau
    --  jeu de paramètres.
    --  @param Parametres
@@ -43,7 +42,7 @@ is
 
    overriding
    function Calculer
-      (Parametres : in Surface_T)
+      (Parametres : in Anonyme_T)
       return V_Calcule_T;
    --  Calcul la formule en utilisant les valeurs de ses
    --  paramètres comme entrées de la fonction de la formule.
@@ -54,31 +53,37 @@ private
 
    package Valeur_Param_1_P is new A_E_P.Valeur_Param_G
       (
-         Debut_Intervalle => 0.0,
-         Fin_Intervalle   => 1100.0
+         Debut_Intervalle => -10_000.0,
+         Fin_Intervalle   => +10_000.0
       );
 
-   type Surface_T is new Parametres_T with
+   type Anonyme_T is new Parametres_T with
       record
          Param_1 : Valeur_Param_1_P.Valeur_Param_T;
          --  L'unique paramètre (Pour le moment)
       end record;
 
    function Lire_Parametre
-      (Parametres : in Surface_T)
+      (Parametres : in Anonyme_T)
       return V_Param_T;
    --  Lit la valeur d'un paramètre.
    --  @param Parametres
    --  Les paramètres.
    --  @return La valeur du paramètre demandé.
 
-   function Formule_Surface
-      (P : in Surface_T)
+   function Formule_Anonyme
+      (P : in Anonyme_T)
       return V_Calcule_T;
-   --  Calcul une surface en fonction du diamètre D donné.
-   --  Convergera vers X = 5.9.
-   --  @param D
-   --  Le diamètre de la boite.
-   --  @return La surface de la boite.
+   --  Un autre calcul.
+   --  Convergera vers X = 0.0.
+   --  @param X
+   --  La valeur de l'inconnue X.
+   --  @return Le résultats de la formule en fonction de X.
 
-end A_E_P.Parametres_P.Surface_P;
+   --  Deux inconnues
+   --  Formule à ajouter : sin (x+y) + (x-y)^2 -1,5x + 2,5y + 1
+   --  Convergence en :
+   --   - x = -0,55
+   --   - y = -1,55
+
+end A_E_P.Parametres_P.Formule_A_1_P;

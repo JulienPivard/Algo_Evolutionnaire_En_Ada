@@ -1,13 +1,13 @@
-with Ada.Numerics;
+with Ada.Numerics.Generic_Elementary_Functions;
 
-package body A_E_P.Parametres_P.Surface_P
+package body A_E_P.Parametres_P.Formule_A_1_P
    with Spark_Mode => Off
 is
 
    ---------------------------------------------------------------------------
    overriding
    procedure Generer
-      (Parametres : in out Surface_T)
+      (Parametres : in out Anonyme_T)
    is
    begin
       Valeur_Param_1_P.Generer (Parametre => Parametres.Param_1);
@@ -18,12 +18,12 @@ is
    overriding
    function Accoupler
       (
-         Parametres : in Surface_T;
-         Autre      : in Surface_T
+         Parametres : in Anonyme_T;
+         Autre      : in Anonyme_T
       )
-      return Surface_T
+      return Anonyme_T
    is
-      Bebe : Surface_T;
+      Bebe : Anonyme_T;
    begin
       Bebe.Param_1 := Valeur_Param_1_P.Accoupler
          (
@@ -37,11 +37,11 @@ is
    ---------------------------------------------------------------------------
    overriding
    function Calculer
-      (Parametres : in Surface_T)
+      (Parametres : in Anonyme_T)
       return V_Calcule_T
    is
    begin
-      return Formule_Surface (P => Parametres);
+      return Formule_Anonyme (P => Parametres);
    end Calculer;
    ---------------------------------------------------------------------------
 
@@ -49,9 +49,11 @@ is
    --                               Partie privée                           --
    ---------------------------------------------------------------------------
 
+   package Math_P is new Ada.Numerics.Generic_Elementary_Functions (Math_T);
+
    ---------------------------------------------------------------------------
    function Lire_Parametre
-      (Parametres : in Surface_T)
+      (Parametres : in Anonyme_T)
       return V_Param_T
    is
    begin
@@ -61,15 +63,16 @@ is
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
-   function Formule_Surface
-      (P : in Surface_T)
+   function Formule_Anonyme
+      (P : in Anonyme_T)
       return V_Calcule_T
    is
       Pi : constant        := Ada.Numerics.Pi;
-      Di : constant Math_T := Math_T (Lire_Parametre (Parametres => P));
+      Xi : constant Math_T := Math_T (Lire_Parametre (Parametres => P));
    begin
-      return V_Calcule_T (Pi * ((Di**2) / 2.0) + 4.0 * (160.0 / Di));
-   end Formule_Surface;
+      return V_Calcule_T
+         (10.0 + (Xi**2) - 10.0 * Math_P.Cos (X => 2.0 * Pi * Xi));
+   end Formule_Anonyme;
    ---------------------------------------------------------------------------
 
-end A_E_P.Parametres_P.Surface_P;
+end A_E_P.Parametres_P.Formule_A_1_P;
