@@ -42,7 +42,8 @@ is
 
       Population_P.Initialiser (Population => Population);
 
-      Ada.Text_IO.Put_Line (Item => "========== Valeurs de départ ==========");
+      Ada.Text_IO.Put_Line
+         (Item => "========== Valeurs de départ ==========");
 
       Ada.Text_IO.New_Line    (Spacing => 1);
       Population_P.Put_Line   (Item    => Population);
@@ -57,7 +58,8 @@ is
             Nb_Generations  => Nb_Generations
          );
 
-      Ada.Text_IO.Put_Line (Item => "======= Valeurs après évolution =======");
+      Ada.Text_IO.Put_Line
+         (Item => "======= Valeurs après évolution =======");
       Ada.Text_IO.Put_Line (Item => "La valeur de X pour le min : " & Min);
 
       Ada.Text_IO.New_Line    (Spacing => 1);
@@ -66,7 +68,10 @@ is
       Ada.Text_IO.New_Line    (Spacing => 1);
 
       Ada.Text_IO.Put_Line
-         (Item => "Nombre de générations : " & Natural'Image (Nb_Generations));
+         (
+            Item => "Nombre de générations : " &
+               Natural'Image (Nb_Generations)
+         );
 
       --------------------------------------
       Ada.Text_IO.New_Line (Spacing => 1);
@@ -112,9 +117,9 @@ is
    procedure Min_Anonyme_2 is new Determiner_Min
       (Population_P => Population_Anonyme_2_P);
 begin
-   Min_Surface (Min => "5.88");
+   Min_Surface    (Min => "5.88");
 
-   Min_Anonyme_1 (Min => "0.0");
+   Min_Anonyme_1  (Min => "0.0");
 
-   Min_Anonyme_2 (Min => "X : -0.55, Y : -1,55");
+   Min_Anonyme_2  (Min => "X : -0.55, Y : -1,55");
 end Executer;
