@@ -36,28 +36,13 @@ begin
    Population_Surface_P.Put_Line (Item    => Population_Surface);
    Ada.Text_IO.New_Line          (Spacing => 1);
 
-   Debut := Ada.Real_Time.Clock;
-   Boucle_Generation_Successive :
-   loop
-
-      Population_Surface_P.Trier (Population => Population_Surface);
-
-      --  Toutes les valeurs survivantes doivent se trouver autour
-      --  de la valeur minimum du tableau +/-1
-      --  Intervalle de convergence
-      exit Boucle_Generation_Successive when
-         Population_Surface_P.Verifier_Convergence
-            (Population => Population_Surface);
-
-      Nb_Generations := Nb_Generations + 1;
-
-      Population_Surface_P.Remplacer_Morts (Population => Population_Surface);
-
-      Population_Surface_P.Calcul_Formule_Sur_Enfant
-         (Population => Population_Surface);
-
-   end loop Boucle_Generation_Successive;
-   Fin := Ada.Real_Time.Clock;
+   Population_Surface_P.Faire_Evoluer
+      (
+         Population      => Population_Surface,
+         Debut           => Debut,
+         Fin             => Fin,
+         Nb_Generations  => Nb_Generations
+      );
 
    Ada.Text_IO.Put_Line (Item    => "======= Valeurs après évolution =======");
 

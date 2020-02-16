@@ -1,3 +1,5 @@
+with Ada.Real_Time;
+
 with A_E_P.Parametres_P;
 
 private with A_E_P.Population_G;
@@ -35,12 +37,58 @@ is
 
    type Population_T is private;
 
+   procedure Faire_Evoluer
+      (
+         Population     : in out Population_T;
+         Debut, Fin     :    out Ada.Real_Time.Time;
+         Nb_Generations :    out Natural
+      );
+   --  Fait évoluer la population jusqu'à atteindre la
+   --  convergence de ses individus.
+   --  @param Population
+   --  La population à faire évoluer.
+
    procedure Initialiser
       (Population : in out Population_T)
       with Inline => True;
    --  Initialise les paramètres de toute une population.
    --  @param Population
    --  La population.
+
+   procedure Put_Line
+      (Item : in Population_T)
+      with Inline => True;
+   --  Affiche le contenu d'un tableau de valeurs.
+   --  @param Item
+   --  La population à afficher.
+
+   procedure Afficher_Details
+      with Inline => True;
+   --  Affiche la répartition détaillé des populations,
+   --  des morts, des naissances et des mutants.
+
+private
+
+   package Individu_P    is new A_E_P.Individu_G
+      (Parametres_G_T => Parametres_G_T);
+   package Individu_IO   is new Individu_P.Text_IO
+      (Put => Put);
+
+   package Population_P  is new A_E_P.Population_G
+      (
+         Indice_Population_T => Indice_Population_T,
+         Individu_P          => Individu_P
+      );
+   package Population_IO is new Population_P.Text_IO
+      (Individu_IO => Individu_IO);
+
+   type Population_T is
+      record
+         Initialisee : Boolean := False;
+         --  La population a été initialisée.
+         Pop         : Population_P.Population_T;
+         --  La population à utiliser.
+      end record;
 
    procedure Remplacer_Morts
       (Population : in out Population_T)
@@ -74,38 +122,5 @@ is
    --  Indique si la population converge vers un minimum ou non.
    --  @param Population
    --  La population.
-
-   procedure Put_Line
-      (Item : in Population_T)
-      with Inline => True;
-   --  Affiche le contenu d'un tableau de valeurs.
-   --  @param Item
-   --  La population à afficher.
-
-   procedure Afficher_Details
-      with Inline => True;
-   --  Affiche la répartition détaillé des populations,
-   --  des morts, des naissances et des mutants.
-
-private
-
-   package Individu_P    is new A_E_P.Individu_G
-      (Parametres_G_T => Parametres_G_T);
-   package Individu_IO   is new Individu_P.Text_IO
-      (Put => Put);
-
-   package Population_P  is new A_E_P.Population_G
-      (
-         Indice_Population_T => Indice_Population_T,
-         Individu_P          => Individu_P
-      );
-   package Population_IO is new Population_P.Text_IO
-      (Individu_IO => Individu_IO);
-
-   type Population_T is
-      record
-         Pop : Population_P.Population_T;
-         --  La population à utiliser.
-      end record;
 
 end A_E_P.Algo_Evolutionnaire_G;
