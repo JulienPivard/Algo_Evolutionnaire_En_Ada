@@ -57,6 +57,7 @@ begin
       );
 
    Ada.Text_IO.Put_Line (Item => "======= Valeurs après évolution =======");
+   Ada.Text_IO.Put_Line (Item => "La valeur de X pour le min : 5.88");
 
    Ada.Text_IO.New_Line          (Spacing => 1);
    Population_Surface_P.Put_Line (Item    => Population_Surface);
@@ -96,6 +97,7 @@ begin
       );
 
    Ada.Text_IO.Put_Line (Item => "======= Valeurs après évolution =======");
+   Ada.Text_IO.Put_Line (Item => "La valeur de X pour le min : 0.0");
 
    Ada.Text_IO.New_Line             (Spacing => 1);
    Population_Anonyme_1_P.Put_Line  (Item    => Population_Anonyme);
