@@ -10,7 +10,7 @@ is
       (Parametres : in out Surface_T)
    is
    begin
-      Valeur_Param_1_P.Generer (Parametre => Parametres.Param_1);
+      Valeur_Param_P.Generer (Parametre => Parametres.Param);
    end Generer;
    ---------------------------------------------------------------------------
 
@@ -25,10 +25,10 @@ is
    is
       Bebe : Surface_T;
    begin
-      Bebe.Param_1 := Valeur_Param_1_P.Accoupler
+      Bebe.Param := Valeur_Param_P.Accoupler
          (
-            Parametre => Parametres.Param_1,
-            Autre     => Autre.Param_1
+            Parametre => Parametres.Param,
+            Autre     => Autre.Param
          );
       return Bebe;
    end Accoupler;
@@ -55,8 +55,8 @@ is
       return V_Param_T
    is
    begin
-      return Valeur_Param_1_P.Lire_Valeur
-         (Parametre => Parametres.Param_1);
+      return Valeur_Param_P.Lire_Valeur
+         (Parametre => Parametres.Param);
    end Lire_Parametre;
    ---------------------------------------------------------------------------
 

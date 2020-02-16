@@ -8,7 +8,7 @@ package body A_E_P.Parametres_P.Surface_P.Text_IO
    with Spark_Mode => Off
 is
 
-   package Valeur_Param_1_IO is new Valeur_Param_1_P.Text_IO;
+   package Valeur_Param_IO is new Valeur_Param_P.Text_IO;
 
    ---------------------------------------------------------------------------
    procedure Put
@@ -16,7 +16,7 @@ is
    is
    begin
       Ada.Text_IO.Put       (Item => " | X : ");
-      Valeur_Param_1_IO.Put (Item => Item.Param_1);
+      Valeur_Param_IO.Put (Item => Item.Param);
    end Put;
    ---------------------------------------------------------------------------
 

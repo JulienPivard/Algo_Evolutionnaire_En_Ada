@@ -51,7 +51,7 @@ is
 
 private
 
-   package Valeur_Param_1_P is new A_E_P.Valeur_Param_G
+   package Valeur_Param_P is new A_E_P.Valeur_Param_G
       (
          Debut_Intervalle => -10_000.0,
          Fin_Intervalle   => +10_000.0
@@ -59,7 +59,7 @@ private
 
    type Anonyme_T is new Parametres_T with
       record
-         Param_1 : Valeur_Param_1_P.Valeur_Param_T;
+         Param : Valeur_Param_P.Valeur_Param_T;
          --  L'unique paramètre (Pour le moment)
       end record;
 
