@@ -11,9 +11,7 @@ is
       )
    is
    begin
-      if not Population.Initialisee then
-         Initialiser (Population => Population);
-      end if;
+      Initialiser (Population => Population);
 
       Nb_Generations := Natural'First;
       Debut          := Ada.Real_Time.Clock;
@@ -43,8 +41,10 @@ is
       (Population : in out Population_T)
    is
    begin
-      Population_P.Initialiser (Population => Population.Pop);
-      Population.Initialisee := True;
+      if not Population.Initialisee then
+         Population_P.Initialiser (Population => Population.Pop);
+         Population.Initialisee := True;
+      end if;
    end Initialiser;
    ---------------------------------------------------------------------------
 
