@@ -18,59 +18,60 @@ separate (Executeur_G)
 procedure Executer
    --  (Arguments)
 is
-   package Individu_P    is new A_E_P.Individu_G
+   package Individu_Surface_P    is new A_E_P.Individu_G
       (Parametres_G_T => A_E_P.Parametres_P.Surface_P.Surface_T);
-   package Individu_IO   is new Individu_P.Text_IO
+   package Individu_Surface_IO   is new Individu_Surface_P.Text_IO
       (Put => A_E_P.Parametres_P.Surface_P.Text_IO.Put);
-   package Population_P  is new A_E_P.Population_G
+   package Population_Surface_P  is new A_E_P.Population_G
       (
          Indice_Population_T => Intervalle_P.Indice_T,
-         Individu_P          => Individu_P
+         Individu_P          => Individu_Surface_P
       );
-   package Population_IO is new Population_P.Text_IO
-      (Individu_IO => Individu_IO);
+   package Population_Surface_IO is new Population_Surface_P.Text_IO
+      (Individu_IO => Individu_Surface_IO);
 
-   Population : Population_P.Population_T;
+   Population : Population_Surface_P.Population_T;
    Debut, Fin : Ada.Real_Time.Time;
 
    Nb_Generations : Natural := Natural'First;
 begin
-   Population_IO.Afficher_Details;
+   Population_Surface_IO.Afficher_Details;
 
-   Population_P.Initialiser (Population => Population);
+   Population_Surface_P.Initialiser (Population => Population);
 
    Ada.Text_IO.Put_Line (Item    => "========== Valeurs de départ ==========");
 
-   Ada.Text_IO.New_Line    (Spacing => 1);
-   Population_IO.Put_Line  (Item    => Population);
-   Ada.Text_IO.New_Line    (Spacing => 1);
+   Ada.Text_IO.New_Line             (Spacing => 1);
+   Population_Surface_IO.Put_Line   (Item    => Population);
+   Ada.Text_IO.New_Line             (Spacing => 1);
 
    Debut := Ada.Real_Time.Clock;
    Boucle_Generation_Successive :
    loop
 
-      Population_P.Trier (Population => Population);
+      Population_Surface_P.Trier (Population => Population);
 
       --  Toutes les valeurs survivantes doivent se trouver autour
       --  de la valeur minimum du tableau +/-1
       --  Intervalle de convergence
       exit Boucle_Generation_Successive when
-         Population_P.Verifier_Convergence (Population => Population);
+         Population_Surface_P.Verifier_Convergence (Population => Population);
 
       Nb_Generations := Nb_Generations + 1;
 
-      Population_P.Remplacer_Morts (Population => Population);
+      Population_Surface_P.Remplacer_Morts (Population => Population);
 
-      Population_P.Calcul_Formule_Sur_Enfant (Population => Population);
+      Population_Surface_P.Calcul_Formule_Sur_Enfant
+         (Population => Population);
 
    end loop Boucle_Generation_Successive;
    Fin := Ada.Real_Time.Clock;
 
    Ada.Text_IO.Put_Line (Item    => "======= Valeurs après évolution =======");
 
-   Ada.Text_IO.New_Line    (Spacing => 1);
-   Population_IO.Put_Line  (Item    => Population);
-   Ada.Text_IO.New_Line    (Spacing => 1);
+   Ada.Text_IO.New_Line             (Spacing => 1);
+   Population_Surface_IO.Put_Line   (Item    => Population);
+   Ada.Text_IO.New_Line             (Spacing => 1);
 
    Ada.Text_IO.Put_Line
       (Item => "Nombre de générations : " & Natural'Image (Nb_Generations));
