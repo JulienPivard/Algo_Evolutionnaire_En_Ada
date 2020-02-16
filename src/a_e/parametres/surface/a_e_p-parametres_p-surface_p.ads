@@ -1,7 +1,7 @@
-with A_E_P.Valeur_Param_P;
+private with A_E_P.Valeur_Param_P;
 
 --  @summary
---  Définit une classe de paramètre.
+--  Définit une sous classe de paramètre.
 --  @description
 --  Contient un enfant de la classe Parametres_T, définie
 --  pour résoudre la minimisation d'une surface en
