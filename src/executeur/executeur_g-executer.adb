@@ -25,7 +25,11 @@ is
       with package Population_P is new A_E_P.Algo_Evolutionnaire_G (<>);
    procedure Determiner_Min
       (Min : in String);
+   --  Détermine le minimum de la formule.
+   --  @param Min
+   --  Le minimum attendu.
 
+   ------------------------
    procedure Determiner_Min
       (Min : in String)
    is
