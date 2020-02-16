@@ -105,6 +105,7 @@ private
    type Population_T is
       record
          Pop : Population_P.Population_T;
+         --  La population à utiliser.
       end record;
 
 end A_E_P.Algo_Evolutionnaire_G;
