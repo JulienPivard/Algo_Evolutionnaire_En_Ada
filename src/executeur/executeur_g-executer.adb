@@ -21,9 +21,12 @@ is
    ---------------------------------------------------------------------------
    generic
       with package Population_P is new A_E_P.Algo_Evolutionnaire_G (<>);
-   procedure Determiner_Min;
+   procedure Determiner_Min
+      (Min : in String);
 
-   procedure Determiner_Min is
+   procedure Determiner_Min
+      (Min : in String)
+   is
       Population : Population_P.Population_T;
       Debut, Fin : Ada.Real_Time.Time;
 
@@ -48,7 +51,7 @@ is
          );
 
       Ada.Text_IO.Put_Line (Item => "======= Valeurs après évolution =======");
-      Ada.Text_IO.Put_Line (Item => "La valeur de X pour le min : 5.88");
+      Ada.Text_IO.Put_Line (Item => "La valeur de X pour le min : " & Min);
 
       Ada.Text_IO.New_Line    (Spacing => 1);
       Population_P.Put_Line   (Item    => Population);
@@ -91,7 +94,7 @@ is
    procedure Min_Anonyme_1 is new Determiner_Min
       (Population_P => Population_Anonyme_1_P);
 begin
-   Min_Surface;
+   Min_Surface (Min => "5.88");
 
-   Min_Anonyme_1;
+   Min_Anonyme_1 (Min => "0.0");
 end Executer;
