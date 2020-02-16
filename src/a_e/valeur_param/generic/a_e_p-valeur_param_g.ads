@@ -1,3 +1,9 @@
+generic
+   Debut_Intervalle : V_Param_T;
+   --  Le début de l'intervalle de valeurs.
+   Fin_Intervalle   : V_Param_T;
+   --  La fin de l'intervalle de valeurs.
+
 --  @summary
 --  Une valeur de paramètre.
 --  @description
@@ -5,11 +11,11 @@
 --  l'intervalle de valeurs dans lequel elle
 --  est valide, ou a un sens.
 --  @group Parametres
-package A_E_P.Valeur_Param_P
+package A_E_P.Valeur_Param_G
    with
       Pure           => False,
       Preelaborate   => False,
-      Elaborate_Body => True,
+      Elaborate_Body => False,
       Spark_Mode     => Off
 is
 
@@ -60,12 +66,8 @@ private
 
    type Valeur_Param_T is
       record
-         Valeur           : V_Param_T := 0.0;
+         Valeur : V_Param_T := Debut_Intervalle;
          --  La valeur du paramètre.
-         Debut_Intervalle : V_Param_T := 0.0;
-         --  Le début de l'intervalle de valeurs.
-         Fin_Intervalle   : V_Param_T := 1100.0;
-         --  La fin de l'intervalle de valeurs.
       end record;
 
-end A_E_P.Valeur_Param_P;
+end A_E_P.Valeur_Param_G;

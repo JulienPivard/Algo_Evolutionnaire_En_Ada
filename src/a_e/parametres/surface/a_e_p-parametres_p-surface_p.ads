@@ -1,4 +1,6 @@
-private with A_E_P.Valeur_Param_P;
+private with A_E_P.Valeur_Param_G;
+
+pragma Elaborate_All (A_E_P.Valeur_Param_G);
 
 --  @summary
 --  Définit une sous classe de paramètre.
@@ -50,9 +52,15 @@ is
 
 private
 
+   package Valeur_Param_1_P is new A_E_P.Valeur_Param_G
+      (
+         Debut_Intervalle => 0.0,
+         Fin_Intervalle   => 1100.0
+      );
+
    type Surface_T is new Parametres_T with
       record
-         Param_1 : A_E_P.Valeur_Param_P.Valeur_Param_T;
+         Param_1 : Valeur_Param_1_P.Valeur_Param_T;
          --  L'unique paramètre (Pour le moment)
       end record;
 

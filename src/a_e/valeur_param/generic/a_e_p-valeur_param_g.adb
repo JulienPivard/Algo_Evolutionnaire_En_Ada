@@ -4,7 +4,7 @@ with Generateur_G;
 
 pragma Elaborate_All (Generateur_G);
 
-package body A_E_P.Valeur_Param_P
+package body A_E_P.Valeur_Param_G
    with Spark_Mode => Off
 is
 
@@ -23,8 +23,8 @@ is
    begin
       Parametre.Valeur := Generateur_P.Generer_Flottant
          (
-            Borne_Inferieur => Parametre.Debut_Intervalle,
-            Borne_Superieur => Parametre.Fin_Intervalle
+            Borne_Inferieur => Debut_Intervalle,
+            Borne_Superieur => Fin_Intervalle
          );
    end Generer;
    ---------------------------------------------------------------------------
@@ -80,4 +80,4 @@ begin
 
    Alea_Repartition_P.Reset (Gen => Generateur_Repartition);
 
-end A_E_P.Valeur_Param_P;
+end A_E_P.Valeur_Param_G;
