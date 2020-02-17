@@ -11,11 +11,24 @@ is
    type Repartition_Caractere_T is
       (
          Pere,
+         --  Ne prend que le gène du « père »
          Mere,
+         --  Ne prend que le gène de la « mère »
          Moyenne,
+         --  Fait la moyenne des deux valeurs.
          Composition_Pere_Mere,
+         --  |signe|exposant | mantisse |
+         --  |  1  | 8 ou 11 | 23 ou 52 |
+         --  Garde la partie exposant du « père » et la
+         --  mantisse de la « mère ».
          Composition_Mere_Pere
+         --  |signe|exposant | mantisse |
+         --  |  1  | 8 ou 11 | 23 ou 52 |
+         --  Garde la partie exposant de la « mère » et la
+         --  mantisse du « père ».
       );
+   --  Permet de sélectionner aléatoirement la façons dont
+   --  se fera le mélange de chaque gènes.
 
    package Generateur_P       is new Generateur_G (Valeur_T => V_Param_T);
    package Alea_Repartition_P is new Ada.Numerics.Discrete_Random
@@ -59,14 +72,14 @@ is
          when Composition_Pere_Mere =>
             Bebe.Valeur := V_Param_T'Compose
                (
-                  V_Param_T'Fraction (Autre.Valeur),
-                  V_Param_T'Exponent (Parametre.Valeur)
+                  V_Param_T'Fraction (Autre.Valeur),     --  Mantisse « mère »
+                  V_Param_T'Exponent (Parametre.Valeur)  --  Exposant « père »
                );
          when Composition_Mere_Pere =>
             Bebe.Valeur := V_Param_T'Compose
                (
-                  V_Param_T'Fraction (Parametre.Valeur),
-                  V_Param_T'Exponent (Autre.Valeur)
+                  V_Param_T'Fraction (Parametre.Valeur), --  Mantisse « père »
+                  V_Param_T'Exponent (Autre.Valeur)      --  Exposant « mère »
                );
       end case;
       if Bebe.Valeur < Debut_Intervalle then
