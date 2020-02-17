@@ -163,6 +163,7 @@ is
       elsif Bebe.Valeur > Fin_Intervalle then
          Bebe.Valeur := Fin_Intervalle;
       end if;
+
       return Bebe;
    end Accoupler;
    ---------------------------------------------------------------------------
