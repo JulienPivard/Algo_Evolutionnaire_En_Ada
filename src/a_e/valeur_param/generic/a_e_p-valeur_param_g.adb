@@ -8,6 +8,9 @@ package body A_E_P.Valeur_Param_G
    with Spark_Mode => Off
 is
 
+   type Proba_Mutation_T is range 0 .. 100;
+   --  Symbolise une probabilité de mutation.
+
    type Repartition_Caractere_T is
       (
          Pere,
@@ -34,8 +37,11 @@ is
       (Valeur_T => V_Param_T);
    package Alea_Repartition_P is new Ada.Numerics.Discrete_Random
       (Result_Subtype => Repartition_Caractere_T);
+   package Proba_Mutation_P   is new Ada.Numerics.Discrete_Random
+      (Result_Subtype => Proba_Mutation_T);
 
    Generateur_Repartition : Alea_Repartition_P.Generator;
+   Generateur_Proba_Mute  : Proba_Mutation_P.Generator;
 
    ---------------------------------------------------------------------------
    procedure Generer
@@ -60,6 +66,8 @@ is
    is
       Origine : constant Repartition_Caractere_T :=
          Alea_Repartition_P.Random (Gen => Generateur_Repartition);
+      Proba_Mutation : constant Proba_Mutation_T :=
+         Proba_Mutation_P.Random (Gen => Generateur_Proba_Mute);
 
       Bebe : Valeur_Param_T;
    begin
@@ -83,6 +91,11 @@ is
                   V_Param_T'Exponent (Autre.Valeur)      --  Exposant « mère »
                );
       end case;
+
+      --  Correspond à une probabilité de 1%
+      if Proba_Mutation > 99 then
+         null;
+      end if;
 
       --  On vérifie que la valeur est bien dans son intervalle.
       if Bebe.Valeur < Debut_Intervalle then
@@ -119,5 +132,6 @@ is
 begin
 
    Alea_Repartition_P.Reset (Gen => Generateur_Repartition);
+   Proba_Mutation_P.Reset   (Gen => Generateur_Proba_Mute);
 
 end A_E_P.Valeur_Param_G;
