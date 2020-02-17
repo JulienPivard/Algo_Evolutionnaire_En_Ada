@@ -118,7 +118,7 @@ is
       end case;
 
       --  Correspond à une probabilité de 1%
-      if Proba_Mutation > 99 then
+      if Proba_Mutation < 5 or else Proba_Mutation > 95 then
          case Alea_Mutation_P.Random (Gen => Generateur_Mutation) is
             when Alea_Intervalle_Parents =>
                --  Ajoute une mutation issu d'une valeurs dans un
