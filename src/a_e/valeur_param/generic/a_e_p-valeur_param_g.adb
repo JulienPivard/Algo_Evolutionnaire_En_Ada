@@ -19,8 +19,12 @@ is
          --  entre les parents puis l'ajoute au gène de l'enfant.
          Petite_Mutation_Plus,
          --  Ajoute au gène de l'enfant une valeur entre 0 et 1.
-         Petite_Mutation_Moins
+         Petite_Mutation_Moins,
          --  Retire au gène de l'enfant une valeur entre 0 et 1.
+         Inverse_Signe
+         --  Inverse le signe de la valeur. Cette mutation est
+         --  sans effet si l'intervalle ne contient que des
+         --  valeur positive ou négative.
       );
 
    type Repartition_Caractere_T is
@@ -154,6 +158,8 @@ is
                   -
                   V_Param_T (Alea_Petites_Mutations_R.Random
                      (Gen => Generateur_Petites_Mutations));
+            when Inverse_Signe =>
+               Bebe.Valeur := -Bebe.Valeur;
          end case;
       end if;
 
