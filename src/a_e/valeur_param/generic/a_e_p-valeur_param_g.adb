@@ -11,6 +11,17 @@ is
    type Proba_Mutation_T is range 0 .. 100;
    --  Symbolise une probabilité de mutation.
 
+   type Mutation_Possible_T is
+      (
+         Alea_Intervalle_Parents,
+         --  Prend au hasard une valeur entre 0 et la différence
+         --  entre les parents puis l'ajoute au gène de l'enfant.
+         Petite_Mutation_Plus,
+         --  Ajoute au gène de l'enfant une valeur entre 0 et 1.
+         Petite_Mutation_Moins
+         --  Retire au gène de l'enfant une valeur entre 0 et 1.
+      );
+
    type Repartition_Caractere_T is
       (
          Pere,
@@ -39,9 +50,12 @@ is
       (Result_Subtype => Repartition_Caractere_T);
    package Proba_Mutation_P   is new Ada.Numerics.Discrete_Random
       (Result_Subtype => Proba_Mutation_T);
+   package Alea_Mutation_P    is new Ada.Numerics.Discrete_Random
+      (Result_Subtype => Mutation_Possible_T);
 
    Generateur_Repartition : Alea_Repartition_P.Generator;
    Generateur_Proba_Mute  : Proba_Mutation_P.Generator;
+   Generateur_Mutation    : Alea_Mutation_P.Generator;
 
    ---------------------------------------------------------------------------
    procedure Generer
@@ -94,7 +108,14 @@ is
 
       --  Correspond à une probabilité de 1%
       if Proba_Mutation > 99 then
-         null;
+         case Alea_Mutation_P.Random (Gen => Generateur_Mutation) is
+            when Alea_Intervalle_Parents =>
+               null;
+            when Petite_Mutation_Plus =>
+               null;
+            when Petite_Mutation_Moins =>
+               null;
+         end case;
       end if;
 
       --  On vérifie que la valeur est bien dans son intervalle.
@@ -133,5 +154,6 @@ begin
 
    Alea_Repartition_P.Reset (Gen => Generateur_Repartition);
    Proba_Mutation_P.Reset   (Gen => Generateur_Proba_Mute);
+   Alea_Mutation_P.Reset    (Gen => Generateur_Mutation);
 
 end A_E_P.Valeur_Param_G;
