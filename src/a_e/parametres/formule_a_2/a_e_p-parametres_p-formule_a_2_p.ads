@@ -53,14 +53,14 @@ private
 
    package Valeur_Param_X_P is new A_E_P.Valeur_Param_G
       (
-         Debut_Intervalle => -2.0,
-         Fin_Intervalle   => +1_00.0
+         Debut_Intervalle => -1.0,
+         Fin_Intervalle   => +100.0
       );
 
    package Valeur_Param_Y_P is new A_E_P.Valeur_Param_G
       (
          Debut_Intervalle => -2.0,
-         Fin_Intervalle   => +1_00.0
+         Fin_Intervalle   => +100.0
       );
 
    type Anonyme_T is new Parametres_T with
