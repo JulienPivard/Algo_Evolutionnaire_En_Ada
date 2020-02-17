@@ -30,7 +30,8 @@ is
    --  Permet de sélectionner aléatoirement la façons dont
    --  se fera le mélange de chaque gènes.
 
-   package Generateur_P       is new Generateur_G (Valeur_T => V_Param_T);
+   package Generateur_P       is new Generateur_G
+      (Valeur_T => V_Param_T);
    package Alea_Repartition_P is new Ada.Numerics.Discrete_Random
       (Result_Subtype => Repartition_Caractere_T);
 
@@ -82,6 +83,8 @@ is
                   V_Param_T'Exponent (Autre.Valeur)      --  Exposant « mère »
                );
       end case;
+
+      --  On vérifie que la valeur est bien dans son intervalle.
       if Bebe.Valeur < Debut_Intervalle then
          Bebe.Valeur := Debut_Intervalle;
       elsif Bebe.Valeur > Fin_Intervalle then
