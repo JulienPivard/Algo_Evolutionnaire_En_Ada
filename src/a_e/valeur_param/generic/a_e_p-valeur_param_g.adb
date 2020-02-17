@@ -1,3 +1,4 @@
+with Ada.Numerics.Float_Random;
 with Ada.Numerics.Discrete_Random;
 
 with Generateur_G;
@@ -44,6 +45,8 @@ is
    --  Permet de sélectionner aléatoirement la façons dont
    --  se fera le mélange de chaque gènes.
 
+   package Alea_Petites_Mutations_R renames Ada.Numerics.Float_Random;
+
    package Generateur_P       is new Generateur_G
       (Valeur_T => V_Param_T);
    package Alea_Repartition_P is new Ada.Numerics.Discrete_Random
@@ -56,6 +59,8 @@ is
    Generateur_Repartition : Alea_Repartition_P.Generator;
    Generateur_Proba_Mute  : Proba_Mutation_P.Generator;
    Generateur_Mutation    : Alea_Mutation_P.Generator;
+
+   Generateur_Petites_Mutations : Alea_Petites_Mutations_R.Generator;
 
    ---------------------------------------------------------------------------
    procedure Generer
@@ -112,9 +117,19 @@ is
             when Alea_Intervalle_Parents =>
                null;
             when Petite_Mutation_Plus =>
-               null;
+               --  Ajoute une petite mutation au gène de l'enfant
+               Bebe.Valeur :=
+                  Bebe.Valeur
+                  +
+                  V_Param_T (Alea_Petites_Mutations_R.Random
+                     (Gen => Generateur_Petites_Mutations));
             when Petite_Mutation_Moins =>
-               null;
+               --  Soustrait une petite mutation au gène de l'enfant
+               Bebe.Valeur :=
+                  Bebe.Valeur
+                  -
+                  V_Param_T (Alea_Petites_Mutations_R.Random
+                     (Gen => Generateur_Petites_Mutations));
          end case;
       end if;
 
@@ -155,5 +170,7 @@ begin
    Alea_Repartition_P.Reset (Gen => Generateur_Repartition);
    Proba_Mutation_P.Reset   (Gen => Generateur_Proba_Mute);
    Alea_Mutation_P.Reset    (Gen => Generateur_Mutation);
+
+   Alea_Petites_Mutations_R.Reset (Gen => Generateur_Petites_Mutations);
 
 end A_E_P.Valeur_Param_G;
