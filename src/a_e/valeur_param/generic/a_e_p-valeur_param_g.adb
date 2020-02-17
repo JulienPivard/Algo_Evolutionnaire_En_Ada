@@ -8,7 +8,14 @@ package body A_E_P.Valeur_Param_G
    with Spark_Mode => Off
 is
 
-   type Repartition_Caractere_T is (Pere, Mere, Moyenne);
+   type Repartition_Caractere_T is
+      (
+         Pere,
+         Mere,
+         Moyenne,
+         Composition_Pere_Mere,
+         Composition_Mere_Pere
+      );
 
    package Generateur_P       is new Generateur_G (Valeur_T => V_Param_T);
    package Alea_Repartition_P is new Ada.Numerics.Discrete_Random
@@ -49,7 +56,24 @@ is
             Bebe.Valeur := Autre.Valeur;
          when Moyenne =>
             Bebe.Valeur := (Parametre.Valeur + Autre.Valeur) / 2.0;
+         when Composition_Pere_Mere =>
+            Bebe.Valeur := V_Param_T'Compose
+               (
+                  V_Param_T'Fraction (Autre.Valeur),
+                  V_Param_T'Exponent (Parametre.Valeur)
+               );
+         when Composition_Mere_Pere =>
+            Bebe.Valeur := V_Param_T'Compose
+               (
+                  V_Param_T'Fraction (Parametre.Valeur),
+                  V_Param_T'Exponent (Autre.Valeur)
+               );
       end case;
+      if Bebe.Valeur < Debut_Intervalle then
+         Bebe.Valeur := Debut_Intervalle;
+      elsif Bebe.Valeur > Fin_Intervalle then
+         Bebe.Valeur := Fin_Intervalle;
+      end if;
       return Bebe;
    end Accoupler;
    ---------------------------------------------------------------------------
