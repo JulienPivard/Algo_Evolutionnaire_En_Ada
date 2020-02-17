@@ -10,6 +10,7 @@ is
          Nb_Generations :    out Natural
       )
    is
+      Nb_Tours_Sans_Divergences : Natural := 0;
    begin
       Initialiser (Population => Population);
 
@@ -23,8 +24,14 @@ is
          --  Toutes les valeurs survivantes doivent se trouver autour
          --  de la valeur minimum du tableau +/-1
          --  Intervalle de convergence
+         if Verifier_Convergence (Population => Population) then
+            Nb_Tours_Sans_Divergences := Nb_Tours_Sans_Divergences + 1;
+         else
+            Nb_Tours_Sans_Divergences := 0;
+         end if;
+
          exit Boucle_Generation_Successive when
-            Verifier_Convergence (Population => Population);
+            Nb_Tours_Sans_Divergences > 25;
 
          Nb_Generations := Nb_Generations + 1;
 
