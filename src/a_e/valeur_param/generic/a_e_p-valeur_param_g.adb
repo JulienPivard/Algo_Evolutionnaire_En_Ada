@@ -115,7 +115,29 @@ is
       if Proba_Mutation > 99 then
          case Alea_Mutation_P.Random (Gen => Generateur_Mutation) is
             when Alea_Intervalle_Parents =>
-               null;
+               --  Ajoute une mutation issu d'une valeurs dans un
+               --  intervalle entre les deux parents.
+               Bloc_Alea_Intervalle :
+               declare
+                  Ecart : constant V_Param_T :=
+                     Parametre.Valeur - Autre.Valeur;
+               begin
+                  Bebe.Valeur := Bebe.Valeur +
+                     (
+                        if Ecart < 0.0 then
+                           Generateur_P.Generer_Flottant
+                              (
+                                 Borne_Inferieur => Ecart,
+                                 Borne_Superieur => 0.0
+                              )
+                        else
+                           Generateur_P.Generer_Flottant
+                              (
+                                 Borne_Inferieur => 0.0,
+                                 Borne_Superieur => Ecart
+                              )
+                     );
+               end Bloc_Alea_Intervalle;
             when Petite_Mutation_Plus =>
                --  Ajoute une petite mutation au gène de l'enfant
                Bebe.Valeur :=
