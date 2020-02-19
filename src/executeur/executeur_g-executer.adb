@@ -27,8 +27,9 @@ is
 
    procedure Determiner_Min
       (
-         Min : in String;
-         Nom : in String
+         Min               : in String;
+         Nom               : in String;
+         Reduire_Affichage : in Boolean := False
       );
    --  Détermine le minimum de la formule.
    --  @param Min
@@ -39,8 +40,9 @@ is
    ------------------------
    procedure Determiner_Min
       (
-         Min : in String;
-         Nom : in String
+         Min               : in String;
+         Nom               : in String;
+         Reduire_Affichage : in Boolean := False
       )
    is
       Population : Population_P.Population_T;
@@ -127,11 +129,11 @@ is
       (Population_P => Population_Anonyme_2_P);
 begin
    Min_Surface
-      (Nom => "X",      Min => "5.88");
+      (Nom => "X",      Min => "5.88",         Reduire_Affichage => False);
 
    Min_Anonyme_1
-      (Nom => "X",      Min => "0.0");
+      (Nom => "X",      Min => "0.0",          Reduire_Affichage => False);
 
    Min_Anonyme_2
-      (Nom => "X et Y", Min => "-0.55, -1,55");
+      (Nom => "X et Y", Min => "-0.55, -1,55", Reduire_Affichage => False);
 end Executer;
