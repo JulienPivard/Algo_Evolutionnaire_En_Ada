@@ -50,10 +50,20 @@ is
 
       Nb_Generations : Natural := Natural'First;
    begin
+      if not Reduire_Affichage then
       Population_P.Afficher_Details;
+      else
+         Ada.Text_IO.Put_Line
+            (
+               Item => "Population   :" &
+                  Population_P.Indice_Population_T'Image
+                     (Population_P.Indice_Population_T'Last)
+            );
+      end if;
 
       Population_P.Initialiser (Population => Population);
 
+      if not Reduire_Affichage then
       Ada.Text_IO.Put_Line
          (Item => "========== Valeurs de départ ==========");
 
@@ -61,6 +71,7 @@ is
       Population_P.Put_Line   (Item    => Population);
       Ada.Text_IO.Put_Line    (Item    => "=======");
       Ada.Text_IO.New_Line    (Spacing => 1);
+      end if;
 
       Population_P.Faire_Evoluer
          (
@@ -70,12 +81,14 @@ is
             Nb_Generations  => Nb_Generations
          );
 
+      if not Reduire_Affichage then
       Ada.Text_IO.Put_Line
          (Item => "======= Valeurs après évolution =======");
       Ada.Text_IO.Put_Line
          (Item => "La valeur de " & Nom & " pour le min : " & Min);
 
       Ada.Text_IO.New_Line    (Spacing => 1);
+      end if;
       Population_P.Put_Line   (Item    => Population);
       Ada.Text_IO.Put_Line    (Item    => "=======");
 
