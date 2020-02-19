@@ -51,7 +51,7 @@ is
       Nb_Generations : Natural := Natural'First;
    begin
       if not Reduire_Affichage then
-      Population_P.Afficher_Details;
+         Population_P.Afficher_Details;
       else
          Ada.Text_IO.Put_Line
             (
@@ -64,13 +64,13 @@ is
       Population_P.Initialiser (Population => Population);
 
       if not Reduire_Affichage then
-      Ada.Text_IO.Put_Line
-         (Item => "========== Valeurs de départ ==========");
+         Ada.Text_IO.Put_Line
+            (Item => "========== Valeurs de départ ==========");
 
-      Ada.Text_IO.New_Line    (Spacing => 1);
-      Population_P.Put_Line   (Item    => Population);
-      Ada.Text_IO.Put_Line    (Item    => "=======");
-      Ada.Text_IO.New_Line    (Spacing => 1);
+         Ada.Text_IO.New_Line    (Spacing => 1);
+         Population_P.Put_Line   (Item    => Population);
+         Ada.Text_IO.Put_Line    (Item    => "=======");
+         Ada.Text_IO.New_Line    (Spacing => 1);
       end if;
 
       Population_P.Faire_Evoluer
@@ -82,12 +82,12 @@ is
          );
 
       if not Reduire_Affichage then
-      Ada.Text_IO.Put_Line
-         (Item => "======= Valeurs après évolution =======");
-      Ada.Text_IO.Put_Line
-         (Item => "La valeur de " & Nom & " pour le min : " & Min);
+         Ada.Text_IO.Put_Line
+            (Item => "======= Valeurs après évolution =======");
+         Ada.Text_IO.Put_Line
+            (Item => "La valeur de " & Nom & " pour le min : " & Min);
 
-      Ada.Text_IO.New_Line    (Spacing => 1);
+         Ada.Text_IO.New_Line    (Spacing => 1);
       end if;
       Population_P.Put_Line   (Item    => Population);
       Ada.Text_IO.Put_Line    (Item    => "=======");
@@ -106,7 +106,7 @@ is
       --  Conversion du temps pour faciliter l'affichage.
       Chrono_P.Affichage_Temps (Debut => Debut, Fin => Fin);
 
-      Ada.Text_IO.New_Line (Spacing => 4);
+      Ada.Text_IO.New_Line (Spacing => (if Reduire_Affichage then 2 else 4));
       --------------------------------------
    end Determiner_Min;
    ---------------------------------------------------------------------------
