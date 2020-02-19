@@ -76,7 +76,6 @@ is
       Ada.Text_IO.New_Line    (Spacing => 1);
       Population_P.Put_Line   (Item    => Population);
       Ada.Text_IO.Put_Line    (Item    => "=======");
-      Ada.Text_IO.New_Line    (Spacing => 1);
 
       Ada.Text_IO.Put_Line
          (
@@ -85,7 +84,6 @@ is
          );
 
       --------------------------------------
-      Ada.Text_IO.New_Line (Spacing => 1);
       --  Affiche le temps de filtrage du fichier.
       Ada.Text_IO.Put      (Item    => "Temps total : ");
       Ada.Text_IO.New_Line (Spacing => 1);
