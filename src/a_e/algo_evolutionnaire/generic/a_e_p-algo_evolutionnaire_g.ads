@@ -49,8 +49,7 @@ is
    --  La population à faire évoluer.
 
    procedure Initialiser
-      (Population : in out Population_T)
-      with Inline => True;
+      (Population : in out Population_T);
    --  Initialise les paramètres de toute une population.
    --  @param Population
    --  La population.
