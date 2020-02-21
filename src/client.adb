@@ -1,7 +1,7 @@
 ------------------------------------------------------------------------------
 --                                                                          --
 --                          Auteur : PIVARD Julien                          --
---           Dernière modification : Mercredi 19 février[02] 2020
+--           Dernière modification : Vendredi 21 février[02] 2020
 --                                                                          --
 ------------------------------------------------------------------------------
 
@@ -20,11 +20,12 @@ procedure Client is
 
 begin
 
-   Ada.Text_IO.Put_Line (Item => "-----------------------------------");
+   Ada.Text_IO.Put_Line (Item => "----------------------");
    Ada.Text_IO.Put      (Item => "Date de compilation : ");
    Ada.Text_IO.Put      (Item => GNAT.Source_Info.Compilation_ISO_Date);
-   Ada.Text_IO.Put      (Item => " ");
+   Ada.Text_IO.Put      (Item => "T");
    Ada.Text_IO.Put_Line (Item => GNAT.Source_Info.Compilation_Time);
+   Ada.Text_IO.Put_Line (Item => "----------------------");
 
    Ada.Text_IO.Put      (Item => "Procédure : [");
    Ada.Text_IO.Put      (Item => GNAT.Source_Info.Enclosing_Entity);
