@@ -5,9 +5,9 @@
 --                                                                          --
 ------------------------------------------------------------------------------
 
-with Ada.Text_IO;
 with GNAT.Source_Info;
 
+with Ada.Text_IO;
 with Executeur_G;
 
 procedure Client is
