@@ -26,7 +26,7 @@
 --  Les blocs de code dans des blocs (declare)
 -R Blocks
 --  Fixe le niveau de complexité des programmes Iniline
-+R Complex_Inlined_Subprograms:2
++R Complex_Inlined_Subprograms:5
 --  Signal toutes les expressions conditionnel Ada 2012
 -R Conditional_Expressions
 --  Signal toutes les occurrences de type contrôlé
@@ -34,7 +34,7 @@
 --  Les déclarations local dans des blocs
 -R Declarations_In_Blocks
 --  Niveau maximum d'imbrication d'appel de sous-programme inline
-+R Deeply_Nested_Inlining:2
++R Deeply_Nested_Inlining:5
 --  Signal tous les paramètres avec des valeurs par défaut
 -R Default_Parameters
 --  Les structures avec un discriminant
@@ -201,7 +201,7 @@
 --  Les paramètres doivent être donné avec leur nom
 +R Positional_Parameters:All
 --  Signal tous les sous-programme recursif
-+R Recursive_Subprograms
+-R Recursive_Subprograms
 --  Conversion d'adresses sans contrôle
 +R Unchecked_Address_Conversions
 --  Utilisation de valeurs non contrôlé dans des paramètres
@@ -233,7 +233,7 @@
 --  Pour les objets le premier paramètre est This
 -R Misnamed_Controlling_Parameters
 --  Pas de commentaire sur l'instruction begin
-+R Uncommented_BEGIN_In_Package_Bodies
+-R Uncommented_BEGIN_In_Package_Bodies
 
 --  Tasking  --
 --  Définition d'entrées multiple dans un objets protégé
