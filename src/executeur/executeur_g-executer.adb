@@ -1,3 +1,5 @@
+with GNAT.Source_Info;
+
 with Ada.Text_IO;
 with Ada.Real_Time;
 
@@ -141,6 +143,12 @@ is
    procedure Min_Anonyme_2 is new Determiner_Min
       (Population_P => Population_Anonyme_2_P);
 begin
+
+   Ada.Text_IO.Put      (Item => "Procédure : [");
+   Ada.Text_IO.Put      (Item => GNAT.Source_Info.Enclosing_Entity);
+   Ada.Text_IO.Put      (Item => "], une instance de : ");
+   Ada.Text_IO.Put_Line (Item => GNAT.Source_Info.Source_Location);
+
    Min_Surface
       (Nom => "X",      Min => "5.88",         Reduire_Affichage => True);
 

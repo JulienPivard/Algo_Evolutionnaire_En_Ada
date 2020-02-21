@@ -27,12 +27,6 @@ begin
    Ada.Text_IO.Put_Line (Item => GNAT.Source_Info.Compilation_Time);
    Ada.Text_IO.Put_Line (Item => "----------------------");
 
-   Ada.Text_IO.Put      (Item => "Procédure : [");
-   Ada.Text_IO.Put      (Item => GNAT.Source_Info.Enclosing_Entity);
-   Ada.Text_IO.Put      (Item => "], une instance de : ");
-   Ada.Text_IO.Put_Line (Item => GNAT.Source_Info.Source_Location);
-   Ada.Text_IO.Put_Line (Item => "-----------------------------------");
-
    Ada.Text_IO.New_Line (Spacing => 1);
 
    Executeur_P.Verifier_Nombre_D_Arguments;
