@@ -83,13 +83,14 @@ is
       end Lire_Resultat;
       ------------------------------------
 
+      Ecart : constant V_Calcule_T := 1.0;
       V_Ref : constant V_Calcule_T :=
          Lire_Resultat (Position => Population.Table'First);
    begin
       return (for all I in Intervalle_Survivants_T =>
-         Lire_Resultat (Position => I) <= V_Ref + 1.0
+         Lire_Resultat (Position => I) <= V_Ref + Ecart
          and then
-         Lire_Resultat (Position => I) >= V_Ref - 1.0);
+         Lire_Resultat (Position => I) >= V_Ref - Ecart);
    end Verifier_Convergence;
    ---------------------------------------------------------------------------
 
