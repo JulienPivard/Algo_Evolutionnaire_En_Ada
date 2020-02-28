@@ -75,8 +75,8 @@ private
 
    package Population_P  is new A_E_P.Population_G
       (
-         Indice_Population_T => Indice_Population_T,
-         Individu_P          => Individu_P
+         Indice_Population_T       => Indice_Population_T,
+         Individu_P                => Individu_P
       );
    package Population_IO is new Population_P.Text_IO
       (Individu_IO => Individu_IO);
