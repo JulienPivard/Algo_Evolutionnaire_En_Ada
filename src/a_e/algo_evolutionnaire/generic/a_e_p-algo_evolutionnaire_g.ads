@@ -76,6 +76,7 @@ private
    package Population_P  is new A_E_P.Population_G
       (
          Indice_Population_T       => Indice_Population_T,
+         Intervalle_De_Convergence => 0.5,
          Individu_P                => Individu_P
       );
    package Population_IO is new Population_P.Text_IO
