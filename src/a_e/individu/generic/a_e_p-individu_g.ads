@@ -7,7 +7,7 @@ generic
 --  @summary
 --  Un individu de la population.
 --  @description
---  Un individu porte toutes ses spécificité en lui,
+--  Un individu porte toutes ses spécificités en lui,
 --  tel que les paramètres de la fonction et son
 --  résultat en fonction de ceux-ci.
 --  @group Population
@@ -74,9 +74,13 @@ private
    type Individu_T is
       record
          V_Param   : Parametres_G_T;
-         --  L'inconnue utilisé par la fonction.
+         --  La/Les inconnue(s) utilisé par la fonction, qui
+         --  correspond à notre environnement.
+         --  Peut être vu comme le génome de l'individu.
          V_Calcule : V_Calcule_T := 0.0;
-         --  Le résultat de la fonction appliqué au paramètre.
+         --  Le résultat de la fonction appliqué aux paramètres.
+         --  Peut être vu comme l'expression des gènes de
+         --  l'individu contraint par l'environnement.
       end record;
 
 end A_E_P.Individu_G;
