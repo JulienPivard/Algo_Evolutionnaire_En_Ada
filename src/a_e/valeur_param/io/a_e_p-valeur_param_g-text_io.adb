@@ -18,6 +18,23 @@ is
             Aft  => 3,
             Exp  => 0
          );
+      Ada.Text_IO.Put (" [");
+      V_Param_IO.Put
+         (
+            Item => Debut_Intervalle,
+            Fore => 1,
+            Aft  => 3,
+            Exp  => 0
+         );
+      Ada.Text_IO.Put (" .. ");
+      V_Param_IO.Put
+         (
+            Item => Fin_Intervalle,
+            Fore => 1,
+            Aft  => 3,
+            Exp  => 0
+         );
+      Ada.Text_IO.Put ("]");
    end Put;
    ---------------------------------------------------------------------------
 
