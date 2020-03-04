@@ -117,7 +117,7 @@ is
             Bebe.Valeur := V_Param_T'Copy_Sign (Bebe.Valeur, Parametre.Valeur);
       end case;
 
-      --  Correspond à une probabilité de 1%
+      --  Correspond à une probabilité de 10%
       if Proba_Mutation < 5 or else Proba_Mutation > 95 then
          case Alea_Mutation_P.Random (Gen => Generateur_Mutation) is
             when Alea_Intervalle_Parents =>
