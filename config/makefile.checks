@@ -35,42 +35,48 @@ endif
 # On vérifie que ACTIVER_DEBUG vaut bien [true|false]
 ifneq ($(ACTIVER_DEBUG), true)
   ifneq ($(ACTIVER_DEBUG), false)
-    $(error makefile.conf:55: *** [ACTIVER_DEBUG] doit être true ou false)
+    $(info makefile.conf:55: *** [ACTIVER_DEBUG] doit être true ou false)
+    $(error Compilation impossible)
   endif
 endif
 
 # On vérifie que ACTIVER_VERB vaut bien [true|false]
 ifneq ($(ACTIVER_VERB), true)
   ifneq ($(ACTIVER_VERB), false)
-    $(error makefile.conf:59: *** [ACTIVER_VERB] doit être true ou false)
+    $(info makefile.conf:59: *** [ACTIVER_VERB] doit être true ou false)
+    $(error Compilation impossible)
   endif
 endif
 
 # On vérifie que ACTIVER_STRICT vaut bien [true|false]
 ifneq ($(ACTIVER_STRICT), true)
   ifneq ($(ACTIVER_STRICT), false)
-    $(error makefile.conf:63: *** [ACTIVER_STRICT] doit être true ou false)
+    $(info makefile.conf:63: *** [ACTIVER_STRICT] doit être true ou false)
+    $(error Compilation impossible)
   endif
 endif
 
 # On vérifie que ACTIVER_WARN_SONT_ERREURS vaut bien [true|false]
 ifneq ($(ACTIVER_WARN_SONT_ERREURS), true)
   ifneq ($(ACTIVER_WARN_SONT_ERREURS), false)
-    $(error makefile.conf:67: *** [ACTIVER_WARN_SONT_ERREURS] doit être true ou false)
+    $(info makefile.conf:67: *** [ACTIVER_WARN_SONT_ERREURS] doit être true ou false)
+    $(error Compilation impossible)
   endif
 endif
 
 # On vérifie que ACTIVER_AFFICHER_LA_STACK vaut bien [true|false]
 ifneq ($(ACTIVER_AFFICHER_LA_STACK), true)
   ifneq ($(ACTIVER_AFFICHER_LA_STACK), false)
-    $(error makefile.conf:71: *** [ACTIVER_AFFICHER_LA_STACK] doit être true ou false)
+    $(info makefile.conf:71: *** [ACTIVER_AFFICHER_LA_STACK] doit être true ou false)
+    $(error Compilation impossible)
   endif
 endif
 
 # On vérifie que ACTIVER_AFFICHER_ORDRE_ELABORATION vaut bien [true|false]
 ifneq ($(ACTIVER_AFFICHER_ORDRE_ELABORATION), true)
   ifneq ($(ACTIVER_AFFICHER_ORDRE_ELABORATION), false)
-    $(error makefile.conf:76: *** [ACTIVER_AFFICHER_ORDRE_ELABORATION] doit être true ou false)
+    $(info makefile.conf:76: *** [ACTIVER_AFFICHER_ORDRE_ELABORATION] doit être true ou false)
+    $(error Compilation impossible)
   endif
 endif
 
