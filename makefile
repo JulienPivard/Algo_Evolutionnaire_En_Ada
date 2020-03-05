@@ -22,6 +22,11 @@ $(CIBLECOMPILE): build
 	@echo "  "
 
 ###################
+.PHONY: prod
+prod:
+	$(CC) -P$(GPR) $(OPT_GPR_PROD)
+
+###################
 .PHONY: doc
 doc:
 	gnatdoc -P$(GPR) $(OPTGPR) $(OPTDOCUMENT)
@@ -53,6 +58,7 @@ help:
 	@echo " - all			: Compile l'application."
 	@echo "    - build"
 	@echo "    - $(CIBLECOMPILE)"
+	@echo " - prod			: Compile avec l'option release active."
 	@echo " - run			: Execute l'application avec les paramètres défini."
 	@echo " - doc			: Génère la documentation du programme."
 	@echo " "
