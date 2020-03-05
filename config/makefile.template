@@ -1,6 +1,6 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Lundi 27 janvier[01] 2020
+# Dernière modification : Mercredi 04 mars[03] 2020
 
 ###################
 # Point d'entrée #
@@ -30,6 +30,15 @@ ifeq ($(wildcard $(EXECUTABLE)), )
     DEPEND	= $(CIBLECOMPILE)
 else
     DEPEND	=
+endif
+
+ifeq ($(CHEMIN_OBJET), )
+    $(info makefile.conf:23: *** Le nom du dossier des objets est vide)
+    $(error Compilation impossible)
+endif
+ifeq ($(CHEMIN_EXEC), )
+    $(info makefile.conf:24: *** Le nom du dossier des exécutables est vide)
+    $(error Compilation impossible)
 endif
 
 ###################
