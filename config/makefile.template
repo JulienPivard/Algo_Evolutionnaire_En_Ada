@@ -33,11 +33,11 @@ else
 endif
 
 ifeq ($(CHEMIN_OBJET), )
-    $(info makefile.conf:23: *** Le nom du dossier des objets est vide)
+    $(info makefile.conf:16: *** Le nom du dossier des objets est vide)
     $(error Compilation impossible)
 endif
 ifeq ($(CHEMIN_EXEC), )
-    $(info makefile.conf:24: *** Le nom du dossier des exécutables est vide)
+    $(info makefile.conf:17: *** Le nom du dossier des exécutables est vide)
     $(error Compilation impossible)
 endif
 
