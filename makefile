@@ -1,6 +1,6 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Jeudi 05 mars[03] 2020
+# Dernière modification : Samedi 07 mars[03] 2020
 
 SHELL		:= /bin/sh
 .DEFAULT_GOAL	:= all
@@ -15,8 +15,8 @@ include ./config/makefile.checks
 include ./config/makefile.template
 
 ###################
-.PHONY: $(CIBLECOMPILE)
-$(CIBLECOMPILE): build
+.PHONY: compiler
+compiler: build
 	@echo " ───────────────────────────────"
 	@echo " [OK] Compilation du programme : [ $(NOMAPP) ] terminé"
 	@echo "  "
@@ -57,7 +57,7 @@ help:
 	@echo "Liste des commandes :"
 	@echo " - all			: Compile l'application."
 	@echo "    - build"
-	@echo "    - $(CIBLECOMPILE)"
+	@echo "    - compiler"
 	@echo " - prod			: Compile avec l'option release active."
 	@echo " - run			: Execute l'application avec les paramètres défini."
 	@echo " - doc			: Génère la documentation du programme."
