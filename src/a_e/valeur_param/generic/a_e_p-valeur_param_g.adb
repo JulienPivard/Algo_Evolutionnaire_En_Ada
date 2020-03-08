@@ -53,6 +53,7 @@ is
 
    package Generateur_P       is new Generateur_G
       (Valeur_T => V_Param_T);
+
    package Alea_Repartition_P is new Ada.Numerics.Discrete_Random
       (Result_Subtype => Repartition_Caractere_T);
    package Proba_Mutation_P   is new Ada.Numerics.Discrete_Random
@@ -87,19 +88,19 @@ is
       )
       return Valeur_Param_T
    is
-      Origine : constant Repartition_Caractere_T :=
+      Origine        : constant Repartition_Caractere_T :=
          Alea_Repartition_P.Random (Gen => Generateur_Repartition);
-      Proba_Mutation : constant Proba_Mutation_T :=
-         Proba_Mutation_P.Random (Gen => Generateur_Proba_Mute);
+      Proba_Mutation : constant Proba_Mutation_T        :=
+         Proba_Mutation_P.Random   (Gen => Generateur_Proba_Mute);
 
       Bebe : Valeur_Param_T;
    begin
       case Origine is
-         when Pere =>
+         when Pere                  =>
             Bebe.Valeur := Parametre.Valeur;
-         when Mere =>
+         when Mere                  =>
             Bebe.Valeur := Autre.Valeur;
-         when Moyenne =>
+         when Moyenne               =>
             Bebe.Valeur := (Parametre.Valeur + Autre.Valeur) / 2.0;
          when Composition_Pere_Mere =>
             Bebe.Valeur := V_Param_T'Compose
@@ -164,7 +165,7 @@ is
       end if;
 
       --  On vérifie que la valeur est bien dans son intervalle.
-      if Bebe.Valeur < Debut_Intervalle then
+      if    Bebe.Valeur < Debut_Intervalle then
          Bebe.Valeur := Debut_Intervalle;
       elsif Bebe.Valeur > Fin_Intervalle then
          Bebe.Valeur := Fin_Intervalle;
