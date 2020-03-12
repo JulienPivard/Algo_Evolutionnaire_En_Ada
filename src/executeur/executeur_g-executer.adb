@@ -161,6 +161,8 @@ begin
    Ada.Text_IO.Put      (Item => "], une instance de : ");
    Ada.Text_IO.Put_Line (Item => GNAT.Source_Info.Source_Location);
 
+   Ada.Text_IO.New_Line (Spacing => 2);
+
    Min_Surface
       (Nom => "X",      Min => "5.88",         Reduire_Affichage => True);
 
