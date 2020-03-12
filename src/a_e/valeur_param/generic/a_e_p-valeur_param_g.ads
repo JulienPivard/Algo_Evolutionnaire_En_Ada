@@ -92,4 +92,15 @@ private
          --  La valeur du paramètre.
       end record;
 
+   type Ajuster_Valeur_Si_Interdite_A is not null access
+      procedure (Parametre : in out Valeur_Param_T);
+
+   Ajuster_Valeur : constant Ajuster_Valeur_Si_Interdite_A :=
+      (
+         if Valeurs_Interdites'Length <= 0 then
+            Verifier_Borne_Valeur'Access
+         else
+            Verifier_Et_Ajuster_Valeur_Si_Interdite'Access
+      );
+
 end A_E_P.Valeur_Param_G;

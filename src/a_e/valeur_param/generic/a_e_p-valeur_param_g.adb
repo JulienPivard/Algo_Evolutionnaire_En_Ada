@@ -165,11 +165,7 @@ is
       end if;
 
       --  On vérifie que la valeur est bien dans son intervalle.
-      if    Bebe.Valeur < Debut_Intervalle then
-         Bebe.Valeur := Debut_Intervalle;
-      elsif Bebe.Valeur > Fin_Intervalle   then
-         Bebe.Valeur := Fin_Intervalle;
-      end if;
+      Ajuster_Valeur (Parametre => Bebe);
 
       return Bebe;
    end Accoupler;
