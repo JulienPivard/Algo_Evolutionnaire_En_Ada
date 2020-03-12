@@ -113,37 +113,42 @@ is
    end Determiner_Min;
    ---------------------------------------------------------------------------
 
+   --  Expérimentation avec une formule de calcul de surface d'un volume.
+   package Surface_R renames A_E_P.Parametres_P.Surface_P;
+
    package Population_Surface_P  is new A_E_P.Algo_Evolutionnaire_G
       (
          Indice_Population_T       => Intervalle_P.Indice_T,
-         Parametres_G_T            => A_E_P.Parametres_P.Surface_P.Surface_T,
-         Put                       => A_E_P.Parametres_P.Surface_P.Text_IO.Put,
+         Parametres_G_T            => Surface_R.Surface_T,
+         Put                       => Surface_R.Text_IO.Put,
          Intervalle_De_Convergence => 0.5
       );
 
    procedure Min_Surface is new Determiner_Min
       (Population_P => Population_Surface_P);
 
+   --  Expérimentation avec une formule à un paramètre
+   package Formule_A_1_R renames A_E_P.Parametres_P.Formule_A_1_P;
+
    package Population_Anonyme_1_P  is new A_E_P.Algo_Evolutionnaire_G
       (
          Indice_Population_T       => Intervalle_P.Indice_T,
-         Parametres_G_T            =>
-            A_E_P.Parametres_P.Formule_A_1_P.Anonyme_T,
-         Put                       =>
-            A_E_P.Parametres_P.Formule_A_1_P.Text_IO.Put,
+         Parametres_G_T            => Formule_A_1_R.Anonyme_T,
+         Put                       => Formule_A_1_R.Text_IO.Put,
          Intervalle_De_Convergence => 0.5
       );
 
    procedure Min_Anonyme_1 is new Determiner_Min
       (Population_P => Population_Anonyme_1_P);
 
+   --  Expérimentation avec une formule à deux paramètres
+   package Formule_A_2_R renames A_E_P.Parametres_P.Formule_A_2_P;
+
    package Population_Anonyme_2_P  is new A_E_P.Algo_Evolutionnaire_G
       (
          Indice_Population_T       => Intervalle_P.Indice_T,
-         Parametres_G_T            =>
-            A_E_P.Parametres_P.Formule_A_2_P.Anonyme_T,
-         Put                       =>
-            A_E_P.Parametres_P.Formule_A_2_P.Text_IO.Put,
+         Parametres_G_T            => Formule_A_2_R.Anonyme_T,
+         Put                       => Formule_A_2_R.Text_IO.Put,
          Intervalle_De_Convergence => 0.5
       );
 
