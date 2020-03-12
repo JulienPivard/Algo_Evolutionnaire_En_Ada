@@ -14,7 +14,7 @@ is
    begin
       Put (Item => Item.V_Param);
 
-      Ada.Text_IO.Put  (Item => " | Résultat : ");
+      Ada.Text_IO.Put  (Item => " |=> Résultat : ");
       V_Calcule_IO.Put
          (
             Item => Item.V_Calcule,
