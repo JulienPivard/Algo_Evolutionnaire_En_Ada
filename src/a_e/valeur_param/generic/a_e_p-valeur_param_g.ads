@@ -19,6 +19,13 @@ package A_E_P.Valeur_Param_G
       Spark_Mode     => Off
 is
 
+   pragma Compile_Time_Error
+      (
+         Debut_Intervalle >= Fin_Intervalle,
+         "La valeur de debut de l'intervalle doit etre inferieur " &
+         "a la valeur de fin d'intervalle"
+      );
+
    type Valeur_Param_T is private;
    --  Chaque paramètre est composé d'une valeur, et de son
    --  intervalle de valeurs autorisé.
