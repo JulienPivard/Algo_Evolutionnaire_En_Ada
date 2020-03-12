@@ -10,10 +10,11 @@ private with A_E_P.Individu_G.Text_IO;
 generic
 
    type Indice_Population_T is range <>;
-   --  L'intervalle de valeurs de la population.
+   --  La taille de la population à faire évoluer.
 
    type Parametres_G_T is new A_E_P.Parametres_P.Parametres_T with private;
-   --  Les paramètres qui représentent le génome de l'individu.
+   --  Les paramètres de la fonction à résoudre,
+   --  c'est une représentation du génome d'un individu.
 
    with procedure Put
       (Item : in Parametres_G_T);
