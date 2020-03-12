@@ -22,6 +22,11 @@ generic
    --  @param Item
    --  Les paramètres.
 
+   Intervalle_De_Convergence : V_Calcule_T := 1.0;
+   --  Permet de régler la précision de la détection de convergence
+   --  des individus vers un génome similaire. C'est sur ce critère
+   --  que ce base la détection du minimum.
+
 --  @summary
 --  Interface de regroupement pour utiliser l'algo évolutionnaire.
 --  @description
@@ -77,7 +82,7 @@ private
    package Population_P  is new A_E_P.Population_G
       (
          Indice_Population_T       => Indice_Population_T,
-         Intervalle_De_Convergence => 0.5,
+         Intervalle_De_Convergence => Intervalle_De_Convergence,
          Individu_P                => Individu_P
       );
    package Population_IO is new Population_P.Text_IO
