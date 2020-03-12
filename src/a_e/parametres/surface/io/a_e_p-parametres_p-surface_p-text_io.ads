@@ -14,4 +14,6 @@ is
    procedure Put
       (Item : in Surface_T);
 
+   procedure Afficher_Formule;
+
 end A_E_P.Parametres_P.Surface_P.Text_IO;

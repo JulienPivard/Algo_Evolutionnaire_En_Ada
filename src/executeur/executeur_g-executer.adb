@@ -121,6 +121,7 @@ is
          Indice_Population_T       => Intervalle_P.Indice_T,
          Parametres_G_T            => Surface_R.Surface_T,
          Put                       => Surface_R.Text_IO.Put,
+         Afficher_Formule          => Surface_R.Text_IO.Afficher_Formule,
          Intervalle_De_Convergence => 0.5
       );
 
@@ -135,6 +136,7 @@ is
          Indice_Population_T       => Intervalle_P.Indice_T,
          Parametres_G_T            => Formule_A_1_R.Anonyme_T,
          Put                       => Formule_A_1_R.Text_IO.Put,
+         Afficher_Formule          => Formule_A_1_R.Text_IO.Afficher_Formule,
          Intervalle_De_Convergence => 0.5
       );
 
@@ -149,6 +151,7 @@ is
          Indice_Population_T       => Intervalle_P.Indice_T,
          Parametres_G_T            => Formule_A_2_R.Anonyme_T,
          Put                       => Formule_A_2_R.Text_IO.Put,
+         Afficher_Formule          => Formule_A_2_R.Text_IO.Afficher_Formule,
          Intervalle_De_Convergence => 0.5
       );
 

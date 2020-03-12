@@ -15,9 +15,16 @@ is
       (Item : in Surface_T)
    is
    begin
-      Ada.Text_IO.Put       (Item => " | X : ");
+      Ada.Text_IO.Put     (Item => " | X : ");
       Valeur_Param_IO.Put (Item => Item.Param);
    end Put;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   procedure Afficher_Formule is
+   begin
+      Ada.Text_IO.Put_Line (Item => "pi * (D^2 / 2) + 4 * (160 / D)");
+   end Afficher_Formule;
    ---------------------------------------------------------------------------
 
 end A_E_P.Parametres_P.Surface_P.Text_IO;

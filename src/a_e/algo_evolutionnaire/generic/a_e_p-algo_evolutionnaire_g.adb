@@ -1,3 +1,5 @@
+with Ada.Text_IO;
+
 package body A_E_P.Algo_Evolutionnaire_G
    with Spark_Mode => Off
 is
@@ -60,6 +62,8 @@ is
       (Item : in Population_T)
    is
    begin
+      Ada.Text_IO.Put (Item => "Formule : ");
+      Afficher_Formule;
       Population_IO.Put_Line (Item => Item.Pop);
    end Put_Line;
    ---------------------------------------------------------------------------

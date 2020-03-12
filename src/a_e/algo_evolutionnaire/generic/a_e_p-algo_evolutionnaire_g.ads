@@ -22,6 +22,9 @@ generic
    --  @param Item
    --  Les paramètres.
 
+   with procedure Afficher_Formule;
+   --  Affiche la formule qui va être résolue.
+
    Intervalle_De_Convergence : V_Calcule_T := 1.0;
    --  Permet de régler la précision de la détection de convergence
    --  des individus vers un génome similaire. C'est sur ce critère

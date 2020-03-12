@@ -14,4 +14,6 @@ is
    procedure Put
       (Item : in Anonyme_T);
 
+   procedure Afficher_Formule;
+
 end A_E_P.Parametres_P.Formule_A_2_P.Text_IO;
