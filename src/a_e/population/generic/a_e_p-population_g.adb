@@ -101,22 +101,6 @@ is
    procedure Tri_A_Bulle
       (Tableau : in out Table_Population_T)
    is
-      ------------------------------------
-      function Lire_Resultat
-         (Position : in Indice_Population_T)
-         return V_Calcule_T
-         with Inline => True;
-
-      ----------------------
-      function Lire_Resultat
-         (Position : in Indice_Population_T)
-         return V_Calcule_T
-      is
-         Individu : constant Individu_P.Individu_T := Tableau (Position);
-      begin
-         return Individu_P.Lire_Resultat (Individu => Individu);
-      end Lire_Resultat;
-      ------------------------------------
    begin
       Boucle_De_Tri :
       loop
