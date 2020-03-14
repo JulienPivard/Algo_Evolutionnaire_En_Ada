@@ -35,6 +35,7 @@ generic
    --  La position de la valeur qui sera à gauche dans la comparaison.
    --  @param Droite
    --  La position de la valeur qui sera à droite dans la comparaison.
+   --  @return Le résultat de la comparaison.
 
    with procedure Echanger
       (
@@ -52,7 +53,7 @@ generic
 --  @summary
 --  Implémentation générique du tri rapide.
 --  @description
---  Version la plus universel possible du tri rapide
+--  Version la plus universel possible du tri rapide.
 --  @group Tri rapide
 package Tri_Rapide_G
    with

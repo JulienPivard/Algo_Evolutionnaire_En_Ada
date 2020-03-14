@@ -142,7 +142,8 @@ is
          --  être à droite du pivot. Puis on déplace notre
          --  marqueur.
          if Comparer (T => Tableau, Gauche => I, Droite => Dernier) then
-            Echanger (T => Tableau, P1 => I, P2 => J);
+            Echanger (T => Tableau, P1     => I, P2     => J);
+
             J := Indice_G_T'Succ (J);
          end if;
 
