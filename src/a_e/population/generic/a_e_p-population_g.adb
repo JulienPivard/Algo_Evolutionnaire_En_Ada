@@ -123,25 +123,25 @@ is
          Bloc_Tri_Bulle :
          declare
             subtype Intervalle_Tmp_T is Indice_Population_T range
-               Indice_Population_T'First .. Indice_Population_T'Last - 1;
+               Indice_Population_T'First + 1 .. Indice_Population_T'Last;
 
             Echange : Boolean := False;
          begin
             Boucle_Tri_Bulle :
-            for I in Intervalle_Tmp_T loop
+            for I in reverse Intervalle_Tmp_T loop
                --  On cherche ici à minimiser le résultat.
                if Comparer_Minimiser
                   (
                      Population => Tableau,
-                     Droite => I,
-                     Gauche => I + 1
+                     Gauche     => I,
+                     Droite     => I - 1
                   )
                then
                   Echanger
                      (
                         Population => Tableau,
                         Gauche     => I,
-                        Droite     => I + 1
+                        Droite     => I - 1
                      );
 
                   --  On note qu'un échange à été fait et que donc le
