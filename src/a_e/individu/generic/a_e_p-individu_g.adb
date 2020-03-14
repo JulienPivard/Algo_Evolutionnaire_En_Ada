@@ -64,10 +64,7 @@ is
 
    ---------------------------------------------------------------------------
    function "<"
-      (
-         Gauche : in Individu_T;
-         Droite : in Individu_T
-      )
+      (Gauche, Droite : in Individu_T)
       return Boolean
    is
    begin

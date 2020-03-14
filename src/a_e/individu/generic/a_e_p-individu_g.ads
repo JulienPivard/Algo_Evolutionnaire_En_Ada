@@ -96,10 +96,7 @@ is
    --  L'individu.
 
    function "<"
-      (
-         Gauche : in Individu_T;
-         Droite : in Individu_T
-      )
+      (Gauche, Droite : in Individu_T)
       return Boolean;
    --  Compare deux individus.
    --  @param Gauche
