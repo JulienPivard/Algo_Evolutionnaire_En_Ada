@@ -53,9 +53,9 @@ is
    is
    begin
       if Taille_Population <= 1000 then
-         Tri_A_Bulle             (Tableau => Population.Table);
+         Tri_A_Bulle_P.Tri_A_Bulle (Tableau => Population.Table);
       else
-         Tri_Rapide_P.Tri_Rapide (Tableau => Population.Table);
+         Tri_Rapide_P.Tri_Rapide   (Tableau => Population.Table);
       end if;
    end Trier;
    ---------------------------------------------------------------------------
@@ -95,49 +95,6 @@ is
 
    ---------------------------------------------------------------------------
    --                               Partie privée                           --
-   ---------------------------------------------------------------------------
-
-   ---------------------------------------------------------------------------
-   procedure Tri_A_Bulle
-      (Tableau : in out Table_Population_T)
-   is
-   begin
-      Boucle_De_Tri :
-      loop
-         Bloc_Tri_Bulle :
-         declare
-            subtype Intervalle_Tmp_T is Indice_Population_T range
-               Indice_Population_T'First + 1 .. Indice_Population_T'Last;
-
-            Echange : Boolean := False;
-         begin
-            Boucle_Tri_Bulle :
-            for I in reverse Intervalle_Tmp_T loop
-               --  On cherche ici à minimiser le résultat.
-               if Comparer_Minimiser
-                  (
-                     Population => Tableau,
-                     Gauche     => I,
-                     Droite     => I - 1
-                  )
-               then
-                  Echanger
-                     (
-                        Population => Tableau,
-                        Gauche     => I,
-                        Droite     => I - 1
-                     );
-
-                  --  On note qu'un échange à été fait et que donc le
-                  --  tableau n'est potentiellement pas totalement trié.
-                  Echange := True;
-               end if;
-            end loop Boucle_Tri_Bulle;
-
-            exit Boucle_De_Tri when not Echange;
-         end Bloc_Tri_Bulle;
-      end loop Boucle_De_Tri;
-   end Tri_A_Bulle;
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------

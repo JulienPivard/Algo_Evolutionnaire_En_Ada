@@ -2,8 +2,10 @@ with A_E_P.Individu_G;
 
 private with Sorte_De_Tri_P;
 private with Tri_Rapide_G;
+private with Tri_A_Bulle_G;
 
 pragma Elaborate_All (Tri_Rapide_G);
+pragma Elaborate_All (Tri_A_Bulle_G);
 
 generic
 
@@ -151,12 +153,6 @@ private
       of Individu_P.Individu_T;
    --  Contient la population.
 
-   procedure Tri_A_Bulle
-      (Tableau : in out Table_Population_T);
-   --  Tri la population à l'aide d'un tri à bulle.
-   --  @param Tableau
-   --  La population.
-
    procedure Generer_Individus_Mutants
       (Population : in out Population_T)
       with Inline => True;
@@ -223,6 +219,15 @@ private
          Table : Sous_Population_T;
          --  La totalité de la population.
       end record;
+
+   package Tri_A_Bulle_P is new Tri_A_Bulle_G
+      (
+         Indice_G_T   => Indice_Population_T,
+         Element_G_T  => Individu_P.Individu_T,
+         Table_G_T    => Table_Population_T,
+         Comparer     => Comparer_Minimiser,
+         Echanger     => Echanger
+      );
 
    package Tri_Rapide_P is new Tri_Rapide_G
       (
