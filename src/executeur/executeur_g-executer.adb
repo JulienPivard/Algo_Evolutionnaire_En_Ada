@@ -4,10 +4,10 @@ with Ada.Text_IO;
 with Ada.Real_Time;
 
 with A_E_P;
+with A_E_P.Algo_Evolutionnaire_G;
+
 with A_E_P.Parametres_P.Surface_P;
 with A_E_P.Parametres_P.Surface_P.Text_IO;
-
-with A_E_P.Algo_Evolutionnaire_G;
 
 with A_E_P.Parametres_P.Formule_A_1_P;
 with A_E_P.Parametres_P.Formule_A_1_P.Text_IO;
