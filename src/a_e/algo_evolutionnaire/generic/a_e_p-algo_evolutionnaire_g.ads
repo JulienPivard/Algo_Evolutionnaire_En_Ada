@@ -27,8 +27,16 @@ generic
 
    Intervalle_De_Convergence : V_Calcule_T := 1.0;
    --  Permet de régler la précision de la détection de convergence
-   --  des individus vers un génome similaire. C'est sur ce critère
-   --  que ce base la détection du minimum.
+   --  des individus vers un génome similaire. C'est grâce à ce
+   --  critère que l'on mesure la diversité génétique de la
+   --  population. Pour détecter si le minimum est atteint, on
+   --  prend l'individu le mieux adapté comme référence, et si le
+   --  résultat de chacun des autres individu survivant est dans
+   --  l'intervalle valeur_de_référence +/- Intervalle_De_Convergence,
+   --  alors on considère que la diversité génétique a disparu pour
+   --  cette génération. Il faut que la diversité génétique ait
+   --  disparue pendant 25 générations d’affilée pour que l'on
+   --  déclare que le minimum a été trouvé.
 
 --  @summary
 --  Interface de regroupement pour utiliser l'algo évolutionnaire.
