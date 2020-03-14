@@ -1,7 +1,5 @@
 with Ada.Real_Time;
 
-with A_E_P.Parametres_P;
-
 private with A_E_P.Population_G;
 private with A_E_P.Population_G.Text_IO;
 private with A_E_P.Individu_G;
@@ -12,9 +10,37 @@ generic
    type Indice_Population_T is range <>;
    --  La taille de la population à faire évoluer.
 
-   type Parametres_G_T is new A_E_P.Parametres_P.Parametres_T with private;
+   type Parametres_G_T is private;
    --  Les paramètres de la fonction à résoudre,
    --  c'est une représentation du génome d'un individu.
+
+   with procedure Generer
+      (Parametres : in out Parametres_G_T);
+   --  Génère des valeurs aléatoires pour les paramètres stocké.
+   --  @param Parametres
+   --  Les paramètres.
+
+   with function Accoupler
+      (
+         Parametres : in Parametres_G_T;
+         Autre      : in Parametres_G_T
+      )
+      return Parametres_G_T;
+   --  Accouple deux paramètres pour obtenir un nouveau
+   --  jeu de paramètres.
+   --  @param Parametres
+   --  Les paramètres, premier parent.
+   --  @param Autre
+   --  Les paramètres, second parent.
+   --  @return Le jeu de paramètres issus de la combinaison des parents.
+
+   with function Calculer
+      (Parametres : in Parametres_G_T)
+      return V_Calcule_T;
+   --  Calcul la formule en utilisant les valeurs de ses
+   --  paramètres comme entrées de la fonction de la formule.
+   --  @param Parametres
+   --  Les paramètres de la fonction.
 
    with procedure Put
       (Item : in Parametres_G_T);
@@ -86,7 +112,12 @@ is
 private
 
    package Individu_P    is new A_E_P.Individu_G
-      (Parametres_G_T => Parametres_G_T);
+      (
+         Parametres_G_T => Parametres_G_T,
+         Generer        => Generer,
+         Accoupler      => Accoupler,
+         Calculer       => Calculer
+      );
    package Individu_IO   is new Individu_P.Text_IO
       (Put => Put);
 

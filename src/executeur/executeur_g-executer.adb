@@ -6,14 +6,14 @@ with Ada.Real_Time;
 with A_E_P;
 with A_E_P.Algo_Evolutionnaire_G;
 
-with A_E_P.Parametres_P.Surface_P;
-with A_E_P.Parametres_P.Surface_P.Text_IO;
+with Demo_P.Surface_P;
+with Demo_P.Surface_P.Text_IO;
 
-with A_E_P.Parametres_P.Formule_A_1_P;
-with A_E_P.Parametres_P.Formule_A_1_P.Text_IO;
+with Demo_P.Formule_A_1_P;
+with Demo_P.Formule_A_1_P.Text_IO;
 
-with A_E_P.Parametres_P.Formule_A_2_P;
-with A_E_P.Parametres_P.Formule_A_2_P.Text_IO;
+with Demo_P.Formule_A_2_P;
+with Demo_P.Formule_A_2_P.Text_IO;
 
 with Chrono_P;
 with Intervalle_P;
@@ -114,14 +114,18 @@ is
    ---------------------------------------------------------------------------
 
    --  Expérimentation avec une formule de calcul de surface d'un volume.
-   package Surface_R renames A_E_P.Parametres_P.Surface_P;
+   package Surface_R    renames Demo_P.Surface_P;
+   package Surface_IO_R renames Demo_P.Surface_P.Text_IO;
 
    package Population_Surface_P  is new A_E_P.Algo_Evolutionnaire_G
       (
          Indice_Population_T       => Intervalle_P.Indice_T,
          Parametres_G_T            => Surface_R.Surface_T,
-         Put                       => Surface_R.Text_IO.Put,
-         Afficher_Formule          => Surface_R.Text_IO.Afficher_Formule,
+         Generer                   => Surface_R.Generer,
+         Accoupler                 => Surface_R.Accoupler,
+         Calculer                  => Surface_R.Calculer,
+         Put                       => Surface_IO_R.Put,
+         Afficher_Formule          => Surface_IO_R.Afficher_Formule,
          Intervalle_De_Convergence => 0.5
       );
 
@@ -129,14 +133,18 @@ is
       (Population_P => Population_Surface_P);
 
    --  Expérimentation avec une formule à un paramètre
-   package Formule_A_1_R renames A_E_P.Parametres_P.Formule_A_1_P;
+   package Formule_1_R    renames Demo_P.Formule_A_1_P;
+   package Formule_1_IO_R renames Demo_P.Formule_A_1_P.Text_IO;
 
    package Population_Anonyme_1_P  is new A_E_P.Algo_Evolutionnaire_G
       (
          Indice_Population_T       => Intervalle_P.Indice_T,
-         Parametres_G_T            => Formule_A_1_R.Anonyme_T,
-         Put                       => Formule_A_1_R.Text_IO.Put,
-         Afficher_Formule          => Formule_A_1_R.Text_IO.Afficher_Formule,
+         Parametres_G_T            => Formule_1_R.Anonyme_T,
+         Generer                   => Formule_1_R.Generer,
+         Accoupler                 => Formule_1_R.Accoupler,
+         Calculer                  => Formule_1_R.Calculer,
+         Put                       => Formule_1_IO_R.Put,
+         Afficher_Formule          => Formule_1_IO_R.Afficher_Formule,
          Intervalle_De_Convergence => 0.5
       );
 
@@ -144,14 +152,18 @@ is
       (Population_P => Population_Anonyme_1_P);
 
    --  Expérimentation avec une formule à deux paramètres
-   package Formule_A_2_R renames A_E_P.Parametres_P.Formule_A_2_P;
+   package Formule_2_R    renames Demo_P.Formule_A_2_P;
+   package Formule_2_IO_R renames Demo_P.Formule_A_2_P.Text_IO;
 
    package Population_Anonyme_2_P  is new A_E_P.Algo_Evolutionnaire_G
       (
          Indice_Population_T       => Intervalle_P.Indice_T,
-         Parametres_G_T            => Formule_A_2_R.Anonyme_T,
-         Put                       => Formule_A_2_R.Text_IO.Put,
-         Afficher_Formule          => Formule_A_2_R.Text_IO.Afficher_Formule,
+         Parametres_G_T            => Formule_2_R.Anonyme_T,
+         Generer                   => Formule_2_R.Generer,
+         Accoupler                 => Formule_2_R.Accoupler,
+         Calculer                  => Formule_2_R.Calculer,
+         Put                       => Formule_2_IO_R.Put,
+         Afficher_Formule          => Formule_2_IO_R.Afficher_Formule,
          Intervalle_De_Convergence => 0.5
       );
 

@@ -29,7 +29,7 @@ is
       (Individu : in out Individu_T)
    is
    begin
-      Individu.V_Param.Generer;
+      Generer (Parametres => Individu.V_Param);
    end Generer_Parametres;
    ---------------------------------------------------------------------------
 
@@ -43,7 +43,12 @@ is
    is
       Bebe : Individu_T;
    begin
-      Bebe.V_Param := Individu.V_Param.Accoupler (Autre => Autre.V_Param);
+      Bebe.V_Param :=
+         Accoupler
+            (
+               Parametres => Individu.V_Param,
+               Autre      => Autre.V_Param
+            );
       return Bebe;
    end Accoupler;
    ---------------------------------------------------------------------------
@@ -53,7 +58,7 @@ is
       (Individu : in out Individu_T)
    is
    begin
-      Individu.V_Calcule := Individu.V_Param.Calculer;
+      Individu.V_Calcule := Calculer (Individu.V_Param);
    end Appliquer_Formule;
    ---------------------------------------------------------------------------
 

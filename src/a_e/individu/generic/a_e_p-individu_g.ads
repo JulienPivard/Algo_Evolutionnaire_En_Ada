@@ -1,8 +1,34 @@
-with A_E_P.Parametres_P;
-
 generic
-   type Parametres_G_T is new A_E_P.Parametres_P.Parametres_T with private;
+   type Parametres_G_T is private;
    --  Les paramètres qui représentent le génome de l'individu.
+
+   with procedure Generer
+      (Parametres : in out Parametres_G_T);
+   --  Génère des valeurs aléatoires pour les paramètres stocké.
+   --  @param Parametres
+   --  Les paramètres.
+
+   with function Accoupler
+      (
+         Parametres : in Parametres_G_T;
+         Autre      : in Parametres_G_T
+      )
+      return Parametres_G_T;
+   --  Accouple deux paramètres pour obtenir un nouveau
+   --  jeu de paramètres.
+   --  @param Parametres
+   --  Les paramètres, premier parent.
+   --  @param Autre
+   --  Les paramètres, second parent.
+   --  @return Le jeu de paramètres issus de la combinaison des parents.
+
+   with function Calculer
+      (Parametres : in Parametres_G_T)
+      return V_Calcule_T;
+   --  Calcul la formule en utilisant les valeurs de ses
+   --  paramètres comme entrées de la fonction de la formule.
+   --  @param Parametres
+   --  Les paramètres de la fonction.
 
 --  @summary
 --  Un individu de la population.

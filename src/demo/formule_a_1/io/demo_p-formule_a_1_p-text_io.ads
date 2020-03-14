@@ -3,7 +3,7 @@
 --  @description
 --  Affiche le contenu d'un paramètre.
 --  @group Affichage
-package A_E_P.Parametres_P.Formule_A_2_P.Text_IO
+package Demo_P.Formule_A_1_P.Text_IO
    with
       Pure           => False,
       Preelaborate   => False,
@@ -16,4 +16,4 @@ is
 
    procedure Afficher_Formule;
 
-end A_E_P.Parametres_P.Formule_A_2_P.Text_IO;
+end Demo_P.Formule_A_1_P.Text_IO;

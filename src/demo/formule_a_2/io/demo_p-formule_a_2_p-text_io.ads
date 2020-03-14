@@ -1,9 +1,9 @@
 --  @summary
---  Affiche le contenu d'un paramètre.
+--  Affiche le contenu des paramètres.
 --  @description
---  Affiche le contenu d'un paramètre.
+--  Affiche le contenu des paramètres.
 --  @group Affichage
-package A_E_P.Parametres_P.Surface_P.Text_IO
+package Demo_P.Formule_A_2_P.Text_IO
    with
       Pure           => False,
       Preelaborate   => False,
@@ -12,8 +12,8 @@ package A_E_P.Parametres_P.Surface_P.Text_IO
 is
 
    procedure Put
-      (Item : in Surface_T);
+      (Item : in Anonyme_T);
 
    procedure Afficher_Formule;
 
-end A_E_P.Parametres_P.Surface_P.Text_IO;
+end Demo_P.Formule_A_2_P.Text_IO;
