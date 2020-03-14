@@ -6,7 +6,7 @@
 --  @group Formule
 package A_E_P.Parametres_P
    with
-      Pure           => False,
+      Pure           => True,
       Preelaborate   => False,
       Elaborate_Body => False,
       Spark_Mode     => Off
