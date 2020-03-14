@@ -69,6 +69,19 @@ is
    --  @param Individu
    --  L'individu.
 
+   function "<"
+      (
+         Gauche : in Individu_T;
+         Droite : in Individu_T
+      )
+      return Boolean;
+   --  Compare deux individus.
+   --  @param Gauche
+   --  L'individu de gauche à comparer.
+   --  @param Gauche
+   --  L'individu de droite à comparer.
+   --  @return Gauche < Droite.
+
 private
 
    type Individu_T is

@@ -167,24 +167,9 @@ is
       )
       return Boolean
    is
-      ------------------------------------
-      function Lire_Resultat
-         (Pos : in Indice_Population_T)
-         return V_Calcule_T
-         with Inline => True;
-
-      ----------------------
-      function Lire_Resultat
-         (Pos : in Indice_Population_T)
-         return V_Calcule_T
-      is
-         Individu : constant Individu_P.Individu_T := Population (Pos);
-      begin
-         return Individu_P.Lire_Resultat (Individu => Individu);
-      end Lire_Resultat;
-      ------------------------------------
+      use type Individu_P.Individu_T;
    begin
-      return Lire_Resultat (Pos => Gauche) < Lire_Resultat (Pos => Droite);
+      return Population (Gauche) < Population (Droite);
    end Comparer_Minimiser;
    ---------------------------------------------------------------------------
 

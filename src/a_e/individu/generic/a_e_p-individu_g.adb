@@ -57,4 +57,17 @@ is
    end Appliquer_Formule;
    ---------------------------------------------------------------------------
 
+   ---------------------------------------------------------------------------
+   function "<"
+      (
+         Gauche : in Individu_T;
+         Droite : in Individu_T
+      )
+      return Boolean
+   is
+   begin
+      return Gauche.V_Calcule < Droite.V_Calcule;
+   end "<";
+   ---------------------------------------------------------------------------
+
 end A_E_P.Individu_G;
