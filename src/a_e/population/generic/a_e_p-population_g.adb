@@ -130,9 +130,12 @@ is
             Boucle_Tri_Bulle :
             for I in Intervalle_Tmp_T loop
                --  On cherche ici à minimiser le résultat.
-               if Lire_Resultat (Position => I)
-                  >
-                  Lire_Resultat (Position => I + 1)
+               if Comparer_Minimiser
+                  (
+                     Population => Tableau,
+                     Droite => I,
+                     Gauche => I + 1
+                  )
                then
                   Echanger
                      (
