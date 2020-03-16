@@ -1,4 +1,4 @@
---  Dernière modification : Jeudi 20 février[02] 2020
+--  Dernière modification : Lundi 16 mars[03] 2020
 --  Auteur : PIVARD Julien
 
 --  https://gcc.gnu.org/releases.html
@@ -103,15 +103,17 @@ project Build is
          "-gnateE",
          --  gnateE : Génère des informations supplémentaires
          --           dans les exceptions
-         "-gnato",
+         "-gnato13",
          --  gnato : Vérification des dépassements numériques.
+         --          1 => Mode strict, pas de dépassements.
+         --          2 => Minimized Utilise la plus grande représentation
+         --               possible pour faire les calculs intermédiaire.
+         --          3 => Faire les calculs avec une précision infinie.
+         --          Le premier chiffre est donné pour le cas général, le
+         --          second est donné pour les assertions.
          "-fstack-check",
          --  fstack-check : Active les vérification de la stack pour
          --                 éviter les stacks overflow.
-         "-gnatel",
-         --  gnatel : Active les messages d'informations signalant les
-         --           ajout implicite de pragma Elaborate et
-         --           Elaborate_All dans le code.
          "-gnatw.d",
          --  gnatw.d : Ajoute un tag au message de warning et d'info
          --            pour savoir quel réglages provoque le message.
@@ -135,6 +137,16 @@ project Build is
    case Verbeux is
       when "oui" =>
          Options := Options & ("-gnatu", "-gnatv", "-gnatR3");
+      when "non" =>
+         null;
+   end case;
+
+   --  gnatel : Active les messages d'informations signalant les
+   --           ajout implicite de pragma Elaborate et
+   --           Elaborate_All dans le code.
+   case Afficher_Ordre_Elaboration is
+      when "oui" =>
+         Options := Options & ("-gnatel");
       when "non" =>
          null;
    end case;
@@ -231,7 +243,7 @@ project Build is
             --  -gnatn : Active les pragma Inline (optimisation)
             for Default_Switches ("Ada") use Options & ("-O3", "-gnatn");
       end case;
-      --  for Local_Configuration_Pragmas use "./config/gnat.adc";
+      for Local_Configuration_Pragmas use "./config/gnat.adc";
 
    end Compiler;
    ----------------------------------------------------------------------------
