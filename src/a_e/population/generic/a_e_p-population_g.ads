@@ -13,8 +13,8 @@ generic
    --  L'intervalle de valeurs de la population.
 
    with package Individu_P is new A_E_P.Individu_G (<>);
-   --  La liste des paramètres à donner en entré de
-   --  la fonction à optimiser.
+   --  Un individu contenant La liste des paramètres
+   --  à donner en entré de la fonction à optimiser.
 
    Intervalle_De_Convergence : V_Calcule_T := 1.0;
    --  À chaque génération, l'individu avec le résultat le
