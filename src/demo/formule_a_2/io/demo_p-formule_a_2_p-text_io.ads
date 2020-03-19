@@ -13,7 +13,11 @@ is
 
    procedure Put
       (Item : in Anonyme_T);
+   --  Affiche le contenu des paramètre de la formule.
+   --  @param Item
+   --  Les paramètres.
 
    procedure Afficher_Formule;
+   --  Affiche la formule associé aux paramètres.
 
 end Demo_P.Formule_A_2_P.Text_IO;

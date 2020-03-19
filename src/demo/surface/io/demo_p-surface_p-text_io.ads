@@ -13,7 +13,11 @@ is
 
    procedure Put
       (Item : in Surface_T);
+   --  Affiche le contenu des paramètre de la formule.
+   --  @param Item
+   --  Les paramètres.
 
    procedure Afficher_Formule;
+   --  Affiche la formule associé aux paramètres.
 
 end Demo_P.Surface_P.Text_IO;
