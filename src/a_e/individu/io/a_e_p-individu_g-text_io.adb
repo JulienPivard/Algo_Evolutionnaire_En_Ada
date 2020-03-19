@@ -12,7 +12,7 @@ is
       (Item : in Individu_T)
    is
    begin
-      Put (Item => Item.V_Param);
+      Put_Parametres (Item => Item.V_Param);
 
       Ada.Text_IO.Put  (Item => " |<>| ");
       Ada.Text_IO.Put  (Item => " |=> Résultat : ");

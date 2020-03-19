@@ -1,6 +1,6 @@
 generic
 
-   with procedure Put
+   with procedure Put_Parametres
       (Item : in Parametres_G_T);
    --  Procédure d'affichage du contenu des paramètres.
    --  @param Item

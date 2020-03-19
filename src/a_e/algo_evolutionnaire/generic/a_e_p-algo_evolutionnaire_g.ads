@@ -42,7 +42,7 @@ generic
    --  @param Parametres
    --  Les paramètres de la fonction.
 
-   with procedure Put
+   with procedure Put_Parametres
       (Item : in Parametres_G_T);
    --  Procédure d'affichage du contenu des paramètres.
    --  @param Item
@@ -125,7 +125,7 @@ private
          Convergence    => Convergence_Adaptation
       );
    package Individu_IO   is new Individu_P.Text_IO
-      (Put => Put);
+      (Put_Parametres => Put_Parametres);
 
    package Population_P  is new A_E_P.Population_G
       (
