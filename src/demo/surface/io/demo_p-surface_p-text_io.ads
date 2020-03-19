@@ -11,7 +11,7 @@ package Demo_P.Surface_P.Text_IO
       Spark_Mode     => Off
 is
 
-   procedure Put
+   procedure Put_Parametres
       (Item : in Surface_T);
    --  Affiche le contenu des paramètre de la formule.
    --  @param Item

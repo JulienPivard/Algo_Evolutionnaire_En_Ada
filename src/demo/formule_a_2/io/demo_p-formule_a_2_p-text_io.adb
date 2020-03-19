@@ -12,7 +12,7 @@ is
    package Valeur_Y_IO is new Valeur_Y_P.Text_IO;
 
    ---------------------------------------------------------------------------
-   procedure Put
+   procedure Put_Parametres
       (Item : in Anonyme_T)
    is
    begin
@@ -20,7 +20,7 @@ is
       Valeur_X_IO.Put (Item => Item.X);
       Ada.Text_IO.Put (Item => " | Y : ");
       Valeur_Y_IO.Put (Item => Item.Y);
-   end Put;
+   end Put_Parametres;
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------

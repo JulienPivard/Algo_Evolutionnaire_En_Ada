@@ -11,13 +11,13 @@ is
    package Valeur_Diametre_IO is new Valeur_Diametre_P.Text_IO;
 
    ---------------------------------------------------------------------------
-   procedure Put
+   procedure Put_Parametres
       (Item : in Surface_T)
    is
    begin
       Ada.Text_IO.Put        (Item => " | D : ");
       Valeur_Diametre_IO.Put (Item => Item.Diametre);
-   end Put;
+   end Put_Parametres;
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------

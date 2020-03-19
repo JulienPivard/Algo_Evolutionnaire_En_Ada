@@ -11,13 +11,13 @@ is
    package Valeur_X_IO is new Valeur_X_P.Text_IO;
 
    ---------------------------------------------------------------------------
-   procedure Put
+   procedure Put_Parametres
       (Item : in Anonyme_T)
    is
    begin
       Ada.Text_IO.Put (Item => " | X : ");
       Valeur_X_IO.Put (Item => Item.X);
-   end Put;
+   end Put_Parametres;
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------

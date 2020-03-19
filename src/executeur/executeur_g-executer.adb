@@ -133,7 +133,7 @@ is
          Generer                => Surface_R.Generer,
          Accoupler              => Surface_R.Accoupler,
          Calculer               => Surface_R.Calculer,
-         Put                    => Surface_IO_R.Put,
+         Put                    => Surface_IO_R.Put_Parametres,
          Afficher_Formule       => Surface_IO_R.Afficher_Formule,
          Convergence_Adaptation => Val_Converge
       );
@@ -152,7 +152,7 @@ is
          Generer                => Formule_1_R.Generer,
          Accoupler              => Formule_1_R.Accoupler,
          Calculer               => Formule_1_R.Calculer,
-         Put                    => Formule_1_IO_R.Put,
+         Put                    => Formule_1_IO_R.Put_Parametres,
          Afficher_Formule       => Formule_1_IO_R.Afficher_Formule,
          Convergence_Adaptation => Val_Converge
       );
@@ -171,7 +171,7 @@ is
          Generer                => Formule_2_R.Generer,
          Accoupler              => Formule_2_R.Accoupler,
          Calculer               => Formule_2_R.Calculer,
-         Put                    => Formule_2_IO_R.Put,
+         Put                    => Formule_2_IO_R.Put_Parametres,
          Afficher_Formule       => Formule_2_IO_R.Afficher_Formule,
          Convergence_Adaptation => Val_Converge
       );
