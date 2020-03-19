@@ -113,15 +113,6 @@ is
    end Determiner_Min;
    ---------------------------------------------------------------------------
 
-   use type A_E_P.V_Calcule_T;
-   function Val_Converge
-      (
-         Reference : in A_E_P.V_Calcule_T;
-         Actuelle  : in A_E_P.V_Calcule_T
-      )
-      return Boolean
-   is (Reference - 0.5 <= Actuelle and then Actuelle <= Reference + 0.5);
-
    --  Expérimentation avec une formule de calcul de surface d'un volume.
    package Surface_R    renames Demo_P.Surface_P;
    package Surface_IO_R renames Demo_P.Surface_P.Text_IO;
@@ -135,7 +126,7 @@ is
          Calculer               => Surface_R.Calculer,
          Put_Parametres         => Surface_IO_R.Put_Parametres,
          Afficher_Formule       => Surface_IO_R.Afficher_Formule,
-         Convergence_Adaptation => Val_Converge
+         Convergence_Adaptation => Surface_R.Resultats_Convergent
       );
 
    procedure Min_Surface is new Determiner_Min
@@ -154,7 +145,7 @@ is
          Calculer               => Formule_1_R.Calculer,
          Put_Parametres         => Formule_1_IO_R.Put_Parametres,
          Afficher_Formule       => Formule_1_IO_R.Afficher_Formule,
-         Convergence_Adaptation => Val_Converge
+         Convergence_Adaptation => Formule_1_R.Resultats_Convergent
       );
 
    procedure Min_Anonyme_1 is new Determiner_Min
@@ -173,7 +164,7 @@ is
          Calculer               => Formule_2_R.Calculer,
          Put_Parametres         => Formule_2_IO_R.Put_Parametres,
          Afficher_Formule       => Formule_2_IO_R.Afficher_Formule,
-         Convergence_Adaptation => Val_Converge
+         Convergence_Adaptation => Formule_2_R.Resultats_Convergent
       );
 
    procedure Min_Anonyme_2 is new Determiner_Min

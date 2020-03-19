@@ -72,6 +72,20 @@ is
    --  Le résultat à droite de la comparaison.
    --  @return Gauche > Droite.
 
+   function Resultats_Convergent
+      (
+         Reference : in A_E_P.V_Calcule_T;
+         Actuel    : in A_E_P.V_Calcule_T
+      )
+      return Boolean
+      with Inline => True;
+   --  Le résultat actuel converge avec le résultat de référence.
+   --  @param Reference
+   --  Le résultat de référence.
+   --  @param Actuel
+   --  Le résultat dont on veut savoir si il converge.
+   --  @return Le résultat converge vers la référence.
+
 private
 
    package Valeur_X_P is new A_E_P.Valeur_Param_G
@@ -112,5 +126,13 @@ private
       (Gauche, Droite : in Resultat_T)
       return Boolean
    is (Gauche.Valeur > Droite.Valeur);
+
+   function Resultats_Convergent
+      (
+         Reference : in A_E_P.V_Calcule_T;
+         Actuel    : in A_E_P.V_Calcule_T
+      )
+      return Boolean
+   is (Reference - 0.5 <= Actuel and then Actuel <= Reference + 0.5);
 
 end Demo_P.Formule_A_1_P;
