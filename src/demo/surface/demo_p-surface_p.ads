@@ -112,7 +112,7 @@ private
 
    type Resultat_T is
       record
-         Surface : A_E_P.V_Calcule_T;
+         Surface : A_E_P.V_Calcule_T := 0.0;
          --  La surface totale nécessaire.
       end record;
 

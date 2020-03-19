@@ -111,7 +111,7 @@ private
 
    type Resultat_T is
       record
-         Valeur : A_E_P.V_Calcule_T;
+         Valeur : A_E_P.V_Calcule_T := 0.0;
          --  Le résultat du calcul de la formule.
       end record;
 
