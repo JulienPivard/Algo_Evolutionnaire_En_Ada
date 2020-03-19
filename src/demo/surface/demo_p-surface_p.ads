@@ -39,6 +39,9 @@ is
    --  Les paramètres, second parent.
    --  @return Le jeu de paramètres issus de la combinaison des parents.
 
+   type Resultat_T is private;
+   --  Stock le résultat des calculs.
+
    function Calculer
       (Parametres : in Surface_T)
       return A_E_P.V_Calcule_T;
@@ -46,6 +49,29 @@ is
    --  paramètres comme entrées de la fonction de la formule.
    --  @param Parametres
    --  Les paramètres de la fonction.
+   --  @return Le résultat du calcul de la formule.
+
+   function "<"
+      (Gauche, Droite : in Resultat_T)
+      return Boolean
+      with Inline => True;
+   --  Compare deux résultats.
+   --  @param Gauche
+   --  Le résultat à gauche de la comparaison.
+   --  @param Droite
+   --  Le résultat à droite de la comparaison.
+   --  @return Gauche < Droite.
+
+   function ">"
+      (Gauche, Droite : in Resultat_T)
+      return Boolean
+      with Inline => True;
+   --  Compare deux résultats.
+   --  @param Gauche
+   --  Le résultat à gauche de la comparaison.
+   --  @param Droite
+   --  Le résultat à droite de la comparaison.
+   --  @return Gauche > Droite.
 
 private
 
@@ -69,5 +95,23 @@ private
    --  @param Parametres
    --  Les paramètres.
    --  @return La valeur du paramètre demandé.
+
+   type Resultat_T is
+      record
+         Surface : A_E_P.V_Calcule_T;
+         --  La surface totale nécessaire.
+      end record;
+
+   use type A_E_P.V_Calcule_T;
+
+   function "<"
+      (Gauche, Droite : in Resultat_T)
+      return Boolean
+   is (Gauche.Surface < Droite.Surface);
+
+   function ">"
+      (Gauche, Droite : in Resultat_T)
+      return Boolean
+   is (Gauche.Surface > Droite.Surface);
 
 end Demo_P.Surface_P;
