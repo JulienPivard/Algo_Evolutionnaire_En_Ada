@@ -16,15 +16,6 @@ generic
    --  Un individu contenant La liste des paramètres
    --  à donner en entré de la fonction à optimiser.
 
-   Intervalle_De_Convergence : V_Calcule_T := 1.0;
-   --  À chaque génération, l'individu avec le résultat le
-   --  plus faible/élevé est pris pour référence.
-   --  L'intervalle de convergence représente l'écart accepté
-   --  entre tous les individu survivant à chaque génération
-   --  par rapport à l'individu de référence. Si tous les
-   --  individus sont dans cet intervalle, alors la population
-   --  à convergé vers son optimal et n'évoluera plus.
-
 --  @summary
 --  Opérations réalisable sur une population d'individu.
 --  @description

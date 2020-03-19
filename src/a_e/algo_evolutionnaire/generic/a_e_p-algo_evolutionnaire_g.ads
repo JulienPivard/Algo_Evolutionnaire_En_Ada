@@ -51,7 +51,12 @@ generic
    with procedure Afficher_Formule;
    --  Affiche la formule qui va être résolue.
 
-   Intervalle_De_Convergence : V_Calcule_T := 1.0;
+   with function Convergence_Adaptation
+      (
+         Reference : in V_Calcule_T;
+         Actuelle  : in V_Calcule_T
+      )
+      return Boolean;
    --  Permet de régler la précision de la détection de convergence
    --  des individus vers un génome similaire. C'est grâce à ce
    --  critère que l'on mesure la diversité génétique de la
@@ -116,7 +121,8 @@ private
          Parametres_G_T => Parametres_G_T,
          Generer        => Generer,
          Accoupler      => Accoupler,
-         Calculer       => Calculer
+         Calculer       => Calculer,
+         Convergence    => Convergence_Adaptation
       );
    package Individu_IO   is new Individu_P.Text_IO
       (Put => Put);
@@ -124,7 +130,6 @@ private
    package Population_P  is new A_E_P.Population_G
       (
          Indice_Population_T       => Indice_Population_T,
-         Intervalle_De_Convergence => Intervalle_De_Convergence,
          Individu_P                => Individu_P
       );
    package Population_IO is new Population_P.Text_IO

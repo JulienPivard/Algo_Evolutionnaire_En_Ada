@@ -65,31 +65,19 @@ is
       (Population : in Population_T)
       return Boolean
    is
-      ------------------------------------
-      function Lire_Resultat
-         (Position : in Indice_Population_T)
-         return V_Calcule_T
-         with Inline => True;
+      I_Ref : constant Individu_P.Individu_T :=
+         Population.Table (Population.Table'First);
 
-      ----------------------
-      function Lire_Resultat
-         (Position : in Indice_Population_T)
-         return V_Calcule_T
-      is
-         Individu : constant Individu_P.Individu_T :=
-            Population.Table (Position);
-      begin
-         return Individu_P.Lire_Resultat (Individu => Individu);
-      end Lire_Resultat;
-      ------------------------------------
-
-      V_Ref : constant V_Calcule_T :=
-         Lire_Resultat (Position => Population.Table'First);
+      function Converge
+         (
+            Reference : in Individu_P.Individu_T := I_Ref;
+            Actuel    : in Individu_P.Individu_T
+         )
+         return Boolean
+         renames Individu_P.Dans_Convergence;
    begin
       return (for all I in Intervalle_Survivants_T =>
-         Lire_Resultat (Position => I) <= V_Ref + Intervalle_De_Convergence
-         and then
-         Lire_Resultat (Position => I) >= V_Ref - Intervalle_De_Convergence);
+         Converge (Actuel => Population.Table (I)));
    end Verifier_Convergence;
    ---------------------------------------------------------------------------
 

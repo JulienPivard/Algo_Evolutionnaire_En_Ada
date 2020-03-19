@@ -30,6 +30,24 @@ generic
    --  @param Parametres
    --  Les paramètres de la fonction.
 
+   with function Convergence
+      (
+         Reference : in V_Calcule_T;
+         Actuelle  : in V_Calcule_T
+      )
+      return Boolean;
+   --  Tests si la valeur calculée est proche de celle de référence.
+   --  L'intervalle de convergence représente l'écart accepté
+   --  entre tous les individu survivant à chaque génération
+   --  par rapport à l'individu de référence. Si tous les
+   --  individus sont dans cet intervalle, alors la population
+   --  à convergé vers son optimal et n'évoluera plus.
+   --  @param Reference
+   --  La valeur de référence.
+   --  @param Actuelle
+   --  La valeur à comparer.
+   --  @return La valeur est proche de celle de référence.
+
 --  @summary
 --  Un individu de la population.
 --  @description
@@ -97,6 +115,27 @@ is
    --  Applique la formule sur l'individu.
    --  @param Individu
    --  L'individu.
+
+   function Dans_Convergence
+      (
+         Reference : in Individu_T;
+         Actuel    : in Individu_T
+      )
+      return Boolean
+      with Inline => True;
+   --  Test si un individu est proche d'un individu de référence.
+   --  Le résultat est utilisé pour connaitre le niveau de
+   --  convergence génétique d'une population.
+   --  L'intervalle de convergence représente l'écart accepté
+   --  entre tous les individu survivant à chaque génération
+   --  par rapport à l'individu de référence. Si tous les
+   --  individus sont dans cet intervalle, alors la population
+   --  à convergé vers son optimal et n'évoluera plus.
+   --  @param Reference
+   --  L'individu de référence.
+   --  @param Actuel
+   --  L'individu à comparer à la référence.
+   --  @return L'individu est proche de la référence.
 
    function "<"
       (Gauche, Droite : in Individu_T)

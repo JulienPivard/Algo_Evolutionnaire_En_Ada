@@ -113,20 +113,29 @@ is
    end Determiner_Min;
    ---------------------------------------------------------------------------
 
+   use type A_E_P.V_Calcule_T;
+   function Val_Converge
+      (
+         Reference : in A_E_P.V_Calcule_T;
+         Actuelle  : in A_E_P.V_Calcule_T
+      )
+      return Boolean
+   is (Reference - 0.5 <= Actuelle and then Actuelle <= Reference + 0.5);
+
    --  Expérimentation avec une formule de calcul de surface d'un volume.
    package Surface_R    renames Demo_P.Surface_P;
    package Surface_IO_R renames Demo_P.Surface_P.Text_IO;
 
    package Population_Surface_P  is new A_E_P.Algo_Evolutionnaire_G
       (
-         Indice_Population_T       => Intervalle_P.Indice_T,
-         Parametres_G_T            => Surface_R.Surface_T,
-         Generer                   => Surface_R.Generer,
-         Accoupler                 => Surface_R.Accoupler,
-         Calculer                  => Surface_R.Calculer,
-         Put                       => Surface_IO_R.Put,
-         Afficher_Formule          => Surface_IO_R.Afficher_Formule,
-         Intervalle_De_Convergence => 0.5
+         Indice_Population_T    => Intervalle_P.Indice_T,
+         Parametres_G_T         => Surface_R.Surface_T,
+         Generer                => Surface_R.Generer,
+         Accoupler              => Surface_R.Accoupler,
+         Calculer               => Surface_R.Calculer,
+         Put                    => Surface_IO_R.Put,
+         Afficher_Formule       => Surface_IO_R.Afficher_Formule,
+         Convergence_Adaptation => Val_Converge
       );
 
    procedure Min_Surface is new Determiner_Min
@@ -138,14 +147,14 @@ is
 
    package Population_Anonyme_1_P  is new A_E_P.Algo_Evolutionnaire_G
       (
-         Indice_Population_T       => Intervalle_P.Indice_T,
-         Parametres_G_T            => Formule_1_R.Anonyme_T,
-         Generer                   => Formule_1_R.Generer,
-         Accoupler                 => Formule_1_R.Accoupler,
-         Calculer                  => Formule_1_R.Calculer,
-         Put                       => Formule_1_IO_R.Put,
-         Afficher_Formule          => Formule_1_IO_R.Afficher_Formule,
-         Intervalle_De_Convergence => 0.5
+         Indice_Population_T    => Intervalle_P.Indice_T,
+         Parametres_G_T         => Formule_1_R.Anonyme_T,
+         Generer                => Formule_1_R.Generer,
+         Accoupler              => Formule_1_R.Accoupler,
+         Calculer               => Formule_1_R.Calculer,
+         Put                    => Formule_1_IO_R.Put,
+         Afficher_Formule       => Formule_1_IO_R.Afficher_Formule,
+         Convergence_Adaptation => Val_Converge
       );
 
    procedure Min_Anonyme_1 is new Determiner_Min
@@ -157,14 +166,14 @@ is
 
    package Population_Anonyme_2_P  is new A_E_P.Algo_Evolutionnaire_G
       (
-         Indice_Population_T       => Intervalle_P.Indice_T,
-         Parametres_G_T            => Formule_2_R.Anonyme_T,
-         Generer                   => Formule_2_R.Generer,
-         Accoupler                 => Formule_2_R.Accoupler,
-         Calculer                  => Formule_2_R.Calculer,
-         Put                       => Formule_2_IO_R.Put,
-         Afficher_Formule          => Formule_2_IO_R.Afficher_Formule,
-         Intervalle_De_Convergence => 0.5
+         Indice_Population_T    => Intervalle_P.Indice_T,
+         Parametres_G_T         => Formule_2_R.Anonyme_T,
+         Generer                => Formule_2_R.Generer,
+         Accoupler              => Formule_2_R.Accoupler,
+         Calculer               => Formule_2_R.Calculer,
+         Put                    => Formule_2_IO_R.Put,
+         Afficher_Formule       => Formule_2_IO_R.Afficher_Formule,
+         Convergence_Adaptation => Val_Converge
       );
 
    procedure Min_Anonyme_2 is new Determiner_Min

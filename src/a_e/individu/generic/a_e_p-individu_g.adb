@@ -63,6 +63,23 @@ is
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
+   function Dans_Convergence
+      (
+         Reference : in Individu_T;
+         Actuel    : in Individu_T
+      )
+      return Boolean
+   is
+   begin
+      return Convergence
+         (
+            Reference => Reference.V_Calcule,
+            Actuelle  => Actuel.V_Calcule
+         );
+   end Dans_Convergence;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
    function "<"
       (Gauche, Droite : in Individu_T)
       return Boolean

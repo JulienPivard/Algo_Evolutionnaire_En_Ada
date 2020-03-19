@@ -46,7 +46,6 @@ is
 
    ---------------------------------------------------------------------------
    procedure Afficher_Details is
-      package V_Calcule_IO is new Ada.Text_IO.Float_IO (Num => V_Calcule_T);
    begin
       Ada.Text_IO.Put      (Item    => "Population   : ");
       Indice_IO.Put        (Item    => Taille_Population);
@@ -65,11 +64,6 @@ is
       Ada.Text_IO.New_Line (Spacing => 1);
       Ada.Text_IO.Put      (Item    => "Mutants      : ");
       Indice_IO.Put        (Item    => Nb_Mutants);
-      Ada.Text_IO.New_Line (Spacing => 2);
-
-      Ada.Text_IO.Put      (Item    => "Intervalle de convergence : +/-");
-      V_Calcule_IO.Put
-         (Item => Intervalle_De_Convergence, Fore => 2, Aft => 2, Exp => 0);
       Ada.Text_IO.New_Line (Spacing => 2);
 
       if Taille_Population <= 50 then
