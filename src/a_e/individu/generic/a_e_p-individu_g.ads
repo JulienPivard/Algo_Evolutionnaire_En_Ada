@@ -70,7 +70,8 @@ is
    --  @return La valeur du résultat.
 
    procedure Generer_Parametres
-      (Individu : in out Individu_T);
+      (Individu : in out Individu_T)
+      with Inline => True;
    --  Permet de générer de nouvelles valeurs pour chaque
    --  paramètres aléatoirement.
    --  @param Individu
@@ -81,7 +82,8 @@ is
          Individu : in Individu_T;
          Autre    : in Individu_T
       )
-      return Individu_T;
+      return Individu_T
+      with Inline => True;
    --  Accouple deux individus pour en obtenir un 3ieme.
    --  @param Individu
    --  Le premier membre du couple.
@@ -90,14 +92,16 @@ is
    --  @return Le résultat de l'union des deux Individu.
 
    procedure Appliquer_Formule
-      (Individu : in out Individu_T);
+      (Individu : in out Individu_T)
+      with Inline => True;
    --  Applique la formule sur l'individu.
    --  @param Individu
    --  L'individu.
 
    function "<"
       (Gauche, Droite : in Individu_T)
-      return Boolean;
+      return Boolean
+      with Inline => True;
    --  Compare deux individus.
    --  @param Gauche
    --  L'individu de gauche à comparer.
@@ -107,7 +111,8 @@ is
 
    function ">"
       (Gauche, Droite : in Individu_T)
-      return Boolean;
+      return Boolean
+      with Inline => True;
    --  Compare deux individus.
    --  @param Gauche
    --  L'individu de gauche à comparer.
