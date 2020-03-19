@@ -17,6 +17,12 @@ is
    --  @param Item
    --  Les paramètres.
 
+   procedure Put_Resultat
+      (Item : in Resultat_T);
+   --  Affiche le contenu des résultats de la formule.
+   --  @param Item
+   --  Les résultats.
+
    procedure Afficher_Formule;
    --  Affiche la formule associé aux paramètres.
 

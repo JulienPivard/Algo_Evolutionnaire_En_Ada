@@ -20,6 +20,25 @@ is
    end Put_Parametres;
    ---------------------------------------------------------------------------
 
+   package V_Calcule_IO is new Ada.Text_IO.Float_IO
+      (Num => A_E_P.V_Calcule_T);
+
+   ---------------------------------------------------------------------------
+   procedure Put_Resultat
+      (Item : in Resultat_T)
+   is
+   begin
+      Ada.Text_IO.Put (Item => " |=> Résultat : ");
+      V_Calcule_IO.Put
+         (
+            Item => Item.Valeur,
+            Fore => 3,
+            Aft  => 3,
+            Exp  => 0
+         );
+   end Put_Resultat;
+   ---------------------------------------------------------------------------
+
    ---------------------------------------------------------------------------
    procedure Afficher_Formule is
    begin
