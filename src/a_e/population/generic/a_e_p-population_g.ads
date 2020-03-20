@@ -226,7 +226,7 @@ private
          --  La totalité de la population.
       end record;
 
-   package Tri_A_Bulle_P is new Tri_A_Bulle_G
+   package Tri_A_Bulle_Min_P is new Tri_A_Bulle_G
       (
          Indice_G_T   => Indice_Population_T,
          Element_G_T  => Individu_P.Individu_T,
@@ -235,7 +235,7 @@ private
          Echanger     => Echanger
       );
 
-   package Tri_Rapide_P is new Tri_Rapide_G
+   package Tri_Rapide_Min_P is new Tri_Rapide_G
       (
          Sorte_De_Tri => Sorte_De_Tri_P.Aleatoire,
          Indice_G_T   => Indice_Population_T,
