@@ -20,6 +20,19 @@ génome d'un individu correspond aux paramètres de la fonction à résoudre, en
 le résultat d'un individu, par l'application de la formule sur son génome,
 correspond à son phénotype (l'expression de ses gènes dans l'environnement).
 
+# Compilation des demo
+
+Par défaut toutes les démos sont exécutées dans la version par défaut.
+Pour compiler, il suffit de taper dans un terminal :
+
+```sh
+make
+```
+
+Le résultat de la compilation se trouvera dans `./bin/debug/executable` ou
+dans `./bin/release/executable` selon les options choisie dans le fichier
+`makefile.conf`.
+
 # TODO
 - [ ] Ajouter une mécanique de sélection par tournois
 - [ ] Parallélisation par découpage en plusieurs populations avec échange d'individus
