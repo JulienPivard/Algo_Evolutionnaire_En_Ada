@@ -21,6 +21,6 @@ le résultat d'un individu, par l'application de la formule sur son génome,
 correspond à son phénotype (l'expression de ses gènes dans l'environnement).
 
 # TODO
-- [ ] Ajouter une mécanique de selection par tournois
-- [ ] Parrallélisation par découpage en plusieurs populations avec échange d'individus
-- [ ] Possibilité de limiter les échanges de population aux ilots proches (processeur voisin)
+- [ ] Ajouter une mécanique de sélection par tournois
+- [ ] Parallélisation par découpage en plusieurs populations avec échange d'individus
+- [ ] Possibilité de limiter les échanges de population aux îlots proches (processeur voisin)
