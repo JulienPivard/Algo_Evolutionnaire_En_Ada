@@ -48,23 +48,25 @@ is
    ---------------------------------------------------------------------------
    function Calculer
       (Parametres : in Anonyme_T)
-      return A_E_P.V_Calcule_T
+      return Resultat_T
    is
       Xi : constant Math_T := Math_T (Lire_Parametre_X (P => Parametres));
       Yi : constant Math_T := Math_T (Lire_Parametre_Y (P => Parametres));
    begin
-      return A_E_P.V_Calcule_T
-         (
-            Math_P.Sin (X => Xi + Yi)
-            +
-            (Xi - Yi)**2
-            -
-            (1.5 * Xi)
-            +
-            (2.5 * Yi)
-            +
-            1.0
-         );
+      return R : Resultat_T do
+         R.Valeur := A_E_P.V_Calcule_T
+            (
+               Math_P.Sin (X => Xi + Yi)
+               +
+               (Xi - Yi)**2
+               -
+               (1.5 * Xi)
+               +
+               (2.5 * Yi)
+               +
+               1.0
+            );
+      end return;
    end Calculer;
    ---------------------------------------------------------------------------
 

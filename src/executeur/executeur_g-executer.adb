@@ -117,14 +117,18 @@ is
    package Surface_R    renames Demo_P.Surface_P;
    package Surface_IO_R renames Demo_P.Surface_P.Text_IO;
 
+   use type Surface_R.Resultat_T;
+
    package Population_Surface_P  is new A_E_P.Algo_Evolutionnaire_G
       (
          Indice_Population_T    => Intervalle_P.Indice_T,
          Parametres_G_T         => Surface_R.Surface_T,
          Generer                => Surface_R.Generer,
          Accoupler              => Surface_R.Accoupler,
+         Resultat_Calcul_G_T    => Surface_R.Resultat_T,
          Calculer               => Surface_R.Calculer,
          Put_Parametres         => Surface_IO_R.Put_Parametres,
+         Put_Resultat           => Surface_IO_R.Put_Resultat,
          Afficher_Formule       => Surface_IO_R.Afficher_Formule,
          Convergence_Adaptation => Surface_R.Resultats_Convergent
       );
@@ -136,14 +140,18 @@ is
    package Formule_1_R    renames Demo_P.Formule_A_1_P;
    package Formule_1_IO_R renames Demo_P.Formule_A_1_P.Text_IO;
 
+   use type Formule_1_R.Resultat_T;
+
    package Population_Anonyme_1_P  is new A_E_P.Algo_Evolutionnaire_G
       (
          Indice_Population_T    => Intervalle_P.Indice_T,
          Parametres_G_T         => Formule_1_R.Anonyme_T,
          Generer                => Formule_1_R.Generer,
          Accoupler              => Formule_1_R.Accoupler,
+         Resultat_Calcul_G_T    => Formule_1_R.Resultat_T,
          Calculer               => Formule_1_R.Calculer,
          Put_Parametres         => Formule_1_IO_R.Put_Parametres,
+         Put_Resultat           => Formule_1_IO_R.Put_Resultat,
          Afficher_Formule       => Formule_1_IO_R.Afficher_Formule,
          Convergence_Adaptation => Formule_1_R.Resultats_Convergent
       );
@@ -155,14 +163,18 @@ is
    package Formule_2_R    renames Demo_P.Formule_A_2_P;
    package Formule_2_IO_R renames Demo_P.Formule_A_2_P.Text_IO;
 
+   use type Formule_2_R.Resultat_T;
+
    package Population_Anonyme_2_P  is new A_E_P.Algo_Evolutionnaire_G
       (
          Indice_Population_T    => Intervalle_P.Indice_T,
          Parametres_G_T         => Formule_2_R.Anonyme_T,
          Generer                => Formule_2_R.Generer,
          Accoupler              => Formule_2_R.Accoupler,
+         Resultat_Calcul_G_T    => Formule_2_R.Resultat_T,
          Calculer               => Formule_2_R.Calculer,
          Put_Parametres         => Formule_2_IO_R.Put_Parametres,
+         Put_Resultat           => Formule_2_IO_R.Put_Resultat,
          Afficher_Formule       => Formule_2_IO_R.Afficher_Formule,
          Convergence_Adaptation => Formule_2_R.Resultats_Convergent
       );

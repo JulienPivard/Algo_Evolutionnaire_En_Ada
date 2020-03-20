@@ -34,9 +34,12 @@ generic
    --  Les paramètres, second parent.
    --  @return Le jeu de paramètres issus de la combinaison des parents.
 
+   type Resultat_Calcul_G_T is private;
+   --  Le résultat du calcul de la formule avec les valeurs des paramètres.
+
    with function Calculer
       (Parametres : in Parametres_G_T)
-      return V_Calcule_T;
+      return Resultat_Calcul_G_T;
    --  Calcul la formule en utilisant les valeurs de ses
    --  paramètres comme entrées de la fonction de la formule.
    --  @param Parametres
@@ -48,13 +51,19 @@ generic
    --  @param Item
    --  Les paramètres.
 
+   with procedure Put_Resultat
+      (Item : in Resultat_Calcul_G_T);
+   --  Procédure d'affichage du contenu des résultats du calcul de la formule.
+   --  @param Item
+   --  Les résultats.
+
    with procedure Afficher_Formule;
    --  Affiche la formule qui va être résolue.
 
    with function Convergence_Adaptation
       (
-         Reference : in V_Calcule_T;
-         Actuelle  : in V_Calcule_T
+         Reference : in Resultat_Calcul_G_T;
+         Actuelle  : in Resultat_Calcul_G_T
       )
       return Boolean;
    --  Permet de régler la précision de la détection de convergence
@@ -68,6 +77,30 @@ generic
    --  cette génération. Il faut que la diversité génétique ait
    --  disparue pendant 25 générations d’affilée pour que l'on
    --  déclare que le minimum a été trouvé.
+
+   with function "<"
+      (Gauche, Droite : in Resultat_Calcul_G_T)
+      return Boolean
+   is <>;
+   --  Utilisé pour pouvoir trier les individus en
+   --  fonction de leur adaptation.
+   --  @param Gauche
+   --  Le résultat à gauche de la comparaison.
+   --  @param Droite
+   --  Le résultat à droite de la comparaison.
+   --  @return Gauche < Droite
+
+   with function ">"
+      (Gauche, Droite : in Resultat_Calcul_G_T)
+      return Boolean
+   is <>;
+   --  Utilisé pour pouvoir trier les individus en
+   --  fonction de leur adaptation.
+   --  @param Gauche
+   --  Le résultat à gauche de la comparaison.
+   --  @param Droite
+   --  Le résultat à droite de la comparaison.
+   --  @return Gauche > Droite
 
 --  @summary
 --  Interface de regroupement pour utiliser l'algo évolutionnaire.
@@ -118,14 +151,18 @@ private
 
    package Individu_P    is new A_E_P.Individu_G
       (
-         Parametres_G_T => Parametres_G_T,
-         Generer        => Generer,
-         Accoupler      => Accoupler,
-         Calculer       => Calculer,
-         Convergence    => Convergence_Adaptation
+         Parametres_G_T      => Parametres_G_T,
+         Generer             => Generer,
+         Accoupler           => Accoupler,
+         Resultat_Calcul_G_T => Resultat_Calcul_G_T,
+         Calculer            => Calculer,
+         Convergence         => Convergence_Adaptation
       );
    package Individu_IO   is new Individu_P.Text_IO
-      (Put_Parametres => Put_Parametres);
+      (
+         Put_Parametres => Put_Parametres,
+         Put_Resultat   => Put_Resultat
+      );
 
    package Population_P  is new A_E_P.Population_G
       (

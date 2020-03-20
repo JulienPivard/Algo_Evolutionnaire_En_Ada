@@ -39,12 +39,15 @@ is
    ---------------------------------------------------------------------------
    function Calculer
       (Parametres : in Surface_T)
-      return A_E_P.V_Calcule_T
+      return Resultat_T
    is
       Pi : constant        := Ada.Numerics.Pi;
       Di : constant Math_T := Math_T (Lire_Parametre (P => Parametres));
    begin
-      return A_E_P.V_Calcule_T (Pi * ((Di**2) / 2.0) + 4.0 * (160.0 / Di));
+      return R : Resultat_T do
+         R.Surface := A_E_P.V_Calcule_T
+            (Pi * ((Di**2) / 2.0) + 4.0 * (160.0 / Di));
+      end return;
    end Calculer;
    ---------------------------------------------------------------------------
 

@@ -22,9 +22,12 @@ generic
    --  Les paramètres, second parent.
    --  @return Le jeu de paramètres issus de la combinaison des parents.
 
+   type Resultat_Calcul_G_T is private;
+   --  Le résultat du calcul de la formule avec les valeurs des paramètres.
+
    with function Calculer
       (Parametres : in Parametres_G_T)
-      return V_Calcule_T;
+      return Resultat_Calcul_G_T;
    --  Calcul la formule en utilisant les valeurs de ses
    --  paramètres comme entrées de la fonction de la formule.
    --  @param Parametres
@@ -32,8 +35,8 @@ generic
 
    with function Convergence
       (
-         Reference : in V_Calcule_T;
-         Actuelle  : in V_Calcule_T
+         Reference : in Resultat_Calcul_G_T;
+         Actuelle  : in Resultat_Calcul_G_T
       )
       return Boolean;
    --  Tests si la valeur calculée est proche de celle de référence.
@@ -47,6 +50,30 @@ generic
    --  @param Actuelle
    --  La valeur à comparer.
    --  @return La valeur est proche de celle de référence.
+
+   with function "<"
+      (Gauche, Droite : in Resultat_Calcul_G_T)
+      return Boolean
+   is <>;
+   --  Utilisé pour pouvoir trier les individus en
+   --  fonction de leur adaptation.
+   --  @param Gauche
+   --  Le résultat à gauche de la comparaison.
+   --  @param Droite
+   --  Le résultat à droite de la comparaison.
+   --  @return Gauche < Droite
+
+   with function ">"
+      (Gauche, Droite : in Resultat_Calcul_G_T)
+      return Boolean
+   is <>;
+   --  Utilisé pour pouvoir trier les individus en
+   --  fonction de leur adaptation.
+   --  @param Gauche
+   --  Le résultat à gauche de la comparaison.
+   --  @param Droite
+   --  Le résultat à droite de la comparaison.
+   --  @return Gauche > Droite
 
 --  @summary
 --  Un individu de la population.
@@ -69,7 +96,7 @@ is
    procedure Modifier_Resultat
       (
          Individu : in out Individu_T;
-         Valeur   : in     V_Calcule_T
+         Valeur   : in     Resultat_Calcul_G_T
       )
       with Inline => True;
    --  Modifie le résultat stocké dans l'individu.
@@ -80,7 +107,7 @@ is
 
    function Lire_Resultat
       (Individu : in Individu_T)
-      return V_Calcule_T
+      return Resultat_Calcul_G_T
       with Inline => True;
    --  Lit le résultat stocké dans l'individu.
    --  @param Individu
@@ -167,7 +194,7 @@ private
          --  La/Les inconnue(s) utilisé par la fonction, qui
          --  correspond à notre environnement.
          --  Peut être vu comme le génome de l'individu.
-         V_Calcule : V_Calcule_T := 0.0;
+         V_Calcule : Resultat_Calcul_G_T;
          --  Le résultat de la fonction appliqué aux paramètres.
          --  Peut être vu comme l'expression des gènes de
          --  l'individu contraint par l'environnement.

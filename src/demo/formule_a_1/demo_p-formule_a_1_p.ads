@@ -43,7 +43,7 @@ is
 
    function Calculer
       (Parametres : in Anonyme_T)
-      return A_E_P.V_Calcule_T;
+      return Resultat_T;
    --  Calcul la formule en utilisant les valeurs de ses
    --  paramètres comme entrées de la fonction de la formule.
    --  @param Parametres
@@ -74,8 +74,8 @@ is
 
    function Resultats_Convergent
       (
-         Reference : in A_E_P.V_Calcule_T;
-         Actuel    : in A_E_P.V_Calcule_T
+         Reference : in Resultat_T;
+         Actuel    : in Resultat_T
       )
       return Boolean
       with Inline => True;
@@ -129,15 +129,15 @@ private
 
    function Resultats_Convergent
       (
-         Reference : in A_E_P.V_Calcule_T;
-         Actuel    : in A_E_P.V_Calcule_T
+         Reference : in Resultat_T;
+         Actuel    : in Resultat_T
       )
       return Boolean
    is
       (
-         Reference - 0.5 <= Actuel
+         Reference.Valeur - 0.5 <= Actuel.Valeur
          and then
-         Actuel <= Reference + 0.5
+         Actuel.Valeur <= Reference.Valeur + 0.5
       );
 
 end Demo_P.Formule_A_1_P;

@@ -6,7 +6,7 @@ is
    procedure Modifier_Resultat
       (
          Individu : in out Individu_T;
-         Valeur   : in     V_Calcule_T
+         Valeur   : in     Resultat_Calcul_G_T
       )
    is
    begin
@@ -17,7 +17,7 @@ is
    ---------------------------------------------------------------------------
    function Lire_Resultat
       (Individu : in Individu_T)
-      return V_Calcule_T
+      return Resultat_Calcul_G_T
    is
    begin
       return Individu.V_Calcule;

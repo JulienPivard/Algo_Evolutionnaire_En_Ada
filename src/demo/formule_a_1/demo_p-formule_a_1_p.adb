@@ -41,13 +41,15 @@ is
    ---------------------------------------------------------------------------
    function Calculer
       (Parametres : in Anonyme_T)
-      return A_E_P.V_Calcule_T
+      return Resultat_T
    is
       Pi : constant        := Ada.Numerics.Pi;
       Xi : constant Math_T := Math_T (Lire_Parametre (P => Parametres));
    begin
-      return A_E_P.V_Calcule_T
-         (10.0 + (Xi**2) - 10.0 * Math_P.Cos (X => 2.0 * Pi * Xi));
+      return R : Resultat_T do
+         R.Valeur := A_E_P.V_Calcule_T
+            (10.0 + (Xi**2) - 10.0 * Math_P.Cos (X => 2.0 * Pi * Xi));
+      end return;
    end Calculer;
    ---------------------------------------------------------------------------
 

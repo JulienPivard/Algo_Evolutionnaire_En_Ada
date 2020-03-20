@@ -44,7 +44,7 @@ is
 
    function Calculer
       (Parametres : in Surface_T)
-      return A_E_P.V_Calcule_T;
+      return Resultat_T;
    --  Calcul la formule en utilisant les valeurs de ses
    --  paramètres comme entrées de la fonction de la formule.
    --  @param Parametres
@@ -75,8 +75,8 @@ is
 
    function Resultats_Convergent
       (
-         Reference : in A_E_P.V_Calcule_T;
-         Actuel    : in A_E_P.V_Calcule_T
+         Reference : in Resultat_T;
+         Actuel    : in Resultat_T
       )
       return Boolean
       with Inline => True;
@@ -130,15 +130,15 @@ private
 
    function Resultats_Convergent
       (
-         Reference : in A_E_P.V_Calcule_T;
-         Actuel    : in A_E_P.V_Calcule_T
+         Reference : in Resultat_T;
+         Actuel    : in Resultat_T
       )
       return Boolean
    is
       (
-         Reference - 0.5 <= Actuel
+         Reference.Surface - 0.5 <= Actuel.Surface
          and then
-         Actuel <= Reference + 0.5
+         Actuel.Surface <= Reference.Surface + 0.5
       );
 
 end Demo_P.Surface_P;

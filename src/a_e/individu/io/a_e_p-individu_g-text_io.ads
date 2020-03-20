@@ -6,6 +6,12 @@ generic
    --  @param Item
    --  Les paramètres.
 
+   with procedure Put_Resultat
+      (Item : in Resultat_Calcul_G_T);
+   --  Procédure d'affichage du contenu des résultats du calcul de la formule.
+   --  @param Item
+   --  Les résultats du calcul de la formule.
+
 --  @summary
 --  Affichage d'un individu.
 --  @description
