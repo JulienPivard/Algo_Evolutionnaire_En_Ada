@@ -15,6 +15,13 @@ package A_E_P
       Spark_Mode     => Off
 is
 
+   type Objectif_T is (Maximiser, Minimiser);
+   --  L'objectif à atteindre pour le résultat de la fonction.
+   --  @value Maximiser
+   --  L'objectif est de maximiser le résultat de la fonction.
+   --  @value Minimiser
+   --  L'objectif est de minimiser le résultat de la fonction.
+
    type Math_T      is digits 5;
    --  Les calculs seront tous fait avec un
    --  type de cette précision la.

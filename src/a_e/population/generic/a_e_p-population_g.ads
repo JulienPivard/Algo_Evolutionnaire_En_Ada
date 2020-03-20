@@ -16,6 +16,10 @@ generic
    --  Un individu contenant La liste des paramètres
    --  à donner en entré de la fonction à optimiser.
 
+   Objectif : Objectif_T := Minimiser;
+   --  Trouver les valeurs de paramètres qui vont
+   --  minimiser ou maximiser le résultat de la fonction
+
 --  @summary
 --  Opérations réalisable sur une population d'individu.
 --  @description
@@ -226,6 +230,25 @@ private
          --  La totalité de la population.
       end record;
 
+   package Tri_A_Bulle_Max_P is new Tri_A_Bulle_G
+      (
+         Indice_G_T   => Indice_Population_T,
+         Element_G_T  => Individu_P.Individu_T,
+         Table_G_T    => Table_Population_T,
+         Comparer     => Comparer_Maximiser,
+         Echanger     => Echanger
+      );
+
+   package Tri_Rapide_Max_P is new Tri_Rapide_G
+      (
+         Sorte_De_Tri => Sorte_De_Tri_P.Aleatoire,
+         Indice_G_T   => Indice_Population_T,
+         Element_G_T  => Individu_P.Individu_T,
+         Table_G_T    => Table_Population_T,
+         Comparer     => Comparer_Maximiser,
+         Echanger     => Echanger
+      );
+
    package Tri_A_Bulle_Min_P is new Tri_A_Bulle_G
       (
          Indice_G_T   => Indice_Population_T,
@@ -243,6 +266,28 @@ private
          Table_G_T    => Table_Population_T,
          Comparer     => Comparer_Minimiser,
          Echanger     => Echanger
+      );
+
+   type Trier_T is not null access
+      procedure
+         (Tableau : in out Table_Population_T);
+
+   Trier_Individus : constant Trier_T :=
+      (
+         if Objectif = Minimiser then
+            (
+               if Taille_Population <= 1000 then
+                  Tri_A_Bulle_Min_P.Tri_A_Bulle'Access
+               else
+                  Tri_Rapide_Min_P.Tri_Rapide'Access
+            )
+         else
+            (
+               if Taille_Population <= 1000 then
+                  Tri_A_Bulle_Max_P.Tri_A_Bulle'Access
+               else
+                  Tri_Rapide_Max_P.Tri_Rapide'Access
+            )
       );
 
 end A_E_P.Population_G;
