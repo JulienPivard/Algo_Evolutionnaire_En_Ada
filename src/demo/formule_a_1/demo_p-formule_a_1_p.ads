@@ -133,6 +133,11 @@ private
          Actuel    : in A_E_P.V_Calcule_T
       )
       return Boolean
-   is (Reference - 0.5 <= Actuel and then Actuel <= Reference + 0.5);
+   is
+      (
+         Reference - 0.5 <= Actuel
+         and then
+         Actuel <= Reference + 0.5
+      );
 
 end Demo_P.Formule_A_1_P;
