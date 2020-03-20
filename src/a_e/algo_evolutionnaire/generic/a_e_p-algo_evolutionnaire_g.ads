@@ -102,6 +102,10 @@ generic
    --  Le résultat à droite de la comparaison.
    --  @return Gauche > Droite
 
+   Objectif : Objectif_T := Minimiser;
+   --  Trouver les valeurs de paramètres qui vont
+   --  minimiser ou maximiser le résultat de la fonction
+
 --  @summary
 --  Interface de regroupement pour utiliser l'algo évolutionnaire.
 --  @description
@@ -166,8 +170,9 @@ private
 
    package Population_P  is new A_E_P.Population_G
       (
-         Indice_Population_T       => Indice_Population_T,
-         Individu_P                => Individu_P
+         Indice_Population_T => Indice_Population_T,
+         Individu_P          => Individu_P,
+         Objectif            => Objectif
       );
    package Population_IO is new Population_P.Text_IO
       (Individu_IO => Individu_IO);
