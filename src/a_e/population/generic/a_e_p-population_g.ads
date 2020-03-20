@@ -268,11 +268,11 @@ private
          Echanger     => Echanger
       );
 
-   type Trier_T is not null access
+   type Trier_A is not null access
       procedure
          (Tableau : in out Table_Population_T);
 
-   Trier_Individus : constant Trier_T :=
+   Trier_Individus : constant Trier_A :=
       (
          if Objectif = Minimiser then
             (
