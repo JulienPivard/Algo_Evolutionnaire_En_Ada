@@ -19,3 +19,8 @@ La pression de l'environnement est simulée par la fonction à optimiser. Le
 génome d'un individu correspond aux paramètres de la fonction à résoudre, enfin
 le résultat d'un individu, par l'application de la formule sur son génome,
 correspond à son phénotype (l'expression de ses gènes dans l'environnement).
+
+# TODO
+- [ ] Ajouter une mécanique de selection par tournois
+- [ ] Parrallélisation par découpage en plusieurs populations avec échange d'individus
+- [ ] Possibilité de limiter les échanges de population aux ilots proches (processeur voisin)
