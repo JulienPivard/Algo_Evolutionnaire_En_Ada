@@ -71,8 +71,10 @@ is
       (Population : in Population_T)
       return Boolean;
    --  Indique si la population converge vers un minimum ou non.
+   --  Synonyme de disparition de la diversité générique.
    --  @param Population
    --  La population.
+   --  @return La population converge vers un même génome.
 
 private
 
@@ -206,7 +208,7 @@ private
    --  L'individu à gauche de la comparaison.
    --  @param Droite
    --  L'individu à droite de la comparaison.
-   --  @return Vrais si l'individu de gauche est < à celui de droite.
+   --  @return Vrais si l'individu de gauche est > à celui de droite.
 
    procedure Echanger
       (
@@ -271,6 +273,7 @@ private
    type Trier_A is not null access
       procedure
          (Tableau : in out Table_Population_T);
+   --  Pointeur sur la procédure de tri à utiliser.
 
    Trier_Individus : constant Trier_A :=
       (
@@ -289,5 +292,7 @@ private
                   Tri_Rapide_Max_P.Tri_Rapide'Access
             )
       );
+   --  La fonction de tri à utiliser. Dépend du contexte
+   --  et de l'objectif visé.
 
 end A_E_P.Population_G;
