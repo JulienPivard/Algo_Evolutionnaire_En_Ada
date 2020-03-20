@@ -189,6 +189,21 @@ private
    --  L'individu à droite de la comparaison.
    --  @return Vrais si l'individu de gauche est < à celui de droite.
 
+   function Comparer_Maximiser
+      (
+         Population     : in Table_Population_T;
+         Gauche, Droite : in Indice_Population_T
+      )
+      return Boolean;
+   --  Compare deux individus.
+   --  @param Population
+   --  La population.
+   --  @param Gauche
+   --  L'individu à gauche de la comparaison.
+   --  @param Gauche
+   --  L'individu à droite de la comparaison.
+   --  @return Vrais si l'individu de gauche est < à celui de droite.
+
    procedure Echanger
       (
          Population     : in out Table_Population_T;

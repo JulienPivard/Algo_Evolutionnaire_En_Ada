@@ -162,6 +162,20 @@ is
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
+   function Comparer_Maximiser
+      (
+         Population     : in Table_Population_T;
+         Gauche, Droite : in Indice_Population_T
+      )
+      return Boolean
+   is
+      use type Individu_P.Individu_T;
+   begin
+      return Population (Gauche) > Population (Droite);
+   end Comparer_Maximiser;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
    procedure Echanger
       (
          Population     : in out Table_Population_T;
