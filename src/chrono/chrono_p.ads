@@ -18,5 +18,10 @@ is
          Debut : in Ada.Real_Time.Time;
          Fin   : in Ada.Real_Time.Time
       );
+   --  Affichage formaté du temps écoulé.
+   --  @param Debut
+   --  Le temps de début.
+   --  @param Fin
+   --  Le temps de fin.
 
 end Chrono_P;

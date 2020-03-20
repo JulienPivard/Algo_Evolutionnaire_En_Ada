@@ -132,6 +132,12 @@ is
    --  convergence de ses individus.
    --  @param Population
    --  La population à faire évoluer.
+   --  @param Debut
+   --  Le chrono de début.
+   --  @param Fin
+   --  Le chrono de fin.
+   --  @param Nb_Generations
+   --  Le nombre de génération qu'il a fallut.
 
    procedure Initialiser
       (Population : in out Population_T);

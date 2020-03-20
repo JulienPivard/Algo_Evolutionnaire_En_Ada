@@ -15,5 +15,8 @@ is
 
    procedure Put
       (Item : in Valeur_Param_T);
+   --  Affiche le contenu d'une valeur avec ses bornes.
+   --  @param Item
+   --  La valeur du paramètre à afficher.
 
 end A_E_P.Valeur_Param_G.Text_IO;

@@ -171,7 +171,7 @@ is
    --  Compare deux individus.
    --  @param Gauche
    --  L'individu de gauche à comparer.
-   --  @param Gauche
+   --  @param Droite
    --  L'individu de droite à comparer.
    --  @return Gauche < Droite.
 
@@ -182,7 +182,7 @@ is
    --  Compare deux individus.
    --  @param Gauche
    --  L'individu de gauche à comparer.
-   --  @param Gauche
+   --  @param Droite
    --  L'individu de droite à comparer.
    --  @return Gauche > Droite.
 

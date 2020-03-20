@@ -84,7 +84,10 @@ private
 
    procedure Verifier_Borne_Valeur
       (Parametre : in out Valeur_Param_T);
-   --  Procédure ne faisant rien.
+   --  Vérifie seulement que la valeur du paramètre est
+   --  dans les bornes définie.
+   --  @param Parametre
+   --  Le paramètre à vérifier.
 
    type Valeur_Param_T is
       record

@@ -189,7 +189,7 @@ private
    --  La population.
    --  @param Gauche
    --  L'individu à gauche de la comparaison.
-   --  @param Gauche
+   --  @param Droite
    --  L'individu à droite de la comparaison.
    --  @return Vrais si l'individu de gauche est < à celui de droite.
 
@@ -204,7 +204,7 @@ private
    --  La population.
    --  @param Gauche
    --  L'individu à gauche de la comparaison.
-   --  @param Gauche
+   --  @param Droite
    --  L'individu à droite de la comparaison.
    --  @return Vrais si l'individu de gauche est < à celui de droite.
 
@@ -218,7 +218,7 @@ private
    --  La population.
    --  @param Gauche
    --  L'individu à échanger.
-   --  @param Gauche
+   --  @param Droite
    --  L'individu à échanger.
 
    subtype Sous_Population_T is Table_Population_T (Indice_Population_T);
