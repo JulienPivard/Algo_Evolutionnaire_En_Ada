@@ -45,21 +45,6 @@ generic
    --  @param Parametres
    --  Les paramètres de la fonction.
 
-   with procedure Put_Parametres
-      (Item : in Parametres_G_T);
-   --  Procédure d'affichage du contenu des paramètres.
-   --  @param Item
-   --  Les paramètres.
-
-   with procedure Put_Resultat
-      (Item : in Resultat_Calcul_G_T);
-   --  Procédure d'affichage du contenu des résultats du calcul de la formule.
-   --  @param Item
-   --  Les résultats.
-
-   with procedure Afficher_Formule;
-   --  Affiche la formule qui va être résolue.
-
    with function Convergence_Adaptation
       (
          Reference : in Resultat_Calcul_G_T;
@@ -77,6 +62,21 @@ generic
    --  cette génération. Il faut que la diversité génétique ait
    --  disparue pendant 25 générations d’affilée pour que l'on
    --  déclare que le minimum a été trouvé.
+
+   with procedure Put_Parametres
+      (Item : in Parametres_G_T);
+   --  Procédure d'affichage du contenu des paramètres.
+   --  @param Item
+   --  Les paramètres.
+
+   with procedure Put_Resultat
+      (Item : in Resultat_Calcul_G_T);
+   --  Procédure d'affichage du contenu des résultats du calcul de la formule.
+   --  @param Item
+   --  Les résultats.
+
+   with procedure Afficher_Formule;
+   --  Affiche la formule qui va être résolue.
 
    with function "<"
       (Gauche, Droite : in Resultat_Calcul_G_T)

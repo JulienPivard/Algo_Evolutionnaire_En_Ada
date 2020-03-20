@@ -127,10 +127,10 @@ is
          Accoupler              => Surface_R.Accoupler,
          Resultat_Calcul_G_T    => Surface_R.Resultat_T,
          Calculer               => Surface_R.Calculer,
+         Convergence_Adaptation => Surface_R.Resultats_Convergent,
          Put_Parametres         => Surface_IO_R.Put_Parametres,
          Put_Resultat           => Surface_IO_R.Put_Resultat,
-         Afficher_Formule       => Surface_IO_R.Afficher_Formule,
-         Convergence_Adaptation => Surface_R.Resultats_Convergent
+         Afficher_Formule       => Surface_IO_R.Afficher_Formule
       );
 
    procedure Min_Surface is new Determiner_Min
@@ -150,10 +150,10 @@ is
          Accoupler              => Formule_1_R.Accoupler,
          Resultat_Calcul_G_T    => Formule_1_R.Resultat_T,
          Calculer               => Formule_1_R.Calculer,
+         Convergence_Adaptation => Formule_1_R.Resultats_Convergent,
          Put_Parametres         => Formule_1_IO_R.Put_Parametres,
          Put_Resultat           => Formule_1_IO_R.Put_Resultat,
-         Afficher_Formule       => Formule_1_IO_R.Afficher_Formule,
-         Convergence_Adaptation => Formule_1_R.Resultats_Convergent
+         Afficher_Formule       => Formule_1_IO_R.Afficher_Formule
       );
 
    procedure Min_Anonyme_1 is new Determiner_Min
@@ -173,10 +173,10 @@ is
          Accoupler              => Formule_2_R.Accoupler,
          Resultat_Calcul_G_T    => Formule_2_R.Resultat_T,
          Calculer               => Formule_2_R.Calculer,
+         Convergence_Adaptation => Formule_2_R.Resultats_Convergent,
          Put_Parametres         => Formule_2_IO_R.Put_Parametres,
          Put_Resultat           => Formule_2_IO_R.Put_Resultat,
-         Afficher_Formule       => Formule_2_IO_R.Afficher_Formule,
-         Convergence_Adaptation => Formule_2_R.Resultats_Convergent
+         Afficher_Formule       => Formule_2_IO_R.Afficher_Formule
       );
 
    procedure Min_Anonyme_2 is new Determiner_Min
