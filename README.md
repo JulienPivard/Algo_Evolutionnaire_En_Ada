@@ -20,6 +20,70 @@ génome d'un individu correspond aux paramètres de la fonction à résoudre, en
 le résultat d'un individu, par l'application de la formule sur son génome,
 correspond à son phénotype (l'expression de ses gènes dans l'environnement).
 
+# Implémentation
+
+Durant la phase d'initialisation, les valeurs des paramètres de tous les
+individus de la population sont choisies au hasard dans l'intervalle de
+valeurs autorisée pour chacune. Par exemple, si nous avons deux variables
+`X` et `Y` avec `X` contraint dans l'intervalle `0 .. 100` et `Y`
+contraint dans l'intervalle `-100 .. 0`, alors toutes les valeurs
+aléatoires choisi pour `X` seront dans l'intervalle `0 .. 100` inclut, et
+toutes celles de `Y` seront dans l'intervalle `-100 .. 0` inclut.
+
+Une fois les valeurs des paramètres choisies, on applique la formule
+à minimiser à tous les individus de la population et on l'enregistre dans
+l'individu. Puis on tri nos individu en fonction du résultat du plus petit
+au plus grand (l'inverse dans le cas d'une maximisation).
+
+La phase d'initialisation est terminée.
+
+Dans la version actuelle, on élimine les 25% de la population les moins
+bien adapté, puis on va les remplacer, pour moitié, par de nouveaux
+individus généré totalement au hasard, et, pour le reste, par des
+individus issus d'accouplements dont les parents sont choisis au hasard.
+(Tous les individus survivants ont les mêmes chances d'être sélectionné,
+c'est ici qu'il faudrait introduire la sélection par tournois).
+
+Avant de lancer la repopulation, on va vérifier que la population n'as pas
+atteint un état de stagnation génétique. Celle-ci est atteinte quand le
+génome de tous les individus est très similaire, et que donc l'expression
+de celui-ci (ie. le résultat de la fonction pour chaque individu) est
+considéré comme égal. On va donc comparer chaque individu survivant
+à celui qui est le plus adapté. Si, pendant 25 générations d'affilé, tous
+les individus survivants sont similaire à l'individu le plus adapté, alors
+la population à atteint un état de stagnation génétique, il n'y aura plus
+d'évolution possible. Nous avons notre résultat. Dans le cas d'une valeur
+de résultat unique, on peux prendre la valeur la plus basse (la plus haute
+si on veux maximiser) et considérer qu'elles sont égales à +/-0.5
+
+Chaque accouplement ne donne qu'un seul nouvel individu, chaque variable
+est considéré comme un gène. Pour créer le gène du nouvel individu, il
+existe 5 scénarios équiprobable :
+* On prend seulement le gène du père;
+* On prend seulement le gène de la mère;
+* On fait la moyenne des deux;
+* On prend la mantisse du père et l'exposant de la mère;
+* On prend la mantisse de la mère et l'exposant du père.
+
+Viens ensuite la phase de mutation des nouveaux nés.  Celle-ci a environ
+10% de chances de se produire. Chaque scénario de mutation a autant de
+chances de se produire indépendamment du scénarios d'accouplement choisi
+précédemment.
+* On prend l'écart entre les valeurs de la variable des deux parents, on
+  prend une valeur aléatoire dans cet intervalle puis on l'ajoute à la
+  valeur de la variable de l'enfant;
+* On ajoute une valeur aléatoire prise entre 0 et 1;
+* On retire une valeur aléatoire prise entre 0 et 1;
+* On inverse le signe.
+
+On vérifie que les variables font bien partit de l'intervalle de valeurs
+autorisées, si ce n'est pas le cas on les ajuste sur le maximum, ou le
+minimum selon le plus proche.
+
+Une fois tous les nouveaux individu généré, on applique la formule sur les
+nouveaux nés, puis on tri la population. La génération vient de finir, on
+recommence le cycle.
+
 # Compilation des demo
 
 ## Environnement
