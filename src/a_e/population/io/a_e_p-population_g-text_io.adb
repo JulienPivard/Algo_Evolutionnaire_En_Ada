@@ -37,7 +37,7 @@ is
             end if;
          end loop;
       else
-         Ada.Text_IO.Put (Item => "Minimum : ");
+         Ada.Text_IO.Put (Item => "Minimum :");
          Individu_IO.Put_Line
             (Item => Item.Table (Item.Table'First));
       end if;
