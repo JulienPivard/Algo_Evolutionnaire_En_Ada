@@ -116,9 +116,7 @@ private
    --  lors de la prochaine génération.
 
    subtype Intervalle_Future_Enfant_T  is Intervalle_Naissance_T     range
-      Intervalle_Naissance_T'First
-      ..
-      Intervalle_Naissance_T'Last;
+      Intervalle_Naissance_T'First .. Intervalle_Naissance_T'Last;
    --  Intervalle des futures enfant. L'enfant issue de la moyenne
    --  de tous les survivant n'est pas compté.
 

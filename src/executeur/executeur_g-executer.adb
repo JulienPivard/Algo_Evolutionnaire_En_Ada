@@ -38,6 +38,8 @@ is
    --  Le minimum attendu.
    --  @param Nom
    --  Le nom des variables.
+   --  @param Reduire_Affichage
+   --  Réduit la quantité d'affichage.
 
    ------------------------
    procedure Determiner_Min
