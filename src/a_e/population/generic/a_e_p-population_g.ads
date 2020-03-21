@@ -9,8 +9,8 @@ pragma Elaborate_All (Tri_A_Bulle_G);
 
 generic
 
-   type Indice_Population_T is range <>;
-   --  L'intervalle de valeurs de la population.
+   Taille : Taille_Population_T;
+   --  La taille de la population à faire évoluer.
 
    with package Individu_P is new A_E_P.Individu_G (<>);
    --  Un individu contenant La liste des paramètres
@@ -78,8 +78,12 @@ is
 
 private
 
+   type Indice_Population_T is new Taille_Population_T range
+      Taille_Population_T'First .. Taille;
+   --  Les indices de la table de population.
+
    Taille_Population : constant Indice_Population_T :=
-      (Indice_Population_T'Last - Indice_Population_T'First) + 1;
+      Indice_Population_T (Taille);
    --  La population total d'individu.
    --  Chaque individu est une case du tableau.
 
@@ -105,6 +109,9 @@ private
    Nb_Mutants        : constant Indice_Population_T :=
       Future_Nb_Enfants - Nb_Accouplements;
    --  Nombre de valeurs qui seront généré aléatoirement.
+   Nb_Tournois       : constant Indice_Population_T :=
+      (Taille_Population * 8) / 100;
+   --  Nombre de tournois organisé.
 
    subtype Intervalle_Survivants_T     is Indice_Population_T        range
       Indice_Population_T'First .. Nb_Survivants;

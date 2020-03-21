@@ -11,7 +11,7 @@ package Intervalle_P
       Spark_Mode     => Off
 is
 
-   type Indice_T is range 1 .. 1000;
+   Taille : constant := 1000;
    --  L'intervalle de valeurs de la population.
 
 end Intervalle_P;

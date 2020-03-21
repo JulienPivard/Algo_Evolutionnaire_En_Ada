@@ -7,7 +7,7 @@ private with A_E_P.Individu_G.Text_IO;
 
 generic
 
-   type Indice_Population_T is range <>;
+   Taille_Population : Taille_Population_T;
    --  La taille de la population à faire évoluer.
 
    type Parametres_G_T is private;
@@ -176,9 +176,9 @@ private
 
    package Population_P  is new A_E_P.Population_G
       (
-         Indice_Population_T => Indice_Population_T,
-         Individu_P          => Individu_P,
-         Objectif            => Objectif
+         Taille      => Taille_Population,
+         Individu_P  => Individu_P,
+         Objectif    => Objectif
       );
    package Population_IO is new Population_P.Text_IO
       (Individu_IO => Individu_IO);
