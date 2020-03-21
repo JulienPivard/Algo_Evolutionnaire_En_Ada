@@ -59,9 +59,8 @@ is
       else
          Ada.Text_IO.Put_Line
             (
-               Item => "Population   :" &
-                  Population_P.Indice_Population_T'Image
-                     (Population_P.Indice_Population_T'Last)
+               Item => "Population   :" & A_E_P.Taille_Population_T'Image
+                  (Population_P.Taille_Population)
             );
       end if;
 
@@ -123,7 +122,7 @@ is
 
    package Population_Surface_P  is new A_E_P.Algo_Evolutionnaire_G
       (
-         Indice_Population_T    => Intervalle_P.Indice_T,
+         Taille_Population      => Intervalle_P.Taille,
          Parametres_G_T         => Surface_R.Surface_T,
          Generer                => Surface_R.Generer,
          Accoupler              => Surface_R.Accoupler,
@@ -146,7 +145,7 @@ is
 
    package Population_Anonyme_1_P  is new A_E_P.Algo_Evolutionnaire_G
       (
-         Indice_Population_T    => Intervalle_P.Indice_T,
+         Taille_Population      => Intervalle_P.Taille,
          Parametres_G_T         => Formule_1_R.Anonyme_T,
          Generer                => Formule_1_R.Generer,
          Accoupler              => Formule_1_R.Accoupler,
@@ -169,7 +168,7 @@ is
 
    package Population_Anonyme_2_P  is new A_E_P.Algo_Evolutionnaire_G
       (
-         Indice_Population_T    => Intervalle_P.Indice_T,
+         Taille_Population      => Intervalle_P.Taille,
          Parametres_G_T         => Formule_2_R.Anonyme_T,
          Generer                => Formule_2_R.Generer,
          Accoupler              => Formule_2_R.Accoupler,

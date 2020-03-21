@@ -15,6 +15,9 @@ package A_E_P
       Spark_Mode     => Off
 is
 
+   type Taille_Population_T is range 1 .. (2**63) - 1;
+   --  L'intervalle de valeurs de la population.
+
    type Objectif_T is (Maximiser, Minimiser);
    --  L'objectif à atteindre pour le résultat de la fonction.
    --  @value Maximiser
