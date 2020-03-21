@@ -22,8 +22,15 @@ correspond à son phénotype (l'expression de ses gènes dans l'environnement).
 
 # Compilation des demo
 
-Par défaut toutes les démos sont exécutées dans la version par défaut.
-Pour compiler, il suffit de taper dans un terminal :
+## Environnement
+
+Pour compiler, il vous faut un compilateur Ada. Vous trouverez le
+compilateur Gnat de Adacore sur leur site dans l'onglet communauté.
+
+## Compilation
+
+Par défaut toutes les démos sont compilées dans la version actuelle. Pour
+compiler, il suffit de taper dans un terminal :
 
 ```sh
 make
@@ -32,6 +39,78 @@ make
 Le résultat de la compilation se trouvera dans `./bin/debug/executable` ou
 dans `./bin/release/executable` selon les options choisie dans le fichier
 `makefile.conf`.
+
+# Résultats à l'exécution
+
+Les résultats de l'exécution :
+* OS : MacOS avec CPU : Intel Core i5; 2,7GHz; 2 core; 2 thread/core :
+  [Site ark Intel Core i5](https://ark.intel.com/fr/products/85212/Intel-Core-i5-5200U-Processor-3M-Cache-up-to-2_70-GHz)
+
+## Résultat sur MacOs
+
+### Compilé en version debug
+
+```
+Population   : 1000
+Formule : pi * (D^2 / 2) + 4 * (160 / D)
+Minimum :  | D :   5.884 [0.000 .. 1100.000]  |<>|  |=> Résultat : 163.153
+=======
+Nombre de générations :  72
+Temps total :
+         0.3985 s
+
+
+Population   : 1000
+Formule : 10 + X^2 - 10 * cos (2 * pi * X)
+Minimum :  | X :   0.000 [-10000.000 .. 10000.000]  |<>|  |=> Résultat :   0.000
+=======
+Nombre de générations :  89
+Temps total :
+         0.2687 s
+
+
+Population   : 1000
+Formule : sin (X + Y) + (X - Y)^2 - 1.5X + 2.5Y + 1.0
+Minimum :  | X :  -0.551 [-1.000 .. 100.000]  | Y :  -1.550 [-2.000 .. 100.000]  |<>|  |=> Résultat :  -1.913
+=======
+Nombre de générations :  93
+Temps total :
+         0.4321 s
+```
+
+### Compilé en version optimisé
+
+La compilation se fait avec la commande `make prod` ou alors en modifiant
+la variable `ACTIVER_DEBUG` dans le fichiers `makefile.conf` puis de
+compiler avec `make`.
+
+```
+Population   : 1000
+Formule : pi * (D^2 / 2) + 4 * (160 / D)
+Minimum :  | D :   5.885 [0.000 .. 1100.000]  |<>|  |=> Résultat : 163.153
+=======
+Nombre de générations :  70
+Temps total :
+         0.0262 s
+
+
+Population   : 1000
+Formule : 10 + X^2 - 10 * cos (2 * pi * X)
+Minimum :  | X :   0.000 [-10000.000 .. 10000.000]  |<>|  |=> Résultat :   0.000
+=======
+Nombre de générations :  95
+Temps total :
+         0.0260 s
+
+
+Population   : 1000
+Formule : sin (X + Y) + (X - Y)^2 - 1.5X + 2.5Y + 1.0
+Minimum :  | X :  -0.543 [-1.000 .. 100.000]  | Y :  -1.545 [-2.000 .. 100.000]  |<>|  |=> Résultat :  -1.913
+=======
+Nombre de générations :  108
+Temps total :
+         0.0389 s
+```
 
 # TODO
 - [ ] Ajouter une mécanique de sélection par tournois
