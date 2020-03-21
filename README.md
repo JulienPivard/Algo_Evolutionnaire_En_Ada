@@ -114,7 +114,7 @@ Temps total :
          0.0558 s
 ```
 
-## Résultat sur MacOs
+## Résultat sur la machine exécutant MacOs
 
 ### Compilé en version debug
 
