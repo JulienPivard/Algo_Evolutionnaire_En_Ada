@@ -60,6 +60,13 @@ is
    --  @param Population
    --  La population.
 
+   procedure Organiser_Tournois
+      (Population : in out Population_T);
+   --  Organise des tournois dont le nombre correspond à environ 8%
+   --  du nombre d'individus, avec environ 8% d'individus.
+   --  @param Population
+   --  La population.
+
    procedure Trier
       (Population : in out Population_T);
    --  Trie les individu d'une population en fonction
