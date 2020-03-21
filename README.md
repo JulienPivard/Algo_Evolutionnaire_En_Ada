@@ -69,9 +69,9 @@ Viens ensuite la phase de mutation des nouveaux nés.  Celle-ci a environ
 10% de chances de se produire. Chaque scénario de mutation a autant de
 chances de se produire indépendamment du scénarios d'accouplement choisi
 précédemment.
-* On prend l'écart entre les valeurs de la variable des deux parents, on
-  prend une valeur aléatoire dans cet intervalle puis on l'ajoute à la
-  valeur de la variable de l'enfant;
+* On prend l'écart entre les valeurs de la variable des deux parents, et
+  on choisi une valeur aléatoirement dans cet intervalle puis on l'ajoute 
+  à la valeur de la variable de l'enfant;
 * On ajoute une valeur aléatoire prise entre 0 et 1;
 * On retire une valeur aléatoire prise entre 0 et 1;
 * On inverse le signe.
