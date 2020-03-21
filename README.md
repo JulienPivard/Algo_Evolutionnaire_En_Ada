@@ -43,8 +43,76 @@ dans `./bin/release/executable` selon les options choisie dans le fichier
 # Résultats à l'exécution
 
 Les résultats de l'exécution :
+* OS : GNU/linux avec CPU : Intel Pentium P6000; 1.87GHz; 2 core;
+  1 thread/core : [Site ark Intel Pentium](https://ark.intel.com/fr/products/49058/Intel-Pentium-Processor-P6000-3M-Cache-1_86-GHz)
 * OS : MacOS avec CPU : Intel Core i5; 2,7GHz; 2 core; 2 thread/core :
   [Site ark Intel Core i5](https://ark.intel.com/fr/products/85212/Intel-Core-i5-5200U-Processor-3M-Cache-up-to-2_70-GHz)
+
+## Résultat sur la machine exécutant GNU/Linux
+
+### Compilé en version debug
+
+```
+Population   : 1000
+Formule : pi * (D^2 / 2) + 4 * (160 / D)
+Minimum :  | D :   5.884 [0.000 .. 1100.000]  |<>|  |=> Résultat : 163.153
+=======
+Nombre de générations :  74
+Temps total :
+         0.8352 s
+
+
+Population   : 1000
+Formule : 10 + X^2 - 10 * cos (2 * pi * X)
+Minimum :  | X :   0.000 [-10000.000 .. 10000.000]  |<>|  |=> Résultat :   0.000
+=======
+Nombre de générations :  96
+Temps total :
+         0.7388 s
+
+
+Population   : 1000
+Formule : sin (X + Y) + (X - Y)^2 - 1.5X + 2.5Y + 1.0
+Minimum :  | X :  -0.550 [-1.000 .. 100.000]  | Y :  -1.549 [-2.000 .. 100.000]  |<>|  |=> Résultat :  -1.913
+=======
+Nombre de générations :  102
+Temps total :
+         0.9255 s
+```
+
+### Compilé en version optimisé
+
+La compilation se fait avec la commande `make prod` ou alors en modifiant
+la variable `ACTIVER_DEBUG` dans le fichiers `makefile.conf` puis de
+compiler avec `make`.
+
+```
+Population   : 1000
+Formule : pi * (D^2 / 2) + 4 * (160 / D)
+Minimum :  | D :   5.884 [0.000 .. 1100.000]  |<>|  |=> Résultat : 163.153
+=======
+Nombre de générations :  72
+Temps total :
+         0.0466 s
+
+
+Population   : 1000
+Formule : 10 + X^2 - 10 * cos (2 * pi * X)
+Minimum :  | X :  -0.000 [-10000.000 .. 10000.000]  |<>|  |=> Résultat :   0.000
+=======
+Nombre de générations :  90
+Temps total :
+         0.0369 s
+
+
+Population   : 1000
+Formule : sin (X + Y) + (X - Y)^2 - 1.5X + 2.5Y + 1.0
+Minimum :  | X :  -0.539 [-1.000 .. 100.000]  | Y :  -1.540 [-2.000 .. 100.000]  |<>|  |=> Résultat :  -1.913
+=======
+Nombre de générations :  109
+Temps total :
+         0.0558 s
+```
 
 ## Résultat sur MacOs
 
