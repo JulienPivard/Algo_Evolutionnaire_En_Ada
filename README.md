@@ -56,7 +56,7 @@ Les résultats de l'exécution :
 Population   : 1000
 Formule : pi * (D^2 / 2) + 4 * (160 / D)
 Minimum :  | D :   5.884 [0.000 .. 1100.000]  |<>|  |=> Résultat : 163.153
-=======
++=======
 Nombre de générations :  74
 Temps total :
          0.8352 s
@@ -65,7 +65,7 @@ Temps total :
 Population   : 1000
 Formule : 10 + X^2 - 10 * cos (2 * pi * X)
 Minimum :  | X :   0.000 [-10000.000 .. 10000.000]  |<>|  |=> Résultat :   0.000
-=======
++=======
 Nombre de générations :  96
 Temps total :
          0.7388 s
@@ -74,7 +74,7 @@ Temps total :
 Population   : 1000
 Formule : sin (X + Y) + (X - Y)^2 - 1.5X + 2.5Y + 1.0
 Minimum :  | X :  -0.550 [-1.000 .. 100.000]  | Y :  -1.549 [-2.000 .. 100.000]  |<>|  |=> Résultat :  -1.913
-=======
++=======
 Nombre de générations :  102
 Temps total :
          0.9255 s
@@ -90,7 +90,7 @@ compiler avec `make`.
 Population   : 1000
 Formule : pi * (D^2 / 2) + 4 * (160 / D)
 Minimum :  | D :   5.884 [0.000 .. 1100.000]  |<>|  |=> Résultat : 163.153
-=======
++=======
 Nombre de générations :  72
 Temps total :
          0.0466 s
@@ -99,7 +99,7 @@ Temps total :
 Population   : 1000
 Formule : 10 + X^2 - 10 * cos (2 * pi * X)
 Minimum :  | X :  -0.000 [-10000.000 .. 10000.000]  |<>|  |=> Résultat :   0.000
-=======
++=======
 Nombre de générations :  90
 Temps total :
          0.0369 s
@@ -108,7 +108,7 @@ Temps total :
 Population   : 1000
 Formule : sin (X + Y) + (X - Y)^2 - 1.5X + 2.5Y + 1.0
 Minimum :  | X :  -0.539 [-1.000 .. 100.000]  | Y :  -1.540 [-2.000 .. 100.000]  |<>|  |=> Résultat :  -1.913
-=======
++=======
 Nombre de générations :  109
 Temps total :
          0.0558 s
@@ -122,7 +122,7 @@ Temps total :
 Population   : 1000
 Formule : pi * (D^2 / 2) + 4 * (160 / D)
 Minimum :  | D :   5.884 [0.000 .. 1100.000]  |<>|  |=> Résultat : 163.153
-=======
++=======
 Nombre de générations :  72
 Temps total :
          0.3985 s
@@ -131,7 +131,7 @@ Temps total :
 Population   : 1000
 Formule : 10 + X^2 - 10 * cos (2 * pi * X)
 Minimum :  | X :   0.000 [-10000.000 .. 10000.000]  |<>|  |=> Résultat :   0.000
-=======
++=======
 Nombre de générations :  89
 Temps total :
          0.2687 s
@@ -140,7 +140,7 @@ Temps total :
 Population   : 1000
 Formule : sin (X + Y) + (X - Y)^2 - 1.5X + 2.5Y + 1.0
 Minimum :  | X :  -0.551 [-1.000 .. 100.000]  | Y :  -1.550 [-2.000 .. 100.000]  |<>|  |=> Résultat :  -1.913
-=======
++=======
 Nombre de générations :  93
 Temps total :
          0.4321 s
@@ -156,7 +156,7 @@ compiler avec `make`.
 Population   : 1000
 Formule : pi * (D^2 / 2) + 4 * (160 / D)
 Minimum :  | D :   5.885 [0.000 .. 1100.000]  |<>|  |=> Résultat : 163.153
-=======
++=======
 Nombre de générations :  70
 Temps total :
          0.0262 s
@@ -165,7 +165,7 @@ Temps total :
 Population   : 1000
 Formule : 10 + X^2 - 10 * cos (2 * pi * X)
 Minimum :  | X :   0.000 [-10000.000 .. 10000.000]  |<>|  |=> Résultat :   0.000
-=======
++=======
 Nombre de générations :  95
 Temps total :
          0.0260 s
@@ -174,7 +174,7 @@ Temps total :
 Population   : 1000
 Formule : sin (X + Y) + (X - Y)^2 - 1.5X + 2.5Y + 1.0
 Minimum :  | X :  -0.543 [-1.000 .. 100.000]  | Y :  -1.545 [-2.000 .. 100.000]  |<>|  |=> Résultat :  -1.913
-=======
++=======
 Nombre de générations :  108
 Temps total :
          0.0389 s
