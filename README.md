@@ -70,7 +70,7 @@ Viens ensuite la phase de mutation des nouveaux nés.  Celle-ci a environ
 chances de se produire indépendamment du scénarios d'accouplement choisi
 précédemment.
 * On prend l'écart entre les valeurs de la variable des deux parents, et
-  on choisi une valeur aléatoirement dans cet intervalle puis on l'ajoute 
+  on choisi une valeur aléatoirement dans cet intervalle puis on l'ajoute
   à la valeur de la variable de l'enfant;
 * On ajoute une valeur aléatoire prise entre 0 et 1;
 * On retire une valeur aléatoire prise entre 0 et 1;
@@ -83,6 +83,35 @@ minimum selon le plus proche.
 Une fois tous les nouveaux individu généré, on applique la formule sur les
 nouveaux nés, puis on tri la population. La génération vient de finir, on
 recommence le cycle.
+
+# Facteurs d'influence sur le temps de calcul et la précision
+
+## Taille des intervalles de variables
+
+La taille de l'intervalle autorisé pour chaque variable à une influence
+direct sur la précision du résultat (à taille de population fixé). Plus
+l'intervalle sera grand, et plus il faudra une population nombreuse pour
+arriver à un résultat concluent. Après plusieurs essais, je n'ai pas
+trouver de formule toutes faites pour savoir de combien il fallait
+augmenter la taille de la population en fonction de la taille de
+l'intervalle.
+
+## Nombre de variables
+
+L'augmentation du nombre de variables va avoir une influence direct sur la
+précision du résultat puisqu'on se retrouve très vite avec une explosion
+du nombre de combinaison. Paradoxalement, le nombre de générations pour
+obtenir un résultat ne semble pas augmenter de manière significative. Pour
+retrouver un bon niveau de précision, il nous faut augmenter la taille de
+la population, d'après mes essais, il faut la multiplier par 10 pour
+chaque variable ajouté.
+
+## Taille de la population de départ
+
+La taille de la population à une influence direct sur le temps de calculs
+et sur la précision du résultats obtenu, notamment à cause des phases de
+tri. Une population trop petite aura tendance à tomber facilement dans des
+minima locaux.
 
 # Compilation des demo
 
