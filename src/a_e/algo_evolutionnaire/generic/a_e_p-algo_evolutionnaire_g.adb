@@ -39,6 +39,8 @@ is
 
          Remplacer_Morts           (Population => Population);
          Calcul_Formule_Sur_Enfant (Population => Population);
+
+         Organiser_Tournois        (Population => Population);
       end loop Boucle_Generation_Successive;
 
       Fin := Ada.Real_Time.Clock;
@@ -95,6 +97,15 @@ is
    begin
       Population_P.Calcul_Formule_Sur_Enfant (Population => Population.Pop);
    end Calcul_Formule_Sur_Enfant;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   procedure Organiser_Tournois
+      (Population : in out Population_T)
+   is
+   begin
+      Population_P.Organiser_Tournois (Population => Population.Pop);
+   end Organiser_Tournois;
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------

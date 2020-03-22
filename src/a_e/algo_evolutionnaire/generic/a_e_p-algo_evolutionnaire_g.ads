@@ -208,6 +208,13 @@ private
    --  @param Population
    --  La population.
 
+   procedure Organiser_Tournois
+      (Population : in out Population_T)
+      with Inline => True;
+   --  Organise des tournois pour remplacer 8% de la population.
+   --  @param Population
+   --  La population.
+
    procedure Trier
       (Population : in out Population_T)
       with Inline => True;

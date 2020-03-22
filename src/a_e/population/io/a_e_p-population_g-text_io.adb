@@ -64,6 +64,12 @@ is
       Ada.Text_IO.New_Line (Spacing => 1);
       Ada.Text_IO.Put      (Item    => "Mutants      : ");
       Indice_IO.Put        (Item    => Nb_Mutants);
+      Ada.Text_IO.New_Line (Spacing => 1);
+      Ada.Text_IO.Put      (Item    => "Tournois     : ");
+      Indice_IO.Put        (Item    => Nb_Tournois);
+      Ada.Text_IO.New_Line (Spacing => 1);
+      Ada.Text_IO.Put      (Item    => "Participants : ");
+      Indice_IO.Put        (Item    => Nb_Participants);
       Ada.Text_IO.New_Line (Spacing => 2);
 
       if Taille_Population <= 50 then

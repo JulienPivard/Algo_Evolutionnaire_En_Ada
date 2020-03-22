@@ -48,6 +48,81 @@ is
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
+   procedure Organiser_Tournois
+      (Population : in out Population_T)
+   is
+      subtype Nb_Participant_Tournois_T is Indice_Population_T range
+         Indice_Population_T'First .. Nb_Participants;
+      --  Le nombre de participants à chaque tournois.
+      type Nb_Tournois_T is new Nb_Participant_Tournois_T;
+      --  Le nombre de tournois organisé.
+
+      type Enfants_T      is array (Nb_Tournois_T) of Individu_P.Individu_T;
+      --  Tableau des enfants conçus par les tournois successifs.
+      type Pos_Individu_T is array (Nb_Tournois_T) of Indice_Population_T;
+      --  Tableau de position des perdants dans la population.
+
+      Pos_Perdants : Pos_Individu_T;
+      Pos_Gagnants : Pos_Individu_T;
+      Pos_Seconds  : Pos_Individu_T;
+
+      Enfants : Enfants_T;
+   begin
+      Boucle_Tournois :
+      for I in Nb_Tournois_T loop
+         Bloc_Accouplement :
+         declare
+            Pos_Concurent : Indice_Population_T;
+         begin
+            Pos_Gagnants (I) := Alea_Survivants_P.Random
+               (Gen => Generateur_Survivant);
+            Pos_Seconds  (I) := Alea_Survivants_P.Random
+               (Gen => Generateur_Survivant);
+            Pos_Perdants (I) := Alea_Survivants_P.Random
+               (Gen => Generateur_Survivant);
+
+            if Pos_Perdants (I) < Pos_Gagnants (I) then
+               Pos_Concurent    := Pos_Perdants (I);
+               Pos_Perdants (I) := Pos_Gagnants (I);
+               Pos_Gagnants (I) := Pos_Concurent;
+            end if;
+
+            if Pos_Perdants (I) < Pos_Seconds (I) then
+               Pos_Concurent    := Pos_Perdants (I);
+               Pos_Perdants (I) := Pos_Seconds  (I);
+               Pos_Seconds  (I) := Pos_Concurent;
+            end if;
+
+            Boucle_Selection_Participants :
+            for J in Nb_Participant_Tournois_T loop
+               Pos_Concurent := Alea_Survivants_P.Random
+                  (Gen => Generateur_Survivant);
+
+               if    Pos_Concurent < Pos_Gagnants (I) then
+                  Pos_Gagnants (I) := Pos_Concurent;
+               elsif Pos_Concurent < Pos_Seconds  (I) then
+                  Pos_Seconds  (I) := Pos_Concurent;
+               elsif Pos_Concurent > Pos_Perdants (I) then
+                  Pos_Perdants (I) := Pos_Concurent;
+               end if;
+            end loop Boucle_Selection_Participants;
+
+            Enfants (I) := Individu_P.Accoupler
+               (
+                  Individu => Population.Table (Pos_Gagnants (I)),
+                  Autre    => Population.Table (Pos_Seconds  (I))
+               );
+         end Bloc_Accouplement;
+      end loop Boucle_Tournois;
+
+      for I in Nb_Tournois_T loop
+         Individu_P.Appliquer_Formule (Individu => Enfants (I));
+         Population.Table (Pos_Perdants (I)) := Enfants (I);
+      end loop;
+   end Organiser_Tournois;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
    procedure Trier
       (Population : in out Population_T)
    is
