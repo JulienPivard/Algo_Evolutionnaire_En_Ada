@@ -81,6 +81,18 @@ is
             Pos_Perdants (I) := Alea_Survivants_P.Random
                (Gen => Generateur_Survivant);
 
+            if Pos_Perdants (I) < Pos_Gagnants (I) then
+               Pos_Concurent    := Pos_Perdants (I);
+               Pos_Perdants (I) := Pos_Gagnants (I);
+               Pos_Gagnants (I) := Pos_Concurent;
+            end if;
+
+            if Pos_Perdants (I) < Pos_Seconds (I) then
+               Pos_Concurent    := Pos_Perdants (I);
+               Pos_Perdants (I) := Pos_Seconds  (I);
+               Pos_Seconds  (I) := Pos_Concurent;
+            end if;
+
             Enfants (I) := Individu_P.Accoupler
                (
                   Individu => Population.Table (Pos_Gagnants (I)),
