@@ -72,6 +72,11 @@ is
       for I in Nb_Tournois_T loop
          null;
       end loop Boucle_Tournois;
+
+      for I in Nb_Tournois_T loop
+         Individu_P.Appliquer_Formule (Individu => Enfants (I));
+         Population.Table (Pos_Perdants (I)) := Enfants (I);
+      end loop;
    end Organiser_Tournois;
    ---------------------------------------------------------------------------
 
