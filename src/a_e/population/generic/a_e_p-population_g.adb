@@ -57,12 +57,16 @@ is
       type Nb_Tournois_T is new Nb_Participant_Tournois_T;
       --  Le nombre de tournois organisé.
 
+      type Enfants_T      is array (Nb_Tournois_T) of Individu_P.Individu_T;
+      --  Tableau des enfants conçus par les tournois successifs.
       type Pos_Individu_T is array (Nb_Tournois_T) of Indice_Population_T;
       --  Tableau de position des perdants dans la population.
 
       Pos_Perdants : Pos_Individu_T;
       Pos_Gagnants : Pos_Individu_T;
       Pos_Seconds  : Pos_Individu_T;
+
+      Enfants : Enfants_T;
    begin
       Boucle_Tournois :
       for I in Nb_Tournois_T loop
