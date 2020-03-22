@@ -49,6 +49,11 @@ is
          Reduire_Affichage : in Boolean := False
       )
    is
+      use type A_E_P.Taille_Population_T;
+
+      Taille : constant A_E_P.Taille_Population_T :=
+         Population_P.Taille_Population;
+
       Population : Population_P.Population_T;
       Debut, Fin : Ada.Real_Time.Time;
 
@@ -66,7 +71,7 @@ is
 
       Population_P.Initialiser (Population => Population);
 
-      if not Reduire_Affichage then
+      if Taille < 50 and then not Reduire_Affichage then
          Ada.Text_IO.Put_Line
             (Item => "========== Valeurs de départ ==========");
 
