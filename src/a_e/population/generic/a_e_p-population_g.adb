@@ -70,7 +70,17 @@ is
    begin
       Boucle_Tournois :
       for I in Nb_Tournois_T loop
-         null;
+         Bloc_Accouplement :
+         declare
+            Pos_Concurent : Indice_Population_T;
+         begin
+            Pos_Gagnants (I) := Alea_Survivants_P.Random
+               (Gen => Generateur_Survivant);
+            Pos_Seconds  (I) := Alea_Survivants_P.Random
+               (Gen => Generateur_Survivant);
+            Pos_Perdants (I) := Alea_Survivants_P.Random
+               (Gen => Generateur_Survivant);
+         end Bloc_Accouplement;
       end loop Boucle_Tournois;
 
       for I in Nb_Tournois_T loop
