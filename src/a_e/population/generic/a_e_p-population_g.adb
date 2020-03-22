@@ -51,8 +51,23 @@ is
    procedure Organiser_Tournois
       (Population : in out Population_T)
    is
+      subtype Nb_Participant_Tournois_T is Indice_Population_T range
+         Indice_Population_T'First .. Nb_Participants;
+      --  Le nombre de participants à chaque tournois.
+      type Nb_Tournois_T is new Nb_Participant_Tournois_T;
+      --  Le nombre de tournois organisé.
+
+      type Pos_Individu_T is array (Nb_Tournois_T) of Indice_Population_T;
+      --  Tableau de position des perdants dans la population.
+
+      Pos_Perdants : Pos_Individu_T;
+      Pos_Gagnants : Pos_Individu_T;
+      Pos_Seconds  : Pos_Individu_T;
    begin
-      null;
+      Boucle_Tournois :
+      for I in Nb_Tournois_T loop
+         null;
+      end loop Boucle_Tournois;
    end Organiser_Tournois;
    ---------------------------------------------------------------------------
 

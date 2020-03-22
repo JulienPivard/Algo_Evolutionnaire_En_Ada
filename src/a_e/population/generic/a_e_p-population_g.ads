@@ -119,6 +119,9 @@ private
    Nb_Tournois       : constant Indice_Population_T :=
       (Taille_Population * 8) / 100;
    --  Nombre de tournois organisé.
+   Nb_Participants   : constant Indice_Population_T :=
+      Nb_Tournois;
+   --  Nombre de participants a chaque tournois.
 
    subtype Intervalle_Survivants_T     is Indice_Population_T        range
       Indice_Population_T'First .. Nb_Survivants;
