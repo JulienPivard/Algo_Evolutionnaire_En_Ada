@@ -274,6 +274,9 @@ Temps total :
 ```
 
 # TODO
-- [ ] Ajouter une mécanique de sélection par tournois
-- [ ] Parallélisation par découpage en plusieurs populations avec échange d'individus
-- [ ] Possibilité de limiter les échanges de population aux îlots proches (processeur voisin)
+- [x] Ajouter une mécanique de sélection par tournois; (En plus du tri et
+  de l'élimination des 25%)
+- [ ] Parallélisation par découpage en plusieurs populations avec échange
+  d'individus;
+- [ ] Possibilité de limiter les échanges de population aux îlots proches
+  (processeur voisin).
