@@ -65,10 +65,10 @@ existe 5 scénarios équiprobable :
 * On prend la mantisse du père et l'exposant de la mère;
 * On prend la mantisse de la mère et l'exposant du père.
 
-Viens ensuite la phase de mutation des nouveaux nés.  Celle-ci a environ
-10% de chances de se produire. Chaque scénario de mutation a autant de
-chances de se produire indépendamment du scénarios d'accouplement choisi
-précédemment.
+Viens ensuite la phase de mutation des nouveaux nés. Celle-ci a environ
+10% de chances de se produire pour chaque enfant. Chacun des scénarios de
+mutation a autant de chances de se produire qu'un autre, et ce,
+indépendamment du scénarios d'accouplement choisi précédemment.
 * On prend l'écart entre les valeurs de la variable des deux parents, et
   on choisi une valeur aléatoirement dans cet intervalle puis on l'ajoute
   à la valeur de la variable de l'enfant;
