@@ -81,7 +81,17 @@ autorisées, si ce n'est pas le cas on les ajuste sur le maximum, ou le
 minimum selon le plus proche.
 
 Une fois tous les nouveaux individu généré, on applique la formule sur les
-nouveaux nés, puis on tri la population. La génération vient de finir, on
+nouveaux nés, puis on applique une mécanique de tournois sur 8% de la
+population total. Seul les individus survivants sont éligible. Le perdant
+du tournoi se voit remplacer par l'enfant de l'accouplement des deux
+vainqueurs. Le nombre de tournois joué correspond à 8% de la population
+total, et le nombre de participants par tournoi correspond à 8% lui aussi.
+Après l'ajout de la sélection par tournois, le nombre de générations
+nécessaire à été divisé par deux passant de environ 80-90 pour 1000
+individus, à 40-45 toujours pour 1000 individus. Le temps total lui n'a
+que très peu diminué.
+
+Ultime étape, on tri la population. La génération vient de finir, on
 recommence le cycle.
 
 # Facteurs d'influence sur le temps de calcul et la précision
@@ -276,6 +286,7 @@ Temps total :
 # TODO
 - [x] Ajouter une mécanique de sélection par tournois; (En plus du tri et
   de l'élimination des 25%)
+- [ ] Selection par tournois pour la partie principale;
 - [ ] Parallélisation par découpage en plusieurs populations avec échange
   d'individus;
 - [ ] Possibilité de limiter les échanges de population aux îlots proches
