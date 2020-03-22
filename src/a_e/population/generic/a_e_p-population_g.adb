@@ -80,6 +80,12 @@ is
                (Gen => Generateur_Survivant);
             Pos_Perdants (I) := Alea_Survivants_P.Random
                (Gen => Generateur_Survivant);
+
+            Enfants (I) := Individu_P.Accoupler
+               (
+                  Individu => Population.Table (Pos_Gagnants (I)),
+                  Autre    => Population.Table (Pos_Seconds  (I))
+               );
          end Bloc_Accouplement;
       end loop Boucle_Tournois;
 
