@@ -143,6 +143,29 @@ Le résultat de la compilation se trouvera dans `./bin/debug/executable` ou
 dans `./bin/release/executable` selon les options choisie dans le fichier
 `makefile.conf`.
 
+## Contenu des démos
+
+### Démo 1
+
+Le but est ici de minimiser une surface en jouant sur le diamètre du
+cylindre pour un volume donné. Nous avons donc un paramètre et le
+résultat.
+
+### Démo 2
+
+Une formule prise au hasard, toujours avec un seul paramètre, le but est
+de minimiser son résultat en jouant sur la valeur de `X`. Le but est ici
+de voir à partir de quelle taille de population on obtient un résultat
+fiable (On trouve le minimum 99% du temps). Sachant que l'intervalle de
+valeurs autorisé pour `X` est volontairement grand.
+
+### Démo 3
+
+Une autre formule prise au hasard, mais on a cette fois ci deux
+paramètres, `X` et `Y`, à faire varier pour minimiser le résultat de la
+fonction. Le but est d'observer l'impact de l'augmentation du nombre
+d'inconnues sur la précision du résultat.
+
 # Résultats à l'exécution
 
 Les résultats de l'exécution :
