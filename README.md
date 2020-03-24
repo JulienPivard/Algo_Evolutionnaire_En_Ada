@@ -164,7 +164,9 @@ autorisé pour `X` est volontairement grand.
 Une autre formule prise au hasard, mais on a cette fois ci deux
 paramètres, `X` et `Y`, à faire varier pour minimiser le résultat de la
 fonction. Le but est d'observer l'impact de l'augmentation du nombre
-d'inconnues sur la précision du résultat.
+d'inconnues sur la précision du résultat. Réduire la taille de 200
+individus à 150 nous fait passer sous la barre des 99% des chances de
+trouver le minimum.
 
 # Résultats à l'exécution
 
