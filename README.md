@@ -156,8 +156,8 @@ résultat.
 Une formule prise au hasard, toujours avec un seul paramètre, le but est
 de minimiser son résultat en jouant sur la valeur de `X`. Le but est ici
 de voir à partir de quelle taille de population on obtient un résultat
-fiable (On trouve le minimum 99% du temps). Sachant que l'intervalle de
-valeurs autorisé pour `X` est volontairement grand.
+fiable (On trouve le minimum 99% du temps). L'intervalle de valeurs
+autorisé pour `X` est volontairement grand.
 
 ### Démo 3
 
