@@ -90,8 +90,8 @@ private
 
    package Valeur_X_P is new A_E_P.Valeur_Param_G
       (
-         Debut_Intervalle => -10_000.0,
-         Fin_Intervalle   => +10_000.0
+         Debut_Intervalle => -100_000.0,
+         Fin_Intervalle   => +100_000.0
       );
 
    type Anonyme_T is
