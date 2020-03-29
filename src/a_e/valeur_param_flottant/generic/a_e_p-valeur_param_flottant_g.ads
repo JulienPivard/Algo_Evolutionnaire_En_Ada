@@ -14,7 +14,7 @@ generic
 --  l'intervalle de valeurs dans lequel elle
 --  est valide, ou a un sens.
 --  @group Parametres
-package A_E_P.Valeur_Param_G
+package A_E_P.Valeur_Param_Flottant_G
    with
       Pure           => False,
       Preelaborate   => False,
@@ -98,4 +98,4 @@ private
          --  La valeur du paramètre.
       end record;
 
-end A_E_P.Valeur_Param_G;
+end A_E_P.Valeur_Param_Flottant_G;

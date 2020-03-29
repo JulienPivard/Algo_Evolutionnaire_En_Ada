@@ -1,6 +1,6 @@
-private with A_E_P.Valeur_Param_G;
+private with A_E_P.Valeur_Param_Flottant_G;
 
-pragma Elaborate_All (A_E_P.Valeur_Param_G);
+pragma Elaborate_All (A_E_P.Valeur_Param_Flottant_G);
 
 --  @summary
 --  Calcul la minimisation d'une formule.
@@ -88,14 +88,14 @@ is
 
 private
 
-   package Valeur_X_P is new A_E_P.Valeur_Param_G
+   package Valeur_X_P is new A_E_P.Valeur_Param_Flottant_G
       (
          Valeur_Param_G_T => V_Param_T,
          Debut_Intervalle => -1.0,
          Fin_Intervalle   => +100.0
       );
 
-   package Valeur_Y_P is new A_E_P.Valeur_Param_G
+   package Valeur_Y_P is new A_E_P.Valeur_Param_Flottant_G
       (
          Valeur_Param_G_T => V_Param_T,
          Debut_Intervalle => -2.0,

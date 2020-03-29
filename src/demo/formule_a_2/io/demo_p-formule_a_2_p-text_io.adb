@@ -1,8 +1,8 @@
 with Ada.Text_IO;
 
-with A_E_P.Valeur_Param_G.Text_IO;
+with A_E_P.Valeur_Param_Flottant_G.Text_IO;
 
-pragma Elaborate_All (A_E_P.Valeur_Param_G.Text_IO);
+pragma Elaborate_All (A_E_P.Valeur_Param_Flottant_G.Text_IO);
 
 package body Demo_P.Formule_A_2_P.Text_IO
    with Spark_Mode => Off

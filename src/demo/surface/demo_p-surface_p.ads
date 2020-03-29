@@ -1,6 +1,6 @@
-private with A_E_P.Valeur_Param_G;
+private with A_E_P.Valeur_Param_Flottant_G;
 
-pragma Elaborate_All (A_E_P.Valeur_Param_G);
+pragma Elaborate_All (A_E_P.Valeur_Param_Flottant_G);
 
 --  @summary
 --  Calcul la plus petit surface possible à volume contraint.
@@ -89,7 +89,7 @@ is
 
 private
 
-   package Valeur_Diametre_P is new A_E_P.Valeur_Param_G
+   package Valeur_Diametre_P is new A_E_P.Valeur_Param_Flottant_G
       (
          Valeur_Param_G_T => V_Param_T,
          Debut_Intervalle => 0.0,

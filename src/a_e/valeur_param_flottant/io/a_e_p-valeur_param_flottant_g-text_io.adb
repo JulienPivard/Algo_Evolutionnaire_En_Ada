@@ -1,6 +1,6 @@
 with Ada.Text_IO;
 
-package body A_E_P.Valeur_Param_G.Text_IO
+package body A_E_P.Valeur_Param_Flottant_G.Text_IO
    with Spark_Mode => Off
 is
 
@@ -38,4 +38,4 @@ is
    end Put;
    ---------------------------------------------------------------------------
 
-end A_E_P.Valeur_Param_G.Text_IO;
+end A_E_P.Valeur_Param_Flottant_G.Text_IO;

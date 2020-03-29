@@ -5,7 +5,7 @@ with Generateur_G;
 
 pragma Elaborate_All (Generateur_G);
 
-package body A_E_P.Valeur_Param_G
+package body A_E_P.Valeur_Param_Flottant_G
    with Spark_Mode => Off
 is
 
@@ -220,4 +220,4 @@ begin
 
    Alea_Petites_Mutations_R.Reset (Gen => Generateur_Petites_Mutations);
 
-end A_E_P.Valeur_Param_G;
+end A_E_P.Valeur_Param_Flottant_G;

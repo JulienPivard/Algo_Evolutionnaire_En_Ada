@@ -5,7 +5,7 @@ generic
 --  @description
 --  Affiche une valeur.
 --  @group Affichage
-package A_E_P.Valeur_Param_G.Text_IO
+package A_E_P.Valeur_Param_Flottant_G.Text_IO
    with
       Pure           => False,
       Preelaborate   => False,
@@ -19,4 +19,4 @@ is
    --  @param Item
    --  La valeur du paramètre à afficher.
 
-end A_E_P.Valeur_Param_G.Text_IO;
+end A_E_P.Valeur_Param_Flottant_G.Text_IO;
