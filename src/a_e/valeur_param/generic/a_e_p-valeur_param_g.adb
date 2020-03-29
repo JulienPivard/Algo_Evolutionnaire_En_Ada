@@ -105,17 +105,23 @@ is
          when Composition_Pere_Mere =>
             Bebe.Valeur := V_Param_T'Compose
                (
-                  V_Param_T'Fraction (Autre.Valeur),     --  Mantisse « mère »
-                  V_Param_T'Exponent (Parametre.Valeur)  --  Exposant « père »
+                  V_Param_T'Fraction (Autre.Valeur),
+                  --  Mantisse « mère »
+                  V_Param_T'Exponent (Parametre.Valeur)
+                  --  Exposant « père »
                );
-            Bebe.Valeur := V_Param_T'Copy_Sign (Bebe.Valeur, Autre.Valeur);
+            Bebe.Valeur :=
+               V_Param_T'Copy_Sign (Bebe.Valeur, Autre.Valeur);
          when Composition_Mere_Pere =>
             Bebe.Valeur := V_Param_T'Compose
                (
-                  V_Param_T'Fraction (Parametre.Valeur), --  Mantisse « père »
-                  V_Param_T'Exponent (Autre.Valeur)      --  Exposant « mère »
+                  V_Param_T'Fraction (Parametre.Valeur),
+                  --  Mantisse « père »
+                  V_Param_T'Exponent (Autre.Valeur)
+                  --  Exposant « mère »
                );
-            Bebe.Valeur := V_Param_T'Copy_Sign (Bebe.Valeur, Parametre.Valeur);
+            Bebe.Valeur :=
+               V_Param_T'Copy_Sign (Bebe.Valeur, Parametre.Valeur);
       end case;
 
       --  Correspond à une probabilité de 10%
