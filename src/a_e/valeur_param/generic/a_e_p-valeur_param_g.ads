@@ -4,9 +4,6 @@ generic
    Fin_Intervalle   : V_Param_T;
    --  La fin de l'intervalle de valeurs.
 
-   Valeurs_Interdites : Valeurs_Interdites_T := Valeurs_Interdites_Vide;
-   --  Les valeurs interdites pour le paramètre.
-
 --  @summary
 --  Une valeur de paramètre.
 --  @description
@@ -74,14 +71,6 @@ is
 
 private
 
-   procedure Verifier_Et_Ajuster_Valeur_Si_Interdite
-      (Parametre : in out Valeur_Param_T);
-   --  Vérifie si la valeur du paramètre correspond à
-   --  une de celle qui sont interdite. Si c'est le
-   --  cas, un ajustement sera généré entre 0 et 1.
-   --  @param Parametre
-   --  La valeur du paramètre à vérifier.
-
    procedure Verifier_Et_Ajuster_Borne_Valeur
       (Parametre : in out Valeur_Param_T);
    --  Vérifie seulement que la valeur du paramètre est
@@ -94,16 +83,5 @@ private
          Valeur : V_Param_T := Debut_Intervalle;
          --  La valeur du paramètre.
       end record;
-
-   type Ajuster_Valeur_Si_Interdite_A is not null access
-      procedure (Parametre : in out Valeur_Param_T);
-
-   Ajuster_Valeur : constant Ajuster_Valeur_Si_Interdite_A :=
-      (
-         if Valeurs_Interdites'Length <= 0 then
-            Verifier_Et_Ajuster_Borne_Valeur'Access
-         else
-            Verifier_Et_Ajuster_Valeur_Si_Interdite'Access
-      );
 
 end A_E_P.Valeur_Param_G;

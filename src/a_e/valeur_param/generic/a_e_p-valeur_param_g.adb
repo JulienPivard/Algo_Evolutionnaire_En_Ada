@@ -165,7 +165,7 @@ is
       end if;
 
       --  On vérifie que la valeur est bien dans son intervalle.
-      Ajuster_Valeur (Parametre => Bebe);
+      Verifier_Et_Ajuster_Borne_Valeur (Parametre => Bebe);
 
       return Bebe;
    end Accoupler;
@@ -204,34 +204,6 @@ is
          Parametre.Valeur := Fin_Intervalle;
       end if;
    end Verifier_Et_Ajuster_Borne_Valeur;
-   ---------------------------------------------------------------------------
-
-   ---------------------------------------------------------------------------
-   procedure Verifier_Et_Ajuster_Valeur_Si_Interdite
-      (Parametre : in out Valeur_Param_T)
-   is
-      Trouvee  : Boolean := False;
-      Decalage : Float;
-   begin
-      Boucle_Ajuster_Valeur_Interdite :
-      loop
-         Boucle_Verifier_Val_Interdite :
-         for E of Valeurs_Interdites loop
-            Trouvee := E = Parametre.Valeur;
-         end loop Boucle_Verifier_Val_Interdite;
-
-         --  Si la valeur ne correspond à aucun interdite, alors on sort.
-         exit Boucle_Ajuster_Valeur_Interdite when not Trouvee;
-
-         Decalage := Alea_Petites_Mutations_R.Random
-            (Gen => Generateur_Petites_Mutations);
-
-         Parametre.Valeur := Parametre.Valeur + V_Param_T (Decalage);
-
-         --  On vérifie que la valeur est bien dans son intervalle.
-         Verifier_Borne_Valeur (Parametre => Parametre);
-      end loop Boucle_Ajuster_Valeur_Interdite;
-   end Verifier_Et_Ajuster_Valeur_Si_Interdite;
    ---------------------------------------------------------------------------
 
 begin
