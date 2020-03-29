@@ -32,6 +32,7 @@ generic
    --  paramètres comme entrées de la fonction de la formule.
    --  @param Parametres
    --  Les paramètres de la fonction.
+   --  @return Le résultat du calcul de la fonction.
 
    with function Convergence
       (
