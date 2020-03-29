@@ -4,10 +4,6 @@ package body Demo_P.Formule_A_1_P
    with Spark_Mode => Off
 is
 
-   subtype Math_T is A_E_P.Math_T;
-
-   use type Math_T;
-
    ---------------------------------------------------------------------------
    procedure Generer
       (Parametres : in out Anonyme_T)
@@ -47,7 +43,7 @@ is
       Xi : constant Math_T := Math_T (Lire_Parametre (P => Parametres));
    begin
       return R : Resultat_T do
-         R.Valeur := A_E_P.V_Calcule_T
+         R.Valeur := V_Calcule_T
             (10.0 + (Xi**2) - 10.0 * Math_P.Cos (X => 2.0 * Pi * Xi));
       end return;
    end Calculer;

@@ -23,8 +23,7 @@ is
    end Put_Parametres;
    ---------------------------------------------------------------------------
 
-   package V_Calcule_IO is new Ada.Text_IO.Float_IO
-      (Num => A_E_P.V_Calcule_T);
+   package V_Calcule_IO is new Ada.Text_IO.Float_IO (Num => V_Calcule_T);
 
    ---------------------------------------------------------------------------
    procedure Put_Resultat

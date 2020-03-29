@@ -4,10 +4,6 @@ package body Demo_P.Surface_P
    with Spark_Mode => Off
 is
 
-   subtype Math_T is A_E_P.Math_T;
-
-   use type Math_T;
-
    ---------------------------------------------------------------------------
    procedure Generer
       (Parametres : in out Surface_T)
@@ -45,7 +41,7 @@ is
       Di : constant Math_T := Math_T (Lire_Parametre (P => Parametres));
    begin
       return R : Resultat_T do
-         R.Surface := A_E_P.V_Calcule_T
+         R.Surface := V_Calcule_T
             (Pi * ((Di**2) / 2.0) + 4.0 * (160.0 / Di));
       end return;
    end Calculer;

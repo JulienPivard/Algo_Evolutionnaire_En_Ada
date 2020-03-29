@@ -128,11 +128,9 @@ private
 
    type Resultat_T is
       record
-         Valeur : A_E_P.V_Calcule_T := 0.0;
+         Valeur : V_Calcule_T := 0.0;
          --  Le résulat du calcul de la formule.
       end record;
-
-   use type A_E_P.V_Calcule_T;
 
    function "<"
       (Gauche, Droite : in Resultat_T)

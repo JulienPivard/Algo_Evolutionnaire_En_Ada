@@ -14,4 +14,13 @@ package Demo_P
       Spark_Mode     => Off
 is
 
+   type Math_T is digits 5;
+   --  Les calculs seront tous fait avec un
+   --  type de cette précision la.
+
+   type V_Param_T   is new Math_T;
+   --  Représentation des paramètres de la fonction à résoudre.
+   type V_Calcule_T is new Math_T;
+   --  Représentation du résultat de la fonction à résoudre.
+
 end Demo_P;
