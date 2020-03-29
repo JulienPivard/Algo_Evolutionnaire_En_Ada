@@ -194,7 +194,7 @@ is
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
-   procedure Verifier_Borne_Valeur
+   procedure Verifier_Et_Ajuster_Borne_Valeur
       (Parametre : in out Valeur_Param_T)
    is
    begin
@@ -203,7 +203,7 @@ is
       elsif Parametre.Valeur > Fin_Intervalle   then
          Parametre.Valeur := Fin_Intervalle;
       end if;
-   end Verifier_Borne_Valeur;
+   end Verifier_Et_Ajuster_Borne_Valeur;
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------

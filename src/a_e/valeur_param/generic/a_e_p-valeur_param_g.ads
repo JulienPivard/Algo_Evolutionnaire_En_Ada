@@ -82,7 +82,7 @@ private
    --  @param Parametre
    --  La valeur du paramètre à vérifier.
 
-   procedure Verifier_Borne_Valeur
+   procedure Verifier_Et_Ajuster_Borne_Valeur
       (Parametre : in out Valeur_Param_T);
    --  Vérifie seulement que la valeur du paramètre est
    --  dans les bornes définie.
@@ -101,7 +101,7 @@ private
    Ajuster_Valeur : constant Ajuster_Valeur_Si_Interdite_A :=
       (
          if Valeurs_Interdites'Length <= 0 then
-            Verifier_Borne_Valeur'Access
+            Verifier_Et_Ajuster_Borne_Valeur'Access
          else
             Verifier_Et_Ajuster_Valeur_Si_Interdite'Access
       );
