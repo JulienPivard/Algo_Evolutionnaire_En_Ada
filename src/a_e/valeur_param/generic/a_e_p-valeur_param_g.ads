@@ -1,7 +1,10 @@
 generic
-   Debut_Intervalle : V_Param_T;
+   type Valeur_Param_G_T is digits <>;
+   --  permet de spécifier la précision d'un paramètre.
+
+   Debut_Intervalle : Valeur_Param_G_T;
    --  Le début de l'intervalle de valeurs.
-   Fin_Intervalle   : V_Param_T;
+   Fin_Intervalle   : Valeur_Param_G_T;
    --  La fin de l'intervalle de valeurs.
 
 --  @summary
@@ -18,6 +21,17 @@ package A_E_P.Valeur_Param_G
       Elaborate_Body => False,
       Spark_Mode     => Off
 is
+
+   Borne_Inf_Min : constant := 0.0;
+   Borne_Sup_Min : constant := 1.0;
+
+   pragma Compile_Time_Error
+      (
+         Valeur_Param_G_T'First > Borne_Inf_Min
+         or else
+         Valeur_Param_G_T'Last  < Borne_Sup_Min,
+         "Erreur"
+      );
 
    pragma Compile_Time_Error
       (
@@ -53,7 +67,7 @@ is
    procedure Modifier_Valeur
       (
          Parametre       : in out Valeur_Param_T;
-         Nouvelle_Valeur : in     V_Param_T
+         Nouvelle_Valeur : in     Valeur_Param_G_T
       );
    --  Modifie la valeur stocké dans le paramètre.
    --  @param Parametre
@@ -63,7 +77,7 @@ is
 
    function Lire_Valeur
       (Parametre : in Valeur_Param_T)
-      return V_Param_T;
+      return Valeur_Param_G_T;
    --  Lit la valeur stocké dans le paramètre.
    --  @param Parametre
    --  Le paramètre.
@@ -80,7 +94,7 @@ private
 
    type Valeur_Param_T is
       record
-         Valeur : V_Param_T := Debut_Intervalle;
+         Valeur : Valeur_Param_G_T := Debut_Intervalle;
          --  La valeur du paramètre.
       end record;
 

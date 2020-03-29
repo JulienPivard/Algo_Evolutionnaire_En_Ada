@@ -4,7 +4,7 @@ package body A_E_P.Valeur_Param_G.Text_IO
    with Spark_Mode => Off
 is
 
-   package V_Param_IO is new Ada.Text_IO.Float_IO (Num => V_Param_T);
+   package V_Param_IO is new Ada.Text_IO.Float_IO (Num => Valeur_Param_G_T);
 
    ---------------------------------------------------------------------------
    procedure Put

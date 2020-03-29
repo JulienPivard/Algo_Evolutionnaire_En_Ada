@@ -90,12 +90,14 @@ private
 
    package Valeur_X_P is new A_E_P.Valeur_Param_G
       (
+         Valeur_Param_G_T => V_Param_T,
          Debut_Intervalle => -1.0,
          Fin_Intervalle   => +100.0
       );
 
    package Valeur_Y_P is new A_E_P.Valeur_Param_G
       (
+         Valeur_Param_G_T => V_Param_T,
          Debut_Intervalle => -2.0,
          Fin_Intervalle   => +100.0
       );
@@ -110,7 +112,7 @@ private
 
    function Lire_Parametre_X
       (P : in Anonyme_T)
-      return A_E_P.V_Param_T
+      return V_Param_T
    is (Valeur_X_P.Lire_Valeur (Parametre => P.X));
    --  Lit la valeur du paramètre X.
    --  @param Parametres
@@ -119,7 +121,7 @@ private
 
    function Lire_Parametre_Y
       (P : in Anonyme_T)
-      return A_E_P.V_Param_T
+      return V_Param_T
    is (Valeur_Y_P.Lire_Valeur (Parametre => P.Y));
    --  Lit la valeur du paramètre Y.
    --  @param Parametres

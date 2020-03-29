@@ -52,7 +52,7 @@ is
    package Alea_Petites_Mutations_R renames Ada.Numerics.Float_Random;
 
    package Generateur_P       is new Generateur_G
-      (Valeur_T => V_Param_T);
+      (Valeur_T => Valeur_Param_G_T);
 
    package Alea_Repartition_P is new Ada.Numerics.Discrete_Random
       (Result_Subtype => Repartition_Caractere_T);
@@ -103,25 +103,25 @@ is
          when Moyenne               =>
             Bebe.Valeur := (Parametre.Valeur + Autre.Valeur) / 2.0;
          when Composition_Pere_Mere =>
-            Bebe.Valeur := V_Param_T'Compose
+            Bebe.Valeur := Valeur_Param_G_T'Compose
                (
-                  V_Param_T'Fraction (Autre.Valeur),
+                  Valeur_Param_G_T'Fraction (Autre.Valeur),
                   --  Mantisse « mère »
-                  V_Param_T'Exponent (Parametre.Valeur)
+                  Valeur_Param_G_T'Exponent (Parametre.Valeur)
                   --  Exposant « père »
                );
             Bebe.Valeur :=
-               V_Param_T'Copy_Sign (Bebe.Valeur, Autre.Valeur);
+               Valeur_Param_G_T'Copy_Sign (Bebe.Valeur, Autre.Valeur);
          when Composition_Mere_Pere =>
-            Bebe.Valeur := V_Param_T'Compose
+            Bebe.Valeur := Valeur_Param_G_T'Compose
                (
-                  V_Param_T'Fraction (Parametre.Valeur),
+                  Valeur_Param_G_T'Fraction (Parametre.Valeur),
                   --  Mantisse « père »
-                  V_Param_T'Exponent (Autre.Valeur)
+                  Valeur_Param_G_T'Exponent (Autre.Valeur)
                   --  Exposant « mère »
                );
             Bebe.Valeur :=
-               V_Param_T'Copy_Sign (Bebe.Valeur, Parametre.Valeur);
+               Valeur_Param_G_T'Copy_Sign (Bebe.Valeur, Parametre.Valeur);
       end case;
 
       --  Correspond à une probabilité de 10%
@@ -132,7 +132,7 @@ is
                --  intervalle entre les deux parents.
                Bloc_Alea_Intervalle :
                declare
-                  Ecart : constant V_Param_T :=
+                  Ecart : constant Valeur_Param_G_T :=
                      Parametre.Valeur - Autre.Valeur;
                begin
                   Bebe.Valeur := Bebe.Valeur +
@@ -156,14 +156,14 @@ is
                Bebe.Valeur :=
                   Bebe.Valeur
                   +
-                  V_Param_T (Alea_Petites_Mutations_R.Random
+                  Valeur_Param_G_T (Alea_Petites_Mutations_R.Random
                      (Gen => Generateur_Petites_Mutations));
             when Petite_Mutation_Moins =>
                --  Soustrait une petite mutation au gène de l'enfant
                Bebe.Valeur :=
                   Bebe.Valeur
                   -
-                  V_Param_T (Alea_Petites_Mutations_R.Random
+                  Valeur_Param_G_T (Alea_Petites_Mutations_R.Random
                      (Gen => Generateur_Petites_Mutations));
             when Inverse_Signe =>
                Bebe.Valeur := -Bebe.Valeur;
@@ -181,7 +181,7 @@ is
    procedure Modifier_Valeur
       (
          Parametre       : in out Valeur_Param_T;
-         Nouvelle_Valeur : in     V_Param_T
+         Nouvelle_Valeur : in     Valeur_Param_G_T
       )
    is
    begin
@@ -192,7 +192,7 @@ is
    ---------------------------------------------------------------------------
    function Lire_Valeur
       (Parametre : in Valeur_Param_T)
-      return V_Param_T
+      return Valeur_Param_G_T
    is
    begin
       return Parametre.Valeur;

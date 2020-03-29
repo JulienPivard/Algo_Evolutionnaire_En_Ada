@@ -25,13 +25,4 @@ is
    --  @value Minimiser
    --  L'objectif est de minimiser le résultat de la fonction.
 
-   type Math_T      is digits 5;
-   --  Les calculs seront tous fait avec un
-   --  type de cette précision la.
-
-   type V_Param_T   is new Math_T;
-   --  Représentation des paramètres de la fonction à résoudre.
-   type V_Calcule_T is new Math_T;
-   --  Représentation du résultat de la fonction à résoudre.
-
 end A_E_P;
