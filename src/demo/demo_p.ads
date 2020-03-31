@@ -23,4 +23,7 @@ is
    type V_Calcule_T is new Math_T;
    --  Représentation du résultat de la fonction à résoudre.
 
+   Taille : constant := 200;
+   --  La taille de la population.
+
 end Demo_P;

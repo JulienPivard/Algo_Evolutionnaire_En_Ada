@@ -6,6 +6,7 @@ with Ada.Real_Time;
 with A_E_P;
 with A_E_P.Algo_Evolutionnaire_G;
 
+with Demo_P;
 with Demo_P.Surface_P;
 with Demo_P.Surface_P.Text_IO;
 
@@ -16,7 +17,6 @@ with Demo_P.Formule_A_2_P;
 with Demo_P.Formule_A_2_P.Text_IO;
 
 with Chrono_P;
-with Intervalle_P;
 
 separate (Executeur_G)
 procedure Executer
@@ -127,7 +127,7 @@ is
 
    package Population_Surface_P  is new A_E_P.Algo_Evolutionnaire_G
       (
-         Taille_Population      => Intervalle_P.Taille,
+         Taille_Population      => Demo_P.Taille,
          Parametres_G_T         => Surface_R.Surface_T,
          Generer                => Surface_R.Generer,
          Accoupler              => Surface_R.Accoupler,
@@ -150,7 +150,7 @@ is
 
    package Population_Anonyme_1_P  is new A_E_P.Algo_Evolutionnaire_G
       (
-         Taille_Population      => Intervalle_P.Taille,
+         Taille_Population      => Demo_P.Taille,
          Parametres_G_T         => Formule_1_R.Anonyme_T,
          Generer                => Formule_1_R.Generer,
          Accoupler              => Formule_1_R.Accoupler,
@@ -173,7 +173,7 @@ is
 
    package Population_Anonyme_2_P  is new A_E_P.Algo_Evolutionnaire_G
       (
-         Taille_Population      => Intervalle_P.Taille,
+         Taille_Population      => Demo_P.Taille,
          Parametres_G_T         => Formule_2_R.Anonyme_T,
          Generer                => Formule_2_R.Generer,
          Accoupler              => Formule_2_R.Accoupler,
