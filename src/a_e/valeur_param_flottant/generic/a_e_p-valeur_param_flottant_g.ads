@@ -30,7 +30,7 @@ is
          Valeur_Param_G_T'First > Borne_Inf_Min
          or else
          Valeur_Param_G_T'Last  < Borne_Sup_Min,
-         "Erreur"
+         "Erreur, l'intervalle de valeurs doit inclure 0.0 et 1.0"
       );
 
    pragma Compile_Time_Error
