@@ -9,7 +9,7 @@ generic
 --  aléatoire compris entre deux bornes qui peuvent être
 --  passé en paramètres lors de l'appel de la fonction.
 --  @group Nombre aléatoire
-package Generateur_G
+package Generateur_Flottant_G
    with
       Pure           => False,
       Preelaborate   => False,
@@ -30,4 +30,4 @@ is
    --  La borne supérieur de la valeur à générer.
    --  @return La valeur aléatoire généré.
 
-end Generateur_G;
+end Generateur_Flottant_G;

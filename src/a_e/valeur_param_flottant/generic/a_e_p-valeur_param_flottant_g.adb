@@ -1,9 +1,9 @@
 with Ada.Numerics.Float_Random;
 with Ada.Numerics.Discrete_Random;
 
-with Generateur_G;
+with Generateur_Flottant_G;
 
-pragma Elaborate_All (Generateur_G);
+pragma Elaborate_All (Generateur_Flottant_G);
 
 package body A_E_P.Valeur_Param_Flottant_G
    with Spark_Mode => Off
@@ -51,7 +51,7 @@ is
 
    package Alea_Petites_Mutations_R renames Ada.Numerics.Float_Random;
 
-   package Generateur_P       is new Generateur_G
+   package Generateur_P       is new Generateur_Flottant_G
       (Valeur_T => Valeur_Param_G_T);
 
    package Alea_Repartition_P is new Ada.Numerics.Discrete_Random

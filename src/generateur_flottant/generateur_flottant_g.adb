@@ -1,6 +1,6 @@
 with Ada.Numerics.Float_Random;
 
-package body Generateur_G
+package body Generateur_Flottant_G
    with Spark_Mode => Off
 is
 
@@ -43,4 +43,4 @@ begin
 
    Aleatoire_R.Reset (Gen => Generateur);
 
-end Generateur_G;
+end Generateur_Flottant_G;
