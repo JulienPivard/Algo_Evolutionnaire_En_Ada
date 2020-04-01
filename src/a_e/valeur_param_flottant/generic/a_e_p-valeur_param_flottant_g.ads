@@ -1,6 +1,6 @@
 generic
    type Valeur_Param_G_T is digits <>;
-   --  permet de spécifier la précision d'un paramètre.
+   --  Permet de spécifier la précision d'un paramètre.
 
    Debut_Intervalle : Valeur_Param_G_T;
    --  Le début de l'intervalle de valeurs.
