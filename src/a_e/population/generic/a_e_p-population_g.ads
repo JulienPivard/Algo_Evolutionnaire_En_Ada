@@ -8,7 +8,6 @@ pragma Elaborate_All (Tri_Rapide_G);
 pragma Elaborate_All (Tri_A_Bulle_G);
 
 generic
-
    Taille : Taille_Population_T;
    --  La taille de la population à faire évoluer.
 
