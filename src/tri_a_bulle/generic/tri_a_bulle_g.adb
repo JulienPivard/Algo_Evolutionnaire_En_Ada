@@ -6,13 +6,14 @@ is
    procedure Tri_A_Bulle
       (Tableau : in out Table_G_T)
    is
+      Debut : Indice_G_T := Tableau'First;
    begin
       Boucle_De_Tri :
       loop
          Bloc_Tri_Bulle :
          declare
             subtype Indice_Tmp_T is Indice_G_T range
-               Indice_G_T'Succ (Tableau'First) .. Tableau'Last;
+               Indice_G_T'Succ (Debut) .. Tableau'Last;
 
             Echange : Boolean := False;
          begin
