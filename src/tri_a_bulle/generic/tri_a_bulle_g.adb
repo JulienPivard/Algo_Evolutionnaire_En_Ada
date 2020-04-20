@@ -36,6 +36,8 @@ is
             end loop Boucle_Tri_Bulle;
 
             exit Boucle_De_Tri when not Echange;
+
+            Debut := Indice_G_T'Succ (Debut);
          end Bloc_Tri_Bulle;
       end loop Boucle_De_Tri;
    end Tri_A_Bulle;
