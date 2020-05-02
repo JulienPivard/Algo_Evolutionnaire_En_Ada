@@ -94,7 +94,7 @@ private
 
    type Valeur_Param_T is
       record
-         Valeur : Valeur_Param_G_T := Debut_Intervalle;
+         Valeur : Valeur_Param_G_T;
          --  La valeur du paramètre.
       end record;
 
