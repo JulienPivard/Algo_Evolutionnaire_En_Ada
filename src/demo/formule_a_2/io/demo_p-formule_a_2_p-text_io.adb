@@ -16,9 +16,9 @@ is
       (Item : in Anonyme_T)
    is
    begin
-      Ada.Text_IO.Put (Item => " | X : ");
+      Ada.Text_IO.Put (Item => " |  X : ");
       Valeur_X_IO.Put (Item => Item.X);
-      Ada.Text_IO.Put (Item => " | Y : ");
+      Ada.Text_IO.Put (Item => " |  Y : ");
       Valeur_Y_IO.Put (Item => Item.Y);
    end Put_Parametres;
    ---------------------------------------------------------------------------
