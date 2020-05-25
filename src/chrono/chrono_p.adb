@@ -40,12 +40,12 @@ is
 
       --  Affichage en heures.
       if Duree_Exact > 3600.0 then
-            Ada.Text_IO.Put (Item => Indentation);
-            Temps_IO.Put    (Item => Duree / Une_Heure,   Width => 0);
-            Ada.Text_IO.Put (Item => " h et ");
-            Temps_IO.Put
-               (Item => (Duree mod Une_Heure) / Une_Minutte, Width => 0);
-            Ada.Text_IO.Put_Line (Item => " m");
+         Ada.Text_IO.Put      (Item => Indentation);
+         Temps_IO.Put         (Item => Duree / Une_Heure, Width => 0);
+         Ada.Text_IO.Put      (Item => " h et ");
+         Temps_IO.Put
+            (Item => (Duree mod Une_Heure) / Une_Minutte, Width => 0);
+         Ada.Text_IO.Put_Line (Item => " m");
       end if;
    end Affichage_Temps;
    ---------------------------------------------------------------------------
