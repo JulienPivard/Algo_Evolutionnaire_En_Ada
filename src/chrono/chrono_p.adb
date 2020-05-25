@@ -22,8 +22,8 @@ is
       Une_Heure   : constant Temps_T   := 3600;
       Indentation : constant String    := "         ";
 
-      package Duree_IO is new Ada.Text_IO.Fixed_IO   (Duration);
-      package Temps_IO is new Ada.Text_IO.Integer_IO (Temps_T);
+      package Duree_IO is new Ada.Text_IO.Fixed_IO   (Num => Duration);
+      package Temps_IO is new Ada.Text_IO.Integer_IO (Num => Temps_T);
    begin
       Ada.Text_IO.Put      (Item => Indentation);
       Duree_IO.Put         (Item => Duree_Exact, Fore => 0, Aft => 4);
