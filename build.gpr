@@ -1,4 +1,4 @@
---  Dernière modification : Lundi 16 mars[03] 2020
+--  Dernière modification : Lundi 25 mai[05] 2020
 --  Auteur : PIVARD Julien
 
 --  https://gcc.gnu.org/releases.html
@@ -26,9 +26,9 @@ project Build is
    Afficher_La_Stack          : Afficher_La_Stack_T   :=
       External ("afficher_utilisation_stack",  "non");
    Warn_Deviennent_Erreurs    : Sorte_Avertissement_T :=
-      External ("warn_sont_err", "non");
+      External ("warn_sont_err",               "non");
    Afficher_Ordre_Elaboration : Afficher_Ordre_Elab_T :=
-      External ("afficher_ordre_elaboration", "non");
+      External ("afficher_ordre_elaboration",  "non");
 
    Fichier_Principal             := "client.adb";
    Nom_Executable                := "executable";
