@@ -30,7 +30,7 @@ is
       Ada.Text_IO.Put_Line (Item => " s");
 
       --  Affichage en minutes.
-      if Duree_Exact > 60.0 then
+      if Duree > Une_Minutte then
          Ada.Text_IO.Put      (Item => Indentation);
          Temps_IO.Put         (Item => Duree / Une_Minutte,   Width => 0);
          Ada.Text_IO.Put      (Item => " min et ");
@@ -39,7 +39,7 @@ is
       end if;
 
       --  Affichage en heures.
-      if Duree_Exact > 3600.0 then
+      if Duree > Une_Heure then
          Ada.Text_IO.Put      (Item => Indentation);
          Temps_IO.Put         (Item => Duree / Une_Heure, Width => 0);
          Ada.Text_IO.Put      (Item => " h et ");
