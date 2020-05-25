@@ -15,10 +15,10 @@ is
 
       type Temps_Ecoule_T is new Natural;
 
-      Indentation : constant String    := "         ";
-      Duree_Exact : constant Duration  :=
+      Indentation : constant String         := "         ";
+      Duree_Exact : constant Duration       :=
          Ada.Real_Time.To_Duration (TS => Fin - Debut);
-      Duree       : constant Temps_Ecoule_T   := Temps_Ecoule_T (Duree_Exact);
+      Duree       : constant Temps_Ecoule_T := Temps_Ecoule_T (Duree_Exact);
 
       package Duree_IO is new Ada.Text_IO.Fixed_IO   (Num => Duration);
       package Temps_IO is new Ada.Text_IO.Integer_IO (Num => Temps_Ecoule_T);
