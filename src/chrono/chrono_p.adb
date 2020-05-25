@@ -13,15 +13,15 @@ is
    is
       use type Ada.Real_Time.Time;
 
-      type Temps_T is new Natural;
+      type Temps_Ecoule_T is new Natural;
 
       Indentation : constant String    := "         ";
       Duree_Exact : constant Duration  :=
          Ada.Real_Time.To_Duration (TS => Fin - Debut);
-      Duree       : constant Temps_T   := Temps_T (Duree_Exact);
+      Duree       : constant Temps_Ecoule_T   := Temps_Ecoule_T (Duree_Exact);
 
       package Duree_IO is new Ada.Text_IO.Fixed_IO   (Num => Duration);
-      package Temps_IO is new Ada.Text_IO.Integer_IO (Num => Temps_T);
+      package Temps_IO is new Ada.Text_IO.Integer_IO (Num => Temps_Ecoule_T);
    begin
       Ada.Text_IO.Put      (Item => Indentation);
       Duree_IO.Put         (Item => Duree_Exact, Fore => 0, Aft => 4);
