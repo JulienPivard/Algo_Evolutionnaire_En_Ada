@@ -19,6 +19,7 @@ is
          Ada.Real_Time.To_Duration (TS => Fin - Debut);
       Duree       : constant Temps_T   := Temps_T (Duree_Exact);
       Une_Minutte : constant Temps_T   := 60;
+      Une_Heure   : constant Temps_T   := 3600;
       Indentation : constant String    := "         ";
 
       package Duree_IO is new Ada.Text_IO.Fixed_IO   (Duration);
@@ -39,17 +40,12 @@ is
 
       --  Affichage en heures.
       if Duree_Exact > 3600.0 then
-         Decoupage_En_Heures :
-         declare
-            Heures : constant Temps_T := 3600;
-         begin
             Ada.Text_IO.Put (Item => Indentation);
-            Temps_IO.Put    (Item => Duree / Heures,   Width => 0);
+            Temps_IO.Put    (Item => Duree / Une_Heure,   Width => 0);
             Ada.Text_IO.Put (Item => " h et ");
             Temps_IO.Put
-               (Item => (Duree mod Heures) / Une_Minutte, Width => 0);
+               (Item => (Duree mod Une_Heure) / Une_Minutte, Width => 0);
             Ada.Text_IO.Put_Line (Item => " m");
-         end Decoupage_En_Heures;
       end if;
    end Affichage_Temps;
    ---------------------------------------------------------------------------
