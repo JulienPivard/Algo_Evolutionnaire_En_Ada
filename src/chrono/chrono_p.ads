@@ -24,4 +24,9 @@ is
    --  @param Fin
    --  Le temps de fin.
 
+private
+
+   Une_Minutte : constant := 60;
+   Une_Heure   : constant := 3600;
+
 end Chrono_P;
