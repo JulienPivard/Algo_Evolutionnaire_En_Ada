@@ -102,7 +102,7 @@ La taille de l'intervalle autorisé pour chaque variable à une influence
 direct sur la précision du résultat (à taille de population fixé). Plus
 l'intervalle sera grand, et plus il faudra une population nombreuse pour
 arriver à un résultat concluent. Après plusieurs essais, je n'ai pas
-trouver de formule toutes faites pour savoir de combien il fallait
+trouvé de formule toutes faites pour savoir de combien il fallait
 augmenter la taille de la population en fonction de la taille de
 l'intervalle.
 
