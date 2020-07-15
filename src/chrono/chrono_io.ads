@@ -5,7 +5,7 @@ with Ada.Real_Time;
 --  @description
 --  Regroupe des facilité lié au temps.
 --  @group Temps
-package Chrono_P
+package Chrono_IO
    with
       Pure           => False,
       Preelaborate   => False,
@@ -29,4 +29,4 @@ private
    Une_Minutte : constant := 60;
    Une_Heure   : constant := 3600;
 
-end Chrono_P;
+end Chrono_IO;

@@ -16,7 +16,7 @@ with Demo_P.Formule_A_1_P.Text_IO;
 with Demo_P.Formule_A_2_P;
 with Demo_P.Formule_A_2_P.Text_IO;
 
-with Chrono_P;
+with Chrono_IO;
 
 separate (Executeur_G)
 procedure Executer
@@ -112,7 +112,7 @@ is
       Ada.Text_IO.New_Line (Spacing => 1);
 
       --  Conversion du temps pour faciliter l'affichage.
-      Chrono_P.Affichage_Temps (Debut => Debut, Fin => Fin);
+      Chrono_IO.Affichage_Temps (Debut => Debut, Fin => Fin);
 
       Ada.Text_IO.New_Line (Spacing => (if Reduire_Affichage then 2 else 4));
       --------------------------------------

@@ -1,6 +1,6 @@
 with Ada.Text_IO;
 
-package body Chrono_P
+package body Chrono_IO
    with Spark_Mode => Off
 is
 
@@ -48,4 +48,4 @@ is
    end Affichage_Temps;
    ---------------------------------------------------------------------------
 
-end Chrono_P;
+end Chrono_IO;
