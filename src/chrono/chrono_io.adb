@@ -9,12 +9,13 @@ is
          Fin   : in Ada.Real_Time.Time
       )
    is
-      type Temps_Ecoule_T is new Natural;
+      type Temps_Ecoule_T is range 0 .. Long_Integer'Last;
 
       Indentation : constant String         := "         ";
       Duree_Exact : constant Duration       :=
          Ada.Real_Time.To_Duration (TS => Fin - Debut);
-      Duree       : constant Temps_Ecoule_T := Temps_Ecoule_T (Duree_Exact);
+      Duree       : constant Temps_Ecoule_T :=
+         (if Duree_Exact > 0.0 then Temps_Ecoule_T (Duree_Exact) else 0);
 
       pragma Warnings
          (
