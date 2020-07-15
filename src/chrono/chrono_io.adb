@@ -1,5 +1,3 @@
-with Ada.Text_IO;
-
 package body Chrono_IO
    with Spark_Mode => Off
 is
@@ -11,8 +9,6 @@ is
          Fin   : in Ada.Real_Time.Time
       )
    is
-      use type Ada.Real_Time.Time;
-
       type Temps_Ecoule_T is new Natural;
 
       Indentation : constant String         := "         ";

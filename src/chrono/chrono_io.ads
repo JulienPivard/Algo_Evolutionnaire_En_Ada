@@ -1,3 +1,4 @@
+with Ada.Text_IO;
 with Ada.Real_Time;
 
 --  @summary
@@ -10,14 +11,19 @@ package Chrono_IO
       Pure           => False,
       Preelaborate   => False,
       Elaborate_Body => True,
-      Spark_Mode     => Off
+      Spark_Mode     => On
 is
+
+   use type Ada.Real_Time.Time;
 
    procedure Affichage_Temps
       (
          Debut : in Ada.Real_Time.Time;
          Fin   : in Ada.Real_Time.Time
-      );
+      )
+      with
+         Global  => (In_Out => Ada.Text_IO.File_System),
+         Pre     => Debut <= Fin;
    --  Affichage formaté du temps écoulé.
    --  @param Debut
    --  Le temps de début.
