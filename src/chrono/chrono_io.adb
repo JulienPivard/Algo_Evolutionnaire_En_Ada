@@ -1,5 +1,5 @@
 package body Chrono_IO
-   with Spark_Mode => Off
+   with Spark_Mode => On
 is
 
    ---------------------------------------------------------------------------
@@ -16,8 +16,14 @@ is
          Ada.Real_Time.To_Duration (TS => Fin - Debut);
       Duree       : constant Temps_Ecoule_T := Temps_Ecoule_T (Duree_Exact);
 
+      pragma Warnings
+         (
+            GNATprove, Off, "initialization of * has no effect",
+            Reason => "La valeur par defaut des arguments n'est pas utilise"
+         );
       package Duree_IO is new Ada.Text_IO.Fixed_IO   (Num => Duration);
       package Temps_IO is new Ada.Text_IO.Integer_IO (Num => Temps_Ecoule_T);
+      pragma Warnings (GNATprove, On, "initialization of * has no effect");
    begin
       Ada.Text_IO.Put      (Item => Indentation);
       Duree_IO.Put         (Item => Duree_Exact, Fore => 0, Aft => 4);
