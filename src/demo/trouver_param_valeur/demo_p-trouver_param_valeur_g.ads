@@ -149,7 +149,7 @@ private
       return Boolean
    is (Gauche.Distance > Droite.Distance);
 
-   Seuil_De_Convergence : constant := 0.1;
+   Seuil_De_Convergence : constant := 0.001;
 
    function Resultats_Convergent
       (
@@ -159,9 +159,9 @@ private
       return Boolean
    is
       (
-         Reference.Valeur - Seuil_De_Convergence <= Actuel.Valeur
+         Objectif - Seuil_De_Convergence <= Actuel.Valeur
          and then
-         Actuel.Valeur <= Reference.Valeur + Seuil_De_Convergence
+         Actuel.Valeur <= Objectif + Seuil_De_Convergence
       );
 
 end Demo_P.Trouver_Param_Valeur_G;
