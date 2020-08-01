@@ -18,23 +18,26 @@ is
             Aft  => 3,
             Exp  => 0
          );
-      Ada.Text_IO.Put (Item => " [");
-      V_Param_IO.Put
-         (
-            Item => Debut_Intervalle,
-            Fore => 1,
-            Aft  => 3,
-            Exp  => 0
-         );
-      Ada.Text_IO.Put (Item => " .. ");
-      V_Param_IO.Put
-         (
-            Item => Fin_Intervalle,
-            Fore => 1,
-            Aft  => 3,
-            Exp  => 0
-         );
-      Ada.Text_IO.Put (Item => "] ");
+      if Afficher_Intervalle then
+         Ada.Text_IO.Put (Item => " [");
+         V_Param_IO.Put
+            (
+               Item => Debut_Intervalle,
+               Fore => 1,
+               Aft  => 3,
+               Exp  => 0
+            );
+         Ada.Text_IO.Put (Item => " .. ");
+         V_Param_IO.Put
+            (
+               Item => Fin_Intervalle,
+               Fore => 1,
+               Aft  => 3,
+               Exp  => 0
+            );
+         Ada.Text_IO.Put (Item => "]");
+      end if;
+      Ada.Text_IO.Put (Item => " ");
    end Put;
    ---------------------------------------------------------------------------
 

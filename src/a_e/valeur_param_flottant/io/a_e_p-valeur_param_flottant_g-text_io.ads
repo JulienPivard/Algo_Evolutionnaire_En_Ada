@@ -1,5 +1,8 @@
 generic
 
+   Afficher_Intervalle : Boolean := True;
+   --  Affiche l'intervalle de valeurs lié.
+
 --  @summary
 --  Affiche une valeur.
 --  @description
