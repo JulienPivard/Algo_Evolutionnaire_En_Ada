@@ -128,7 +128,7 @@ is
 
    use type Surface_R.Resultat_T;
 
-   package Population_Surface_P  is new A_E_P.Algo_Evolutionnaire_G
+   package Population_Surface_P is new A_E_P.Algo_Evolutionnaire_G
       (
          Taille_Population      => Demo_P.Taille,
          Parametres_G_T         => Surface_R.Surface_T,
@@ -151,7 +151,7 @@ is
 
    use type Formule_1_R.Resultat_T;
 
-   package Population_Anonyme_1_P  is new A_E_P.Algo_Evolutionnaire_G
+   package Population_Anonyme_1_P is new A_E_P.Algo_Evolutionnaire_G
       (
          Taille_Population      => Demo_P.Taille,
          Parametres_G_T         => Formule_1_R.Anonyme_T,
@@ -174,7 +174,7 @@ is
 
    use type Formule_2_R.Resultat_T;
 
-   package Population_Anonyme_2_P  is new A_E_P.Algo_Evolutionnaire_G
+   package Population_Anonyme_2_P is new A_E_P.Algo_Evolutionnaire_G
       (
          Taille_Population      => Demo_P.Taille,
          Parametres_G_T         => Formule_2_R.Anonyme_T,
