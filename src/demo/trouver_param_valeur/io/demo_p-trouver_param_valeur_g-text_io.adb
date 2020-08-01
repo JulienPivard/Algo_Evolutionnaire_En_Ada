@@ -8,8 +8,10 @@ package body Demo_P.Trouver_Param_Valeur_G.Text_IO
    with Spark_Mode => Off
 is
 
-   package Valeur_X_IO is new Valeur_X_P.Text_IO;
-   package Valeur_Y_IO is new Valeur_Y_P.Text_IO;
+   package Valeur_X_IO is new Valeur_X_P.Text_IO
+      (Afficher_Intervalle => False);
+   package Valeur_Y_IO is new Valeur_Y_P.Text_IO
+      (Afficher_Intervalle => False);
 
    ---------------------------------------------------------------------------
    procedure Put_Parametres
