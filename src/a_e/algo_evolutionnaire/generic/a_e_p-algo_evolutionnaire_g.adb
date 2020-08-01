@@ -34,6 +34,8 @@ is
 
          exit Boucle_Generation_Successive when
             Nb_Tours_Sans_Divergences > 25;
+         exit Boucle_Generation_Successive when
+         Nb_Generations = Natural'Last;
 
          Nb_Generations := Nb_Generations + 1;
 
