@@ -126,6 +126,8 @@ private
       return Boolean
    is (Gauche.Valeur > Droite.Valeur);
 
+   Seuil_De_Convergence : constant := 0.5;
+
    function Resultats_Convergent
       (
          Reference : in Resultat_T;
@@ -134,9 +136,9 @@ private
       return Boolean
    is
       (
-         Reference.Valeur - 0.5 <= Actuel.Valeur
+         Reference.Valeur - Seuil_De_Convergence <= Actuel.Valeur
          and then
-         Actuel.Valeur <= Reference.Valeur + 0.5
+         Actuel.Valeur <= Reference.Valeur + Seuil_De_Convergence
       );
 
 end Demo_P.Formule_A_1_P;

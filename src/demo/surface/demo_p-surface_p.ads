@@ -127,6 +127,8 @@ private
       return Boolean
    is (Gauche.Surface > Droite.Surface);
 
+   Seuil_De_Convergence : constant := 0.5;
+
    function Resultats_Convergent
       (
          Reference : in Resultat_T;
@@ -135,9 +137,9 @@ private
       return Boolean
    is
       (
-         Reference.Surface - 0.5 <= Actuel.Surface
+         Reference.Surface - Seuil_De_Convergence <= Actuel.Surface
          and then
-         Actuel.Surface <= Reference.Surface + 0.5
+         Actuel.Surface <= Reference.Surface + Seuil_De_Convergence
       );
 
 end Demo_P.Surface_P;
