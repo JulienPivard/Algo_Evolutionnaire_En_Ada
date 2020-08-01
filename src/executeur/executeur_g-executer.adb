@@ -16,6 +16,9 @@ with Demo_P.Formule_A_1_P.Text_IO;
 with Demo_P.Formule_A_2_P;
 with Demo_P.Formule_A_2_P.Text_IO;
 
+with Demo_P.Trouver_Param_Valeur_G;
+with Demo_P.Trouver_Param_Valeur_G.Text_IO;
+
 with Chrono_IO;
 
 separate (Executeur_G)
@@ -187,6 +190,34 @@ is
 
    procedure Min_Anonyme_2 is new Determiner_Min
       (Population_P => Population_Anonyme_2_P);
+
+   package Trouver_Val_Param_P is new Demo_P.Trouver_Param_Valeur_G
+      (Objectif => 50.0);
+   package Trouver_Val_Param_IO is new Trouver_Val_Param_P.Text_IO;
+
+   --  Expérimentation pour trouver les paramètres qui permettent d'atteindre
+   --  une valeur.
+   package Trouver_R    renames Trouver_Val_Param_P;
+   package Trouver_IO_R renames Trouver_Val_Param_IO;
+
+   use type Trouver_R.Resultat_T;
+
+   package Population_Trouver_Parametres_P is new A_E_P.Algo_Evolutionnaire_G
+      (
+         Taille_Population      => Demo_P.Taille,
+         Parametres_G_T         => Trouver_R.Anonyme_T,
+         Generer                => Trouver_R.Generer,
+         Accoupler              => Trouver_R.Accoupler,
+         Resultat_Calcul_G_T    => Trouver_R.Resultat_T,
+         Calculer               => Trouver_R.Calculer,
+         Convergence_Adaptation => Trouver_R.Resultats_Convergent,
+         Put_Parametres         => Trouver_IO_R.Put_Parametres,
+         Put_Resultat           => Trouver_IO_R.Put_Resultat,
+         Afficher_Formule       => Trouver_IO_R.Afficher_Formule
+      );
+
+   procedure Trouver_Parametres is new Determiner_Min
+      (Population_P => Population_Trouver_Parametres_P);
 begin
 
    --  Ada.Text_IO.Put      (Item => "Procédure : [");
@@ -204,4 +235,7 @@ begin
 
    Min_Anonyme_2
       (Nom => "X et Y", Min => "-0.55, -1,55", Reduire_Affichage => True);
+
+   Trouver_Parametres
+      (Nom => "X et Y", Min =>   "45.0, 50.0", Reduire_Affichage => True);
 end Executer;
