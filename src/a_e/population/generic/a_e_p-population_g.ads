@@ -105,7 +105,7 @@ private
    Pop_A_Renouveler  : constant Indice_Population_T := 25;
 
    Nb_Survivants     : constant Indice_Population_T :=
-      Taille_Population - ((Taille_Population * 25) / 100);
+      Taille_Population - ((Taille_Population * Pop_A_Renouveler) / 100);
    --  Le nombre de survivants (environ 75%)
    Nb_Morts          : constant Indice_Population_T :=
       Taille_Population - Nb_Survivants;
@@ -120,7 +120,7 @@ private
       Future_Nb_Enfants - Nb_Accouplements;
    --  Nombre de valeurs qui seront généré aléatoirement.
    Nb_Tournois       : constant Indice_Population_T :=
-      (Taille_Population * 8) / 100;
+      (Taille_Population * Taille_Tournois) / 100;
    --  Nombre de tournois organisé.
    Nb_Participants   : constant Indice_Population_T :=
       Nb_Tournois;
