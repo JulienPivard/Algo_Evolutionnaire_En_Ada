@@ -93,6 +93,12 @@ is
                Pos_Seconds  (I) := Pos_Concurent;
             end if;
 
+            if Pos_Seconds (I) < Pos_Gagnants (I) then
+               Pos_Concurent    := Pos_Seconds  (I);
+               Pos_Seconds  (I) := Pos_Gagnants (I);
+               Pos_Gagnants (I) := Pos_Concurent;
+            end if;
+
             Boucle_Selection_Participants :
             for J in Nb_Participants_Tournois_T loop
                Pos_Concurent := Alea_Survivants_P.Random
