@@ -32,10 +32,8 @@ is
             Nb_Tours_Sans_Divergences := 0;
          end if;
 
-         exit Boucle_Generation_Successive when
-            Nb_Tours_Sans_Divergences > 25;
-         exit Boucle_Generation_Successive when
-         Nb_Generations = Natural'Last;
+         exit Boucle_Generation_Successive when Nb_Tours_Sans_Divergences > 25;
+         exit Boucle_Generation_Successive when Nb_Generations = Natural'Last;
 
          Nb_Generations := Nb_Generations + 1;
 
