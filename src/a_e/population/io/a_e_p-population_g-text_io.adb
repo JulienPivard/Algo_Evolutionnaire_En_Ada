@@ -176,19 +176,31 @@ is
             ------------------------------------
          begin
             Ada.Text_IO.Put (Item => "Survivants      : ");
-            Afficher_Table  (Debut => 1, Fin => 38);
+            Afficher_Table  (Debut => 1, Fin => Nb_Survivants_IO);
 
             Ada.Text_IO.Put (Item => "Tournois        : ");
-            Afficher_Table (Debut => 31, Fin   => 38);
+            Afficher_Table
+               (
+                  Debut => (Nb_Survivants_IO + 1) - Nb_Tournois_IO,
+                  Fin   => Nb_Survivants_IO
+               );
 
             Ada.Text_IO.Put (Item => "Naissance/Morts : ");
-            Afficher_Table  (Debut => 39, Fin => 50);
+            Afficher_Table  (Debut => Nb_Survivants_IO + 1, Fin => 100);
 
             Ada.Text_IO.Put (Item => "Accouplements   : ");
-            Afficher_Table  (Debut => 39, Fin => 44);
+            Afficher_Table
+               (
+                  Debut => Nb_Survivants_IO + 1,
+                  Fin   => (Nb_Survivants_IO + 1) + Nb_Accouplements_IO
+               );
 
             Ada.Text_IO.Put (Item => "Mutants         : ");
-            Afficher_Table  (Debut => 45, Fin => 50);
+            Afficher_Table
+               (
+                  Debut => (Nb_Survivants_IO + 1) + Nb_Accouplements_IO + 1,
+                  Fin   => 100
+               );
          end Bloc_Affichage_Stylise;
       end if;
 
