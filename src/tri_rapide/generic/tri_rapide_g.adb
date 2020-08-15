@@ -109,13 +109,13 @@ is
    is
       subtype Index_Sous_Table_T is Indice_G_T range Premier .. Dernier;
 
-      package Pivot_IO is new
+      package Pivot_Aleatoire is new
          Ada.Numerics.Discrete_Random (Index_Sous_Table_T);
 
-      Generateur : Pivot_IO.Generator;
+      Generateur : Pivot_Aleatoire.Generator;
    begin
-      Pivot_IO.Reset (Gen => Generateur);
-      return Indice_G_T (Pivot_IO.Random (Gen => Generateur));
+      Pivot_Aleatoire.Reset (Gen => Generateur);
+      return Indice_G_T (Pivot_Aleatoire.Random (Gen => Generateur));
    end Choisir_Pivot_Aleatoire;
    ---------------------------------------------------------------------------
 

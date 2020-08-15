@@ -51,10 +51,10 @@ is
    procedure Organiser_Tournois
       (Population : in out Population_T)
    is
-      subtype Nb_Participant_Tournois_T is Indice_Population_T range
+      subtype Nb_Participants_Tournois_T is Indice_Population_T range
          Indice_Population_T'First .. Nb_Participants;
       --  Le nombre de participants à chaque tournois.
-      type Nb_Tournois_T is new Nb_Participant_Tournois_T;
+      type Nb_Tournois_T is new Nb_Participants_Tournois_T;
       --  Le nombre de tournois organisé.
 
       type Enfants_T      is array (Nb_Tournois_T) of Individu_P.Individu_T;
@@ -94,7 +94,7 @@ is
             end if;
 
             Boucle_Selection_Participants :
-            for J in Nb_Participant_Tournois_T loop
+            for J in Nb_Participants_Tournois_T loop
                Pos_Concurent := Alea_Survivants_P.Random
                   (Gen => Generateur_Survivant);
 
