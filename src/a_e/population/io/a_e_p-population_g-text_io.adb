@@ -135,7 +135,7 @@ is
       else
          Bloc_Affichage_Stylise :
          declare
-            type Indice_Tmp_T is range 1 .. 50;
+            type Indice_Tmp_T is range 1 .. 100;
 
             Nb_Survivants_IO     : constant Indice_Tmp_T :=
                100 - Indice_Tmp_T (Pop_A_Renouveler);
@@ -166,9 +166,9 @@ is
                      Ada.Text_IO.Put (Item => "|");
                   end if;
                   if I in Sous_Indice_T then
-                     Ada.Text_IO.Put (Item => "##");
+                     Ada.Text_IO.Put (Item => "#");
                   else
-                     Ada.Text_IO.Put (Item => "  ");
+                     Ada.Text_IO.Put (Item => " ");
                   end if;
                end loop;
                Ada.Text_IO.Put_Line  (Item => "|");
