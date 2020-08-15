@@ -100,6 +100,10 @@ private
          "25 individus au minimum."
       );
 
+   Taille_Tournois   : constant Indice_Population_T := 8;
+
+   Pop_A_Renouveler  : constant Indice_Population_T := 25;
+
    Nb_Survivants     : constant Indice_Population_T :=
       Taille_Population - ((Taille_Population * 25) / 100);
    --  Le nombre de survivants (environ 75%)
