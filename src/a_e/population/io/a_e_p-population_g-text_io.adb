@@ -137,6 +137,20 @@ is
          declare
             type Indice_Tmp_T is range 1 .. 50;
 
+            Nb_Survivants_IO     : constant Indice_Tmp_T :=
+               100 - Indice_Tmp_T (Pop_A_Renouveler);
+            --  Le nombre de survivants (environ 75%)
+            Nb_Morts_IO          : constant Indice_Tmp_T :=
+               100 - Nb_Survivants_IO;
+            --  Le reste de la population que n'as pas survécu.
+            Nb_Accouplements_IO  : constant Indice_Tmp_T :=
+               Nb_Morts_IO / 2;
+            --  Le nombre d'enfants par accouplement de deux valeur
+            --  prises au hasard parmi les survivantes.
+            Nb_Tournois_IO       : constant Indice_Tmp_T :=
+               Indice_Tmp_T (Taille_Tournois);
+            --  Nombre de tournois organisé.
+
             ------------------------------------
             procedure Afficher_Table
                (Debut, Fin : in Indice_Tmp_T);
@@ -148,10 +162,13 @@ is
                subtype Sous_Indice_T is Indice_Tmp_T range Debut .. Fin;
             begin
                for I in Indice_Tmp_T loop
+                  if (I mod 2) = 1 then
+                     Ada.Text_IO.Put (Item => "|");
+                  end if;
                   if I in Sous_Indice_T then
-                     Ada.Text_IO.Put (Item => "|##");
+                     Ada.Text_IO.Put (Item => "##");
                   else
-                     Ada.Text_IO.Put (Item => "|  ");
+                     Ada.Text_IO.Put (Item => "  ");
                   end if;
                end loop;
                Ada.Text_IO.Put_Line  (Item => "|");
