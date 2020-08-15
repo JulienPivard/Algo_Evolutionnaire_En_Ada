@@ -104,6 +104,13 @@ is
                   Fin   => Intervalle_Survivants_T'Last
                );
 
+            Ada.Text_IO.Put (Item => "Tournois        : ");
+            Afficher_Table
+               (
+                  Debut => Intervalle_Survivants_T'Last - Nb_Participants,
+                  Fin   => Intervalle_Survivants_T'Last
+               );
+
             Ada.Text_IO.Put (Item => "Naissance/Morts : ");
             Afficher_Table
                (
@@ -153,6 +160,9 @@ is
          begin
             Ada.Text_IO.Put (Item => "Survivants      : ");
             Afficher_Table  (Debut => 1, Fin => 38);
+
+            Ada.Text_IO.Put (Item => "Tournois        : ");
+            Afficher_Table (Debut => 31, Fin   => 38);
 
             Ada.Text_IO.Put (Item => "Naissance/Morts : ");
             Afficher_Table  (Debut => 39, Fin => 50);
