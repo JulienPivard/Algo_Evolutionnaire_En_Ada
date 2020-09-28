@@ -44,6 +44,7 @@ project Build is
    for Object_Dir                use "obj/" & Mode_Compilation;
    for Exec_Dir                  use "bin/" & Mode_Compilation;
 
+   --  for Target                    use "powerpc-wrs-vxworks";
    for Create_Missing_Dirs       use "True";
 
    --  https://gcc.gnu.org/onlinedocs/gcc-4.7.4/gnat_ugn_unw/index.html
@@ -222,6 +223,7 @@ project Build is
 
       --  Pour changer le nom du binaire de client à executable après le use.
       for Executable ("client.adb") use Nom_Executable;
+      --  for Executable_Suffix         use ".exe";
 
    end Builder;
    ----------------------------------------------------------------------------
