@@ -1,6 +1,6 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Samedi 07 mars[03] 2020
+# Dernière modification : Jeudi 25 juin[06] 2020
 
 # Les options sont désactivée si vide
 ifeq ($(ACTIVER_DEBUG), )

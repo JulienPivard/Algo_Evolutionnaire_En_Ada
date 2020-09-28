@@ -1,13 +1,13 @@
 ------------------------------------------------------------------------------
 --                                                                          --
 --                          Auteur : PIVARD Julien                          --
---           Dernière modification : Vendredi 21 février[02] 2020
+--           Dernière modification : Lundi 28 septembre[09] 2020
 --                                                                          --
 ------------------------------------------------------------------------------
+with Ada.Text_IO;
 
 with GNAT.Source_Info;
 
-with Ada.Text_IO;
 with Executeur_G;
 
 procedure Client is
