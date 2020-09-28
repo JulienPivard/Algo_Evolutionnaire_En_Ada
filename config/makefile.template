@@ -1,6 +1,6 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Lundi 16 mars[03] 2020
+# Dernière modification : Jeudi 23 juillet[07] 2020
 
 ###################
 # Point d'entrée #
@@ -24,14 +24,6 @@ else ifneq ($(wildcard $(GNAT_BIN_LINUX)), )
     PATH		:= $(GNAT_BIN_LINUX):$(PATH)
 endif
 
-# Vérifie si le binaire existe. Sinon il ajoute la cible de compilation
-# en dépendance.
-ifeq ($(wildcard $(EXECUTABLE)), )
-    DEPEND	= compiler
-else
-    DEPEND	=
-endif
-
 ifeq ($(CHEMIN_OBJET), )
     $(info makefile.conf:11: *** Le nom du dossier des objets est vide)
     $(error Compilation impossible)
@@ -40,11 +32,6 @@ ifeq ($(CHEMIN_EXEC), )
     $(info makefile.conf:12: *** Le nom du dossier des exécutables est vide)
     $(error Compilation impossible)
 endif
-
-###################
-.PHONY: run
-run: $(DEPEND)
-	$(EXECUTABLE) $(ARGUMENTSAPPLI)
 
 ###################
 .PHONY: version_makefile
