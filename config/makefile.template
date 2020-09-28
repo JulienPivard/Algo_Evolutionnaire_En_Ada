@@ -28,8 +28,12 @@ ifeq ($(CHEMIN_OBJET), )
     $(info makefile.conf:11: *** Le nom du dossier des objets est vide)
     $(error Compilation impossible)
 endif
-ifeq ($(CHEMIN_EXEC), )
-    $(info makefile.conf:12: *** Le nom du dossier des exécutables est vide)
+ifeq ($(CHEMIN_RESLT), )
+    $(info makefile.conf:12: *** Le nom du dossier des exe/lib est vide)
+    $(error Compilation impossible)
+endif
+ifeq ($(CHEMIN_ALI), )
+    $(info makefile.conf:13: *** Le nom du dossier des ali est vide)
     $(error Compilation impossible)
 endif
 
@@ -55,16 +59,17 @@ clean:
 	@echo " │ Effacement des fichiers temporaire généré par la compilation │"
 	@echo " └──────────────────────────────────────────────────────────────┘"
 	-$(RM) $(OPTRM) "./$(CHEMIN_OBJET)"
+	-$(RM) $(OPTRM) "./$(CHEMIN_ALI)"
 	@echo " ────────────────────────────────────────────────────────────────"
 
 ###################
 .PHONY: distclean
 distclean: clean
-	@echo " ┌──────────────────────────────────────────────────────────────┐"
-	@echo " │ Effacement des fichiers executable généré par la compilation │"
-	@echo " └──────────────────────────────────────────────────────────────┘"
-	-$(RM) $(OPTRM) "./$(CHEMIN_EXEC)"
-	@echo " ────────────────────────────────────────────────────────────────"
+	@echo " ┌───────────────────────────────────────────────────────────┐"
+	@echo " │ Effacement des fichiers exe/lib généré par la compilation │"
+	@echo " └───────────────────────────────────────────────────────────┘"
+	-$(RM) $(OPTRM) "./$(CHEMIN_RESLT)"
+	@echo " ─────────────────────────────────────────────────────────────"
 
 ifeq ($(shell which cloc 2>/dev/null), )
     TECHNIQUE_COMPTAGE	= avec_find
