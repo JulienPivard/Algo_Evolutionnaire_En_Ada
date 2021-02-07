@@ -15,9 +15,9 @@ is
    is
    begin
       --  Initialisation du tableau avec des valeurs initial
-      Generer_Individus_Aleatoirement (Population => Population.Table);
+      Generer_Individus_Aleatoirement  (Population => Population.Table);
 
-      Appliquer_Formule (Population => Population.Table);
+      Appliquer_Formule                (Population => Population.Table);
    end Initialiser;
    ---------------------------------------------------------------------------
 

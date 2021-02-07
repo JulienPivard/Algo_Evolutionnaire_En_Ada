@@ -39,20 +39,23 @@ is
    --  dans le temps.
 
    procedure Initialiser
-      (Population : in out Population_T);
+      (Population : in out Population_T)
+      with Inline => True;
    --  Initialise les paramètres de toute une population.
    --  @param Population
    --  La population.
 
    procedure Remplacer_Morts
-      (Population : in out Population_T);
+      (Population : in out Population_T)
+      with Inline => True;
    --  Remplace les paramètres des individus trop loin du minimum
    --  par de nouveaux.
    --  @param Population
    --  La population total.
 
    procedure Calcul_Formule_Sur_Enfant
-      (Population : in out Population_T);
+      (Population : in out Population_T)
+      with Inline => True;
    --  Applique la formule à la population nouvellement née.
    --  Il est inutile de recalculer toutes les valeurs,
    --  seul les 25% dernières sont nouvelles.
@@ -67,7 +70,8 @@ is
    --  La population.
 
    procedure Trier
-      (Population : in out Population_T);
+      (Population : in out Population_T)
+      with Inline => True;
    --  Trie les individu d'une population en fonction
    --  de la valeur calculée de chaque individu.
    --  @param Population
@@ -185,14 +189,16 @@ private
    --  La population.
 
    procedure Appliquer_Formule
-      (Population : in out Table_Population_T);
+      (Population : in out Table_Population_T)
+      with Inline => True;
    --  Applique une formule à toute une population.
    --  Le résultat sera conservé dans chaque individu.
    --  @param Population
    --  La population.
 
    procedure Generer_Individus_Aleatoirement
-      (Population : in out Table_Population_T);
+      (Population : in out Table_Population_T)
+      with Inline => True;
    --  Génère des individu avec des caractéristique
    --  choisie au hasard pour chaque case de la population.
    --  @param Population
@@ -203,7 +209,8 @@ private
          Population     : in Table_Population_T;
          Gauche, Droite : in Indice_Population_T
       )
-      return Boolean;
+      return Boolean
+      with Inline => True;
    --  Compare deux individus.
    --  @param Population
    --  La population.
@@ -218,7 +225,8 @@ private
          Population     : in Table_Population_T;
          Gauche, Droite : in Indice_Population_T
       )
-      return Boolean;
+      return Boolean
+      with Inline => True;
    --  Compare deux individus.
    --  @param Population
    --  La population.
@@ -232,7 +240,8 @@ private
       (
          Population     : in out Table_Population_T;
          Gauche, Droite : in     Indice_Population_T
-      );
+      )
+      with Inline => True;
    --  Échange deux individus.
    --  @param Population
    --  La population.
