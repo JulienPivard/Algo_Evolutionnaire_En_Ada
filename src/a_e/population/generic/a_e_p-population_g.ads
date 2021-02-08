@@ -189,16 +189,14 @@ private
    --  La population.
 
    procedure Appliquer_Formule
-      (Population : in out Table_Population_T)
-      with Inline => True;
+      (Population : in out Table_Population_T);
    --  Applique une formule à toute une population.
    --  Le résultat sera conservé dans chaque individu.
    --  @param Population
    --  La population.
 
    procedure Generer_Individus_Aleatoirement
-      (Population : in out Table_Population_T)
-      with Inline => True;
+      (Population : in out Table_Population_T);
    --  Génère des individu avec des caractéristique
    --  choisie au hasard pour chaque case de la population.
    --  @param Population
