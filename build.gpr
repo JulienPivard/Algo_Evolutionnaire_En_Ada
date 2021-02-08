@@ -1,4 +1,4 @@
---  Dernière modification : Lundi 25 mai[05] 2020
+--  Dernière modification : Lundi 08 février[02] 2021
 --  Auteur : PIVARD Julien
 
 --  https://gcc.gnu.org/releases.html
@@ -307,7 +307,7 @@ project Build is
          when "non" =>
             null;
       end case;
-
+      -----------------------------------------------
       case Mode_Compilation is
          when "debug" =>
             --  -E : Active le stockage de la pile d'appel
