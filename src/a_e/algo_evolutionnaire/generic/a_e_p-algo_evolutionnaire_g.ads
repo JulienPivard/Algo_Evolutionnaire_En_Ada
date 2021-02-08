@@ -22,8 +22,8 @@ generic
 
    with function Accoupler
       (
-         Parametres : in Parametres_G_T;
-         Autre      : in Parametres_G_T
+         Parametres : in     Parametres_G_T;
+         Autre      : in     Parametres_G_T
       )
       return Parametres_G_T;
    --  Accouple deux paramètres pour obtenir un nouveau
@@ -38,7 +38,7 @@ generic
    --  Le résultat du calcul de la formule avec les valeurs des paramètres.
 
    with function Calculer
-      (Parametres : in Parametres_G_T)
+      (Parametres : in     Parametres_G_T)
       return Resultat_Calcul_G_T;
    --  Calcul la formule en utilisant les valeurs de ses
    --  paramètres comme entrées de la fonction de la formule.
@@ -47,8 +47,8 @@ generic
 
    with function Convergence_Adaptation
       (
-         Reference : in Resultat_Calcul_G_T;
-         Actuelle  : in Resultat_Calcul_G_T
+         Reference : in     Resultat_Calcul_G_T;
+         Actuelle  : in     Resultat_Calcul_G_T
       )
       return Boolean;
    --  Permet de régler la précision de la détection de convergence
@@ -64,13 +64,13 @@ generic
    --  déclare que le minimum a été trouvé.
 
    with procedure Put_Parametres
-      (Item : in Parametres_G_T);
+      (Item : in     Parametres_G_T);
    --  Procédure d'affichage du contenu des paramètres.
    --  @param Item
    --  Les paramètres.
 
    with procedure Put_Resultat
-      (Item : in Resultat_Calcul_G_T);
+      (Item : in     Resultat_Calcul_G_T);
    --  Procédure d'affichage du contenu des résultats du calcul de la formule.
    --  @param Item
    --  Les résultats.
@@ -79,7 +79,7 @@ generic
    --  Affiche la formule qui va être résolue.
 
    with function "<"
-      (Gauche, Droite : in Resultat_Calcul_G_T)
+      (Gauche, Droite : in     Resultat_Calcul_G_T)
       return Boolean
    is <>;
    --  Utilisé pour pouvoir trier les individus en
@@ -91,7 +91,7 @@ generic
    --  @return Gauche < Droite
 
    with function ">"
-      (Gauche, Droite : in Resultat_Calcul_G_T)
+      (Gauche, Droite : in     Resultat_Calcul_G_T)
       return Boolean
    is <>;
    --  Utilisé pour pouvoir trier les individus en
@@ -146,7 +146,7 @@ is
    --  La population.
 
    procedure Put_Line
-      (Item : in Population_T)
+      (Item : in     Population_T)
       with Inline => True;
    --  Affiche le contenu d'un tableau de valeurs.
    --  @param Item
@@ -224,7 +224,7 @@ private
    --  La population à trier.
 
    function Verifier_Convergence
-      (Population : in Population_T)
+      (Population : in     Population_T)
       return Boolean
       with Inline => True;
    --  Indique si la population converge vers un minimum ou non.

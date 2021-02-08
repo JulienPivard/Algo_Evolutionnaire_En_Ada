@@ -61,7 +61,7 @@ is
 
    ---------------------------------------------------------------------------
    procedure Put_Line
-      (Item : in Population_T)
+      (Item : in     Population_T)
    is
    begin
       Ada.Text_IO.Put (Item => "Formule : ");
@@ -119,7 +119,7 @@ is
 
    ---------------------------------------------------------------------------
    function Verifier_Convergence
-      (Population : in Population_T)
+      (Population : in     Population_T)
       return Boolean
    is
    begin
