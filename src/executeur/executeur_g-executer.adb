@@ -32,9 +32,9 @@ is
 
    procedure Determiner_Min
       (
-         Min               : in String;
-         Nom               : in String;
-         Reduire_Affichage : in Boolean := False
+         Min               : in     String;
+         Nom               : in     String;
+         Reduire_Affichage : in     Boolean := False
       );
    --  Détermine le minimum de la formule.
    --  @param Min
@@ -47,9 +47,9 @@ is
    ------------------------
    procedure Determiner_Min
       (
-         Min               : in String;
-         Nom               : in String;
-         Reduire_Affichage : in Boolean := False
+         Min               : in     String;
+         Nom               : in     String;
+         Reduire_Affichage : in     Boolean := False
       )
    is
       use type A_E_P.Taille_Population_T;

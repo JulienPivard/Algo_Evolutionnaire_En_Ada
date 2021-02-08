@@ -78,7 +78,7 @@ is
    --  La population à trier.
 
    function Verifier_Convergence
-      (Population : in Population_T)
+      (Population : in     Population_T)
       return Boolean;
    --  Indique si la population converge vers un minimum ou non.
    --  Synonyme de disparition de la diversité générique.
@@ -204,8 +204,8 @@ private
 
    function Comparer_Minimiser
       (
-         Population     : in Table_Population_T;
-         Gauche, Droite : in Indice_Population_T
+         Population     : in     Table_Population_T;
+         Gauche, Droite : in     Indice_Population_T
       )
       return Boolean
       with Inline => True;
@@ -220,8 +220,8 @@ private
 
    function Comparer_Maximiser
       (
-         Population     : in Table_Population_T;
-         Gauche, Droite : in Indice_Population_T
+         Population     : in     Table_Population_T;
+         Gauche, Droite : in     Indice_Population_T
       )
       return Boolean
       with Inline => True;
