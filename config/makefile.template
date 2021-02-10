@@ -1,6 +1,6 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Jeudi 23 juillet[07] 2020
+# Dernière modification : Mercredi 10 février[02] 2021
 
 ###################
 # Point d'entrée #
@@ -36,6 +36,13 @@ ifeq ($(CHEMIN_ALI), )
     $(info makefile.conf:13: *** Le nom du dossier des ali est vide)
     $(error Compilation impossible)
 endif
+
+###################
+.PHONY: version
+version:
+	$(COMPILATEUR) --version
+	gnatmake --version
+	gnat --version
 
 ###################
 .PHONY: version_makefile
