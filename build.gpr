@@ -1,4 +1,4 @@
---  Dernière modification : Lundi 08 février[02] 2021
+--  Dernière modification : Mercredi 10 février[02] 2021
 --  Auteur : PIVARD Julien
 
 --  https://gcc.gnu.org/releases.html
@@ -218,7 +218,7 @@ project Build is
             null;
       end case;
 
-      for Default_Switches ("ada")  use Options_Builder;
+      for Default_Switches ("Ada")  use Options_Builder;
       --  for Global_Configuration_Pragmas use "./config/gnat.adc";
 
       --  Pour changer le nom du binaire de client à executable après le use.
@@ -274,7 +274,7 @@ project Build is
    --  Pour vérifier que les règles de codage sont bien suivis :
    ----------------------------------------------------------------------------
    package Check is
-      for Default_Switches ("ada") use
+      for Default_Switches ("Ada") use
          ("-rules", "-from=config/regles_de_codage");
    end Check;
    ----------------------------------------------------------------------------
@@ -352,7 +352,7 @@ project Build is
 
       case Mode_Compilation is
          when "debug" =>
-            for Default_Switches ("ada") use ("-g");
+            for Default_Switches ("Ada") use ("-g");
          when "release" =>
             null;
       end case;
@@ -364,7 +364,7 @@ project Build is
    --  https://docs.adacore.com/gnat_ugn-docs/html/gnat_ugn/gnat_ugn/gnat_utility_programs.html#the-gnat-pretty-printer-gnatpp
    ----------------------------------------------------------------------------
    package Pretty_Printer is
-      for Switches ("ada") use
+      for Default_Switches ("Ada") use
          (
             "--alignment",
             --  Active l'alignement des constructions :, :=, =>, at.
