@@ -164,6 +164,9 @@ is
 
 private
 
+   type Nb_Tours_Sans_Divergences_T is range 0 .. 25;
+   --  Nombre de tours sans divergences lors de l'évolution de la population.
+
    package Individu_P    is new A_E_P.Individu_G
       (
          Parametres_G_T      => Parametres_G_T,

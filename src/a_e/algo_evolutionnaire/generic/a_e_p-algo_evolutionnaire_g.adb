@@ -12,7 +12,7 @@ is
          Nb_Generations :    out Natural
       )
    is
-      Nb_Tours_Sans_Divergences : Natural := 0;
+      Nb_Tours_Sans_Divergences : Nb_Tours_Sans_Divergences_T := 0;
    begin
       Initialiser (Population => Population);
 
@@ -32,7 +32,7 @@ is
             Nb_Tours_Sans_Divergences := 0;
          end if;
 
-         exit Boucle_Generation_Successive when Nb_Tours_Sans_Divergences > 25;
+         exit Boucle_Generation_Successive when Nb_Tours_Sans_Divergences = 25;
          exit Boucle_Generation_Successive when Nb_Generations = Natural'Last;
 
          Nb_Generations := Nb_Generations + 1;
