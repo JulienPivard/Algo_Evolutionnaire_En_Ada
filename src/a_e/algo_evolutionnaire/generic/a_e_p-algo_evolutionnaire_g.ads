@@ -62,6 +62,10 @@ generic
    --  cette génération. Il faut que la diversité génétique ait
    --  disparue pendant 25 générations d’affilée pour que l'on
    --  déclare que le minimum a été trouvé.
+   --  @param Reference
+   --  La valeur à laquelle se référer.
+   --  @param Actuelle
+   --  La valeur à comparer à la référence.
 
    with procedure Put_Parametres
       (Item : in     Parametres_G_T);
@@ -121,6 +125,7 @@ package A_E_P.Algo_Evolutionnaire_G
 is
 
    type Population_T is private;
+   --  La population à faire évoluer.
 
    procedure Faire_Evoluer
       (
