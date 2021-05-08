@@ -216,7 +216,7 @@ private
    --  @param Population
    --  La population.
 
-   procedure Organiser_Tournois
+   procedure Faire_Evoluer_Par_Tournoi
       (Population : in out Population_T)
       with Inline => True;
    --  Organise des tournois pour remplacer 8% de la population.
