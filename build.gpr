@@ -196,9 +196,11 @@ project Build is
       case Sorte_D_Algo is
          when "seq" =>
             --  Pour lier le nom dans le code et le nom du fichier de spec
-            for Spec ("A_E_P.Algo_Evolutionnaire_G") use "a_e_p-algo_evolutionnaire_sequentiel_g.ads";
+            for Spec ("A_E_P.Algo_Evolutionnaire_G") use
+               "a_e_p-algo_evolutionnaire_sequentiel_g.ads";
             --  Même chose mais pour le corps.
-            for Body ("A_E_P.Algo_Evolutionnaire_G") use "a_e_p-algo_evolutionnaire_sequentiel_g.adb";
+            for Body ("A_E_P.Algo_Evolutionnaire_G") use
+               "a_e_p-algo_evolutionnaire_sequentiel_g.adb";
          when "parallel" =>
             for Spec ("A_E_P.Algo_Evolutionnaire_G") use
                "a_e_p-algo_evolutionnaire_parallele_g.ads";
