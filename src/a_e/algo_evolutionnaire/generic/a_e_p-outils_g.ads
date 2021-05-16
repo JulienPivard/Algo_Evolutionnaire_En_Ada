@@ -1,9 +1,9 @@
-with Ada.Real_Time;
-
 private with A_E_P.Population_G;
 private with A_E_P.Population_G.Text_IO;
 private with A_E_P.Individu_G;
 private with A_E_P.Individu_G.Text_IO;
+
+private
 
 generic
 
@@ -116,7 +116,7 @@ generic
 --  Permet de n'avoir qu'un seul package à instancier
 --  pour pouvoir utiliser cet algorithme.
 --  @group Évolution
-package A_E_P.Algo_Evolutionnaire_G
+package A_E_P.Outils_G
    with
       Pure           => False,
       Preelaborate   => False,
@@ -126,23 +126,6 @@ is
 
    type Population_T is private;
    --  La population à faire évoluer.
-
-   procedure Faire_Evoluer
-      (
-         Population     : in out Population_T;
-         Debut, Fin     :    out Ada.Real_Time.Time;
-         Nb_Generations :    out Natural
-      );
-   --  Fait évoluer la population jusqu'à atteindre la
-   --  convergence de ses individus.
-   --  @param Population
-   --  La population à faire évoluer.
-   --  @param Debut
-   --  Le chrono de début.
-   --  @param Fin
-   --  Le chrono de fin.
-   --  @param Nb_Generations
-   --  Le nombre de génération qu'il a fallut.
 
    procedure Initialiser
       (Population : in out Population_T);
@@ -162,10 +145,29 @@ is
    --  Affiche la répartition détaillé des populations,
    --  des morts, des naissances et des mutants.
 
-private
-
    type Nb_Tours_Sans_Divergences_T is range 0 .. 25;
    --  Nombre de tours sans divergences lors de l'évolution de la population.
+
+   procedure Trier_Et_Verifier
+      (
+         Population             : in out Population_T;
+         Tours_Sans_Divergences : in out Nb_Tours_Sans_Divergences_T
+      )
+      with Inline => True;
+   --  Trie et vérifie la convergence de la population.
+   --  @param Population
+   --  Population à vérifier.
+   --  @param Tours_Sans_Divergences
+   --  Nombre de tours sans divergences de la population.
+
+   procedure Passer_A_La_Generation_Suivante
+      (Population : in out Population_T)
+      with Inline => True;
+   --  Fait passer la population à la génération suivante.
+   --  @param Population
+   --  La population à faire évoluer.
+
+private
 
    package Individu_P    is new A_E_P.Individu_G
       (
@@ -198,25 +200,6 @@ private
          Pop         : Population_P.Population_T;
          --  La population à utiliser.
       end record;
-
-   procedure Trier_Et_Verifier
-      (
-         Population             : in out Population_T;
-         Tours_Sans_Divergences : in out Nb_Tours_Sans_Divergences_T
-      )
-      with Inline => True;
-   --  Trie et vérifie la convergence de la population.
-   --  @param Population
-   --  Population à vérifier.
-   --  @param Tours_Sans_Divergences
-   --  Nombre de tours sans divergences de la population.
-
-   procedure Passer_A_La_Generation_Suivante
-      (Population : in out Population_T)
-      with Inline => True;
-   --  Fait passer la population à la génération suivante.
-   --  @param Population
-   --  La population à faire évoluer.
 
    procedure Remplacer_Morts
       (Population : in out Population_T)
@@ -258,4 +241,4 @@ private
    --  @param Population
    --  La population.
 
-end A_E_P.Algo_Evolutionnaire_G;
+end A_E_P.Outils_G;

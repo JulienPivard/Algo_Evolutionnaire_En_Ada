@@ -1,43 +1,8 @@
 with Ada.Text_IO;
 
-package body A_E_P.Algo_Evolutionnaire_G
+package body A_E_P.Outils_G
    with Spark_Mode => Off
 is
-
-   ---------------------------------------------------------------------------
-   procedure Faire_Evoluer
-      (
-         Population     : in out Population_T;
-         Debut, Fin     :    out Ada.Real_Time.Time;
-         Nb_Generations :    out Natural
-      )
-   is
-      Nb_Tours_Sans_Divergences : Nb_Tours_Sans_Divergences_T := 0;
-   begin
-      Initialiser (Population => Population);
-
-      Nb_Generations := Natural'First;
-      Debut          := Ada.Real_Time.Clock;
-
-      Boucle_Generation_Successive :
-      loop
-         Trier_Et_Verifier
-            (
-               Population             => Population,
-               Tours_Sans_Divergences => Nb_Tours_Sans_Divergences
-            );
-
-         exit Boucle_Generation_Successive when Nb_Tours_Sans_Divergences = 25;
-         exit Boucle_Generation_Successive when Nb_Generations = Natural'Last;
-
-         Nb_Generations := Nb_Generations + 1;
-
-         Passer_A_La_Generation_Suivante (Population => Population);
-      end loop Boucle_Generation_Successive;
-
-      Fin := Ada.Real_Time.Clock;
-   end Faire_Evoluer;
-   ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
    procedure Initialiser
@@ -67,10 +32,6 @@ is
    begin
       Population_IO.Afficher_Details;
    end Afficher_Details;
-   ---------------------------------------------------------------------------
-
-   ---------------------------------------------------------------------------
-   --                               Partie privée                           --
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
@@ -104,6 +65,10 @@ is
 
       Faire_Evoluer_Par_Tournoi (Population => Population);
    end Passer_A_La_Generation_Suivante;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   --                               Partie privée                           --
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
@@ -152,4 +117,4 @@ is
    end Verifier_Convergence;
    ---------------------------------------------------------------------------
 
-end A_E_P.Algo_Evolutionnaire_G;
+end A_E_P.Outils_G;
