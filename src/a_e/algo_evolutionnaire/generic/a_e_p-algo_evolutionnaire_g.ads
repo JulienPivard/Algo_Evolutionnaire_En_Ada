@@ -199,6 +199,25 @@ private
          --  La population à utiliser.
       end record;
 
+   procedure Trier_Et_Verifier
+      (
+         Population             : in out Population_T;
+         Tours_Sans_Divergences : in out Nb_Tours_Sans_Divergences_T
+      )
+      with Inline => True;
+   --  Trie et vérifie la convergence de la population.
+   --  @param Population
+   --  Population à vérifier.
+   --  @param Tours_Sans_Divergences
+   --  Nombre de tours sans divergences de la population.
+
+   procedure Passer_A_La_Generation_Suivante
+      (Population : in out Population_T)
+      with Inline => True;
+   --  Fait passer la population à la génération suivante.
+   --  @param Population
+   --  La population à faire évoluer.
+
    procedure Remplacer_Morts
       (Population : in out Population_T)
       with Inline => True;

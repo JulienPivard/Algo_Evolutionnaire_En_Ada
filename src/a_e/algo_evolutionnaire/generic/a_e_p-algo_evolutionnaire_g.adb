@@ -21,26 +21,18 @@ is
 
       Boucle_Generation_Successive :
       loop
-         Trier (Population => Population);
-
-         --  Toutes les valeurs survivantes doivent se trouver autour
-         --  de la valeur minimum du tableau pendant 25 générations.
-         --  Intervalle de convergence
-         if Verifier_Convergence (Population => Population) then
-            Nb_Tours_Sans_Divergences := Nb_Tours_Sans_Divergences + 1;
-         else
-            Nb_Tours_Sans_Divergences := 0;
-         end if;
+         Trier_Et_Verifier
+            (
+               Population             => Population,
+               Tours_Sans_Divergences => Nb_Tours_Sans_Divergences
+            );
 
          exit Boucle_Generation_Successive when Nb_Tours_Sans_Divergences = 25;
          exit Boucle_Generation_Successive when Nb_Generations = Natural'Last;
 
          Nb_Generations := Nb_Generations + 1;
 
-         Remplacer_Morts           (Population => Population);
-         Calcul_Formule_Sur_Enfant (Population => Population);
-
-         Faire_Evoluer_Par_Tournoi (Population => Population);
+         Passer_A_La_Generation_Suivante (Population => Population);
       end loop Boucle_Generation_Successive;
 
       Fin := Ada.Real_Time.Clock;
@@ -79,6 +71,39 @@ is
 
    ---------------------------------------------------------------------------
    --                               Partie privée                           --
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   procedure Trier_Et_Verifier
+      (
+         Population             : in out Population_T;
+         Tours_Sans_Divergences : in out Nb_Tours_Sans_Divergences_T
+      )
+   is
+   begin
+      Trier (Population => Population);
+
+      --  Toutes les valeurs survivantes doivent se trouver autour
+      --  de la valeur minimum du tableau pendant 25 générations.
+      --  Intervalle de convergence
+      if Verifier_Convergence (Population => Population) then
+         Tours_Sans_Divergences := Tours_Sans_Divergences + 1;
+      else
+         Tours_Sans_Divergences := 0;
+      end if;
+   end Trier_Et_Verifier;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   procedure Passer_A_La_Generation_Suivante
+      (Population : in out Population_T)
+   is
+   begin
+      Remplacer_Morts           (Population => Population);
+      Calcul_Formule_Sur_Enfant (Population => Population);
+
+      Faire_Evoluer_Par_Tournoi (Population => Population);
+   end Passer_A_La_Generation_Suivante;
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
