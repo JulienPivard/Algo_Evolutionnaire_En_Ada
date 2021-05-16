@@ -14,6 +14,8 @@ project Build is
    type Afficher_La_Stack_T   is ("non", "oui");
    type Afficher_Ordre_Elab_T is ("non", "oui");
 
+   type Sorte_D_Algo_T        is ("seq", "parallel");
+
    --  Le premier paramètre est le nom de la variable.
    --  Le second paramètre est la valeur par défaut.
    --  À utiliser avec
@@ -29,6 +31,8 @@ project Build is
       External ("warn_sont_err",               "non");
    Afficher_Ordre_Elaboration : Afficher_Ordre_Elab_T :=
       External ("afficher_ordre_elaboration",  "non");
+
+   Sorte_D_Algo : Sorte_D_Algo_T := External ("sorte_d_algo", "seq");
 
    Fichier_Principal := "client.adb";
    Nom_Executable    := "executable";
@@ -189,10 +193,18 @@ project Build is
    ----------------------------------------------------------------------------
    package Naming is
 
+      case Sorte_D_Algo is
+         when "seq" =>
       --  Pour lier le nom dans le code et le nom du fichier de spec
       for Spec ("A_E_P.Algo_Evolutionnaire_G") use "a_e_p-algo_evolutionnaire_sequentiel_g.ads";
       --  Même chose mais pour le corps.
       for Body ("A_E_P.Algo_Evolutionnaire_G") use "a_e_p-algo_evolutionnaire_sequentiel_g.adb";
+         when "parallel" =>
+            for Spec ("A_E_P.Algo_Evolutionnaire_G") use
+               "a_e_p-algo_evolutionnaire_parallele_g.ads";
+            for Body ("A_E_P.Algo_Evolutionnaire_G") use
+               "a_e_p-algo_evolutionnaire_parallele_g.ads";
+      end case;
 
    end Naming;
    ----------------------------------------------------------------------------
