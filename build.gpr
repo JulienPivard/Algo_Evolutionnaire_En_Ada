@@ -1,4 +1,4 @@
---  Dernière modification : Dimanche 16 mai[05] 2021
+--  Dernière modification : Vendredi 23 avril[04] 2021
 --  Auteur : PIVARD Julien
 
 --  https://gcc.gnu.org/releases.html
@@ -19,9 +19,9 @@ project Build is
    --  À utiliser avec
    --  -d pour afficher la progression et -p pour créer les dossier
    --  gprbuild -d -p -Pbuild.gpr -Xmode=release
-   Mode_Compilation  : Mode_Compilation_T    := External ("mode",    "debug");
-   Verbeux           : Verbeux_T             := External ("verbeux", "non");
-   Strict            : Strict_T              := External ("strict",  "non");
+   Mode_Compilation  : Mode_Compilation_T := External ("mode",    "debug");
+   Verbeux           : Verbeux_T          := External ("verbeux", "non");
+   Strict            : Strict_T           := External ("strict",  "non");
 
    Afficher_La_Stack          : Afficher_La_Stack_T   :=
       External ("afficher_utilisation_stack",  "non");
@@ -30,8 +30,8 @@ project Build is
    Afficher_Ordre_Elaboration : Afficher_Ordre_Elab_T :=
       External ("afficher_ordre_elaboration",  "non");
 
-   Fichier_Principal             := "client.adb";
-   Nom_Executable                := "executable";
+   Fichier_Principal := "client.adb";
+   Nom_Executable    := "executable";
 
    --  Le nom du fichier qui contient la procédure principale.
    for Main                      use (Fichier_Principal);
@@ -65,12 +65,12 @@ project Build is
    --  m : Taille maximum des lignes 79
    --  n : Vérifie la casse des noms standard
    --  O : Override doit être marqué
+   --  p : vérifie la casse des pragma
    --  r : Vérifie que la casse des identificateurs est cohérente tout le long
    --  s : Vérifie que tout corps possède une partie spécification séparée
    --  S : Pas de code sur la même ligne que then ou else
    --  t : Les espaces dans les lignes
    --  n : vérifie la casse des entités standard
-   --  p : vérifie la casse des pragma
    --  u : vérifie les lignes vide
    --  x : vérifie les parenthèses inutile
    Options :=
@@ -84,8 +84,8 @@ project Build is
          --  gnatU : Permet de marquer les messages erreurs
          --          avec le tag error:
          "-gnat2012",
-         --  Vérification du style utilisé (longueur ligne, espacement ...).
          "-gnatyy",
+         --  Vérification du style utilisé (longueur ligne, espacement ...).
          --  gnatyy : équivaut à 3aAbcefhiklmnprst
          "-gnatyBdOSux",
          "-gnatw.e",
@@ -291,7 +291,7 @@ project Build is
    end Prove;
    ----------------------------------------------------------------------------
 
-   --  Uniquement pour ada.
+   --  Uniquement pour Ada.
    --  Vas créer des fichiers « sources » pour élaborer les interruptions
    --  initialiser les variables globales ...
    --  Configuration pour le binder
