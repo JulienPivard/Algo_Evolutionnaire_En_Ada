@@ -205,7 +205,7 @@ project Build is
             for Spec ("A_E_P.Algo_Evolutionnaire_G") use
                "a_e_p-algo_evolutionnaire_parallele_g.ads";
             for Body ("A_E_P.Algo_Evolutionnaire_G") use
-               "a_e_p-algo_evolutionnaire_parallele_g.ads";
+               "a_e_p-algo_evolutionnaire_parallele_g.adb";
       end case;
 
    end Naming;
