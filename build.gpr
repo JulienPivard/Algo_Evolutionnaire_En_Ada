@@ -1,4 +1,4 @@
---  Dernière modification : Vendredi 23 avril[04] 2021
+--  Dernière modification : Dimanche 16 mai[05] 2021
 --  Auteur : PIVARD Julien
 
 --  https://gcc.gnu.org/releases.html
@@ -70,7 +70,6 @@ project Build is
    --  s : Vérifie que tout corps possède une partie spécification séparée
    --  S : Pas de code sur la même ligne que then ou else
    --  t : Les espaces dans les lignes
-   --  n : vérifie la casse des entités standard
    --  u : vérifie les lignes vide
    --  x : vérifie les parenthèses inutile
    Options :=
@@ -84,6 +83,7 @@ project Build is
          --  gnatU : Permet de marquer les messages erreurs
          --          avec le tag error:
          "-gnat2012",
+         --  Active les fonctionnalité Ada 2012.
          "-gnatyy",
          --  Vérification du style utilisé (longueur ligne, espacement ...).
          --  gnatyy : équivaut à 3aAbcefhiklmnprst
