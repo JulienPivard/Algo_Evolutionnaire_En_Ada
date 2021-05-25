@@ -179,10 +179,29 @@ private
          Objectif               => Objectif
       );
 
+   use type Outils_P.Population_P.Indice_Population_T;
+
    type Population_T is
       record
          Pop : Outils_P.Population_T;
          --  La population.
       end record;
+
+   subtype Indice_Population_T is Outils_P.Population_P.Indice_Population_T;
+   subtype Table_Population_T  is Outils_P.Population_P.Table_Population_T;
+
+   Taille : constant Indice_Population_T :=
+      Indice_Population_T (Taille_Population);
+   --  La population total d'individu.
+   --  Chaque individu est une case du tableau.
+
+   Taille_Groupe_Migrants : constant Indice_Population_T := 8;
+
+   Nb_Migrants : constant Indice_Population_T :=
+      (Taille * Taille_Groupe_Migrants) / 100;
+
+   subtype Nb_Migrants_T is Indice_Population_T range
+      Indice_Population_T'First .. Nb_Migrants;
+   --  Le nombre de participants à chaque tournois.
 
 end A_E_P.Algo_Evolutionnaire_G;
