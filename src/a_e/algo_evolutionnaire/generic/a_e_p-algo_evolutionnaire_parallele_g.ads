@@ -206,4 +206,24 @@ private
 
    subtype Migrants_T is Table_Population_T (Nb_Migrants_T);
 
+   -----------------------------
+   protected type Transfert_T is
+      entry Attendre
+         (Population :    out Migrants_T);
+      --  Attend l'arrivée d'une population.
+      --  @param Population
+      --  La population qui arrive.
+      procedure Envoyer
+         (Population : in     Migrants_T);
+      --  Envoi une population vers une autre île.
+      --  @param Population
+      --  La population à envoyer.
+   private
+      Echange_Autorise : Boolean := False;
+      --  Une population est en attente de transfert.
+      Pop              : Migrants_T;
+      --  La population à transférer.
+   end Transfert_T;
+   --  Permet à une population de passer d'une île à une autre.
+
 end A_E_P.Algo_Evolutionnaire_G;

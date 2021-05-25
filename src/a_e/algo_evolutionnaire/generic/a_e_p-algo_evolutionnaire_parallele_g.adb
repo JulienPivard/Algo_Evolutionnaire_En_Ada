@@ -69,4 +69,29 @@ is
    --                               Partie privée                           --
    ---------------------------------------------------------------------------
 
+   ---------------------------------------------------------------------------
+   protected body Transfert_T is
+      --------------
+      entry Attendre
+         (Population :    out Migrants_T)
+         when Echange_Autorise
+      is
+      begin
+         Echange_Autorise := False;
+         Population       := Pop;
+      end Attendre;
+      --------------
+
+      --------------
+      procedure Envoyer
+         (Population : in     Migrants_T)
+      is
+      begin
+         Pop              := Population;
+         Echange_Autorise := True;
+      end Envoyer;
+      --------------
+   end Transfert_T;
+   ---------------------------------------------------------------------------
+
 end A_E_P.Algo_Evolutionnaire_G;
