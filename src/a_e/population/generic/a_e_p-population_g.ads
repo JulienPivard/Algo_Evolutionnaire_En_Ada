@@ -90,6 +90,11 @@ is
       Taille_Population_T'First .. Taille;
    --  Les indices de la table de population.
 
+   type Table_Population_T is
+      array (Indice_Population_T range <>)
+      of Individu_P.Individu_T;
+   --  Contient la population.
+
 private
 
    Taille_Population : constant Indice_Population_T :=
@@ -166,11 +171,6 @@ private
       Intervalle_Naissance_T'First .. Intervalle_Naissance_T'First;
    --  La position de l'enfant issu du calcul de la moyenne de tous
    --  les survivants.
-
-   type Table_Population_T is
-      array (Indice_Population_T range <>)
-      of Individu_P.Individu_T;
-   --  Contient la population.
 
    procedure Generer_Individus_Mutants
       (Population : in out Population_T)

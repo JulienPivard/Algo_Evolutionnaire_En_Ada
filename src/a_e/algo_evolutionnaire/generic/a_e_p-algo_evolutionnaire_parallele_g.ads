@@ -204,4 +204,6 @@ private
       Indice_Population_T'First .. Nb_Migrants;
    --  Le nombre de participants à chaque tournois.
 
+   subtype Migrants_T is Table_Population_T (Nb_Migrants_T);
+
 end A_E_P.Algo_Evolutionnaire_G;
