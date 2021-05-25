@@ -206,6 +206,9 @@ private
 
    subtype Migrants_T is Table_Population_T (Nb_Migrants_T);
 
+   type Id_Islot_T is mod 2**1;
+   --  Identifiant des îlots.
+
    -----------------------------
    protected type Transfert_T is
       entry Attendre
@@ -225,5 +228,11 @@ private
       --  La population à transférer.
    end Transfert_T;
    --  Permet à une population de passer d'une île à une autre.
+
+   -----------------------------
+   task type Islot_T (Id : Id_Islot_T) is
+   end Islot_T;
+   --  Un îlot de population qui évolue en vase clôt jusqu'à ce qu'un
+   --  échange ait lieu.
 
 end A_E_P.Algo_Evolutionnaire_G;
