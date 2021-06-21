@@ -86,6 +86,8 @@ is
    --  La population.
    --  @return La population converge vers un même génome.
 
+private
+
    type Indice_Population_T is new Taille_Population_T range
       Taille_Population_T'First .. Taille;
    --  Les indices de la table de population.
@@ -94,8 +96,6 @@ is
       array (Indice_Population_T range <>)
       of Individu_P.Individu_T;
    --  Contient la population.
-
-private
 
    Taille_Population : constant Indice_Population_T :=
       Indice_Population_T (Taille);
