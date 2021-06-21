@@ -86,6 +86,29 @@ is
    --  La population.
    --  @return La population converge vers un même génome.
 
+   type Migrants_T is private;
+   --  La population de migrants d'une ile à une autre.
+
+   procedure Accueillir_Migrants
+      (
+         Population : in out Population_T;
+         Migrants   : in     Migrants_T
+      );
+   --  Accueil une population migrante dans notre population.
+   --  @param Population
+   --  La population.
+   --  @param Migrants
+   --  Les migrant à intégrer à la population.
+
+   function Faire_Migrer
+      (Population : in     Population_T)
+      return Migrants_T;
+   --  Sélectionne des individus pour les faire
+   --  migrer hors de la population.
+   --  @param Population
+   --  La population.
+   --  @return Les migrants qui partent de la population.
+
 private
 
    type Indice_Population_T is new Taille_Population_T range
