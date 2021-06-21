@@ -167,6 +167,31 @@ is
    --  @param Population
    --  La population à faire évoluer.
 
+   type Migrants_T is private;
+   --  La population de migrants d'une ile à une autre.
+
+   procedure Accueillir_Migrants
+      (
+         Population : in out Population_T;
+         Migrants   : in     Migrants_T
+      )
+      with Inline => True;
+   --  Accueil une population migrante dans notre population.
+   --  @param Population
+   --  La population.
+   --  @param Migrants
+   --  Les migrant à intégrer à la population.
+
+   function Faire_Migrer
+      (Population : in     Population_T)
+      return Migrants_T
+      with Inline => True;
+   --  Sélectionne des individus pour les faire
+   --  migrer hors de la population.
+   --  @param Population
+   --  La population.
+   --  @return Les migrants qui partent de la population.
+
 private
 
    package Individu_P    is new A_E_P.Individu_G
@@ -199,6 +224,12 @@ private
          --  La population a été initialisée.
          Pop         : Population_P.Population_T;
          --  La population à utiliser.
+      end record;
+
+   type Migrants_T is
+      record
+         Pop : Population_P.Migrants_T;
+         --  La population migrante.
       end record;
 
    procedure Remplacer_Morts

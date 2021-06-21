@@ -68,6 +68,35 @@ is
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
+   procedure Accueillir_Migrants
+      (
+         Population : in out Population_T;
+         Migrants   : in     Migrants_T
+      )
+   is
+   begin
+      Population_P.Accueillir_Migrants
+         (
+            Population => Population.Pop,
+            Migrants   => Migrants.Pop
+         );
+   end Accueillir_Migrants;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   function Faire_Migrer
+      (Population : in     Population_T)
+      return Migrants_T
+   is
+      Resultat : Migrants_T;
+   begin
+      Resultat.Pop :=
+         Population_P.Faire_Migrer (Population => Population.Pop);
+      return Resultat;
+   end Faire_Migrer;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
    --                               Partie privée                           --
    ---------------------------------------------------------------------------
 
