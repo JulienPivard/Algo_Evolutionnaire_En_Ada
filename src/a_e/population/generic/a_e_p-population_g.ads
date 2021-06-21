@@ -132,6 +132,8 @@ private
          "25 individus au minimum."
       );
 
+   Taille_Migrants   : constant Indice_Population_T := 8;
+
    Taille_Tournois   : constant Indice_Population_T := 8;
 
    Pop_A_Renouveler  : constant Indice_Population_T := 25;
@@ -157,6 +159,9 @@ private
    Nb_Participants   : constant Indice_Population_T :=
       Nb_Tournois;
    --  Nombre de participants a chaque tournois.
+   Nb_Migrants       : constant Indice_Population_T :=
+      (Taille_Population * Taille_Migrants) / 100;
+   --  Le nombre d'individu dans le groupe de migrants.
 
    subtype Intervalle_Survivants_T     is Indice_Population_T        range
       Indice_Population_T'First .. Nb_Survivants;
@@ -194,6 +199,10 @@ private
       Intervalle_Naissance_T'First .. Intervalle_Naissance_T'First;
    --  La position de l'enfant issu du calcul de la moyenne de tous
    --  les survivants.
+
+   subtype Indice_Migrants_T           is Indice_Population_T        range
+      Indice_Population_T'First .. Nb_Migrants;
+   --  Le nombre d'individus participants à la migration.
 
    procedure Generer_Individus_Mutants
       (Population : in out Population_T)
@@ -271,8 +280,17 @@ private
    --  @param Droite
    --  L'individu à échanger.
 
+   subtype Pop_Migrants_T   is Table_Population_T (Indice_Migrants_T);
+   --  Contient la population de migrants.
+
    subtype Sous_Population_T is Table_Population_T (Indice_Population_T);
    --  Contient toute la population existante.
+
+   type Migrants_T is
+      record
+         Table : Pop_Migrants_T;
+         --  La population de migrants.
+      end record;
 
    type Population_T is
       record
