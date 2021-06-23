@@ -191,19 +191,19 @@ private
    -----------------------------
    protected type Transfert_T is
       entry Attendre
-         (Population :    out Migrants_T);
+         (Population :    out Outils_P.Migrants_T);
       --  Attend l'arrivée d'une population.
       --  @param Population
       --  La population qui arrive.
       procedure Envoyer
-         (Population : in     Migrants_T);
+         (Population : in     Outils_P.Migrants_T);
       --  Envoi une population vers une autre île.
       --  @param Population
       --  La population à envoyer.
    private
       Echange_Autorise : Boolean := False;
       --  Une population est en attente de transfert.
-      Pop              : Migrants_T;
+      Pop_Local        : Outils_P.Migrants_T;
       --  La population à transférer.
    end Transfert_T;
    --  Permet à une population de passer d'une île à une autre.

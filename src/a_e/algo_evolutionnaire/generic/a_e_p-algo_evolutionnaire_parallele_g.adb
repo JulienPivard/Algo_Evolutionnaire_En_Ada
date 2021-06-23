@@ -73,21 +73,21 @@ is
    protected body Transfert_T is
       --------------
       entry Attendre
-         (Population :    out Migrants_T)
+         (Population :    out Outils_P.Migrants_T)
          when Echange_Autorise
       is
       begin
          Echange_Autorise := False;
-         Population       := Pop;
+         Population       := Pop_Local;
       end Attendre;
       --------------
 
       --------------
       procedure Envoyer
-         (Population : in     Migrants_T)
+         (Population : in     Outils_P.Migrants_T)
       is
       begin
-         Pop              := Population;
+         Pop_Local        := Population;
          Echange_Autorise := True;
       end Envoyer;
       --------------
