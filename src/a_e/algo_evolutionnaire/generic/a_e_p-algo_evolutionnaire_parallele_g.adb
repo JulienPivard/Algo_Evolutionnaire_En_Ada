@@ -19,6 +19,8 @@ is
       Nb_Generations := Natural'First;
       Debut          := Ada.Real_Time.Clock;
 
+      Outils_P.Initialiser (Population => Population.Pop);
+
       Boucle_Generation_Successive :
       loop
          Outils_P.Trier_Et_Verifier
@@ -132,7 +134,43 @@ is
 
       Nb_Tours_Sans_Divergences : Outils_P.Nb_Tours_Sans_Divergences_T := 0;
    begin
-      null;
+      Demarreur.Attendre (Population => Population);
+
+      Nb_Generations := Natural'First;
+      Debut          := Ada.Real_Time.Clock;
+
+      Boucle_Generation_Successive :
+      loop
+         Outils_P.Trier_Et_Verifier
+            (
+               Population             => Population.Pop,
+               Tours_Sans_Divergences => Nb_Tours_Sans_Divergences
+            );
+
+         exit Boucle_Generation_Successive when Nb_Tours_Sans_Divergences = 25;
+         exit Boucle_Generation_Successive when Nb_Generations = Natural'Last;
+
+         Nb_Generations := Nb_Generations + 1;
+
+         Outils_P.Passer_A_La_Generation_Suivante
+            (Population => Population.Pop);
+
+         if (Nb_Generations mod 25) = 0 then
+            Sortie.Envoyer
+               (
+                  Population =>
+                     Outils_P.Faire_Migrer (Population => Population.Pop)
+               );
+            Entree.Attendre (Population => Migrants);
+            Outils_P.Accueillir_Migrants
+               (
+                  Population => Population.Pop,
+                  Migrants   => Migrants
+               );
+         end if;
+      end loop Boucle_Generation_Successive;
+
+      Fin := Ada.Real_Time.Clock;
    end Islot_T;
    ---------------------------------------------------------------------------
 
