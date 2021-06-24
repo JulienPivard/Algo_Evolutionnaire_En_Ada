@@ -60,7 +60,7 @@ is
       type Enfants_T      is array (Nb_Tournois_T) of Individu_P.Individu_T;
       --  Tableau des enfants conçus par les tournois successifs.
       type Pos_Individu_T is array (Nb_Tournois_T) of Indice_Population_T;
-      --  Tableau de position des perdants dans la population.
+      --  Tableau de position des individus dans la population.
 
       Pos_Perdants : Pos_Individu_T;
       Pos_Gagnants : Pos_Individu_T;
