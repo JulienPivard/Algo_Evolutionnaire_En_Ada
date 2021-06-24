@@ -221,4 +221,7 @@ private
    --  Un îlot de population qui évolue en vase clôt jusqu'à ce qu'un
    --  échange ait lieu.
 
+   Islot_1 : Islot_T (Id => 0);
+   Islot_2 : Islot_T (Id => 1);
+
 end A_E_P.Algo_Evolutionnaire_G;
