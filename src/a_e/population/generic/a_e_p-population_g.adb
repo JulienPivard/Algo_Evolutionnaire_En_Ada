@@ -136,9 +136,9 @@ is
          end Bloc_Accouplement;
       end loop Boucle_Tournois;
 
-      for I in Nb_Tournois_T loop
-         Individu_P.Appliquer_Formule (Individu => Enfants (I));
-         Population.Table (Resultat_Tournois (I)Pos_Perdants) := Enfants (I);
+      for J in Nb_Tournois_T loop
+         Individu_P.Appliquer_Formule (Individu => Enfants (J));
+         Population.Table (Resultat_Tournois (J).Pos_Perdants) := Enfants (J);
       end loop;
    end Organiser_Tournois;
    ---------------------------------------------------------------------------
