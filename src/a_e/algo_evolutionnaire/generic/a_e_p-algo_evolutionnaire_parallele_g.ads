@@ -189,6 +189,32 @@ private
    --  Identifiant des îlots.
 
    -----------------------------
+   protected type Demarreur_T is
+      entry Attendre
+         (Population :    out Population_T);
+      --  Attend l'autorisation de démarrage.
+      --  @param Population
+      --  La population de départ.
+      procedure Demarrer
+         (Population : in     Population_T);
+      --  Autorise à démarrer avec une population de départ.
+      --  @param Population
+      --  La population de départ.
+   private
+      Demarrage_Autorise : Boolean := False;
+      --  Drapeau de démarrage.
+      Pop_Local        : Population_T;
+      --  La population à transférer.
+   end Demarreur_T;
+   --  Contrôle le démarrage des îlots.
+
+   type Table_De_Demarreurs_T is array (Id_Islot_T) of Demarreur_T;
+   --  Pour définir les tables de transfert
+   --  de population entre les îlots voisin.
+
+   Table_De_Demarreurs : Table_De_Demarreurs_T;
+
+   -----------------------------
    protected type Transfert_T is
       entry Attendre
          (Population :    out Outils_P.Migrants_T);

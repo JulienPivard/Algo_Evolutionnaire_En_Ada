@@ -70,6 +70,31 @@ is
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
+   protected body Demarreur_T is
+      --------------
+      entry Attendre
+         (Population :    out Population_T)
+         when Demarrage_Autorise
+      is
+      begin
+         Demarrage_Autorise := False;
+         Population         := Pop_Local;
+      end Attendre;
+      --------------
+
+      --------------
+      procedure Demarrer
+         (Population : in     Population_T)
+      is
+      begin
+         Demarrage_Autorise := True;
+         Pop_Local          := Population;
+      end Demarrer;
+      --------------
+   end Demarreur_T;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
    protected body Transfert_T is
       --------------
       entry Attendre
@@ -96,6 +121,7 @@ is
 
    ---------------------------------------------------------------------------
    task body Islot_T is
+      Demarreur  : Demarreur_T renames Table_De_Demarreurs (Id);
       Sortie     : Transfert_T renames Tables_De_Transfert (Id + 1);
       Entree     : Transfert_T renames Tables_De_Transfert (Id);
 
