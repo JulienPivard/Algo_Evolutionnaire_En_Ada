@@ -48,7 +48,7 @@ is
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
-   procedure Organiser_Tournois
+   procedure Organiser_Saison_Des_Amours
       (Population : in out Population_T)
    is
       type Enfants_T is array (Nb_Tournois_T) of Individu_P.Individu_T;
@@ -120,7 +120,7 @@ is
          Individu_P.Appliquer_Formule (Individu => Enfants (J));
          Population.Table (Resultat_Tournois (J).Pos_Perdants) := Enfants (J);
       end loop;
-   end Organiser_Tournois;
+   end Organiser_Saison_Des_Amours;
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------

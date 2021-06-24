@@ -123,7 +123,7 @@ is
       (Population : in out Population_T)
    is
    begin
-      Population_P.Organiser_Tournois (Population => Population.Pop);
+      Population_P.Organiser_Saison_Des_Amours (Population => Population.Pop);
    end Faire_Evoluer_Par_Tournoi;
    ---------------------------------------------------------------------------
 

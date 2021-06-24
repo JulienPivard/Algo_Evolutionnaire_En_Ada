@@ -62,7 +62,7 @@ is
    --  @param Population
    --  La population.
 
-   procedure Organiser_Tournois
+   procedure Organiser_Saison_Des_Amours
       (Population : in out Population_T);
    --  Organise des tournois dont le nombre correspond à environ 8%
    --  du nombre d'individus, avec environ 8% d'individus.
