@@ -208,6 +208,13 @@ private
    end Transfert_T;
    --  Permet à une population de passer d'une île à une autre.
 
+   type Tables_De_Transfert_T is array (Id_Islot_T) of Transfert_T;
+   --  Pour définir les tables de transfert
+   --  de population entre les îlots voisin.
+
+   Tables_De_Transfert : Tables_De_Transfert_T;
+   --  Table de transfert de population.
+
    -----------------------------
    task type Islot_T (Id : Id_Islot_T) is
    end Islot_T;
