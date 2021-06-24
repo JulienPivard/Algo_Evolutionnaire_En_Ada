@@ -241,6 +241,48 @@ private
    Tables_De_Transfert : Tables_De_Transfert_T;
    --  Table de transfert de population.
 
+   ---------------------------
+   protected Controleur_Fin is
+      entry Attendre_Fin
+         (
+            Population     :    out Population_T;
+            Nb_Generations :    out Natural
+         );
+      --  Attend la fin de l'évolution.
+      --  @param Population
+      --  La population de l'îlot qui a fini d'évoluer.
+      --  @param Nb_Generations
+      --  Le nombre de générations que la population a passé à évoluer.
+      procedure Signaler_Fin_Evolution
+         (
+            Id             : in     Id_Islot_T;
+            Population     : in     Population_T;
+            Nb_Generations : in     Natural
+         );
+      --  Permet à un ilot de signaler qu'il a fini d'évoluer.
+      --  @param Id
+      --  L'identifiant de l'îlot qui a terminé d'évoluer.
+      --  @param Population
+      --  La population de l'îlot qui a fini d'évoluer.
+      --  @param Nb_Generations
+      --  Le nombre de générations que la population a passé à évoluer.
+      function Un_Islot_A_Fini_D_Evoluer
+         return Boolean;
+      --  Demande si un îlot à fini d'évoluer.
+      --  @return Au moins un îlot à fini d'évoluer.
+   private
+      Population_Local     : Population_T;
+      --  La population qui a fini d'évoluer.
+      Id_Tasche_Finie      : Id_Islot_T   := Id_Islot_T'First;
+      --  L'identifiant de l'îlot qui a fini.
+      Nb_Generations_Local : Natural      := Natural'First;
+      --  Le nombre de générations que la population a passé à évoluer.
+      Evolution_Est_Finie  : Boolean      := False;
+      --  L'évolution d'au moins une tâche est finie.
+   end Controleur_Fin;
+   --  Permet de synchroniser la fin de l'évolution des îlots,
+   --  quand au moins un îlot à fini d'évoluer.
+
    -----------------------------
    task type Islot_T (Id : Id_Islot_T) is
    end Islot_T;

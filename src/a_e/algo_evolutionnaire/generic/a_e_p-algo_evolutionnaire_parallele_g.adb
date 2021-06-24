@@ -22,6 +22,12 @@ is
          E.Demarrer (Population => Population);
       end loop;
 
+      Controleur_Fin.Attendre_Fin
+         (
+            Population     => Population,
+            Nb_Generations => Nb_Generations
+         );
+
       Fin := Ada.Real_Time.Clock;
    end Faire_Evoluer;
    ---------------------------------------------------------------------------
@@ -106,6 +112,49 @@ is
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
+   protected body Controleur_Fin is
+      ------------------
+      entry Attendre_Fin
+         (
+            Population     :    out Population_T;
+            Nb_Generations :    out Natural
+         )
+         when Evolution_Est_Finie
+      is
+      begin
+         Population     := Population_Local;
+         Nb_Generations := Nb_Generations_Local;
+      end Attendre_Fin;
+      ------------------
+
+      ------------------
+      procedure Signaler_Fin_Evolution
+         (
+            Id             : in     Id_Islot_T;
+            Population     : in     Population_T;
+            Nb_Generations : in     Natural
+         )
+      is
+      begin
+         Id_Tasche_Finie      := Id;
+         Population_Local     := Population;
+         Nb_Generations_Local := Nb_Generations;
+         Evolution_Est_Finie  := True;
+      end Signaler_Fin_Evolution;
+      ------------------
+
+      ------------------
+      function Un_Islot_A_Fini_D_Evoluer
+         return Boolean
+      is
+      begin
+         return Evolution_Est_Finie;
+      end Un_Islot_A_Fini_D_Evoluer;
+      ------------------
+   end Controleur_Fin;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
    task body Islot_T is
       Demarreur  : Demarreur_T renames Table_De_Demarreurs (Id);
       Sortie     : Transfert_T renames Tables_De_Transfert (Id + 1);
@@ -155,6 +204,14 @@ is
       end loop Boucle_Generation_Successive;
 
       Fin := Ada.Real_Time.Clock;
+      if not Controleur_Fin.Un_Islot_A_Fini_D_Evoluer then
+         Controleur_Fin.Signaler_Fin_Evolution
+            (
+               Id             => Id,
+               Population     => Population,
+               Nb_Generations => Nb_Generations
+            );
+      end if;
    end Islot_T;
    ---------------------------------------------------------------------------
 
