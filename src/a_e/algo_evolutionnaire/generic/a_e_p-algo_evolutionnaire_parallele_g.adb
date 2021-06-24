@@ -176,14 +176,12 @@ is
       Nb_Generations : Natural;
       Migrants       : Outils_P.Migrants_T;
       Population     : Population_T;
-      Debut, Fin     : Ada.Real_Time.Time;
 
       Nb_Tours_Sans_Divergences : Outils_P.Nb_Tours_Sans_Divergences_T := 0;
    begin
       Demarreur.Attendre (Population => Population);
 
       Nb_Generations := Natural'First;
-      Debut          := Ada.Real_Time.Clock;
 
       Boucle_Generation_Successive :
       loop
@@ -218,7 +216,6 @@ is
          end if;
       end loop Boucle_Generation_Successive;
 
-      Fin := Ada.Real_Time.Clock;
       if not Controleur_Fin.Un_Islot_A_Fini_D_Evoluer then
          Controleur_Fin.Signaler_Fin_Evolution
             (
