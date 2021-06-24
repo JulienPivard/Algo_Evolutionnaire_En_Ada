@@ -96,6 +96,15 @@ is
 
    ---------------------------------------------------------------------------
    task body Islot_T is
+      Sortie     : Transfert_T renames Tables_De_Transfert (Id + 1);
+      Entree     : Transfert_T renames Tables_De_Transfert (Id);
+
+      Nb_Generations : Natural;
+      Migrants       : Outils_P.Migrants_T;
+      Population     : Population_T;
+      Debut, Fin     : Ada.Real_Time.Time;
+
+      Nb_Tours_Sans_Divergences : Outils_P.Nb_Tours_Sans_Divergences_T := 0;
    begin
       null;
    end Islot_T;
