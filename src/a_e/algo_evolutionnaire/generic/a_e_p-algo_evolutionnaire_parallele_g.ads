@@ -226,6 +226,8 @@ private
       --  Envoi une population vers une autre île.
       --  @param Population
       --  La population à envoyer.
+      procedure Signaler_Fin_Evolution;
+      --  Permet à un îlot de signaler qu'il a fini d'évoluer.
    private
       Echange_Autorise : Boolean := False;
       --  Une population est en attente de transfert.

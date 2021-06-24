@@ -108,6 +108,14 @@ is
          Echange_Autorise := True;
       end Envoyer;
       --------------
+
+      --------------
+      procedure Signaler_Fin_Evolution
+      is
+      begin
+         Echange_Autorise := True;
+      end Signaler_Fin_Evolution;
+      --------------
    end Transfert_T;
    ---------------------------------------------------------------------------
 
@@ -140,6 +148,11 @@ is
          Population_Local     := Population;
          Nb_Generations_Local := Nb_Generations;
          Evolution_Est_Finie  := True;
+
+         Boucle_Signaler_Fin_Evolution :
+         for E of Tables_De_Transfert loop
+            E.Signaler_Fin_Evolution;
+         end loop Boucle_Signaler_Fin_Evolution;
       end Signaler_Fin_Evolution;
       ------------------
 
@@ -195,6 +208,8 @@ is
                      Outils_P.Faire_Migrer (Population => Population.Pop)
                );
             Entree.Attendre (Population => Migrants);
+            exit Boucle_Generation_Successive when
+               Controleur_Fin.Un_Islot_A_Fini_D_Evoluer;
             Outils_P.Accueillir_Migrants
                (
                   Population => Population.Pop,
