@@ -280,11 +280,11 @@ private
    --  @param Droite
    --  L'individu à échanger.
 
-   subtype Pop_Migrants_T   is Table_Population_T (Indice_Migrants_T);
-   --  Contient la population de migrants.
-
    subtype Sous_Population_T is Table_Population_T (Indice_Population_T);
    --  Contient toute la population existante.
+
+   subtype Pop_Migrants_T    is Table_Population_T (Indice_Migrants_T);
+   --  Contient la population de migrants.
 
    type Migrants_T is
       record
