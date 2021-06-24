@@ -64,9 +64,12 @@ is
             Pos_Seconds  : Indice_Population_T;
          end record;
 
+      type Resultat_Tournois_T is array (Nb_Tournois_T) of Res_Tournoi_T;
+      --  Tableau de position des individus dans la population
+      --  ayant participé aux tournois.
       type Pos_Individu_T is array (Nb_Tournois_T) of Indice_Population_T;
       --  Tableau de position des individus dans la population.
-      type Enfants_T      is array (Nb_Tournois_T) of Individu_P.Individu_T;
+      type Enfants_T is array (Nb_Tournois_T) of Individu_P.Individu_T;
       --  Tableau des enfants conçus par les tournois successifs.
 
       Pos_Perdants : Pos_Individu_T;
@@ -74,37 +77,37 @@ is
       Pos_Seconds  : Pos_Individu_T;
 
       Resultat_Tournois : Resultat_Tournois_T;
-      Enfants : Enfants_T;
+      Enfants           : Enfants_T;
    begin
       Boucle_Tournois :
-      for I in Nb_Tournois_T loop
+      for E of Resultat_Tournois loop
          Bloc_Accouplement :
          declare
             Pos_Concurent : Indice_Population_T;
          begin
-            Pos_Gagnants (I) := Alea_Survivants_P.Random
+            E.Pos_Gagnants := Alea_Survivants_P.Random
                (Gen => Generateur_Survivant);
-            Pos_Seconds  (I) := Alea_Survivants_P.Random
+            E.Pos_Seconds  := Alea_Survivants_P.Random
                (Gen => Generateur_Survivant);
-            Pos_Perdants (I) := Alea_Survivants_P.Random
+            E.Pos_Perdants := Alea_Survivants_P.Random
                (Gen => Generateur_Survivant);
 
-            if Pos_Perdants (I) < Pos_Gagnants (I) then
-               Pos_Concurent    := Pos_Perdants (I);
-               Pos_Perdants (I) := Pos_Gagnants (I);
-               Pos_Gagnants (I) := Pos_Concurent;
+            if E.Pos_Perdants < E.Pos_Gagnants then
+               Pos_Concurent  := E.Pos_Perdants;
+               E.Pos_Perdants := E.Pos_Gagnants;
+               E.Pos_Gagnants := Pos_Concurent;
             end if;
 
-            if Pos_Perdants (I) < Pos_Seconds (I) then
-               Pos_Concurent    := Pos_Perdants (I);
-               Pos_Perdants (I) := Pos_Seconds  (I);
-               Pos_Seconds  (I) := Pos_Concurent;
+            if E.Pos_Perdants < E.Pos_Seconds then
+               Pos_Concurent  := E.Pos_Perdants;
+               E.Pos_Perdants := E.Pos_Seconds;
+               E.Pos_Seconds  := Pos_Concurent;
             end if;
 
-            if Pos_Seconds (I) < Pos_Gagnants (I) then
-               Pos_Concurent    := Pos_Seconds  (I);
-               Pos_Seconds  (I) := Pos_Gagnants (I);
-               Pos_Gagnants (I) := Pos_Concurent;
+            if E.Pos_Seconds < E.Pos_Gagnants then
+               Pos_Concurent  := E.Pos_Seconds;
+               E.Pos_Seconds  := E.Pos_Gagnants;
+               E.Pos_Gagnants := Pos_Concurent;
             end if;
 
             Boucle_Selection_Participants :
@@ -112,26 +115,30 @@ is
                Pos_Concurent := Alea_Survivants_P.Random
                   (Gen => Generateur_Survivant);
 
-               if    Pos_Concurent < Pos_Gagnants (I) then
-                  Pos_Gagnants (I) := Pos_Concurent;
-               elsif Pos_Concurent < Pos_Seconds  (I) then
-                  Pos_Seconds  (I) := Pos_Concurent;
-               elsif Pos_Concurent > Pos_Perdants (I) then
-                  Pos_Perdants (I) := Pos_Concurent;
+               if    Pos_Concurent < E.Pos_Gagnants then
+                  E.Pos_Gagnants := Pos_Concurent;
+               elsif Pos_Concurent < E.Pos_Seconds  then
+                  E.Pos_Seconds  := Pos_Concurent;
+               elsif Pos_Concurent > E.Pos_Perdants then
+                  E.Pos_Perdants := Pos_Concurent;
                end if;
             end loop Boucle_Selection_Participants;
 
             Enfants (I) := Individu_P.Accoupler
                (
-                  Individu => Population.Table (Pos_Gagnants (I)),
-                  Autre    => Population.Table (Pos_Seconds  (I))
+                  Individu => Population.Table (E.Pos_Gagnants),
+                  Autre    => Population.Table (E.Pos_Seconds)
                );
+
+            if I < Nb_Tournois_T'Last then
+               I := Nb_Tournois_T'Succ (I);
+            end if;
          end Bloc_Accouplement;
       end loop Boucle_Tournois;
 
       for I in Nb_Tournois_T loop
          Individu_P.Appliquer_Formule (Individu => Enfants (I));
-         Population.Table (Pos_Perdants (I)) := Enfants (I);
+         Population.Table (Resultat_Tournois (I)Pos_Perdants) := Enfants (I);
       end loop;
    end Organiser_Tournois;
    ---------------------------------------------------------------------------
