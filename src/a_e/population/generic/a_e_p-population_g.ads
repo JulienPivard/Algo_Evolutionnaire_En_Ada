@@ -204,6 +204,23 @@ private
       Indice_Population_T'First .. Nb_Migrants;
    --  Le nombre d'individus participants à la migration.
 
+   subtype Nb_Participants_Tournois_T is Indice_Population_T         range
+      Indice_Population_T'First .. Nb_Participants;
+   --  Le nombre de participants à chaque tournois.
+   type Nb_Tournois_T is new Nb_Participants_Tournois_T;
+   --  Le nombre de tournois organisé.
+
+   type Res_Tournoi_T is
+      record
+         Pos_Perdants : Indice_Population_T;
+         Pos_Gagnants : Indice_Population_T;
+         Pos_Seconds  : Indice_Population_T;
+      end record;
+
+   type Resultat_Tournois_T is array (Nb_Tournois_T) of Res_Tournoi_T;
+   --  Tableau de position des individus dans la population
+   --  ayant participé aux tournois.
+
    procedure Generer_Individus_Mutants
       (Population : in out Population_T)
       with Inline => True;
