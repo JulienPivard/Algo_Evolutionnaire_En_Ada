@@ -286,16 +286,16 @@ private
    subtype Pop_Migrants_T    is Table_Population_T (Indice_Migrants_T);
    --  Contient la population de migrants.
 
-   type Migrants_T is
-      record
-         Table : Pop_Migrants_T;
-         --  La population de migrants.
-      end record;
-
    type Population_T is
       record
          Table : Sous_Population_T;
          --  La totalité de la population.
+      end record;
+
+   type Migrants_T is
+      record
+         Table : Pop_Migrants_T;
+         --  La population de migrants.
       end record;
 
    package Tri_A_Bulle_Max_P is new Tri_A_Bulle_G
