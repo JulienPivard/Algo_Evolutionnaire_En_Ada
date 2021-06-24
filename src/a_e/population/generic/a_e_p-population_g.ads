@@ -212,11 +212,11 @@ private
 
    type Res_Tournoi_T is
       record
-         Pos_Perdants : Indice_Population_T;
+         Pos_Perdants : Indice_Population_T := Indice_Population_T'Last;
          --  La position du perdant du tournoi.
-         Pos_Gagnants : Indice_Population_T;
+         Pos_Gagnants : Indice_Population_T := Indice_Population_T'Last;
          --  La position du gagnant du tournoi.
-         Pos_Seconds  : Indice_Population_T;
+         Pos_Seconds  : Indice_Population_T := Indice_Population_T'Last;
          --  La position du second du tournoi.
       end record;
    --  Les résultats du tournoi.
