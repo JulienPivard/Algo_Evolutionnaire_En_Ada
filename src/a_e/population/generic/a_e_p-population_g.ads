@@ -213,9 +213,13 @@ private
    type Res_Tournoi_T is
       record
          Pos_Perdants : Indice_Population_T;
+         --  La position du perdant du tournoi.
          Pos_Gagnants : Indice_Population_T;
+         --  La position du gagnant du tournoi.
          Pos_Seconds  : Indice_Population_T;
+         --  La position du second du tournoi.
       end record;
+   --  Les résultats du tournoi.
 
    type Resultat_Tournois_T is array (Nb_Tournois_T) of Res_Tournoi_T;
    --  Tableau de position des individus dans la population
