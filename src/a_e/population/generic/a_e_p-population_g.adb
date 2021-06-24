@@ -67,14 +67,10 @@ is
       type Resultat_Tournois_T is array (Nb_Tournois_T) of Res_Tournoi_T;
       --  Tableau de position des individus dans la population
       --  ayant participé aux tournois.
-      type Pos_Individu_T is array (Nb_Tournois_T) of Indice_Population_T;
-      --  Tableau de position des individus dans la population.
       type Enfants_T is array (Nb_Tournois_T) of Individu_P.Individu_T;
       --  Tableau des enfants conçus par les tournois successifs.
 
-      Pos_Perdants : Pos_Individu_T;
-      Pos_Gagnants : Pos_Individu_T;
-      Pos_Seconds  : Pos_Individu_T;
+      I : Nb_Tournois_T := Nb_Tournois_T'First;
 
       Resultat_Tournois : Resultat_Tournois_T;
       Enfants           : Enfants_T;
