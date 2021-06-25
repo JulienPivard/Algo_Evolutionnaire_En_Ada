@@ -84,15 +84,18 @@ is
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
-   function Selectionner_Migrants
-      (Population : in     Population_T)
-      return Migrants_T
+   procedure Selectionner_Migrants
+      (
+         Population : in     Population_T;
+         Migrants   :    out Migrants_T
+      )
    is
-      Resultat : Migrants_T;
    begin
-      Resultat.Pop :=
-         Population_P.Selectionner_Migrants (Population => Population.Pop);
-      return Resultat;
+      Population_P.Selectionner_Migrants
+         (
+            Population => Population.Pop,
+            Migrants   => Migrants.Pop
+         );
    end Selectionner_Migrants;
    ---------------------------------------------------------------------------
 

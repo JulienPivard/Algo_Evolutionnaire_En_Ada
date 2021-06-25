@@ -103,14 +103,17 @@ is
    --  @param Migrants
    --  Les migrant à intégrer à la population.
 
-   function Selectionner_Migrants
-      (Population : in     Population_T)
-      return Migrants_T;
+   procedure Selectionner_Migrants
+      (
+         Population : in     Population_T;
+         Migrants   :    out Migrants_T
+      );
    --  Sélectionne des individus pour les faire
    --  migrer hors de la population.
    --  @param Population
    --  La population.
-   --  @return Les migrants qui partent de la population.
+   --  @param Migrants
+   --  Les migrants qui partent de la population.
 
 private
 

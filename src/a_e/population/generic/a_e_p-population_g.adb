@@ -128,13 +128,14 @@ is
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
-   function Selectionner_Migrants
-      (Population : in     Population_T)
-      return Migrants_T
+   procedure Selectionner_Migrants
+      (
+         Population : in     Population_T;
+         Migrants   :    out Migrants_T
+      )
    is
-      Resultat : Migrants_T;
    begin
-      return Resultat;
+      null;
    end Selectionner_Migrants;
    ---------------------------------------------------------------------------
 

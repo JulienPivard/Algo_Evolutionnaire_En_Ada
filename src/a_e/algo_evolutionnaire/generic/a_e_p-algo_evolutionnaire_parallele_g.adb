@@ -200,14 +200,17 @@ is
             (Population => Population.Pop);
 
          if (Nb_Generations mod 25) = 0 then
-            Sortie.Envoyer
+            Outils_P.Selectionner_Migrants
                (
-                  Population => Outils_P.Selectionner_Migrants
-                     (Population => Population.Pop)
+                  Population => Population.Pop,
+                  Migrants   => Migrants
                );
+            Sortie.Envoyer  (Population => Migrants);
             Entree.Attendre (Population => Migrants);
+
             exit Boucle_Generation_Successive when
                Controleur_Fin.Un_Islot_A_Fini_D_Evoluer;
+
             Outils_P.Accueillir_Migrants
                (
                   Population => Population.Pop,
