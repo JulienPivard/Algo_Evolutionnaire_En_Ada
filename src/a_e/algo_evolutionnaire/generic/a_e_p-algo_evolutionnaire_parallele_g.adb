@@ -180,6 +180,8 @@ is
 
       Nb_Tours_Sans_Divergences  : Outils_P.Nb_Tours_Sans_Divergences_T  :=
          Outils_P.Nb_Tours_Sans_Divergences_T'First;
+
+      Evolution_Est_Finie : Boolean;
    begin
       Demarreur.Attendre (Population => Population);
 
@@ -193,6 +195,14 @@ is
                Nb_Tours_Sans_Divergences  => Nb_Tours_Sans_Divergences
             );
 
+         Evolution_Est_Finie :=
+            (
+               (
+                  Nb_Tours_Sans_Divergences
+                  =
+                  Outils_P.Nb_Tours_Sans_Divergences_T'Last
+               )
+            );
          exit Boucle_Generation_Successive when Nb_Tours_Sans_Divergences = 25;
          exit Boucle_Generation_Successive when Nb_Generations = Natural'Last;
 
