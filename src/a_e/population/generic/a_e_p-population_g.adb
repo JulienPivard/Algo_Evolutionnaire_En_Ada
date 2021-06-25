@@ -123,8 +123,15 @@ is
          Resultats  : in     Resultat_Tournois_T
       )
    is
+      I : Indice_Migrants_T := Indice_Migrants_T'First;
    begin
-      null;
+      Boucle_Integration_Migrants :
+      for E of Resultats.Table loop
+         Population.Table (E.Pos_Gagnants) := Migrants.Table (I);
+         if I < Indice_Migrants_T'Last then
+            I := I + 1;
+         end if;
+      end loop Boucle_Integration_Migrants;
    end Accueillir_Migrants;
    ---------------------------------------------------------------------------
 
@@ -136,8 +143,21 @@ is
          Resultats  :    out Resultat_Tournois_T
       )
    is
+      I : Indice_Migrants_T := Indice_Migrants_T'First;
    begin
-      null;
+      Organiser_Tournois
+         (
+            Population        => Population,
+            Resultat_Tournois => Resultats.Table
+         );
+
+      Boucle_Recuperation_Gagnants :
+      for E of Resultats.Table loop
+         Migrants.Table (I) := Population.Table (E.Pos_Gagnants);
+         if I < Indice_Migrants_T'Last then
+            I := I + 1;
+         end if;
+      end loop Boucle_Recuperation_Gagnants;
    end Selectionner_Migrants;
    ---------------------------------------------------------------------------
 
