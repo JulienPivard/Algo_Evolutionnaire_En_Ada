@@ -94,7 +94,7 @@ is
 
       if not Reduire_Affichage then
          Ada.Text_IO.Put_Line
-            (Item => "======= Valeurs après évolution =======");
+            (Item => "======= Valeurs attendu après évolution =======");
          Ada.Text_IO.Put_Line
             (Item => "La valeur de " & Nom & " pour le min : " & Min);
 
