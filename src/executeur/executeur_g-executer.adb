@@ -92,14 +92,12 @@ is
             Nb_Generations  => Nb_Generations
          );
 
-      if not Reduire_Affichage then
          Ada.Text_IO.Put_Line
             (Item => "======= Valeurs attendu après évolution =======");
          Ada.Text_IO.Put_Line
             (Item => "La valeur de " & Nom & " pour le min : " & Min);
 
          Ada.Text_IO.New_Line    (Spacing => 1);
-      end if;
       Population_P.Put_Line   (Item    => Population);
       Ada.Text_IO.Put_Line    (Item    => "=======");
 
