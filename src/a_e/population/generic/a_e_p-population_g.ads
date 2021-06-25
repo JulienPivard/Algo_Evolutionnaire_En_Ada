@@ -95,18 +95,22 @@ is
    procedure Accueillir_Migrants
       (
          Population : in out Population_T;
-         Migrants   : in     Migrants_T
+         Migrants   : in     Migrants_T;
+         Resultats  : in     Resultat_Tournois_T
       );
    --  Accueil une population migrante dans notre population.
    --  @param Population
    --  La population.
    --  @param Migrants
    --  Les migrant à intégrer à la population.
+   --  @param Resultats
+   --  Les résultats du tournois pour savoir où placer les migrants.
 
    procedure Selectionner_Migrants
       (
          Population : in     Population_T;
-         Migrants   :    out Migrants_T
+         Migrants   :    out Migrants_T;
+         Resultats  :    out Resultat_Tournois_T
       );
    --  Sélectionne des individus pour les faire
    --  migrer hors de la population.
@@ -114,6 +118,8 @@ is
    --  La population.
    --  @param Migrants
    --  Les migrants qui partent de la population.
+   --  @param Resultats
+   --  Les résultats du tournois.
 
 private
 

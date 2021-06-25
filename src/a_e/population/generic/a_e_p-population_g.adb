@@ -119,7 +119,8 @@ is
    procedure Accueillir_Migrants
       (
          Population : in out Population_T;
-         Migrants   : in     Migrants_T
+         Migrants   : in     Migrants_T;
+         Resultats  : in     Resultat_Tournois_T
       )
    is
    begin
@@ -131,7 +132,8 @@ is
    procedure Selectionner_Migrants
       (
          Population : in     Population_T;
-         Migrants   :    out Migrants_T
+         Migrants   :    out Migrants_T;
+         Resultats  :    out Resultat_Tournois_T
       )
    is
    begin

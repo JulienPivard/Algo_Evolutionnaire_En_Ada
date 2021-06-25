@@ -175,6 +175,7 @@ is
 
       Nb_Generations : Natural;
       Migrants       : Outils_P.Migrants_T;
+      Resultats      : Outils_P.Resultat_Tournois_T;
       Population     : Population_T;
 
       Nb_Tours_Sans_Divergences : Outils_P.Nb_Tours_Sans_Divergences_T := 0;
@@ -203,7 +204,8 @@ is
             Outils_P.Selectionner_Migrants
                (
                   Population => Population.Pop,
-                  Migrants   => Migrants
+                  Migrants   => Migrants,
+                  Resultats  => Resultats
                );
             Sortie.Envoyer  (Population => Migrants);
             Entree.Attendre (Population => Migrants);
@@ -214,7 +216,8 @@ is
             Outils_P.Accueillir_Migrants
                (
                   Population => Population.Pop,
-                  Migrants   => Migrants
+                  Migrants   => Migrants,
+                  Resultats  => Resultats
                );
          end if;
       end loop Boucle_Generation_Successive;
