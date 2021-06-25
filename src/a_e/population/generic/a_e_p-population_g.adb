@@ -56,7 +56,7 @@ is
 
       I : Nb_Tournois_T := Nb_Tournois_T'First;
 
-      Resultat_Tournois : Resultat_Tournois_T;
+      Resultat_Tournois : Table_Resultat_Tournois_T;
       Enfants           : Enfants_T;
    begin
       Organiser_Tournois
@@ -171,7 +171,7 @@ is
    procedure Organiser_Tournois
       (
          Population        : in     Population_T;
-         Resultat_Tournois :    out Resultat_Tournois_T
+         Resultat_Tournois :    out Table_Resultat_Tournois_T
       )
    is
       pragma Unreferenced (Population);

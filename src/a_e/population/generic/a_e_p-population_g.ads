@@ -221,7 +221,7 @@ private
       end record;
    --  Les résultats du tournoi.
 
-   type Resultat_Tournois_T is array (Nb_Tournois_T) of Res_Tournoi_T;
+   type Table_Resultat_Tournois_T is array (Nb_Tournois_T) of Res_Tournoi_T;
    --  Tableau de position des individus dans la population
    --  ayant participé aux tournois.
 
@@ -236,7 +236,7 @@ private
    procedure Organiser_Tournois
       (
          Population        : in     Population_T;
-         Resultat_Tournois :    out Resultat_Tournois_T
+         Resultat_Tournois :    out Table_Resultat_Tournois_T
       );
    --  Organise des tournois dont le nombre correspond à environ 8%
    --  du nombre d'individus, avec environ 8% d'individus.
