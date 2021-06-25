@@ -38,9 +38,11 @@ is
    procedure Trier_Et_Verifier
       (
          Population                 : in out Population_T;
-         Nb_Tours_Sans_Divergences  : in out Nb_Tours_Sans_Divergences_T
+         Nb_Tours_Sans_Divergences  : in out Nb_Tours_Sans_Divergences_T;
+         Nb_Tours_Sans_Amelioration : in out Nb_Tours_Sans_Amelioration_T
       )
    is
+      Est_Ameliore : Boolean;
    begin
       Trier (Population => Population);
 
@@ -51,6 +53,17 @@ is
          Nb_Tours_Sans_Divergences := Nb_Tours_Sans_Divergences + 1;
       else
          Nb_Tours_Sans_Divergences := 0;
+      end if;
+
+      Population_P.C_Est_Ameliore_Depuis_Gen_Precedente
+         (
+            Population   => Population.Pop,
+            Est_Ameliore => Est_Ameliore
+         );
+      if Est_Ameliore then
+         Nb_Tours_Sans_Amelioration := Nb_Tours_Sans_Amelioration + 1;
+      else
+         Nb_Tours_Sans_Amelioration := 0;
       end if;
    end Trier_Et_Verifier;
    ---------------------------------------------------------------------------

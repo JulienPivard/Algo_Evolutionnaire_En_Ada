@@ -3,6 +3,7 @@ package body A_E_P.Algo_Evolutionnaire_G
 is
 
    use type Outils_P.Nb_Tours_Sans_Divergences_T;
+   use type Outils_P.Nb_Tours_Sans_Amelioration_T;
 
    ---------------------------------------------------------------------------
    procedure Faire_Evoluer
@@ -180,6 +181,8 @@ is
 
       Nb_Tours_Sans_Divergences  : Outils_P.Nb_Tours_Sans_Divergences_T  :=
          Outils_P.Nb_Tours_Sans_Divergences_T'First;
+      Nb_Tours_Sans_Amelioration : Outils_P.Nb_Tours_Sans_Amelioration_T :=
+         Outils_P.Nb_Tours_Sans_Amelioration_T'First;
 
       Evolution_Est_Finie : Boolean;
    begin
@@ -192,7 +195,8 @@ is
          Outils_P.Trier_Et_Verifier
             (
                Population                 => Population.Pop,
-               Nb_Tours_Sans_Divergences  => Nb_Tours_Sans_Divergences
+               Nb_Tours_Sans_Divergences  => Nb_Tours_Sans_Divergences,
+               Nb_Tours_Sans_Amelioration => Nb_Tours_Sans_Amelioration
             );
 
          Evolution_Est_Finie :=
@@ -201,6 +205,12 @@ is
                   Nb_Tours_Sans_Divergences
                   =
                   Outils_P.Nb_Tours_Sans_Divergences_T'Last
+               )
+               or else
+               (
+                  Nb_Tours_Sans_Amelioration
+                  =
+                  Outils_P.Nb_Tours_Sans_Amelioration_T'Last
                )
             );
          exit Boucle_Generation_Successive when Evolution_Est_Finie;
