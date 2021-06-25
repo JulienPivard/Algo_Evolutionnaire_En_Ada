@@ -203,7 +203,7 @@ is
                   Outils_P.Nb_Tours_Sans_Divergences_T'Last
                )
             );
-         exit Boucle_Generation_Successive when Nb_Tours_Sans_Divergences = 25;
+         exit Boucle_Generation_Successive when Evolution_Est_Finie;
          exit Boucle_Generation_Successive when Nb_Generations = Natural'Last;
 
          Nb_Generations := Nb_Generations + 1;
