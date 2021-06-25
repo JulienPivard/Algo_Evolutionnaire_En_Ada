@@ -170,6 +170,9 @@ is
    type Migrants_T is private;
    --  La population de migrants d'une ile à une autre.
 
+   type Resultat_Tournois_T is private;
+   --  Résultat du tournois entre les individus de la population.
+
    procedure Accueillir_Migrants
       (
          Population : in out Population_T;
@@ -230,6 +233,12 @@ private
       record
          Pop : Population_P.Migrants_T;
          --  La population migrante.
+      end record;
+
+   type Resultat_Tournois_T is
+      record
+         Pop : Population_P.Resultat_Tournois_T;
+         --  Les résultats du tournois.
       end record;
 
    procedure Remplacer_Morts

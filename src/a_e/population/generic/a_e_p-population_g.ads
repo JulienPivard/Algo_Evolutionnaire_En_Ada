@@ -89,6 +89,9 @@ is
    type Migrants_T is private;
    --  La population de migrants d'une ile à une autre.
 
+   type Resultat_Tournois_T is private;
+   --  Résultat du tournois entre les individus de la population.
+
    procedure Accueillir_Migrants
       (
          Population : in out Population_T;
@@ -339,6 +342,12 @@ private
       record
          Table : Pop_Migrants_T;
          --  La population de migrants.
+      end record;
+
+   type Resultat_Tournois_T is
+      record
+         Table : Table_Resultat_Tournois_T;
+         --  Les résultats du tournois entre les individus.
       end record;
 
    package Tri_A_Bulle_Max_P is new Tri_A_Bulle_G
