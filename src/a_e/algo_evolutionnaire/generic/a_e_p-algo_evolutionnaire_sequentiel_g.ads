@@ -1,9 +1,6 @@
 with Ada.Real_Time;
 
-private with A_E_P.Population_G;
-private with A_E_P.Population_G.Text_IO;
-private with A_E_P.Individu_G;
-private with A_E_P.Individu_G.Text_IO;
+private with A_E_P.Outils_G;
 
 generic
 
@@ -145,7 +142,8 @@ is
    --  Le nombre de génération qu'il a fallut.
 
    procedure Initialiser
-      (Population : in out Population_T);
+      (Population : in out Population_T)
+      with Inline => True;
    --  Initialise les paramètres de toute une population.
    --  @param Population
    --  La population.
@@ -164,79 +162,27 @@ is
 
 private
 
-   type Nb_Tours_Sans_Divergences_T is range 0 .. 25;
-   --  Nombre de tours sans divergences lors de l'évolution de la population.
-
-   package Individu_P    is new A_E_P.Individu_G
+   package Outils_P is new A_E_P.Outils_G
       (
-         Parametres_G_T      => Parametres_G_T,
-         Generer             => Generer,
-         Accoupler           => Accoupler,
-         Resultat_Calcul_G_T => Resultat_Calcul_G_T,
-         Calculer            => Calculer,
-         Convergence         => Convergence_Adaptation
+         Taille_Population      => Taille_Population,
+         Parametres_G_T         => Parametres_G_T,
+         Generer                => Generer,
+         Accoupler              => Accoupler,
+         Resultat_Calcul_G_T    => Resultat_Calcul_G_T,
+         Calculer               => Calculer,
+         Convergence_Adaptation => Convergence_Adaptation,
+         Put_Parametres         => Put_Parametres,
+         Put_Resultat           => Put_Resultat,
+         Afficher_Formule       => Afficher_Formule,
+         "<"                    => "<",
+         ">"                    => ">",
+         Objectif               => Objectif
       );
-   package Individu_IO   is new Individu_P.Text_IO
-      (
-         Put_Parametres => Put_Parametres,
-         Put_Resultat   => Put_Resultat
-      );
-
-   package Population_P  is new A_E_P.Population_G
-      (
-         Taille      => Taille_Population,
-         Individu_P  => Individu_P,
-         Objectif    => Objectif
-      );
-   package Population_IO is new Population_P.Text_IO
-      (Individu_IO => Individu_IO);
 
    type Population_T is
       record
-         Initialisee : Boolean := False;
-         --  La population a été initialisée.
-         Pop         : Population_P.Population_T;
-         --  La population à utiliser.
+         Pop : Outils_P.Population_T;
+         --  La population.
       end record;
-
-   procedure Remplacer_Morts
-      (Population : in out Population_T)
-      with Inline => True;
-   --  Remplace les paramètres des individus trop loin du minimum
-   --  par de nouveaux.
-   --  @param Population
-   --  La population total.
-
-   procedure Calcul_Formule_Sur_Enfant
-      (Population : in out Population_T)
-      with Inline => True;
-   --  Applique la formule à la population nouvellement née.
-   --  Il est inutile de recalculer toutes les valeurs,
-   --  seul les 25% dernières sont nouvelles.
-   --  @param Population
-   --  La population.
-
-   procedure Faire_Evoluer_Par_Tournoi
-      (Population : in out Population_T)
-      with Inline => True;
-   --  Organise des tournois pour remplacer 8% de la population.
-   --  @param Population
-   --  La population.
-
-   procedure Trier
-      (Population : in out Population_T)
-      with Inline => True;
-   --  Trie les individu d'une population en fonction
-   --  de la valeur calculée de chaque individu.
-   --  @param Population
-   --  La population à trier.
-
-   function Verifier_Convergence
-      (Population : in     Population_T)
-      return Boolean
-      with Inline => True;
-   --  Indique si la population converge vers un minimum ou non.
-   --  @param Population
-   --  La population.
 
 end A_E_P.Algo_Evolutionnaire_G;

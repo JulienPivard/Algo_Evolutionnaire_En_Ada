@@ -1,6 +1,6 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Jeudi 25 juin[06] 2020
+# Dernière modification : Dimanche 16 mai[05] 2021
 
 # Les options sont désactivée si vide
 ifeq ($(ACTIVER_DEBUG), )
@@ -20,6 +20,9 @@ ifeq ($(ACTIVER_AFFICHER_LA_STACK), )
 endif
 ifeq ($(ACTIVER_AFFICHER_ORDRE_ELABORATION), )
     ACTIVER_AFFICHER_ORDRE_ELABORATION	= false
+endif
+ifeq ($(CHOISIR_ALGO_DE_RESOLUTION), )
+    CHOISIR_ALGO_DE_RESOLUTION	= seq
 endif
 
 # On notifie si le nom de l'app n'est pas changé
@@ -80,6 +83,14 @@ ifneq ($(ACTIVER_AFFICHER_ORDRE_ELABORATION), true)
   endif
 endif
 
+# On vérifie que CHOISIR_ALGO_DE_RESOLUTION vaut bien [seq|parallele]
+ifneq ($(CHOISIR_ALGO_DE_RESOLUTION), seq)
+  ifneq ($(CHOISIR_ALGO_DE_RESOLUTION), parallele)
+    $(info makefile.conf:87: *** [CHOISIR_ALGO_DE_RESOLUTION] doit être seq ou parallele)
+    $(error Compilation impossible)
+  endif
+endif
+
 # Pour activer le mode debug
 ifeq ($(ACTIVER_DEBUG), true)
     MODE	= debug
@@ -121,6 +132,9 @@ ifeq ($(ACTIVER_AFFICHER_ORDRE_ELABORATION), true)
 else
     AFFICHER_ORDRE_ELABORATION	= non
 endif
+
+# Pour choisir l'algorithme de résolution.
+ALGO_CHOISI_S_P	= $(CHOISIR_ALGO_DE_RESOLUTION)
 
 # Vérification du niveau de preuve
 ifeq ($(NIVEAU_PREUVE), )

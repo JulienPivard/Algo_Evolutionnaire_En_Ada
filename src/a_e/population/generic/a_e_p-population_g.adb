@@ -48,84 +48,41 @@ is
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
-   procedure Organiser_Tournois
+   procedure Organiser_Saison_Des_Amours
       (Population : in out Population_T)
    is
-      subtype Nb_Participants_Tournois_T is Indice_Population_T range
-         Indice_Population_T'First .. Nb_Participants;
-      --  Le nombre de participants à chaque tournois.
-      type Nb_Tournois_T is new Nb_Participants_Tournois_T;
-      --  Le nombre de tournois organisé.
-
-      type Enfants_T      is array (Nb_Tournois_T) of Individu_P.Individu_T;
+      type Enfants_T is array (Nb_Tournois_T) of Individu_P.Individu_T;
       --  Tableau des enfants conçus par les tournois successifs.
-      type Pos_Individu_T is array (Nb_Tournois_T) of Indice_Population_T;
-      --  Tableau de position des perdants dans la population.
 
-      Pos_Perdants : Pos_Individu_T;
-      Pos_Gagnants : Pos_Individu_T;
-      Pos_Seconds  : Pos_Individu_T;
+      I : Nb_Tournois_T := Nb_Tournois_T'First;
 
-      Enfants : Enfants_T;
+      Resultat_Tournois : Table_Resultat_Tournois_T;
+      Enfants           : Enfants_T;
    begin
+      Organiser_Tournois
+         (
+            Population        => Population,
+            Resultat_Tournois => Resultat_Tournois
+         );
+
       Boucle_Tournois :
-      for I in Nb_Tournois_T loop
-         Bloc_Accouplement :
-         declare
-            Pos_Concurent : Indice_Population_T;
-         begin
-            Pos_Gagnants (I) := Alea_Survivants_P.Random
-               (Gen => Generateur_Survivant);
-            Pos_Seconds  (I) := Alea_Survivants_P.Random
-               (Gen => Generateur_Survivant);
-            Pos_Perdants (I) := Alea_Survivants_P.Random
-               (Gen => Generateur_Survivant);
+      for E of Resultat_Tournois loop
+         Enfants (I) := Individu_P.Accoupler
+            (
+               Individu => Population.Table (E.Pos_Gagnants),
+               Autre    => Population.Table (E.Pos_Seconds)
+            );
 
-            if Pos_Perdants (I) < Pos_Gagnants (I) then
-               Pos_Concurent    := Pos_Perdants (I);
-               Pos_Perdants (I) := Pos_Gagnants (I);
-               Pos_Gagnants (I) := Pos_Concurent;
-            end if;
-
-            if Pos_Perdants (I) < Pos_Seconds (I) then
-               Pos_Concurent    := Pos_Perdants (I);
-               Pos_Perdants (I) := Pos_Seconds  (I);
-               Pos_Seconds  (I) := Pos_Concurent;
-            end if;
-
-            if Pos_Seconds (I) < Pos_Gagnants (I) then
-               Pos_Concurent    := Pos_Seconds  (I);
-               Pos_Seconds  (I) := Pos_Gagnants (I);
-               Pos_Gagnants (I) := Pos_Concurent;
-            end if;
-
-            Boucle_Selection_Participants :
-            for J in Nb_Participants_Tournois_T loop
-               Pos_Concurent := Alea_Survivants_P.Random
-                  (Gen => Generateur_Survivant);
-
-               if    Pos_Concurent < Pos_Gagnants (I) then
-                  Pos_Gagnants (I) := Pos_Concurent;
-               elsif Pos_Concurent < Pos_Seconds  (I) then
-                  Pos_Seconds  (I) := Pos_Concurent;
-               elsif Pos_Concurent > Pos_Perdants (I) then
-                  Pos_Perdants (I) := Pos_Concurent;
-               end if;
-            end loop Boucle_Selection_Participants;
-
-            Enfants (I) := Individu_P.Accoupler
-               (
-                  Individu => Population.Table (Pos_Gagnants (I)),
-                  Autre    => Population.Table (Pos_Seconds  (I))
-               );
-         end Bloc_Accouplement;
+         if I < Nb_Tournois_T'Last then
+            I := Nb_Tournois_T'Succ (I);
+         end if;
       end loop Boucle_Tournois;
 
-      for I in Nb_Tournois_T loop
-         Individu_P.Appliquer_Formule (Individu => Enfants (I));
-         Population.Table (Pos_Perdants (I)) := Enfants (I);
+      for J in Nb_Tournois_T loop
+         Individu_P.Appliquer_Formule (Individu => Enfants (J));
+         Population.Table (Resultat_Tournois (J).Pos_Perdants) := Enfants (J);
       end loop;
-   end Organiser_Tournois;
+   end Organiser_Saison_Des_Amours;
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
@@ -159,7 +116,155 @@ is
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
+   procedure Accueillir_Migrants
+      (
+         Population : in out Population_T;
+         Migrants   : in     Migrants_T;
+         Resultats  : in     Resultat_Tournois_T
+      )
+   is
+      I : Indice_Migrants_T := Indice_Migrants_T'First;
+   begin
+      Boucle_Integration_Migrants :
+      for E of Resultats.Table loop
+         Population.Table (E.Pos_Gagnants) := Migrants.Table (I);
+         if I < Indice_Migrants_T'Last then
+            I := I + 1;
+         end if;
+      end loop Boucle_Integration_Migrants;
+   end Accueillir_Migrants;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   procedure Selectionner_Migrants
+      (
+         Population : in     Population_T;
+         Migrants   :    out Migrants_T;
+         Resultats  :    out Resultat_Tournois_T
+      )
+   is
+      I : Indice_Migrants_T := Indice_Migrants_T'First;
+   begin
+      Organiser_Tournois
+         (
+            Population        => Population,
+            Resultat_Tournois => Resultats.Table
+         );
+
+      Boucle_Recuperation_Gagnants :
+      for E of Resultats.Table loop
+         Migrants.Table (I) := Population.Table (E.Pos_Gagnants);
+         if I < Indice_Migrants_T'Last then
+            I := I + 1;
+         end if;
+      end loop Boucle_Recuperation_Gagnants;
+   end Selectionner_Migrants;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
    --                               Partie privée                           --
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   function Tirer_Concurrent
+      (Participants : in     Res_Tournoi_T)
+      return Indice_Population_T
+   is
+      Resultat        : Indice_Population_T;
+      Tous_Differents : Boolean := False;
+   begin
+      Boucle_Tirage :
+      loop
+         Resultat := Alea_Survivants_P.Random
+            (Gen => Generateur_Survivant);
+         Tous_Differents :=
+            Resultat /= Participants.Pos_Gagnants
+            and then
+            Resultat /= Participants.Pos_Seconds
+            and then
+            Resultat /= Participants.Pos_Perdants;
+         exit Boucle_Tirage when Tous_Differents;
+      end loop Boucle_Tirage;
+
+      return Resultat;
+   end Tirer_Concurrent;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   procedure Organiser_Tournois
+      (
+         Population        : in     Population_T;
+         Resultat_Tournois :    out Table_Resultat_Tournois_T
+      )
+   is
+      pragma Unreferenced (Population);
+
+      type A_Deja_Perdu_T is array (Indice_Population_T) of Boolean;
+
+      A_Deja_Perdu : A_Deja_Perdu_T := A_Deja_Perdu_T'(others => False);
+   begin
+      Boucle_Tournois :
+      for E of Resultat_Tournois loop
+         Bloc_Tournois :
+         declare
+            Pos_Concurrent : Indice_Population_T;
+            Tirage_Valide : Boolean := False;
+         begin
+            E.Pos_Gagnants := Tirer_Concurrent (Participants => E);
+            E.Pos_Seconds  := Tirer_Concurrent (Participants => E);
+            E.Pos_Perdants := Tirer_Concurrent (Participants => E);
+
+            Boucle_Initialiser_Tournois :
+            loop
+               if E.Pos_Perdants < E.Pos_Gagnants then
+                  Pos_Concurrent := E.Pos_Perdants;
+                  E.Pos_Perdants := E.Pos_Gagnants;
+                  E.Pos_Gagnants := Pos_Concurrent;
+               end if;
+
+               if E.Pos_Perdants < E.Pos_Seconds then
+                  Pos_Concurrent := E.Pos_Perdants;
+                  E.Pos_Perdants := E.Pos_Seconds;
+                  E.Pos_Seconds  := Pos_Concurrent;
+               end if;
+
+               if E.Pos_Seconds < E.Pos_Gagnants then
+                  Pos_Concurrent := E.Pos_Seconds;
+                  E.Pos_Seconds  := E.Pos_Gagnants;
+                  E.Pos_Gagnants := Pos_Concurrent;
+               end if;
+
+               if A_Deja_Perdu (E.Pos_Perdants) then
+                  Tirage_Valide := False;
+               else
+                  Tirage_Valide                 := True;
+                  A_Deja_Perdu (E.Pos_Perdants) := True;
+               end if;
+
+               exit Boucle_Initialiser_Tournois when Tirage_Valide;
+
+               E.Pos_Perdants := Tirer_Concurrent (Participants => E);
+            end loop Boucle_Initialiser_Tournois;
+
+            Boucle_Selection_Participants :
+            for J in Nb_Participants_Tournois_T loop
+               Pos_Concurrent := Tirer_Concurrent (Participants => E);
+
+               if    Pos_Concurrent < E.Pos_Gagnants then
+                  E.Pos_Gagnants := Pos_Concurrent;
+               elsif Pos_Concurrent < E.Pos_Seconds  then
+                  E.Pos_Seconds  := Pos_Concurrent;
+               elsif Pos_Concurrent > E.Pos_Perdants then
+                  if not A_Deja_Perdu (Pos_Concurrent) then
+                     A_Deja_Perdu (E.Pos_Perdants) := False;
+                     A_Deja_Perdu (Pos_Concurrent) := True;
+                     E.Pos_Perdants := Pos_Concurrent;
+                  end if;
+               end if;
+            end loop Boucle_Selection_Participants;
+         end Bloc_Tournois;
+      end loop Boucle_Tournois;
+   end Organiser_Tournois;
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------

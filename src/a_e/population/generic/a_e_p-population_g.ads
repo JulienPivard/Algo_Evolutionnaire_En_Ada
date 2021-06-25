@@ -62,7 +62,7 @@ is
    --  @param Population
    --  La population.
 
-   procedure Organiser_Tournois
+   procedure Organiser_Saison_Des_Amours
       (Population : in out Population_T);
    --  Organise des tournois dont le nombre correspond à environ 8%
    --  du nombre d'individus, avec environ 8% d'individus.
@@ -86,11 +86,51 @@ is
    --  La population.
    --  @return La population converge vers un même génome.
 
+   type Migrants_T is private;
+   --  La population de migrants d'une ile à une autre.
+
+   type Resultat_Tournois_T is private;
+   --  Résultat du tournois entre les individus de la population.
+
+   procedure Accueillir_Migrants
+      (
+         Population : in out Population_T;
+         Migrants   : in     Migrants_T;
+         Resultats  : in     Resultat_Tournois_T
+      );
+   --  Accueil une population migrante dans notre population.
+   --  @param Population
+   --  La population.
+   --  @param Migrants
+   --  Les migrant à intégrer à la population.
+   --  @param Resultats
+   --  Les résultats du tournois pour savoir où placer les migrants.
+
+   procedure Selectionner_Migrants
+      (
+         Population : in     Population_T;
+         Migrants   :    out Migrants_T;
+         Resultats  :    out Resultat_Tournois_T
+      );
+   --  Sélectionne des individus pour les faire
+   --  migrer hors de la population.
+   --  @param Population
+   --  La population.
+   --  @param Migrants
+   --  Les migrants qui partent de la population.
+   --  @param Resultats
+   --  Les résultats du tournois.
+
 private
 
    type Indice_Population_T is new Taille_Population_T range
       Taille_Population_T'First .. Taille;
    --  Les indices de la table de population.
+
+   type Table_Population_T is
+      array (Indice_Population_T range <>)
+      of Individu_P.Individu_T;
+   --  Contient la population.
 
    Taille_Population : constant Indice_Population_T :=
       Indice_Population_T (Taille);
@@ -103,6 +143,8 @@ private
          "La taille de la population est trop faible. " &
          "25 individus au minimum."
       );
+
+   Taille_Migrants   : constant Indice_Population_T := 8;
 
    Taille_Tournois   : constant Indice_Population_T := 8;
 
@@ -129,6 +171,9 @@ private
    Nb_Participants   : constant Indice_Population_T :=
       Nb_Tournois;
    --  Nombre de participants a chaque tournois.
+   Nb_Migrants       : constant Indice_Population_T :=
+      (Taille_Population * Taille_Migrants) / 100;
+   --  Le nombre d'individu dans le groupe de migrants.
 
    subtype Intervalle_Survivants_T     is Indice_Population_T        range
       Indice_Population_T'First .. Nb_Survivants;
@@ -167,10 +212,52 @@ private
    --  La position de l'enfant issu du calcul de la moyenne de tous
    --  les survivants.
 
-   type Table_Population_T is
-      array (Indice_Population_T range <>)
-      of Individu_P.Individu_T;
-   --  Contient la population.
+   subtype Indice_Migrants_T           is Indice_Population_T        range
+      Indice_Population_T'First .. Nb_Migrants;
+   --  Le nombre d'individus participants à la migration.
+
+   subtype Nb_Participants_Tournois_T is Indice_Population_T         range
+      Indice_Population_T'First .. Nb_Participants;
+   --  Le nombre de participants à chaque tournois.
+   type Nb_Tournois_T is new Nb_Participants_Tournois_T;
+   --  Le nombre de tournois organisé.
+
+   type Res_Tournoi_T is
+      record
+         Pos_Perdants : Indice_Population_T := Indice_Population_T'Last;
+         --  La position du perdant du tournoi.
+         Pos_Gagnants : Indice_Population_T := Indice_Population_T'Last;
+         --  La position du gagnant du tournoi.
+         Pos_Seconds  : Indice_Population_T := Indice_Population_T'Last;
+         --  La position du second du tournoi.
+      end record;
+   --  Les résultats du tournoi.
+
+   type Table_Resultat_Tournois_T is array (Nb_Tournois_T) of Res_Tournoi_T;
+   --  Tableau de position des individus dans la population
+   --  ayant participé aux tournois.
+
+   function Tirer_Concurrent
+      (Participants : in     Res_Tournoi_T)
+      return Indice_Population_T;
+   --  Tire un concurrent au hasard qui est différent de ceux déjà en lice.
+   --  @param Participants
+   --  Les participants déjà en lice.
+   --  @return Le nouveau concurrent.
+
+   procedure Organiser_Tournois
+      (
+         Population        : in     Population_T;
+         Resultat_Tournois :    out Table_Resultat_Tournois_T
+      );
+   --  Organise des tournois dont le nombre correspond à environ 8%
+   --  du nombre d'individus, avec environ 8% d'individus.
+   --  Les individus les plus proches du début du tableau sont les plus
+   --  fort, ceux qui sont à la fin sont les plus faibles.
+   --  @param Population
+   --  La population.
+   --  @param Resultat_Tournois
+   --  Les résultats des tournois.
 
    procedure Generer_Individus_Mutants
       (Population : in out Population_T)
@@ -251,10 +338,25 @@ private
    subtype Sous_Population_T is Table_Population_T (Indice_Population_T);
    --  Contient toute la population existante.
 
+   subtype Pop_Migrants_T    is Table_Population_T (Indice_Migrants_T);
+   --  Contient la population de migrants.
+
    type Population_T is
       record
          Table : Sous_Population_T;
          --  La totalité de la population.
+      end record;
+
+   type Migrants_T is
+      record
+         Table : Pop_Migrants_T;
+         --  La population de migrants.
+      end record;
+
+   type Resultat_Tournois_T is
+      record
+         Table : Table_Resultat_Tournois_T;
+         --  Les résultats du tournois entre les individus.
       end record;
 
    package Tri_A_Bulle_Max_P is new Tri_A_Bulle_G
