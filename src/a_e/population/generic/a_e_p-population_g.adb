@@ -211,7 +211,13 @@ is
                   E.Pos_Gagnants := Pos_Concurrent;
                end if;
 
+               if A_Deja_Perdu (E.Pos_Perdants) then
                Tirage_Valide := False;
+               else
+                  Tirage_Valide                 := True;
+                  A_Deja_Perdu (E.Pos_Perdants) := True;
+               end if;
+
                exit Boucle_Initialiser_Tournois when Tirage_Valide;
 
                E.Pos_Perdants := Tirer_Concurrent (Participants => E);
@@ -226,7 +232,11 @@ is
                elsif Pos_Concurrent < E.Pos_Seconds  then
                   E.Pos_Seconds  := Pos_Concurrent;
                elsif Pos_Concurrent > E.Pos_Perdants then
+                  if not A_Deja_Perdu (Pos_Concurrent) then
+                     A_Deja_Perdu (E.Pos_Perdants) := False;
+                     A_Deja_Perdu (Pos_Concurrent) := True;
                   E.Pos_Perdants := Pos_Concurrent;
+                  end if;
                end if;
             end loop Boucle_Selection_Participants;
          end Bloc_Tournois;
