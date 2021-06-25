@@ -193,25 +193,25 @@ is
 
             Boucle_Initialiser_Tournois :
             loop
-            if E.Pos_Perdants < E.Pos_Gagnants then
-               Pos_Concurrent := E.Pos_Perdants;
-               E.Pos_Perdants := E.Pos_Gagnants;
-               E.Pos_Gagnants := Pos_Concurrent;
-            end if;
+               if E.Pos_Perdants < E.Pos_Gagnants then
+                  Pos_Concurrent := E.Pos_Perdants;
+                  E.Pos_Perdants := E.Pos_Gagnants;
+                  E.Pos_Gagnants := Pos_Concurrent;
+               end if;
 
-            if E.Pos_Perdants < E.Pos_Seconds then
-               Pos_Concurrent := E.Pos_Perdants;
-               E.Pos_Perdants := E.Pos_Seconds;
-               E.Pos_Seconds  := Pos_Concurrent;
-            end if;
+               if E.Pos_Perdants < E.Pos_Seconds then
+                  Pos_Concurrent := E.Pos_Perdants;
+                  E.Pos_Perdants := E.Pos_Seconds;
+                  E.Pos_Seconds  := Pos_Concurrent;
+               end if;
 
-            if E.Pos_Seconds < E.Pos_Gagnants then
-               Pos_Concurrent := E.Pos_Seconds;
-               E.Pos_Seconds  := E.Pos_Gagnants;
-               E.Pos_Gagnants := Pos_Concurrent;
-            end if;
+               if E.Pos_Seconds < E.Pos_Gagnants then
+                  Pos_Concurrent := E.Pos_Seconds;
+                  E.Pos_Seconds  := E.Pos_Gagnants;
+                  E.Pos_Gagnants := Pos_Concurrent;
+               end if;
 
-            Tirage_Valide := False;
+               Tirage_Valide := False;
                exit Boucle_Initialiser_Tournois when Tirage_Valide;
 
                E.Pos_Perdants := Tirer_Concurrent (Participants => E);
