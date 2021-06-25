@@ -1,4 +1,4 @@
---  Dernière modification : Dimanche 16 mai[05] 2021
+--  Dernière modification : Vendredi 25 juin[06] 2021
 --  Auteur : PIVARD Julien
 
 --  https://gcc.gnu.org/releases.html
@@ -45,8 +45,8 @@ project Build is
    --  Le ** permet d'inclure tous les sous répertoire.
    for Source_Dirs               use ("src/**");
 
-   for Object_Dir                use "obj/" & Mode_Compilation;
-   for Exec_Dir                  use "bin/" & Mode_Compilation;
+   for Object_Dir                use "obj/" & Mode_Compilation & "/" & Sorte_D_Algo;
+   for Exec_Dir                  use "bin/" & Mode_Compilation & "/" & Sorte_D_Algo;
 
    --  for Target                    use "powerpc-wrs-vxworks";
    for Create_Missing_Dirs       use "True";
