@@ -186,12 +186,10 @@ is
          declare
             Pos_Concurrent : Indice_Population_T;
          begin
-            E.Pos_Gagnants := Alea_Survivants_P.Random
-               (Gen => Generateur_Survivant);
+            E.Pos_Gagnants := Tirer_Concurrent (Participants => E);
             E.Pos_Seconds  := Alea_Survivants_P.Random
                (Gen => Generateur_Survivant);
-            E.Pos_Perdants := Alea_Survivants_P.Random
-               (Gen => Generateur_Survivant);
+            E.Pos_Perdants := Tirer_Concurrent (Participants => E);
 
             if E.Pos_Perdants < E.Pos_Gagnants then
                Pos_Concurrent := E.Pos_Perdants;
@@ -213,8 +211,7 @@ is
 
             Boucle_Selection_Participants :
             for J in Nb_Participants_Tournois_T loop
-               Pos_Concurrent := Alea_Survivants_P.Random
-                  (Gen => Generateur_Survivant);
+               Pos_Concurrent := Tirer_Concurrent (Participants => E);
 
                if    Pos_Concurrent < E.Pos_Gagnants then
                   E.Pos_Gagnants := Pos_Concurrent;
