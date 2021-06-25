@@ -92,12 +92,12 @@ is
             Nb_Generations  => Nb_Generations
          );
 
-         Ada.Text_IO.Put_Line
-            (Item => "======= Valeurs attendu après évolution =======");
-         Ada.Text_IO.Put_Line
-            (Item => "La valeur de " & Nom & " pour le min : " & Min);
+      Ada.Text_IO.Put_Line
+         (Item => "======= Valeurs attendu après évolution =======");
+      Ada.Text_IO.Put_Line
+         (Item => "La valeur de " & Nom & " pour le min : " & Min);
 
-         Ada.Text_IO.New_Line    (Spacing => 1);
+      Ada.Text_IO.New_Line    (Spacing => 1);
       Population_P.Put_Line   (Item    => Population);
       Ada.Text_IO.Put_Line    (Item    => "=======");
 
@@ -223,7 +223,7 @@ begin
    --  Ada.Text_IO.Put_Line (Item => GNAT.Source_Info.Source_Location);
 
    Min_Surface
-      (Nom => "X",      Min => "5.88",         Reduire_Affichage => True);
+      (Nom => "X",      Min => "5.88",         Reduire_Affichage => False);
 
    Min_Anonyme_1
       (Nom => "X",      Min => "0.0",          Reduire_Affichage => True);
