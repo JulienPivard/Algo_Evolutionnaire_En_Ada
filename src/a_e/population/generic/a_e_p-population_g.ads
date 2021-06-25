@@ -77,6 +77,16 @@ is
    --  @param Population
    --  La population à trier.
 
+   procedure C_Est_Ameliore_Depuis_Gen_Precedente
+      (
+         Population   : in out Population_T;
+         Est_Ameliore :    out Boolean
+      );
+   --  Le meilleur individu a changé depuis la dernière génération.
+   --  @param Population
+   --  La population.
+   --  @return Le meilleur individu a changé.
+
    function Verifier_Convergence
       (Population : in     Population_T)
       return Boolean;
@@ -343,8 +353,10 @@ private
 
    type Population_T is
       record
-         Table : Sous_Population_T;
+         Table           : Sous_Population_T;
          --  La totalité de la population.
+         Meilleur_Valeur : Individu_P.Individu_T;
+         --  Le meilleur résultat trouvé dans la population.
       end record;
 
    type Migrants_T is

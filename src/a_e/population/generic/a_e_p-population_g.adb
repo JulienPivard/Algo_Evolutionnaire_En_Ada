@@ -18,6 +18,9 @@ is
       Generer_Individus_Aleatoirement  (Population => Population.Table);
 
       Appliquer_Formule                (Population => Population.Table);
+
+      Population.Meilleur_Valeur :=
+         Population.Table (Population.Table'First);
    end Initialiser;
    ---------------------------------------------------------------------------
 
@@ -92,6 +95,33 @@ is
    begin
       Trier_Individus (Tableau => Population.Table);
    end Trier;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   procedure C_Est_Ameliore_Depuis_Gen_Precedente
+      (
+         Population   : in out Population_T;
+         Est_Ameliore :    out Boolean
+      )
+   is
+      use type Individu_P.Individu_T;
+   begin
+      Est_Ameliore :=
+         (
+            if Objectif = Minimiser then
+               Population.Meilleur_Valeur
+               >
+               Population.Table (Population.Table'First)
+            else
+               Population.Meilleur_Valeur
+               <
+               Population.Table (Population.Table'First)
+         );
+      if Est_Ameliore then
+         Population.Meilleur_Valeur :=
+            Population.Table (Population.Table'First);
+      end if;
+   end C_Est_Ameliore_Depuis_Gen_Precedente;
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
