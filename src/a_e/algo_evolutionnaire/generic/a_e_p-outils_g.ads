@@ -150,8 +150,8 @@ is
 
    procedure Trier_Et_Verifier
       (
-         Population             : in out Population_T;
-         Tours_Sans_Divergences : in out Nb_Tours_Sans_Divergences_T
+         Population                 : in out Population_T;
+         Nb_Tours_Sans_Divergences  : in out Nb_Tours_Sans_Divergences_T
       )
       with Inline => True;
    --  Trie et vérifie la convergence de la population.

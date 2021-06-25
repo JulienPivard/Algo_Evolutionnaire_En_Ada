@@ -178,7 +178,8 @@ is
       Resultats      : Outils_P.Resultat_Tournois_T;
       Population     : Population_T;
 
-      Nb_Tours_Sans_Divergences : Outils_P.Nb_Tours_Sans_Divergences_T := 0;
+      Nb_Tours_Sans_Divergences  : Outils_P.Nb_Tours_Sans_Divergences_T  :=
+         Outils_P.Nb_Tours_Sans_Divergences_T'First;
    begin
       Demarreur.Attendre (Population => Population);
 
@@ -188,8 +189,8 @@ is
       loop
          Outils_P.Trier_Et_Verifier
             (
-               Population             => Population.Pop,
-               Tours_Sans_Divergences => Nb_Tours_Sans_Divergences
+               Population                 => Population.Pop,
+               Nb_Tours_Sans_Divergences  => Nb_Tours_Sans_Divergences
             );
 
          exit Boucle_Generation_Successive when Nb_Tours_Sans_Divergences = 25;

@@ -37,8 +37,8 @@ is
    ---------------------------------------------------------------------------
    procedure Trier_Et_Verifier
       (
-         Population             : in out Population_T;
-         Tours_Sans_Divergences : in out Nb_Tours_Sans_Divergences_T
+         Population                 : in out Population_T;
+         Nb_Tours_Sans_Divergences  : in out Nb_Tours_Sans_Divergences_T
       )
    is
    begin
@@ -48,9 +48,9 @@ is
       --  de la valeur minimum du tableau pendant 25 générations.
       --  Intervalle de convergence
       if Verifier_Convergence (Population => Population) then
-         Tours_Sans_Divergences := Tours_Sans_Divergences + 1;
+         Nb_Tours_Sans_Divergences := Nb_Tours_Sans_Divergences + 1;
       else
-         Tours_Sans_Divergences := 0;
+         Nb_Tours_Sans_Divergences := 0;
       end if;
    end Trier_Et_Verifier;
    ---------------------------------------------------------------------------
