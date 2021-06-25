@@ -182,7 +182,7 @@ is
    --  @param Migrants
    --  Les migrant à intégrer à la population.
 
-   function Faire_Migrer
+   function Selectionner_Migrants
       (Population : in     Population_T)
       return Migrants_T
       with Inline => True;

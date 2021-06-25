@@ -202,8 +202,8 @@ is
          if (Nb_Generations mod 25) = 0 then
             Sortie.Envoyer
                (
-                  Population =>
-                     Outils_P.Faire_Migrer (Population => Population.Pop)
+                  Population => Outils_P.Selectionner_Migrants
+                     (Population => Population.Pop)
                );
             Entree.Attendre (Population => Migrants);
             exit Boucle_Generation_Successive when

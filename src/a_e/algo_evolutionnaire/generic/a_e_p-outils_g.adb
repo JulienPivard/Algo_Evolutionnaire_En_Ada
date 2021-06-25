@@ -84,16 +84,16 @@ is
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
-   function Faire_Migrer
+   function Selectionner_Migrants
       (Population : in     Population_T)
       return Migrants_T
    is
       Resultat : Migrants_T;
    begin
       Resultat.Pop :=
-         Population_P.Faire_Migrer (Population => Population.Pop);
+         Population_P.Selectionner_Migrants (Population => Population.Pop);
       return Resultat;
-   end Faire_Migrer;
+   end Selectionner_Migrants;
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------

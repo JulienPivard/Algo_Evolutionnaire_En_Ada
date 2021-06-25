@@ -128,14 +128,14 @@ is
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
-   function Faire_Migrer
+   function Selectionner_Migrants
       (Population : in     Population_T)
       return Migrants_T
    is
       Resultat : Migrants_T;
    begin
       return Resultat;
-   end Faire_Migrer;
+   end Selectionner_Migrants;
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
