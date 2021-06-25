@@ -185,12 +185,14 @@ is
          Bloc_Tournois :
          declare
             Pos_Concurrent : Indice_Population_T;
+            Tirage_Valide : Boolean := False;
          begin
             E.Pos_Gagnants := Tirer_Concurrent (Participants => E);
-            E.Pos_Seconds  := Alea_Survivants_P.Random
-               (Gen => Generateur_Survivant);
+            E.Pos_Seconds  := Tirer_Concurrent (Participants => E);
             E.Pos_Perdants := Tirer_Concurrent (Participants => E);
 
+            Boucle_Initialiser_Tournois :
+            loop
             if E.Pos_Perdants < E.Pos_Gagnants then
                Pos_Concurrent := E.Pos_Perdants;
                E.Pos_Perdants := E.Pos_Gagnants;
@@ -208,6 +210,12 @@ is
                E.Pos_Seconds  := E.Pos_Gagnants;
                E.Pos_Gagnants := Pos_Concurrent;
             end if;
+
+            Tirage_Valide := False;
+               exit Boucle_Initialiser_Tournois when Tirage_Valide;
+
+               E.Pos_Perdants := Tirer_Concurrent (Participants => E);
+            end loop Boucle_Initialiser_Tournois;
 
             Boucle_Selection_Participants :
             for J in Nb_Participants_Tournois_T loop
