@@ -233,6 +233,20 @@ private
    --  Les participants déjà en lice.
    --  @return Le nouveau concurrent.
 
+   procedure Organiser_Tournois
+      (
+         Population        : in     Population_T;
+         Resultat_Tournois :    out Resultat_Tournois_T
+      );
+   --  Organise des tournois dont le nombre correspond à environ 8%
+   --  du nombre d'individus, avec environ 8% d'individus.
+   --  Les individus les plus proches du début du tableau sont les plus
+   --  fort, ceux qui sont à la fin sont les plus faibles.
+   --  @param Population
+   --  La population.
+   --  @param Resultat_Tournois
+   --  Les résultats des tournois.
+
    procedure Generer_Individus_Mutants
       (Population : in out Population_T)
       with Inline => True;
