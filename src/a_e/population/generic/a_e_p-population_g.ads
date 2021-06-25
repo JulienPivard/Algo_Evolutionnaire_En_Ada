@@ -225,6 +225,14 @@ private
    --  Tableau de position des individus dans la population
    --  ayant participé aux tournois.
 
+   function Tirer_Concurrent
+      (Participants : in     Res_Tournoi_T)
+      return Indice_Population_T;
+   --  Tire un concurrent au hasard qui est différent de ceux déjà en lice.
+   --  @param Participants
+   --  Les participants déjà en lice.
+   --  @return Le nouveau concurrent.
+
    procedure Generer_Individus_Mutants
       (Population : in out Population_T)
       with Inline => True;

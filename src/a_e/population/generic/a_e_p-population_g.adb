@@ -181,6 +181,31 @@ is
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
+   function Tirer_Concurrent
+      (Participants : in     Res_Tournoi_T)
+      return Indice_Population_T
+   is
+      Resultat        : Indice_Population_T;
+      Tous_Differents : Boolean := False;
+   begin
+      Boucle_Tirage :
+      loop
+         Resultat := Alea_Survivants_P.Random
+            (Gen => Generateur_Survivant);
+         Tous_Differents :=
+            Resultat /= Participants.Pos_Gagnants
+            and then
+            Resultat /= Participants.Pos_Seconds
+            and then
+            Resultat /= Participants.Pos_Perdants;
+         exit Boucle_Tirage when Tous_Differents;
+      end loop Boucle_Tirage;
+
+      return Resultat;
+   end Tirer_Concurrent;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
    procedure Generer_Individus_Mutants
       (Population : in out Population_T)
    is
