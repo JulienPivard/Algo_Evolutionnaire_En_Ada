@@ -1,4 +1,4 @@
---  Dernière modification : Vendredi 25 juin[06] 2021
+--  Dernière modification : Lundi 28 juin[06] 2021
 --  Auteur : PIVARD Julien
 
 --  https://gcc.gnu.org/releases.html
@@ -195,10 +195,8 @@ project Build is
 
       case Sorte_D_Algo is
          when "seq" =>
-            --  Pour lier le nom dans le code et le nom du fichier de spec
             for Spec ("A_E_P.Algo_Evolutionnaire_G") use
                "a_e_p-algo_evolutionnaire_sequentiel_g.ads";
-            --  Même chose mais pour le corps.
             for Body ("A_E_P.Algo_Evolutionnaire_G") use
                "a_e_p-algo_evolutionnaire_sequentiel_g.adb";
          when "parallele" =>
@@ -214,6 +212,7 @@ project Build is
    --  Configuration pour gprbuild
    ----------------------------------------------------------------------------
    package Builder is
+
       --  -s : Active la recompilation si un drapeau change
       --  -m : Recompilation minimum.
       --  -k : Va le plus loin possible lors de la compilation même si elle
@@ -288,8 +287,10 @@ project Build is
    --  Pour vérifier que les règles de codage sont bien suivis :
    ----------------------------------------------------------------------------
    package Check is
+
       for Default_Switches ("Ada") use
          ("-rules", "-from=config/regles_de_codage");
+
    end Check;
    ----------------------------------------------------------------------------
 
@@ -301,7 +302,9 @@ project Build is
    --  statistics    - Same as provers, plus timing and steps information
    ----------------------------------------------------------------------------
    package Prove is
+
       for Default_Switches ("Ada") use ("--report=fail");
+
    end Prove;
    ----------------------------------------------------------------------------
 
@@ -311,6 +314,7 @@ project Build is
    --  Configuration pour le binder
    ----------------------------------------------------------------------------
    package Binder is
+
       Options_Binder := ();
 
       case Verbeux is
@@ -357,6 +361,7 @@ project Build is
       end case;
 
       for Default_Switches ("Ada") use Options_Binder;
+
    end Binder;
    ----------------------------------------------------------------------------
 
@@ -378,6 +383,7 @@ project Build is
    --  https://docs.adacore.com/gnat_ugn-docs/html/gnat_ugn/gnat_ugn/gnat_utility_programs.html#the-gnat-pretty-printer-gnatpp
    ----------------------------------------------------------------------------
    package Pretty_Printer is
+
       for Default_Switches ("Ada") use
          (
             "--alignment",
@@ -446,20 +452,25 @@ project Build is
             "-N"
             --  Pas de tabulation dans les commentaires.
          );
+
    end Pretty_Printer;
    ----------------------------------------------------------------------------
 
    --  Configuration pour GPS.
    ----------------------------------------------------------------------------
    package Ide is
+
       for Vcs_Kind use "Git";
+
    end Ide;
    ----------------------------------------------------------------------------
 
    --  Indique quel makefile utiliser.
    ----------------------------------------------------------------------------
    package Make is
+
       for Makefile use "makefile";
+
    end Make;
    ----------------------------------------------------------------------------
 
