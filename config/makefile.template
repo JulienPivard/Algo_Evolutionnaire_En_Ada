@@ -1,6 +1,6 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Vendredi 14 mai[05] 2021
+# Dernière modification : Vendredi 18 juin[06] 2021
 
 ###################
 # Point d'entrée #
@@ -17,12 +17,14 @@ GNAT_BIN_MACOS			:= /usr/local/gnat/bin
 
 ifneq ($(wildcard $(GNAT_BIN_PERSO)), )
     PATH		:= $(GNAT_BIN_PERSO):$(PATH)
-    $(info  Utilisation de bin GNAT personnalisé)
+    $(info  Utilisation de bin GNAT personnalisé [$(GNAT_BIN_PERSO)])
 else ifneq ($(wildcard $(GNAT_BIN_MACOS)), )
     PATH		:= $(GNAT_BIN_MACOS):$(PATH)
 else ifneq ($(wildcard $(GNAT_BIN_LINUX)), )
     PATH		:= $(GNAT_BIN_LINUX):$(PATH)
 endif
+
+$(info Valeur de GPR_CONFIG=[${GPR_CONFIG}])
 
 ifeq ($(CHEMIN_OBJET), )
     $(info makefile.conf:11: *** Le nom du dossier des objets est vide)
@@ -36,6 +38,8 @@ ifeq ($(CHEMIN_ALI), )
     $(info makefile.conf:13: *** Le nom du dossier des ali est vide)
     $(error Compilation impossible)
 endif
+
+$(info )
 
 ###################
 .PHONY: version
