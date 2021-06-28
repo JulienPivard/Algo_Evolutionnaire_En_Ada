@@ -54,6 +54,12 @@ version_makefile:
 	@echo $(MAKEFILE_V)
 
 ###################
+.PHONY: initialiser_sous_modules
+initialiser_sous_modules:
+	git submodule init
+	git submodule update
+
+###################
 .PHONY: build
 build:
 	@echo "  "
