@@ -60,6 +60,19 @@ initialiser_sous_modules:
 	git submodule update
 
 ###################
+.PHONY: maj_sous_modules
+maj_sous_modules:
+	git submodule foreach git pull origin master
+	@echo
+	git submodule foreach git rebase master
+	@echo
+	git submodule foreach git checkout master
+	@echo
+	git submodule foreach git pull
+	@echo
+	git submodule summary
+
+###################
 .PHONY: build
 build:
 	@echo "  "

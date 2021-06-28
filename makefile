@@ -1,6 +1,6 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Vendredi 26 juin[06] 2020
+# Dernière modification : Vendredi 11 juin[06] 2021
 
 SHELL		:= /bin/sh
 .DEFAULT_GOAL	:= all
@@ -89,5 +89,7 @@ help:
 	@echo " - compter_detail	: Compte le nombre de lignes de code source par fichier."
 	@echo "    - avec_find_detail"
 	@echo "    - avec_cloc_detail"
+	@echo " "
+	@echo " - maj_sous_modules	: Met à jour les sous modules"
 	@echo " "
 	@echo " - version_makefile	: La version des makefiles."
