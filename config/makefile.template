@@ -39,6 +39,16 @@ ifeq ($(CHEMIN_ALI), )
     $(error Compilation impossible)
 endif
 
+# On liste les sous modules en éliminant le premier caractère si c'est + ou U
+# + signal un sous module mis à jour. U signal un conflit de merge.
+PRES_SOUS_MODULES	:= $(shell git submodule | cut -c 1-1 | tr -d "+ uU")
+
+ifeq ([$(PRES_SOUS_MODULES)], [])
+    FAIRE_INITIALISATION	:=
+else
+    FAIRE_INITIALISATION	:= initialiser_sous_modules
+endif
+
 $(info )
 
 ###################
@@ -74,7 +84,7 @@ maj_sous_modules:
 
 ###################
 .PHONY: build
-build:
+build: $(FAIRE_INITIALISATION)
 	@echo "  "
 	@echo " ┌───────────────────────────────────────────────────────────────┐"
 	@echo " │                  Lancement de la compilation                  │"

@@ -36,27 +36,27 @@ compiler: build
 
 ###################
 .PHONY: prod
-prod:
+prod: $(FAIRE_INITIALISATION)
 	$(CC) -P$(GPR) $(OPT_GPR_PROD)
 
 ###################
 .PHONY: doc
-doc:
+doc: $(FAIRE_INITIALISATION)
 	gnatdoc -P$(GPR) $(OPTGPR) $(OPTDOCUMENT)
 
 ###################
 .PHONY: prove
-prove:
+prove: $(FAIRE_INITIALISATION)
 	gnatprove -P$(GPR) $(OPTGPR) $(NIVEAU) $(RAPPORT) $(MODE_EXE)
 
 ###################
 .PHONY: check
-check:
+check: $(FAIRE_INITIALISATION)
 	gnatcheck -P$(GPR) $(OPTGPR) $(OPT_CHECK)
 
 ###################
 .PHONY: pretty
-pretty:
+pretty: $(FAIRE_INITIALISATION)
 	gnatpp -P$(GPR) $(Fichier)
 
 ###################
