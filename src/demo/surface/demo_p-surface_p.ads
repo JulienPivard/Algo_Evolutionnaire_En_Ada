@@ -104,9 +104,9 @@ private
 
    package Valeur_Diametre_P is new A_E_P.Valeur_Param_Flottant_G
       (
-         Valeur_Param_G_T => V_Param_T,
+         Valeur_Param_G_T => Diametre_T,
          Debut_Intervalle => 0.0,
-         Fin_Intervalle   => 1100.0
+         Fin_Intervalle   => 1100.0 * System.Dim.Mks.m
       );
 
    type Probleme_Surface_T is
@@ -117,7 +117,7 @@ private
 
    function Lire_Parametre
       (P : in Probleme_Surface_T)
-      return V_Param_T
+      return Diametre_T
    is (Valeur_Diametre_P.Lire_Valeur (Parametre => P.Diametre));
    --  Lit la valeur d'un paramètre.
    --  @param Parametres
@@ -126,7 +126,7 @@ private
 
    type Resultat_T is
       record
-         Surface : V_Calcule_T := 0.0;
+         Surface : Surface_T := 0.0;
          --  La surface totale nécessaire.
       end record;
 
@@ -140,7 +140,7 @@ private
       return Boolean
    is (Gauche.Surface > Droite.Surface);
 
-   Seuil_De_Convergence : constant := 0.5;
+   Seuil_De_Convergence : constant Surface_T := 0.5 * (System.Dim.Mks.m**2);
 
    function Resultats_Convergent
       (
