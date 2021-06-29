@@ -141,12 +141,12 @@ is
                            Generateur_P.Generer_Flottant
                               (
                                  Borne_Inferieur => Ecart,
-                                 Borne_Superieur => 0.0
+                                 Borne_Superieur => Valeur_Param_G_T (0.0)
                               )
                         else
                            Generateur_P.Generer_Flottant
                               (
-                                 Borne_Inferieur => 0.0,
+                                 Borne_Inferieur => Valeur_Param_G_T (0.0),
                                  Borne_Superieur => Ecart
                               )
                      );
