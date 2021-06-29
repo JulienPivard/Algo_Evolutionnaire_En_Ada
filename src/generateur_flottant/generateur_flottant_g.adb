@@ -32,11 +32,11 @@ is
          Resultat :=
             Valeur_G_T
                (
-            (Long_Long_Float (Borne_Superieur) * Val_Aleatoire)
-            -
-            (Long_Long_Float (Borne_Inferieur) * Val_Aleatoire)
-            +
-            Long_Long_Float (Borne_Inferieur)
+                  (Long_Long_Float (Borne_Superieur) * Val_Aleatoire)
+                  -
+                  (Long_Long_Float (Borne_Inferieur) * Val_Aleatoire)
+                  +
+                  Long_Long_Float (Borne_Inferieur)
                );
       end return;
    end Generer_Flottant;
