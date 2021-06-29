@@ -16,8 +16,8 @@ is
       )
       return Valeur_G_T
    is
-      Val_Aleatoire : constant Valeur_G_T :=
-         Valeur_G_T (Aleatoire_R.Random (Gen => Generateur));
+      Val_Aleatoire : constant Long_Long_Float :=
+         Long_Long_Float (Aleatoire_R.Random (Gen => Generateur));
    begin
       --  Le calcul :
       --       12.05 - (-12.05) = 24.1
@@ -30,11 +30,14 @@ is
       --  que le calcul Borne_Sup - Borne_Inf pouvait causer.
       return Resultat : Valeur_G_T do
          Resultat :=
-            (Borne_Superieur * Val_Aleatoire)
+            Valeur_G_T
+               (
+            (Long_Long_Float (Borne_Superieur) * Val_Aleatoire)
             -
-            (Borne_Inferieur * Val_Aleatoire)
+            (Long_Long_Float (Borne_Inferieur) * Val_Aleatoire)
             +
-            Borne_Inferieur;
+            Long_Long_Float (Borne_Inferieur)
+               );
       end return;
    end Generer_Flottant;
    ---------------------------------------------------------------------------
