@@ -5,7 +5,7 @@ pragma Unreferenced (A_E_P);
 --  Une petite collection de demos.
 --  @description
 --  Les démonstration d'utilisation sont regroupée sous ce package.
---  @group Un nom de groupe
+--  @group Demos
 package Demo_P
    with
       Pure           => True,
