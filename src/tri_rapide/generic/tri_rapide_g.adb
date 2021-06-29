@@ -93,7 +93,7 @@ is
 
    ---------------------------------------------------------------------------
    function Choisir_Pivot_Deterministe
-      (Premier, Dernier : in Indice_G_T)
+      (Premier, Dernier : in     Indice_G_T)
       return Indice_G_T
    is
       pragma Unreferenced (Dernier);
@@ -104,7 +104,7 @@ is
 
    ---------------------------------------------------------------------------
    function Choisir_Pivot_Aleatoire
-      (Premier, Dernier : in Indice_G_T)
+      (Premier, Dernier : in     Indice_G_T)
       return Indice_G_T
    is
       subtype Index_Sous_Table_T is Indice_G_T range Premier .. Dernier;

@@ -17,7 +17,7 @@ package A_E_P.Valeur_Param_Flottant_G.Text_IO
 is
 
    procedure Put
-      (Item : in Valeur_Param_T);
+      (Item : in     Valeur_Param_T);
    --  Affiche le contenu d'une valeur avec ses bornes.
    --  @param Item
    --  La valeur du paramètre à afficher.

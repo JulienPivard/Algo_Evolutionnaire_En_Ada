@@ -10,8 +10,8 @@ generic
 
    with function Accoupler
       (
-         Parametres : in Parametres_G_T;
-         Autre      : in Parametres_G_T
+         Parametres : in     Parametres_G_T;
+         Autre      : in     Parametres_G_T
       )
       return Parametres_G_T;
    --  Accouple deux paramètres pour obtenir un nouveau
@@ -26,7 +26,7 @@ generic
    --  Le résultat du calcul de la formule avec les valeurs des paramètres.
 
    with function Calculer
-      (Parametres : in Parametres_G_T)
+      (Parametres : in     Parametres_G_T)
       return Resultat_Calcul_G_T;
    --  Calcul la formule en utilisant les valeurs de ses
    --  paramètres comme entrées de la fonction de la formule.
@@ -36,8 +36,8 @@ generic
 
    with function Convergence
       (
-         Reference : in Resultat_Calcul_G_T;
-         Actuelle  : in Resultat_Calcul_G_T
+         Reference : in     Resultat_Calcul_G_T;
+         Actuelle  : in     Resultat_Calcul_G_T
       )
       return Boolean;
    --  Tests si la valeur calculée est proche de celle de référence.
@@ -53,7 +53,7 @@ generic
    --  @return La valeur est proche de celle de référence.
 
    with function "<"
-      (Gauche, Droite : in Resultat_Calcul_G_T)
+      (Gauche, Droite : in     Resultat_Calcul_G_T)
       return Boolean
    is <>;
    --  Utilisé pour pouvoir trier les individus en
@@ -65,7 +65,7 @@ generic
    --  @return Gauche < Droite
 
    with function ">"
-      (Gauche, Droite : in Resultat_Calcul_G_T)
+      (Gauche, Droite : in     Resultat_Calcul_G_T)
       return Boolean
    is <>;
    --  Utilisé pour pouvoir trier les individus en
@@ -107,7 +107,7 @@ is
    --  Le résultat à stocker.
 
    function Lire_Resultat
-      (Individu : in Individu_T)
+      (Individu : in     Individu_T)
       return Resultat_Calcul_G_T
       with Inline => True;
    --  Lit le résultat stocké dans l'individu.
@@ -125,8 +125,8 @@ is
 
    function Accoupler
       (
-         Individu : in Individu_T;
-         Autre    : in Individu_T
+         Individu : in     Individu_T;
+         Autre    : in     Individu_T
       )
       return Individu_T
       with Inline => True;
@@ -146,8 +146,8 @@ is
 
    function Dans_Convergence
       (
-         Reference : in Individu_T;
-         Actuel    : in Individu_T
+         Reference : in     Individu_T;
+         Actuel    : in     Individu_T
       )
       return Boolean
       with Inline => True;
@@ -166,7 +166,7 @@ is
    --  @return L'individu est proche de la référence.
 
    function "<"
-      (Gauche, Droite : in Individu_T)
+      (Gauche, Droite : in     Individu_T)
       return Boolean
       with Inline => True;
    --  Compare deux individus.
@@ -177,7 +177,7 @@ is
    --  @return Gauche < Droite.
 
    function ">"
-      (Gauche, Droite : in Individu_T)
+      (Gauche, Droite : in     Individu_T)
       return Boolean
       with Inline => True;
    --  Compare deux individus.

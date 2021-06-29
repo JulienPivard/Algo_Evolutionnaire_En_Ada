@@ -8,7 +8,7 @@ is
 
    ---------------------------------------------------------------------------
    procedure Put
-      (Item : in Valeur_Param_T)
+      (Item : in     Valeur_Param_T)
    is
    begin
       V_Param_IO.Put

@@ -14,13 +14,13 @@ package Demo_P.Trouver_Param_Valeur_G.Text_IO
 is
 
    procedure Put_Parametres
-      (Item : in Anonyme_T);
+      (Item : in     Anonyme_T);
    --  Affiche le contenu des paramètre de la formule.
    --  @param Item
    --  Les paramètres.
 
    procedure Put_Resultat
-      (Item : in Resultat_T);
+      (Item : in     Resultat_T);
    --  Affiche le contenu des résultats de la formule.
    --  @param Item
    --  Les résultats.

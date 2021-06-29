@@ -11,8 +11,8 @@ generic
 
    with function Comparer
       (
-         T              : in Table_G_T;
-         Gauche, Droite : in Indice_G_T
+         T              : in     Table_G_T;
+         Gauche, Droite : in     Indice_G_T
       )
       return Boolean
    is <>;

@@ -28,8 +28,8 @@ is
 
    function Accoupler
       (
-         Parametres : in Probleme_Surface_T;
-         Autre      : in Probleme_Surface_T
+         Parametres : in     Probleme_Surface_T;
+         Autre      : in     Probleme_Surface_T
       )
       return Probleme_Surface_T;
    --  Accouple deux paramètres pour obtenir un nouveau
@@ -44,7 +44,7 @@ is
    --  Stock le résultat des calculs.
 
    function Calculer
-      (Parametres : in Probleme_Surface_T)
+      (Parametres : in     Probleme_Surface_T)
       return Resultat_T;
    --  Calcul la formule en utilisant les valeurs de ses
    --  paramètres comme entrées de la fonction de la formule.
@@ -53,7 +53,7 @@ is
    --  @return Le résultat du calcul de la formule.
 
    function "<"
-      (Gauche, Droite : in Resultat_T)
+      (Gauche, Droite : in     Resultat_T)
       return Boolean
       with Inline => True;
    --  Compare deux résultats.
@@ -64,7 +64,7 @@ is
    --  @return Gauche < Droite.
 
    function ">"
-      (Gauche, Droite : in Resultat_T)
+      (Gauche, Droite : in     Resultat_T)
       return Boolean
       with Inline => True;
    --  Compare deux résultats.
@@ -76,8 +76,8 @@ is
 
    function Resultats_Convergent
       (
-         Reference : in Resultat_T;
-         Actuel    : in Resultat_T
+         Reference : in     Resultat_T;
+         Actuel    : in     Resultat_T
       )
       return Boolean
       with Inline => True;
@@ -105,7 +105,7 @@ private
    package Valeur_Diametre_P is new A_E_P.Valeur_Param_Flottant_G
       (
          Valeur_Param_G_T => Diametre_T,
-         Debut_Intervalle => 0.0,
+         Debut_Intervalle =>    0.0,
          Fin_Intervalle   => 1100.0 * System.Dim.Mks.m
       );
 
@@ -116,7 +116,7 @@ private
       end record;
 
    function Lire_Parametre
-      (P : in Probleme_Surface_T)
+      (P : in     Probleme_Surface_T)
       return Diametre_T
    is (Valeur_Diametre_P.Lire_Valeur (Parametre => P.Diametre));
    --  Lit la valeur d'un paramètre.
@@ -131,12 +131,12 @@ private
       end record;
 
    function "<"
-      (Gauche, Droite : in Resultat_T)
+      (Gauche, Droite : in     Resultat_T)
       return Boolean
    is (Gauche.Surface < Droite.Surface);
 
    function ">"
-      (Gauche, Droite : in Resultat_T)
+      (Gauche, Droite : in     Resultat_T)
       return Boolean
    is (Gauche.Surface > Droite.Surface);
 
@@ -144,8 +144,8 @@ private
 
    function Resultats_Convergent
       (
-         Reference : in Resultat_T;
-         Actuel    : in Resultat_T
+         Reference : in     Resultat_T;
+         Actuel    : in     Resultat_T
       )
       return Boolean
    is

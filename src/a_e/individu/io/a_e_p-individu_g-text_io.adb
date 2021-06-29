@@ -6,7 +6,7 @@ is
 
    ---------------------------------------------------------------------------
    procedure Put_Line
-      (Item : in Individu_T)
+      (Item : in     Individu_T)
    is
    begin
       Put_Parametres (Item => Item.V_Param);

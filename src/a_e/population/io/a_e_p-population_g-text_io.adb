@@ -9,7 +9,7 @@ is
 
    ---------------------------------------------------------------------------
    procedure Put_Line
-      (Item : in Population_T)
+      (Item : in     Population_T)
    is
       I : Indice_Population_T := Indice_Population_T'First;
    begin
@@ -77,11 +77,11 @@ is
          declare
             ------------------------------------
             procedure Afficher_Table
-               (Debut, Fin : in Indice_Population_T);
+               (Debut, Fin : in     Indice_Population_T);
 
             ------------------------
             procedure Afficher_Table
-               (Debut, Fin : in Indice_Population_T)
+               (Debut, Fin : in     Indice_Population_T)
             is
                subtype Sous_Indice_T is Indice_Population_T range Debut .. Fin;
             begin
@@ -153,11 +153,11 @@ is
 
             ------------------------------------
             procedure Afficher_Table
-               (Debut, Fin : in Indice_Tmp_T);
+               (Debut, Fin : in     Indice_Tmp_T);
 
             ------------------------
             procedure Afficher_Table
-               (Debut, Fin : in Indice_Tmp_T)
+               (Debut, Fin : in     Indice_Tmp_T)
             is
                subtype Sous_Indice_T is Indice_Tmp_T range Debut .. Fin;
             begin

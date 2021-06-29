@@ -1,13 +1,13 @@
 generic
 
    with procedure Put_Parametres
-      (Item : in Parametres_G_T);
+      (Item : in     Parametres_G_T);
    --  Procédure d'affichage du contenu des paramètres.
    --  @param Item
    --  Les paramètres.
 
    with procedure Put_Resultat
-      (Item : in Resultat_Calcul_G_T);
+      (Item : in     Resultat_Calcul_G_T);
    --  Procédure d'affichage du contenu des résultats du calcul de la formule.
    --  @param Item
    --  Les résultats du calcul de la formule.
@@ -26,7 +26,7 @@ package A_E_P.Individu_G.Text_IO
 is
 
    procedure Put_Line
-      (Item : in Individu_T);
+      (Item : in     Individu_T);
    --  Affiche un Individu.
    --  @param Item
    --  L'individu.

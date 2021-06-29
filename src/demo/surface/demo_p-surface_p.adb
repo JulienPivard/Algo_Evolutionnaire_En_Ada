@@ -16,8 +16,8 @@ is
    ---------------------------------------------------------------------------
    function Accoupler
       (
-         Parametres : in Probleme_Surface_T;
-         Autre      : in Probleme_Surface_T
+         Parametres : in     Probleme_Surface_T;
+         Autre      : in     Probleme_Surface_T
       )
       return Probleme_Surface_T
    is
@@ -34,7 +34,7 @@ is
 
    ---------------------------------------------------------------------------
    function Calculer
-      (Parametres : in Probleme_Surface_T)
+      (Parametres : in     Probleme_Surface_T)
       return Resultat_T
    is
       Vol : constant System.Dim.Mks.Mks_Type := 160.0 * (System.Dim.Mks.m**3);

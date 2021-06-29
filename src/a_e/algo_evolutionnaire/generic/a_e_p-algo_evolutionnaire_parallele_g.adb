@@ -111,8 +111,7 @@ is
       --------------
 
       --------------
-      procedure Signaler_Fin_Evolution
-      is
+      procedure Signaler_Fin_Evolution is
       begin
          Echange_Autorise := True;
       end Signaler_Fin_Evolution;

@@ -126,7 +126,7 @@ is
 
    ---------------------------------------------------------------------------
    function Verifier_Convergence
-      (Population : in Population_T)
+      (Population : in     Population_T)
       return Boolean
    is
       I_Ref : constant Individu_P.Individu_T :=
@@ -362,8 +362,8 @@ is
    ---------------------------------------------------------------------------
    function Comparer_Minimiser
       (
-         Population     : in Table_Population_T;
-         Gauche, Droite : in Indice_Population_T
+         Population     : in     Table_Population_T;
+         Gauche, Droite : in     Indice_Population_T
       )
       return Boolean
    is
@@ -376,8 +376,8 @@ is
    ---------------------------------------------------------------------------
    function Comparer_Maximiser
       (
-         Population     : in Table_Population_T;
-         Gauche, Droite : in Indice_Population_T
+         Population     : in     Table_Population_T;
+         Gauche, Droite : in     Indice_Population_T
       )
       return Boolean
    is

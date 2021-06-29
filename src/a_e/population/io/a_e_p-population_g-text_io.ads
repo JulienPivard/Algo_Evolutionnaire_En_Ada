@@ -17,7 +17,7 @@ package A_E_P.Population_G.Text_IO
 is
 
    procedure Put_Line
-      (Item : in Population_T);
+      (Item : in     Population_T);
    --  Affiche le contenu d'un tableau de valeurs.
    --  @param Item
    --  La population à afficher.

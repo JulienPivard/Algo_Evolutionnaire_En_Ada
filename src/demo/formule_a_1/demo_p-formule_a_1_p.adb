@@ -16,8 +16,8 @@ is
    ---------------------------------------------------------------------------
    function Accoupler
       (
-         Parametres : in Anonyme_T;
-         Autre      : in Anonyme_T
+         Parametres : in     Anonyme_T;
+         Autre      : in     Anonyme_T
       )
       return Anonyme_T
    is
@@ -36,7 +36,7 @@ is
 
    ---------------------------------------------------------------------------
    function Calculer
-      (Parametres : in Anonyme_T)
+      (Parametres : in     Anonyme_T)
       return Resultat_T
    is
       Pi : constant        := Ada.Numerics.Pi;

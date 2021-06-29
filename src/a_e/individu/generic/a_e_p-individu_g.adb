@@ -16,7 +16,7 @@ is
 
    ---------------------------------------------------------------------------
    function Lire_Resultat
-      (Individu : in Individu_T)
+      (Individu : in     Individu_T)
       return Resultat_Calcul_G_T
    is
    begin
@@ -36,8 +36,8 @@ is
    ---------------------------------------------------------------------------
    function Accoupler
       (
-         Individu : in Individu_T;
-         Autre    : in Individu_T
+         Individu : in     Individu_T;
+         Autre    : in     Individu_T
       )
       return Individu_T
    is
@@ -65,8 +65,8 @@ is
    ---------------------------------------------------------------------------
    function Dans_Convergence
       (
-         Reference : in Individu_T;
-         Actuel    : in Individu_T
+         Reference : in     Individu_T;
+         Actuel    : in     Individu_T
       )
       return Boolean
    is
@@ -81,7 +81,7 @@ is
 
    ---------------------------------------------------------------------------
    function "<"
-      (Gauche, Droite : in Individu_T)
+      (Gauche, Droite : in     Individu_T)
       return Boolean
    is
    begin
@@ -91,7 +91,7 @@ is
 
    ---------------------------------------------------------------------------
    function ">"
-      (Gauche, Droite : in Individu_T)
+      (Gauche, Droite : in     Individu_T)
       return Boolean
    is
    begin

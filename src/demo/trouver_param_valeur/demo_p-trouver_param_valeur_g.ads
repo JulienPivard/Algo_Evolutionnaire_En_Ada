@@ -30,8 +30,8 @@ is
 
    function Accoupler
       (
-         Parametres : in Anonyme_T;
-         Autre      : in Anonyme_T
+         Parametres : in     Anonyme_T;
+         Autre      : in     Anonyme_T
       )
       return Anonyme_T;
    --  Accouple deux paramètres pour obtenir un nouveau
@@ -46,7 +46,7 @@ is
    --  Stock le résultat des calculs.
 
    function Calculer
-      (Parametres : in Anonyme_T)
+      (Parametres : in     Anonyme_T)
       return Resultat_T;
    --  Calcul la formule en utilisant les valeurs de ses
    --  paramètres comme entrées de la fonction de la formule.
@@ -55,7 +55,7 @@ is
    --  @return Le résultat du calcul de la formule.
 
    function "<"
-      (Gauche, Droite : in Resultat_T)
+      (Gauche, Droite : in     Resultat_T)
       return Boolean
       with Inline => True;
    --  Compare deux résultats.
@@ -66,7 +66,7 @@ is
    --  @return Gauche < Droite.
 
    function ">"
-      (Gauche, Droite : in Resultat_T)
+      (Gauche, Droite : in     Resultat_T)
       return Boolean
       with Inline => True;
    --  Compare deux résultats.
@@ -78,8 +78,8 @@ is
 
    function Resultats_Convergent
       (
-         Reference : in Resultat_T;
-         Actuel    : in Resultat_T
+         Reference : in     Resultat_T;
+         Actuel    : in     Resultat_T
       )
       return Boolean
       with Inline => True;
@@ -115,7 +115,7 @@ private
       end record;
 
    function Lire_Parametre_X
-      (P : in Anonyme_T)
+      (P : in     Anonyme_T)
       return V_Param_T
    is (Valeur_X_P.Lire_Valeur (Parametre => P.X));
    --  Lit la valeur du paramètre X.
@@ -124,7 +124,7 @@ private
    --  @return La valeur du paramètre demandé.
 
    function Lire_Parametre_Y
-      (P : in Anonyme_T)
+      (P : in     Anonyme_T)
       return V_Param_T
    is (Valeur_Y_P.Lire_Valeur (Parametre => P.Y));
    --  Lit la valeur du paramètre Y.
@@ -140,12 +140,12 @@ private
       end record;
 
    function "<"
-      (Gauche, Droite : in Resultat_T)
+      (Gauche, Droite : in     Resultat_T)
       return Boolean
    is (Gauche.Distance < Droite.Distance);
 
    function ">"
-      (Gauche, Droite : in Resultat_T)
+      (Gauche, Droite : in     Resultat_T)
       return Boolean
    is (Gauche.Distance > Droite.Distance);
 
@@ -153,8 +153,8 @@ private
 
    function Resultats_Convergent
       (
-         Reference : in Resultat_T;
-         Actuel    : in Resultat_T
+         Reference : in     Resultat_T;
+         Actuel    : in     Resultat_T
       )
       return Boolean
    is

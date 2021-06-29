@@ -15,7 +15,7 @@ is
 
    ---------------------------------------------------------------------------
    procedure Put_Parametres
-      (Item : in Anonyme_T)
+      (Item : in     Anonyme_T)
    is
    begin
       Ada.Text_IO.Put (Item => " |  X : ");
@@ -29,7 +29,7 @@ is
 
    ---------------------------------------------------------------------------
    procedure Put_Resultat
-      (Item : in Resultat_T)
+      (Item : in     Resultat_T)
    is
    begin
       Ada.Text_IO.Put (Item => " |=> Résultat : ");

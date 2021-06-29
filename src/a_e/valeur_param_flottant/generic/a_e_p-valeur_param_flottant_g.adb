@@ -83,8 +83,8 @@ is
    ---------------------------------------------------------------------------
    function Accoupler
       (
-         Parametre : in Valeur_Param_T;
-         Autre     : in Valeur_Param_T
+         Parametre : in     Valeur_Param_T;
+         Autre     : in     Valeur_Param_T
       )
       return Valeur_Param_T
    is
@@ -191,7 +191,7 @@ is
 
    ---------------------------------------------------------------------------
    function Lire_Valeur
-      (Parametre : in Valeur_Param_T)
+      (Parametre : in     Valeur_Param_T)
       return Valeur_Param_G_T
    is
    begin

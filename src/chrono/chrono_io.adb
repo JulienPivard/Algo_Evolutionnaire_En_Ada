@@ -5,8 +5,8 @@ is
    ---------------------------------------------------------------------------
    procedure Affichage_Temps
       (
-         Debut : in Ada.Real_Time.Time;
-         Fin   : in Ada.Real_Time.Time
+         Debut : in     Ada.Real_Time.Time;
+         Fin   : in     Ada.Real_Time.Time
       )
    is
       type Temps_Ecoule_T is range 0 .. Long_Integer'Last;

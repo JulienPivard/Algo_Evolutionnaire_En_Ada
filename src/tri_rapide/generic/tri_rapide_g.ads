@@ -22,8 +22,8 @@ generic
 
    with function Comparer
       (
-         T              : in Table_G_T;
-         Gauche, Droite : in Indice_G_T
+         T              : in     Table_G_T;
+         Gauche, Droite : in     Indice_G_T
       )
       return Boolean
    is <>;
@@ -85,7 +85,7 @@ private
    --  L'indice de la dernière case de l'intervalle à trier.
 
    function Choisir_Pivot_Deterministe
-      (Premier, Dernier : in Indice_G_T)
+      (Premier, Dernier : in     Indice_G_T)
       return Indice_G_T;
    --  Choisi la position du pivot dans l'intervalle donné.
    --  Le choix est fait de façon <strong>déterministe</strong>.
@@ -96,7 +96,7 @@ private
    --  @return La position du pivot.
 
    function Choisir_Pivot_Aleatoire
-      (Premier, Dernier : in Indice_G_T)
+      (Premier, Dernier : in     Indice_G_T)
       return Indice_G_T;
    --  Choisi la position du pivot dans l'intervalle donné.
    --  Une valeur est choisie <strong>aléatoirement</strong>

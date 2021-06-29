@@ -18,8 +18,8 @@ is
 
    procedure Affichage_Temps
       (
-         Debut : in Ada.Real_Time.Time;
-         Fin   : in Ada.Real_Time.Time
+         Debut : in     Ada.Real_Time.Time;
+         Fin   : in     Ada.Real_Time.Time
       )
       with
          Global  => (In_Out => Ada.Text_IO.File_System),
