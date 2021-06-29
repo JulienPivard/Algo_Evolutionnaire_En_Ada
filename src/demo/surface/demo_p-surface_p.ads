@@ -1,4 +1,5 @@
 private with A_E_P.Valeur_Param_Flottant_G;
+private with System.Dim.Mks;
 
 pragma Elaborate_All (A_E_P.Valeur_Param_Flottant_G);
 
@@ -88,6 +89,18 @@ is
    --  @return Le résultat converge vers la référence.
 
 private
+
+   use type System.Dim.Mks.Mks_Type;
+
+   subtype Diametre_T is System.Dim.Mks.Length;
+   subtype Surface_T  is System.Dim.Mks.Mks_Type
+      with
+         Dimension =>
+            (
+               Symbol   => "m^2",
+               Meter    => 2,
+               others   => 0
+            );
 
    package Valeur_Diametre_P is new A_E_P.Valeur_Param_Flottant_G
       (
