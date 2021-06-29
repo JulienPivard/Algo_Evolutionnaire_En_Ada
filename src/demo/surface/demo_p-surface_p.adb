@@ -38,12 +38,11 @@ is
       return Resultat_T
    is
       Vol : constant System.Dim.Mks.Mks_Type := 160.0 * (System.Dim.Mks.m**3);
-      Pi : constant        := Ada.Numerics.Pi;
-      Di : constant Math_T := Math_T (Lire_Parametre (P => Parametres));
+      Pi  : constant            := Ada.Numerics.Pi;
+      Di  : constant Math_T := Math_T (Lire_Parametre (P => Parametres));
    begin
       return R : Resultat_T do
-         R.Surface := V_Calcule_T
-            (Pi * ((Di**2) / 2.0) + 4.0 * (160.0 / Di));
+         R.Surface := V_Calcule_T (Pi * ((Di**2) / 2.0) + 4.0 * (160.0 / Di));
       end return;
    end Calculer;
    ---------------------------------------------------------------------------
