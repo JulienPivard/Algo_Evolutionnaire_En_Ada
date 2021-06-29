@@ -1,5 +1,5 @@
 generic
-   type Valeur_T is digits <>;
+   type Valeur_G_T is digits <>;
    --  Le type dont on veut générer une valeur aléatoirement.
 
 --  @summary
@@ -19,10 +19,10 @@ is
 
    function Generer_Flottant
       (
-         Borne_Inferieur : in Valeur_T;
-         Borne_Superieur : in Valeur_T
+         Borne_Inferieur : in     Valeur_G_T;
+         Borne_Superieur : in     Valeur_G_T
       )
-      return Valeur_T;
+      return Valeur_G_T;
    --  Génère une valeur aléatoire comprise entre les bornes.
    --  @param Borne_Inferieur
    --  La borne inférieur de la valeur à générer.
