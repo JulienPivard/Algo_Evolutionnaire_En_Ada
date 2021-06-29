@@ -6,7 +6,7 @@ is
 
    ---------------------------------------------------------------------------
    procedure Generer
-      (Parametres : in out Surface_T)
+      (Parametres : in out Probleme_Surface_T)
    is
    begin
       Valeur_Diametre_P.Generer (Parametre => Parametres.Diametre);
@@ -16,12 +16,12 @@ is
    ---------------------------------------------------------------------------
    function Accoupler
       (
-         Parametres : in Surface_T;
-         Autre      : in Surface_T
+         Parametres : in Probleme_Surface_T;
+         Autre      : in Probleme_Surface_T
       )
-      return Surface_T
+      return Probleme_Surface_T
    is
-      Bebe : Surface_T;
+      Bebe : Probleme_Surface_T;
    begin
       Bebe.Diametre := Valeur_Diametre_P.Accoupler
          (
@@ -34,7 +34,7 @@ is
 
    ---------------------------------------------------------------------------
    function Calculer
-      (Parametres : in Surface_T)
+      (Parametres : in Probleme_Surface_T)
       return Resultat_T
    is
       Pi : constant        := Ada.Numerics.Pi;

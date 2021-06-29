@@ -17,20 +17,20 @@ package Demo_P.Surface_P
       Spark_Mode     => Off
 is
 
-   type Surface_T is private;
+   type Probleme_Surface_T is private;
 
    procedure Generer
-      (Parametres : in out Surface_T);
+      (Parametres : in out Probleme_Surface_T);
    --  Génère des valeurs aléatoires pour les paramètres stocké.
    --  @param Parametres
    --  Les paramètres.
 
    function Accoupler
       (
-         Parametres : in Surface_T;
-         Autre      : in Surface_T
+         Parametres : in Probleme_Surface_T;
+         Autre      : in Probleme_Surface_T
       )
-      return Surface_T;
+      return Probleme_Surface_T;
    --  Accouple deux paramètres pour obtenir un nouveau
    --  jeu de paramètres.
    --  @param Parametres
@@ -43,7 +43,7 @@ is
    --  Stock le résultat des calculs.
 
    function Calculer
-      (Parametres : in Surface_T)
+      (Parametres : in Probleme_Surface_T)
       return Resultat_T;
    --  Calcul la formule en utilisant les valeurs de ses
    --  paramètres comme entrées de la fonction de la formule.
@@ -96,14 +96,14 @@ private
          Fin_Intervalle   => 1100.0
       );
 
-   type Surface_T is
+   type Probleme_Surface_T is
       record
          Diametre : Valeur_Diametre_P.Valeur_Param_T;
          --  L'unique paramètre du calcul de surface.
       end record;
 
    function Lire_Parametre
-      (P : in Surface_T)
+      (P : in Probleme_Surface_T)
       return V_Param_T
    is (Valeur_Diametre_P.Lire_Valeur (Parametre => P.Diametre));
    --  Lit la valeur d'un paramètre.

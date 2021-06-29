@@ -12,7 +12,7 @@ package Demo_P.Surface_P.Text_IO
 is
 
    procedure Put_Parametres
-      (Item : in Surface_T);
+      (Item : in Probleme_Surface_T);
    --  Affiche le contenu des paramètre de la formule.
    --  @param Item
    --  Les paramètres.

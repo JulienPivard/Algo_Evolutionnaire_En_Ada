@@ -129,7 +129,7 @@ is
    package Population_Surface_P is new A_E_P.Algo_Evolutionnaire_G
       (
          Taille_Population      => Demo_P.Taille,
-         Parametres_G_T         => Surface_R.Surface_T,
+         Parametres_G_T         => Surface_R.Probleme_Surface_T,
          Generer                => Surface_R.Generer,
          Accoupler              => Surface_R.Accoupler,
          Resultat_Calcul_G_T    => Surface_R.Resultat_T,

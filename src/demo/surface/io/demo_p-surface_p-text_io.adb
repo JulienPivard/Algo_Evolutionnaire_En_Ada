@@ -12,7 +12,7 @@ is
 
    ---------------------------------------------------------------------------
    procedure Put_Parametres
-      (Item : in Surface_T)
+      (Item : in Probleme_Surface_T)
    is
    begin
       Ada.Text_IO.Put        (Item => " | D : ");
