@@ -38,10 +38,10 @@ is
       return Resultat_T
    is
       Pi  : constant            := Ada.Numerics.Pi;
-      Di  : constant Diametre_T := Lire_Parametre (P => Parametres);
+      Dia : constant Diametre_T := Lire_Parametre (P => Parametres);
    begin
       return R : Resultat_T do
-         R.Surface := Pi * ((Di**2) / 2.0) + 4.0 * (Volume / Di);
+         R.Surface := Pi * ((Dia**2) / 2.0) + 4.0 * (Volume / Dia);
       end return;
    end Calculer;
    ---------------------------------------------------------------------------

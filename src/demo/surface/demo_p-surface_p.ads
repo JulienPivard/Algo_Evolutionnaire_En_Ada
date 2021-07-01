@@ -90,9 +90,9 @@ is
 
 private
 
-   Volume : constant System.Dim.Mks.Mks_Type := 160.0 * (System.Dim.Mks.cm**3);
-
    use type System.Dim.Mks.Mks_Type;
+
+   Volume : constant System.Dim.Mks.Mks_Type := 160.0 * (System.Dim.Mks.cm**3);
 
    subtype Diametre_T is System.Dim.Mks.Length;
    subtype Surface_T  is System.Dim.Mks.Mks_Type
