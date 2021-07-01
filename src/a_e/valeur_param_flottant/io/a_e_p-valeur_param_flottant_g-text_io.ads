@@ -1,5 +1,9 @@
 generic
 
+   with procedure Put
+      (Item : in     Valeur_Param_G_T);
+   --  Formatage de l'affichage de la valeur.
+
    Afficher_Intervalle : Boolean := True;
    --  Affiche l'intervalle de valeurs lié.
 

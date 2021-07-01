@@ -9,7 +9,7 @@ package body Demo_P.Surface_P.Text_IO
    with Spark_Mode => Off
 is
 
-   package Valeur_Diametre_IO is new Valeur_Diametre_P.Text_IO;
+   package Valeur_Diametre_IO is new Valeur_Diametre_P.Text_IO (Put => Put);
 
    ---------------------------------------------------------------------------
    procedure Put_Parametres
@@ -42,6 +42,25 @@ is
    begin
       Ada.Text_IO.Put_Line (Item => "pi * (D^2 / 2) + 4 * (160 / D)");
    end Afficher_Formule;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   --                             Partie privée                             --
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   procedure Put
+      (Item : in     Diametre_T)
+   is
+   begin
+      System.Dim.Mks_IO.Put
+         (
+            Item => Item,
+            Fore => 3,
+            Aft  => 3,
+            Exp  => 0
+         );
+   end Put;
    ---------------------------------------------------------------------------
 
 end Demo_P.Surface_P.Text_IO;

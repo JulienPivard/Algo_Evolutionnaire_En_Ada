@@ -8,7 +8,7 @@ package body Demo_P.Formule_A_1_P.Text_IO
    with Spark_Mode => Off
 is
 
-   package Valeur_X_IO is new Valeur_X_P.Text_IO;
+   package Valeur_X_IO is new Valeur_X_P.Text_IO (Put => Put);
 
    ---------------------------------------------------------------------------
    procedure Put_Parametres
@@ -43,6 +43,26 @@ is
    begin
       Ada.Text_IO.Put_Line (Item => "10 + X^2 - 10 * cos (2 * pi * X)");
    end Afficher_Formule;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   --                             Partie privée                             --
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   procedure Put
+      (Item : in     V_Param_T)
+   is
+      package V_Param_IO is new Ada.Text_IO.Float_IO (Num => V_Param_T);
+   begin
+      V_Param_IO.Put
+         (
+            Item => Item,
+            Fore => 3,
+            Aft  => 3,
+            Exp  => 0
+         );
+   end Put;
    ---------------------------------------------------------------------------
 
 end Demo_P.Formule_A_1_P.Text_IO;

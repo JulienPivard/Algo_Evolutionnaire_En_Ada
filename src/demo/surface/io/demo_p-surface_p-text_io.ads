@@ -26,4 +26,12 @@ is
    procedure Afficher_Formule;
    --  Affiche la formule associé aux paramètres.
 
+private
+
+   procedure Put
+      (Item : in     Diametre_T);
+   --  Affiche un paramètre.
+   --  @param Item
+   --  La valeur à afficher.
+
 end Demo_P.Surface_P.Text_IO;

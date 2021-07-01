@@ -28,4 +28,12 @@ is
    procedure Afficher_Formule;
    --  Affiche la formule associé aux paramètres.
 
+private
+
+   procedure Put
+      (Item : in     V_Param_T);
+   --  Affiche un paramètre.
+   --  @param Item
+   --  La valeur à afficher.
+
 end Demo_P.Trouver_Param_Valeur_G.Text_IO;

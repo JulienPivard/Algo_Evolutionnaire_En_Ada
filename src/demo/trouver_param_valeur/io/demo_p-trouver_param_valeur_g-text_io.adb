@@ -9,9 +9,15 @@ package body Demo_P.Trouver_Param_Valeur_G.Text_IO
 is
 
    package Valeur_X_IO is new Valeur_X_P.Text_IO
-      (Afficher_Intervalle => False);
+      (
+         Put                 => Put,
+         Afficher_Intervalle => False
+      );
    package Valeur_Y_IO is new Valeur_Y_P.Text_IO
-      (Afficher_Intervalle => False);
+      (
+         Put                 => Put,
+         Afficher_Intervalle => False
+      );
 
    ---------------------------------------------------------------------------
    procedure Put_Parametres
@@ -66,6 +72,26 @@ is
          );
       Ada.Text_IO.New_Line (Spacing => 1);
    end Afficher_Formule;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   --                             Partie privée                             --
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   procedure Put
+      (Item : in     V_Param_T)
+   is
+      package V_Param_IO is new Ada.Text_IO.Float_IO (Num => V_Param_T);
+   begin
+      V_Param_IO.Put
+         (
+            Item => Item,
+            Fore => 3,
+            Aft  => 3,
+            Exp  => 0
+         );
+   end Put;
    ---------------------------------------------------------------------------
 
 end Demo_P.Trouver_Param_Valeur_G.Text_IO;
