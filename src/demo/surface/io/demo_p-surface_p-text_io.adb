@@ -41,7 +41,16 @@ is
    ---------------------------------------------------------------------------
    procedure Afficher_Formule is
    begin
-      Ada.Text_IO.Put_Line (Item => "pi * (D^2 / 2) + 4 * (160 / D)");
+      Ada.Text_IO.Put (Item => "pi * (D^2 / 2) + 4 * (");
+      System.Dim.Mks_IO.Put
+         (
+            Item   => Volume * 1_000_000.0,
+            Fore   => 1,
+            Aft    => 1,
+            Exp    => 0,
+            Symbol => " cm**3"
+         );
+      Ada.Text_IO.Put_Line (Item => " / D)");
    end Afficher_Formule;
    ---------------------------------------------------------------------------
 
