@@ -29,10 +29,10 @@ is
       Ada.Text_IO.Put (Item => " |=> Résultat : ");
       System.Dim.Mks_IO.Put
          (
-            Item => Item.Surface * 10_000.0,
-            Fore => 3,
-            Aft  => 5,
-            Exp  => 0,
+            Item   => Item.Surface * 10_000.0,
+            Fore   => 3,
+            Aft    => 5,
+            Exp    => 0,
             Symbol => " cm**2"
          );
    end Put_Resultat;
@@ -56,10 +56,10 @@ is
    begin
       System.Dim.Mks_IO.Put
          (
-            Item => Item * 100.0,
-            Fore => 1,
-            Aft  => 5,
-            Exp  => 0,
+            Item   => Item * 100.0,
+            Fore   => 1,
+            Aft    => 5,
+            Exp    => 0,
             Symbol => " cm"
          );
    end Put;
