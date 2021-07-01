@@ -1,6 +1,6 @@
 generic
 
-   type Indice_G_T is (<>);
+   type Indice_G_T  is (<>);
    --  Les indices du tableau à trier.
 
    type Element_G_T is limited private;
