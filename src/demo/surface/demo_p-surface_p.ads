@@ -97,16 +97,15 @@ private
       with
          Dimension =>
             (
-               Symbol   => "m^2",
-               Meter    => 2,
-               others   => 0
+               Meter  => 2,
+               others => 0
             );
 
    package Valeur_Diametre_P is new A_E_P.Valeur_Param_Flottant_G
       (
          Valeur_Param_G_T => Diametre_T,
-         Debut_Intervalle =>    0.0,
-         Fin_Intervalle   => 1100.0 * System.Dim.Mks.m
+         Debut_Intervalle =>    0.0 * System.Dim.Mks.cm,
+         Fin_Intervalle   => 1100.0 * System.Dim.Mks.cm
       );
 
    type Probleme_Surface_T is

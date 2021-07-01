@@ -37,7 +37,7 @@ is
       (Parametres : in     Probleme_Surface_T)
       return Resultat_T
    is
-      Vol : constant System.Dim.Mks.Mks_Type := 160.0 * (System.Dim.Mks.m**3);
+      Vol : constant System.Dim.Mks.Mks_Type := 160.0 * (System.Dim.Mks.cm**3);
       Pi  : constant            := Ada.Numerics.Pi;
       Di  : constant Diametre_T := Lire_Parametre (P => Parametres);
    begin
