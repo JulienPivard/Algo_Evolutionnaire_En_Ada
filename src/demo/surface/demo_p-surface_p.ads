@@ -130,11 +130,13 @@ private
          --  La surface totale nécessaire.
       end record;
 
+   ------------
    function "<"
       (Gauche, Droite : in     Resultat_T)
       return Boolean
    is (Gauche.Surface < Droite.Surface);
 
+   ------------
    function ">"
       (Gauche, Droite : in     Resultat_T)
       return Boolean
@@ -142,6 +144,7 @@ private
 
    Seuil_De_Convergence : constant Surface_T := 0.5 * (System.Dim.Mks.m**2);
 
+   -----------------------------
    function Resultats_Convergent
       (
          Reference : in     Resultat_T;
