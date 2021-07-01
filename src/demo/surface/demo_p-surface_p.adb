@@ -37,12 +37,11 @@ is
       (Parametres : in     Probleme_Surface_T)
       return Resultat_T
    is
-      Vol : constant System.Dim.Mks.Mks_Type := 160.0 * (System.Dim.Mks.cm**3);
       Pi  : constant            := Ada.Numerics.Pi;
       Di  : constant Diametre_T := Lire_Parametre (P => Parametres);
    begin
       return R : Resultat_T do
-         R.Surface := Pi * ((Di**2) / 2.0) + 4.0 * (Vol / Di);
+         R.Surface := Pi * ((Di**2) / 2.0) + 4.0 * (Volume / Di);
       end return;
    end Calculer;
    ---------------------------------------------------------------------------
