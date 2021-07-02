@@ -95,7 +95,7 @@ private
 
    Cm : System.Dim.Mks.Length renames System.Dim.Mks.cm;
 
-   Volume : constant System.Dim.Mks.Mks_Type := 160.0 * (System.Dim.Mks.cm**3);
+   Volume : constant System.Dim.Mks.Mks_Type := 160.0 * (Cm ** 3);
 
    subtype Diametre_T is System.Dim.Mks.Length;
    subtype Surface_T  is System.Dim.Mks.Mks_Type
@@ -109,8 +109,8 @@ private
    package Valeur_Diametre_P is new A_E_P.Valeur_Param_Flottant_G
       (
          Valeur_Param_G_T => Diametre_T,
-         Debut_Intervalle =>    0.0 * System.Dim.Mks.cm,
-         Fin_Intervalle   => 1100.0 * System.Dim.Mks.cm
+         Debut_Intervalle =>    0.0 * Cm,
+         Fin_Intervalle   => 1100.0 * Cm
       );
 
    type Probleme_Surface_T is
@@ -146,7 +146,7 @@ private
       return Boolean
    is (Gauche.Surface > Droite.Surface);
 
-   Seuil_De_Convergence : constant Surface_T := 0.5 * (System.Dim.Mks.m**2);
+   Seuil_De_Convergence : constant Surface_T := 0.5 * (Cm ** 2);
 
    -----------------------------
    function Resultats_Convergent

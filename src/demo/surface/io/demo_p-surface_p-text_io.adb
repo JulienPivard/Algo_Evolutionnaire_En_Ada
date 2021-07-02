@@ -30,7 +30,7 @@ is
       Ada.Text_IO.Put (Item => " |=> Résultat : ");
       System.Dim.Mks_IO.Put
          (
-            Item   => Item.Surface * 10_000.0,
+            Item   => Item.Surface / Cm ** 2,
             Fore   => 3,
             Aft    => 5,
             Exp    => 0,
@@ -45,7 +45,7 @@ is
       Ada.Text_IO.Put (Item => "pi * (D^2 / 2) + 4 * (");
       System.Dim.Mks_IO.Put
          (
-            Item   => Volume * 1_000_000.0,
+            Item   => Volume / Cm ** 3,
             Fore   => 1,
             Aft    => 1,
             Exp    => 0,
@@ -66,7 +66,7 @@ is
    begin
       System.Dim.Mks_IO.Put
          (
-            Item   => Item * 100.0,
+            Item   => Item / Cm,
             Fore   => 1,
             Aft    => 5,
             Exp    => 0,
