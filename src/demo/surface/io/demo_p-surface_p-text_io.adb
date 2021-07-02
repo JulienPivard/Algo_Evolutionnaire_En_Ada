@@ -31,8 +31,8 @@ is
       System.Dim.Mks_IO.Put
          (
             Item   => Item.Surface / Cm ** 2,
-            Fore   => 3,
-            Aft    => 5,
+            Fore   => 1,
+            Aft    => 3,
             Exp    => 0,
             Symbol => " cm**2"
          );
@@ -68,7 +68,7 @@ is
          (
             Item   => Item / Cm,
             Fore   => 1,
-            Aft    => 5,
+            Aft    => 3,
             Exp    => 0,
             Symbol => " cm"
          );
