@@ -1,5 +1,6 @@
-private with A_E_P.Valeur_Param_Flottant_G;
 private with System.Dim.Mks;
+
+private with A_E_P.Valeur_Param_Flottant_G;
 
 pragma Elaborate_All (A_E_P.Valeur_Param_Flottant_G);
 
@@ -91,6 +92,8 @@ is
 private
 
    use type System.Dim.Mks.Mks_Type;
+
+   Cm : System.Dim.Mks.Length renames System.Dim.Mks.cm;
 
    Volume : constant System.Dim.Mks.Mks_Type := 160.0 * (System.Dim.Mks.cm**3);
 

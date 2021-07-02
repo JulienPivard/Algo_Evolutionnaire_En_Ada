@@ -1,7 +1,8 @@
 with Ada.Text_IO;
 
-with A_E_P.Valeur_Param_Flottant_G.Text_IO;
 with System.Dim.Mks_IO;
+
+with A_E_P.Valeur_Param_Flottant_G.Text_IO;
 
 pragma Elaborate_All (A_E_P.Valeur_Param_Flottant_G.Text_IO);
 
