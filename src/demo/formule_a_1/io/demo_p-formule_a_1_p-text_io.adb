@@ -31,7 +31,7 @@ is
       V_Calcule_IO.Put
          (
             Item => Item.Valeur,
-            Fore => 3,
+            Fore => 1,
             Aft  => 3,
             Exp  => 0
          );
@@ -58,7 +58,7 @@ is
       V_Param_IO.Put
          (
             Item => Item,
-            Fore => 3,
+            Fore => 1,
             Aft  => 3,
             Exp  => 0
          );

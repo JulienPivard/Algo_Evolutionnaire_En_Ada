@@ -119,6 +119,7 @@ private
          --  L'unique paramètre du calcul de surface.
       end record;
 
+   -----------------------
    function Lire_Parametre
       (P : in     Probleme_Surface_T)
       return Diametre_T
