@@ -156,8 +156,7 @@ is
          Population                 : in out Population_T;
          Nb_Tours_Sans_Divergences  : in out Nb_Tours_Sans_Divergences_T;
          Nb_Tours_Sans_Amelioration : in out Nb_Tours_Sans_Amelioration_T
-      )
-      with Inline => True;
+      );
    --  Trie et vérifie la convergence de la population.
    --  @param Population
    --  Population à vérifier.
@@ -254,44 +253,40 @@ private
          --  Les résultats du tournois.
       end record;
 
-   procedure Remplacer_Morts
-      (Population : in out Population_T)
-      with Inline => True;
-   --  Remplace les paramètres des individus trop loin du minimum
-   --  par de nouveaux.
-   --  @param Population
-   --  La population total.
-
+   ---------------------------------------------------------------------------
    procedure Calcul_Formule_Sur_Enfant
-      (Population : in out Population_T)
-      with Inline => True;
-   --  Applique la formule à la population nouvellement née.
-   --  Il est inutile de recalculer toutes les valeurs,
-   --  seul les 25% dernières sont nouvelles.
-   --  @param Population
-   --  La population.
+      (Population : in out Population_P.Population_T)
+      renames
+      Population_P.Calcul_Formule_Sur_Enfant;
+   ---------------------------------------------------------------------------
 
+   ---------------------------------------------------------------------------
    procedure Faire_Evoluer_Par_Tournoi
-      (Population : in out Population_T)
-      with Inline => True;
-   --  Organise des tournois pour remplacer 8% de la population.
-   --  @param Population
-   --  La population.
+      (Population : in out Population_P.Population_T)
+      renames
+      Population_P.Organiser_Saison_Des_Amours;
+   ---------------------------------------------------------------------------
 
+   ---------------------------------------------------------------------------
+   procedure Remplacer_Morts
+      (Population : in out Population_P.Population_T)
+      renames
+      Population_P.Remplacer_Morts;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
    procedure Trier
-      (Population : in out Population_T)
-      with Inline => True;
-   --  Trie les individu d'une population en fonction
-   --  de la valeur calculée de chaque individu.
-   --  @param Population
-   --  La population à trier.
+      (Population : in out Population_P.Population_T)
+      renames
+      Population_P.Trier;
+   ---------------------------------------------------------------------------
 
+   ---------------------------------------------------------------------------
    function Verifier_Convergence
-      (Population : in     Population_T)
+      (Population : in     Population_P.Population_T)
       return Boolean
-      with Inline => True;
-   --  Indique si la population converge vers un minimum ou non.
-   --  @param Population
-   --  La population.
+      renames
+      Population_P.Verifier_Convergence;
+   ---------------------------------------------------------------------------
 
 end A_E_P.Outils_G;

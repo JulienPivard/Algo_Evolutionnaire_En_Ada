@@ -44,12 +44,12 @@ is
    is
       Est_Ameliore : Boolean;
    begin
-      Trier (Population => Population);
+      Trier (Population => Population.Pop);
 
       --  Toutes les valeurs survivantes doivent se trouver autour
       --  de la valeur minimum du tableau pendant 25 générations.
       --  Intervalle de convergence
-      if Verifier_Convergence (Population => Population) then
+      if Verifier_Convergence (Population => Population.Pop) then
          Nb_Tours_Sans_Divergences := Nb_Tours_Sans_Divergences + 1;
       else
          Nb_Tours_Sans_Divergences := 0;
@@ -73,10 +73,10 @@ is
       (Population : in out Population_T)
    is
    begin
-      Remplacer_Morts           (Population => Population);
-      Calcul_Formule_Sur_Enfant (Population => Population);
+      Remplacer_Morts           (Population => Population.Pop);
+      Calcul_Formule_Sur_Enfant (Population => Population.Pop);
 
-      Faire_Evoluer_Par_Tournoi (Population => Population);
+      Faire_Evoluer_Par_Tournoi (Population => Population.Pop);
    end Passer_A_La_Generation_Suivante;
    ---------------------------------------------------------------------------
 
@@ -118,52 +118,6 @@ is
 
    ---------------------------------------------------------------------------
    --                             Partie privée                             --
-   ---------------------------------------------------------------------------
-
-   ---------------------------------------------------------------------------
-   procedure Remplacer_Morts
-      (Population : in out Population_T)
-   is
-   begin
-      Population_P.Remplacer_Morts (Population => Population.Pop);
-   end Remplacer_Morts;
-   ---------------------------------------------------------------------------
-
-   ---------------------------------------------------------------------------
-   procedure Calcul_Formule_Sur_Enfant
-      (Population : in out Population_T)
-   is
-   begin
-      Population_P.Calcul_Formule_Sur_Enfant (Population => Population.Pop);
-   end Calcul_Formule_Sur_Enfant;
-   ---------------------------------------------------------------------------
-
-   ---------------------------------------------------------------------------
-   procedure Faire_Evoluer_Par_Tournoi
-      (Population : in out Population_T)
-   is
-   begin
-      Population_P.Organiser_Saison_Des_Amours (Population => Population.Pop);
-   end Faire_Evoluer_Par_Tournoi;
-   ---------------------------------------------------------------------------
-
-   ---------------------------------------------------------------------------
-   procedure Trier
-      (Population : in out Population_T)
-   is
-   begin
-      Population_P.Trier (Population => Population.Pop);
-   end Trier;
-   ---------------------------------------------------------------------------
-
-   ---------------------------------------------------------------------------
-   function Verifier_Convergence
-      (Population : in     Population_T)
-      return Boolean
-   is
-   begin
-      return Population_P.Verifier_Convergence (Population => Population.Pop);
-   end Verifier_Convergence;
    ---------------------------------------------------------------------------
 
 end A_E_P.Outils_G;
