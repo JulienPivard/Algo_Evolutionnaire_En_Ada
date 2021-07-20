@@ -46,7 +46,7 @@ is
             Aft  => 3,
             Exp  => 0
          );
-      Ada.Text_IO.Put (Item => " |=> Distance : ");
+      Ada.Text_IO.Put (Item => " |=> Distance objectif/résultat : ");
       V_Calcule_IO.Put
          (
             Item => Item.Distance,
