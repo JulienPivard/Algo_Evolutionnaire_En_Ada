@@ -29,7 +29,7 @@ is
       loop
          Outils_P.Trier_Et_Verifier
             (
-               Population             => Population.Pop,
+               Population                 => Population.Pop,
                Nb_Tours_Sans_Divergences  => Nb_Tours_Sans_Divergences,
                Nb_Tours_Sans_Amelioration => Nb_Tours_Sans_Amelioration
             );
