@@ -61,9 +61,9 @@ is
             Est_Ameliore => Est_Ameliore
          );
       if Est_Ameliore then
-         Nb_Tours_Sans_Amelioration := Nb_Tours_Sans_Amelioration + 1;
-      else
          Nb_Tours_Sans_Amelioration := 0;
+      else
+         Nb_Tours_Sans_Amelioration := Nb_Tours_Sans_Amelioration + 1;
       end if;
    end Trier_Et_Verifier;
    ---------------------------------------------------------------------------
