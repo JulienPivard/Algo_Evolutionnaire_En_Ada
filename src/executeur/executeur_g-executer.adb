@@ -97,7 +97,10 @@ is
       Ada.Text_IO.Put_Line
          (Item => "La valeur attendue de " & Nom & " pour le min : " & Min);
 
-      Ada.Text_IO.New_Line    (Spacing => 1);
+      Ada.Text_IO.Put_Line
+         (Item => "=======                                 =======");
+      Ada.Text_IO.Put_Line
+         (Item => "=======            Résultats            =======");
       Population_P.Put_Line   (Item    => Population);
       Ada.Text_IO.Put_Line    (Item    => "=======");
 
