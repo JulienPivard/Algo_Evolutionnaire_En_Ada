@@ -18,12 +18,10 @@ generic
 --  Affichage détaillé d'un individu.
 --  @group Affichage Individu
 package A_E_P.Individu_G.Text_IO
-   with
-      Pure           => False,
-      Preelaborate   => False,
-      Elaborate_Body => False,
-      Spark_Mode     => Off
+   with Spark_Mode => Off
 is
+
+   pragma Elaborate_Body;
 
    procedure Put_Line
       (Item : in     Individu_T);

@@ -114,12 +114,10 @@ generic
 --  pour pouvoir utiliser cet algorithme.
 --  @group Évolution
 package A_E_P.Algo_Evolutionnaire_G
-   with
-      Pure           => False,
-      Preelaborate   => False,
-      Elaborate_Body => False,
-      Spark_Mode     => Off
+   with Spark_Mode => Off
 is
+
+   pragma Elaborate_Body;
 
    type Population_T is private;
    --  La population à faire évoluer.

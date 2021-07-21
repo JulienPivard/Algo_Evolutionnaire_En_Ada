@@ -27,12 +27,10 @@ generic
 --  associé.
 --  @group Population
 package A_E_P.Population_G
-   with
-      Pure           => False,
-      Preelaborate   => False,
-      Elaborate_Body => False,
-      Spark_Mode     => Off
+   with Spark_Mode => Off
 is
+
+   pragma Elaborate_Body;
 
    type Population_T is private;
    --  La population total d'individu. Celle-ci est invariable

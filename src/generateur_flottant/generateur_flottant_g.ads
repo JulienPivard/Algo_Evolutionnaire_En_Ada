@@ -10,12 +10,10 @@ generic
 --  passé en paramètres lors de l'appel de la fonction.
 --  @group Nombre aléatoire
 package Generateur_Flottant_G
-   with
-      Pure           => False,
-      Preelaborate   => False,
-      Elaborate_Body => False,
-      Spark_Mode     => Off
+   with Spark_Mode => Off
 is
+
+   pragma Elaborate_Body;
 
    function Generer_Flottant
       (

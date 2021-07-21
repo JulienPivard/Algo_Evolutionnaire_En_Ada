@@ -13,12 +13,10 @@ generic
 --  Affiche une valeur.
 --  @group Affichage
 package A_E_P.Valeur_Param_Flottant_G.Text_IO
-   with
-      Pure           => False,
-      Preelaborate   => False,
-      Elaborate_Body => False,
-      Spark_Mode     => Off
+   with Spark_Mode => Off
 is
+
+   pragma Elaborate_Body;
 
    procedure Put
       (Item : in     Valeur_Param_T);

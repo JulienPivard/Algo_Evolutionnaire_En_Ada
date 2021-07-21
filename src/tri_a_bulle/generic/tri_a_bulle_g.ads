@@ -46,12 +46,10 @@ generic
 --  Le tri se fait en partant de la fin du tableau.
 --  @group Tri à bulle
 package Tri_A_Bulle_G
-   with
-      Pure           => False,
-      Preelaborate   => False,
-      Elaborate_Body => False,
-      Spark_Mode     => Off
+   with Spark_Mode => Off
 is
+
+   pragma Pure;
 
    procedure Tri_A_Bulle
       (Tableau : in out Table_G_T);

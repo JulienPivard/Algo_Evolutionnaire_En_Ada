@@ -84,12 +84,10 @@ generic
 --  résultat en fonction de ceux-ci.
 --  @group Population
 package A_E_P.Individu_G
-   with
-      Pure           => False,
-      Preelaborate   => False,
-      Elaborate_Body => False,
-      Spark_Mode     => Off
+   with Spark_Mode => Off
 is
+
+   pragma Pure;
 
    type Individu_T is private;
    --  Un individu d'une population.

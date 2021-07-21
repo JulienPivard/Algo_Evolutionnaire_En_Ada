@@ -12,7 +12,7 @@ package A_E_P
       Pure           => True,
       Preelaborate   => False,
       Elaborate_Body => False,
-      Spark_Mode     => Off
+      Spark_Mode     => On
 is
 
    type Taille_Population_T is range 1 .. (2**63) - 1;

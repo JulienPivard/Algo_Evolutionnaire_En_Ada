@@ -15,12 +15,10 @@ generic
 --  est valide, ou a un sens.
 --  @group Parametres
 package A_E_P.Valeur_Param_Flottant_G
-   with
-      Pure           => False,
-      Preelaborate   => False,
-      Elaborate_Body => False,
-      Spark_Mode     => Off
+   with Spark_Mode => Off
 is
+
+   pragma Elaborate_Body;
 
    Borne_Inf_Min : constant := 0.0;
    Borne_Sup_Min : constant := 1.0;
