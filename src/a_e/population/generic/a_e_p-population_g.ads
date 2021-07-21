@@ -245,6 +245,17 @@ private
    --  Tableau de position des individus dans la population
    --  ayant participé aux tournois.
 
+   Resultat_Tournois_Vide : constant Table_Resultat_Tournois_T :=
+      Table_Resultat_Tournois_T'
+         (
+            others => Res_Tournoi_T'
+               (
+                  Pos_Perdants => Indice_Population_T'Last,
+                  Pos_Gagnants => Indice_Population_T'Last,
+                  Pos_Seconds  => Indice_Population_T'Last
+               )
+         );
+
    function Tirer_Concurrent
       (Participants : in     Res_Tournoi_T)
       return Indice_Population_T;

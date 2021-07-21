@@ -233,12 +233,14 @@ is
 
       A_Deja_Perdu : A_Deja_Perdu_T := A_Deja_Perdu_T'(others => False);
    begin
+      Resultat_Tournois := Resultat_Tournois_Vide;
+
       Boucle_Tournois :
       for E of Resultat_Tournois loop
          Bloc_Tournois :
          declare
             Pos_Concurrent : Indice_Population_T;
-            Tirage_Valide : Boolean := False;
+            Tirage_Valide  : Boolean := False;
          begin
             E.Pos_Gagnants := Tirer_Concurrent (Participants => E);
             E.Pos_Seconds  := Tirer_Concurrent (Participants => E);
