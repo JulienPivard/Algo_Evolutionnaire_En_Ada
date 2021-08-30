@@ -157,15 +157,21 @@ is
                Bebe.Valeur :=
                   Bebe.Valeur
                   +
-                  Valeur_Param_G_T (Alea_Petites_Mutations_R.Random
-                     (Gen => Generateur_Petites_Mutations));
+                  Valeur_Param_G_T
+                     (
+                        Alea_Petites_Mutations_R.Random
+                           (Gen => Generateur_Petites_Mutations)
+                     );
             when Petite_Mutation_Moins =>
                --  Soustrait une petite mutation au gène de l'enfant
                Bebe.Valeur :=
                   Bebe.Valeur
                   -
-                  Valeur_Param_G_T (Alea_Petites_Mutations_R.Random
-                     (Gen => Generateur_Petites_Mutations));
+                  Valeur_Param_G_T
+                     (
+                        Alea_Petites_Mutations_R.Random
+                           (Gen => Generateur_Petites_Mutations)
+                     );
             when Inverse_Signe =>
                Bebe.Valeur := -Bebe.Valeur;
          end case;
