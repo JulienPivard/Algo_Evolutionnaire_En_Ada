@@ -26,6 +26,7 @@ is
          --  sans effet si l'intervalle ne contient que des
          --  valeur positive ou négative.
       );
+   --  Type de mutation possible lors de l'accouplement.
 
    type Repartition_Caractere_T is
       (
