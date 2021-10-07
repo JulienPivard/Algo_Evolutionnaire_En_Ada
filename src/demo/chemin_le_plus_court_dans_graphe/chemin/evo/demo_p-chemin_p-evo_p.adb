@@ -157,4 +157,71 @@ begin
          V => 1
       );
 
+   Graphe.Ajouter_Areste
+      (
+         X => A,
+         Y => E,
+         V => 7
+      );
+
+   Graphe.Ajouter_Areste
+      (
+         X => B,
+         Y => D,
+         V => 9
+      );
+   Graphe.Ajouter_Areste
+      (
+         X => B,
+         Y => K,
+         V => 3
+      );
+
+   Graphe.Ajouter_Areste
+      (
+         X => C,
+         Y => G,
+         V => 3
+      );
+   Graphe.Ajouter_Areste
+      (
+         X => C,
+         Y => J,
+         V => 2
+      );
+
+   Graphe.Ajouter_Areste
+      (
+         X => E,
+         Y => I,
+         V => 7
+      );
+
+   Graphe.Ajouter_Areste
+      (
+         X => F,
+         Y => H,
+         V => 2
+      );
+   Graphe.Ajouter_Areste
+      (
+         X => F,
+         Y => K,
+         V => 8
+      );
+
+   Graphe.Ajouter_Areste
+      (
+         X => G,
+         Y => I,
+         V => 4
+      );
+
+   Graphe.Ajouter_Areste
+      (
+         X => I,
+         Y => K,
+         V => 2
+      );
+
 end Demo_P.Chemin_P.Evo_P;
