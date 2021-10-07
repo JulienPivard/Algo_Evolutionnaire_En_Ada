@@ -44,7 +44,7 @@ is
       Est_Fini      : Boolean := False;
    begin
       if Sommets_Sont_Uniques (Chemin => Chemin) then
-         Boucle_Verifier_Chemin :
+         Boucle_Verif_Chemin :
          loop
             Chemin_Est_Ok := Graphe.Sont_Adjacents
                (
@@ -54,8 +54,8 @@ is
             P := Position_T'Succ (P);
 
             Est_Fini := P = Position_T'Last;
-            exit Boucle_Verifier_Chemin when Est_Fini or else not Chemin_Est_Ok;
-         end loop Boucle_Verifier_Chemin;
+            exit Boucle_Verif_Chemin when Est_Fini or else not Chemin_Est_Ok;
+         end loop Boucle_Verif_Chemin;
       else
          Chemin_Est_Ok := False;
       end if;
