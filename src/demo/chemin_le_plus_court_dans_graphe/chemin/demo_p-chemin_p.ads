@@ -59,6 +59,14 @@ is
    --  Le graphe de sommets.
    --  @return Le score du chemin.
 
+   function Sommets_Sont_Uniques
+      (Chemin : in     Chemin_T)
+      return Boolean;
+   --  Chaque sommet n'apparait qu'une seule et unique fois.
+   --  @param Chemin
+   --  Le chemin.
+   --  @return Chaque sommet n'apparait qu'une fois.
+
    function Est_Plein
       (Chemin : in     Chemin_T)
       return Boolean;

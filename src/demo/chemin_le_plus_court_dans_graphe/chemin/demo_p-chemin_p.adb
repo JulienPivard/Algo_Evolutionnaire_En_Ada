@@ -93,6 +93,30 @@ is
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
+   function Sommets_Sont_Uniques
+      (Chemin : in     Chemin_T)
+      return Boolean
+   is
+      type Apparition_Sommets_T is array (Sommets_T) of Boolean;
+
+      Apparition_Sommets : Apparition_Sommets_T :=
+         Apparition_Sommets_T'(others => False);
+
+         Sont_Uniques : Boolean := True;
+   begin
+      Boucle_Verifier_Chemin :
+      for S of Chemin.Sommets loop
+         if Apparition_Sommets (S) then
+            Sont_Uniques := False;
+         end if;
+         Apparition_Sommets (S) := True;
+      end loop Boucle_Verifier_Chemin;
+
+      return Sont_Uniques;
+   end Sommets_Sont_Uniques;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
    function Sommet_Est_Present
       (
          Chemin : in     Chemin_T;
