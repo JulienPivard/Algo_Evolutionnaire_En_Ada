@@ -19,6 +19,9 @@ with Demo_P.Formule_A_2_P.Text_IO;
 with Demo_P.Trouver_Param_Valeur_G;
 with Demo_P.Trouver_Param_Valeur_G.Text_IO;
 
+with Demo_P.Chemin_P.Evo_P;
+with Demo_P.Chemin_P.Evo_P.Text_IO;
+
 with Chrono_IO;
 
 separate (Executeur_G)
@@ -219,6 +222,29 @@ is
 
    procedure Trouver_Parametres is new Determiner_Min
       (Population_P => Population_Trouver_Parametres_P);
+
+   --  Expérimentation pour trouver le chemin le plus court dans un graph.
+   package Chemin_R    renames Demo_P.Chemin_P.Evo_P;
+   package Chemin_IO_R renames Demo_P.Chemin_P.Evo_P.Text_IO;
+
+   use type Chemin_R.Resultat_T;
+
+   package Population_Chemin_P is new A_E_P.Algo_Evolutionnaire_G
+      (
+         Taille_Population      => Demo_P.Taille,
+         Parametres_G_T         => Chemin_R.Probleme_Chemin_T,
+         Generer                => Chemin_R.Generer,
+         Accoupler              => Chemin_R.Accoupler,
+         Resultat_Calcul_G_T    => Chemin_R.Resultat_T,
+         Calculer               => Chemin_R.Calculer,
+         Convergence_Adaptation => Chemin_R.Resultats_Convergent,
+         Put_Parametres         => Chemin_IO_R.Put_Parametres,
+         Put_Resultat           => Chemin_IO_R.Put_Resultat,
+         Afficher_Formule       => Chemin_IO_R.Afficher_Formule
+      );
+
+   procedure Trouver_Chemin_Min is new Determiner_Min
+      (Population_P => Population_Chemin_P);
 begin
    --  Ada.Text_IO.Put      (Item => "Procédure : [");
    --  Ada.Text_IO.Put      (Item => GNAT.Source_Info.Enclosing_Entity);
@@ -236,4 +262,11 @@ begin
 
    Trouver_Parametres
       (Nom => "X et Y", Min =>   "45.0, 50.0", Reduire_Affichage => True);
+
+   Trouver_Chemin_Min
+      (
+         Nom               => "chemin",
+         Min               => "je sais pas encore",
+         Reduire_Affichage => True
+      );
 end Executer;
