@@ -14,6 +14,12 @@ package Demo_P
       Spark_Mode     => Off
 is
 
+   type Sommets_T is (A, B, C, D, E, F, G, H, I, J, K);
+   --  Les sommets d'un graphe.
+
+   type Score_T is range 0 .. 10_000;
+   --  Le score d'un chemin. Plus il est faible, mieux c'est.
+
    type Math_T is digits 5;
    --  Les calculs seront tous fait avec un
    --  type de cette précision la.
