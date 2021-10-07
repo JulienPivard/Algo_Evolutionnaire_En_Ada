@@ -150,5 +150,11 @@ begin
          Y => K,
          V => 1
       );
+   Graphe.Ajouter_Areste
+      (
+         X => K,
+         Y => A,
+         V => 1
+      );
 
 end Demo_P.Chemin_P.Evo_P;
