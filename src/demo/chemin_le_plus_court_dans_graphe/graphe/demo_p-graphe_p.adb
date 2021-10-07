@@ -77,10 +77,13 @@ is
          V : in     Poids_Areste_T
       )
    is
-      Areste : Areste_T renames G.Matrice (X, Y);
+      Areste_Aller  : Areste_T renames G.Matrice (X, Y);
+      Areste_Retour : Areste_T renames G.Matrice (Y, X);
    begin
-      Areste.Presente := True;
-      Areste.Poids    := V;
+      Areste_Aller.Presente := True;
+      Areste_Aller.Poids    := V;
+      Areste_Retour.Presente := True;
+      Areste_Retour.Poids    := V;
    end Ajouter_Areste;
    ---------------------------------------------------------------------------
 
