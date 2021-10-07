@@ -85,6 +85,22 @@ is
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
+   procedure Ajouter_Areste_Orientee
+      (
+         G : in out Graphe_T;
+         X : in     Sommets_T;
+         Y : in     Sommets_T;
+         V : in     Poids_Areste_T
+      )
+   is
+      Areste : Areste_T renames G.Matrice (X, Y);
+   begin
+      Areste.Presente := True;
+      Areste.Poids    := V;
+   end Ajouter_Areste_Orientee;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
    procedure Supprimer_Areste
       (
          G : in out Graphe_T;

@@ -50,6 +50,14 @@ is
          V : in     Poids_Areste_T
       );
    --  Ajoute l'arête de x à y s'il n'y figure pas déjà;
+   procedure Ajouter_Areste_Orientee
+      (
+         G : in out Graphe_T;
+         X : in     Sommets_T;
+         Y : in     Sommets_T;
+         V : in     Poids_Areste_T
+      );
+   --  Ajoute l'arête de x à y s'il n'y figure pas déjà;
    procedure Supprimer_Areste
       (
          G : in out Graphe_T;
