@@ -183,7 +183,7 @@ private
          --  La population.
       end record;
 
-   type Id_Islot_T is mod 2**1;
+   type Id_Islot_T is mod 2**2;
    --  Identifiant des îlots.
 
    -----------------------------
@@ -291,5 +291,7 @@ private
 
    Islot_1 : Islot_T (Id => 0);
    Islot_2 : Islot_T (Id => 1);
+   Islot_3 : Islot_T (Id => 2);
+   Islot_4 : Islot_T (Id => 3);
 
 end A_E_P.Algo_Evolutionnaire_G;
