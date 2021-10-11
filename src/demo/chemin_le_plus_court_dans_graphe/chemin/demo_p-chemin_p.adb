@@ -106,7 +106,7 @@ is
       Apparition_Sommets : Apparition_Sommets_T :=
          Apparition_Sommets_T'(others => False);
 
-         Sont_Uniques : Boolean := True;
+      Sont_Uniques : Boolean := True;
    begin
       Boucle_Verifier_Chemin :
       for S of Chemin.Sommets loop
@@ -130,7 +130,7 @@ is
    is
       subtype Indice_T is Position_T range Position_T'First .. Chemin.Pos_Fin;
    begin
-      return (for all S of Chemin.Sommets (Indice_T) => S /= Sommet);
+      return not (for all S of Chemin.Sommets (Indice_T) => Sommet /= S);
    end Sommet_Est_Present;
    ---------------------------------------------------------------------------
 
