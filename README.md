@@ -123,7 +123,7 @@ et sur la précision du résultats obtenu, notamment à cause des phases de
 tri. Une population trop petite aura tendance à tomber facilement dans des
 minima locaux.
 
-# Compilation des demo
+# Compilation des démos
 
 ## Environnement
 
@@ -167,6 +167,11 @@ fonction. Le but est d'observer l'impact de l'augmentation du nombre
 d'inconnues sur la précision du résultat. Réduire la taille de 200
 individus à 150 nous fait passer sous la barre des 99% des chances de
 trouver le minimum.
+
+### Démo 4
+
+Trouver le chemin le plus court dans un graphe qui passe une seule et
+unique fois par tous les sommets.
 
 # Résultats à l'exécution
 
