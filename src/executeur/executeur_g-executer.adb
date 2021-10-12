@@ -266,7 +266,7 @@ begin
    Trouver_Chemin_Min
       (
          Nom               => "chemin",
-         Min               => "je sais pas encore",
+         Min               => "tous les sommets une fois (score 10)",
          Reduire_Affichage => True
       );
 end Executer;
