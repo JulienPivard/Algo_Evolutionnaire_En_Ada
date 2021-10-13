@@ -170,6 +170,12 @@ trouver le minimum.
 
 ### Démo 4
 
+Trouver la valeur de X, qui donne par la formule f(x), le résultat le plus
+proche possible de la valeur objectif. Ici on cherche à minimiser la
+distance entre le résultat de la fonction f et la valeur objectif.
+
+### Démo 5
+
 Trouver le chemin le plus court dans un graphe qui passe une seule et
 unique fois par tous les sommets.
 
