@@ -112,12 +112,12 @@ begin
    Alea_Piece_P.Reset   (Gen => Generateur_Piece);
    Alea_Sommets_P.Reset (Gen => Generateur_Sommets);
 
-   Bloc_Init_Graphe :
+   Bloc_Init_Diagonale :
    declare
       Depart : Sommets_T := Sommets_T'First;
       Arrive : Sommets_T := Sommets_T'Succ (Sommets_T'First);
    begin
-      Boucle_Init_Graphe :
+      Boucle_Init_Diagonale :
       loop
          Depart := Sommets_T'Succ (Depart);
          Arrive := Sommets_T'Succ (Arrive);
@@ -135,8 +135,8 @@ begin
                V => 1
             );
 
-         exit Boucle_Init_Graphe when Arrive = Sommets_T'Last;
-      end loop Boucle_Init_Graphe;
+         exit Boucle_Init_Diagonale when Arrive = Sommets_T'Last;
+      end loop Boucle_Init_Diagonale;
       Graphe.Ajouter_Areste
          (
             X => Sommets_T'First,
@@ -149,7 +149,7 @@ begin
             Y => Sommets_T'First,
             V => 1
          );
-   end Bloc_Init_Graphe;
+   end Bloc_Init_Diagonale;
 
    Graphe.Ajouter_Areste
       (
