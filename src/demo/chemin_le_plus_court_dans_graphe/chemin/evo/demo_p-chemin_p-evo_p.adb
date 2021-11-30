@@ -119,34 +119,22 @@ begin
    begin
       Boucle_Init_Diagonale :
       loop
-         Depart := Sommets_T'Succ (Depart);
-         Arrive := Sommets_T'Succ (Arrive);
-
          Graphe.Ajouter_Areste
             (
                X => Depart,
                Y => Arrive,
                V => 1
             );
-         Graphe.Ajouter_Areste
-            (
-               X => Arrive,
-               Y => Depart,
-               V => 1
-            );
 
          exit Boucle_Init_Diagonale when Arrive = Sommets_T'Last;
+
+         Depart := Sommets_T'Succ (Depart);
+         Arrive := Sommets_T'Succ (Arrive);
       end loop Boucle_Init_Diagonale;
       Graphe.Ajouter_Areste
          (
             X => Sommets_T'First,
             Y => Sommets_T'Last,
-            V => 1
-         );
-      Graphe.Ajouter_Areste
-         (
-            X => Sommets_T'Last,
-            Y => Sommets_T'First,
             V => 1
          );
    end Bloc_Init_Diagonale;
