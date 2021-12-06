@@ -213,4 +213,36 @@ begin
          V => 2
       );
 
+   Bloc_Init_Autres_Points :
+   declare
+      Taille_Chemin : constant Natural := Table_Sommets_T'Length;
+      Nb_Sommets    : constant Natural := ((Taille_Chemin**2) * 20) / 100;
+
+      Depart : Sommets_T := Sommets_T'First;
+      Arrive : Sommets_T := Sommets_T'Succ (Sommets_T'First);
+
+      I : Natural := 0;
+   begin
+      Boucle_Init_Autres_Points :
+      loop
+         Depart := Alea_Sommets_P.Random (Gen => Generateur_Sommets);
+         Arrive := Alea_Sommets_P.Random (Gen => Generateur_Sommets);
+
+         if not Graphe.Sont_Adjacents (X => Depart, Y => Arrive)
+            and then
+            not (Depart = Arrive)
+         then
+            Graphe.Ajouter_Areste
+               (
+                  X => Depart,
+                  Y => Arrive,
+                  V => Alea_Poids_P.Random (Gen => Generateur_Poids)
+               );
+            I := I + 1;
+         end if;
+
+         exit Boucle_Init_Autres_Points when I >= Nb_Sommets;
+      end loop Boucle_Init_Autres_Points;
+   end Bloc_Init_Autres_Points;
+
 end Demo_P.Chemin_P.Evo_P;
