@@ -14,7 +14,10 @@ package Demo_P
       Spark_Mode     => Off
 is
 
-   type Sommets_T is (A, B, C, D, E, F, G, H, I, J, K);
+   type Sommets_T is
+      (
+         A, B, C, D, E, F, G, H, I, J, K
+      );
    --  Les sommets d'un graphe.
 
    type Score_T is range 0 .. 10_000;
