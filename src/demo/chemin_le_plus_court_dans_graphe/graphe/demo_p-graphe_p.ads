@@ -110,21 +110,25 @@ private
       record
          Presente : Boolean        := False;
          --  Il y a une arrête entre les sommets.
-         Poids    : Poids_Areste_T := Poids_Areste_T'First;
+         Poids    : Poids_Areste_T := Poids_Areste_T'Last;
          --  Le poids de l'arrête.
       end record;
 
    type Matrice_T is array (Lignes_T, Colonnes_T) of Areste_T;
    --  La matrice de sommets qui défini les liens entre eux.
 
+   Matrice_Vide : constant Matrice_T :=
+      Matrice_T'(others => (others => <>));
+
    type Table_Poids_Sommets_T is array (Sommets_T) of Poids_Sommet_T;
    --  Les poids des sommets.
 
    type Graphe_T is tagged
       record
-         Matrice      : Matrice_T;
+         Matrice      : Matrice_T             := Matrice_Vide;
          --  Les liens entre les sommets.
-         Poids_Sommet : Table_Poids_Sommets_T;
+         Poids_Sommet : Table_Poids_Sommets_T :=
+            Table_Poids_Sommets_T'(others => Poids_Sommet_T'Last);
          --  Les poids des sommets.
       end record;
 
