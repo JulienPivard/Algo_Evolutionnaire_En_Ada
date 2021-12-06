@@ -8,13 +8,19 @@ is
 
    type Piece_T is (Pile, Face);
 
+   subtype Poids_Areste_T is Graphe_P.Poids_Areste_T;
+   subtype Poids_Tmp_T    is Poids_Areste_T range 2 .. Poids_Areste_T'Last;
+
    package Alea_Piece_P   is new Ada.Numerics.Discrete_Random
       (Result_Subtype => Piece_T);
    package Alea_Sommets_P is new Ada.Numerics.Discrete_Random
       (Result_Subtype => Sommets_T);
+   package Alea_Poids_P   is new Ada.Numerics.Discrete_Random
+      (Result_Subtype => Poids_Tmp_T);
 
    Generateur_Piece   : Alea_Piece_P.Generator;
    Generateur_Sommets : Alea_Sommets_P.Generator;
+   Generateur_Poids   : Alea_Poids_P.Generator;
 
    ---------------------------------------------------------------------------
    procedure Generer
@@ -111,6 +117,7 @@ begin
 
    Alea_Piece_P.Reset   (Gen => Generateur_Piece);
    Alea_Sommets_P.Reset (Gen => Generateur_Sommets);
+   Alea_Poids_P.Reset   (Gen => Generateur_Poids);
 
    Bloc_Init_Diagonale :
    declare
