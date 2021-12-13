@@ -117,14 +117,15 @@ is
       Chemin_Est_Valide :=
          Est_Valide (Chemin => Parametres.Chemin, Graphe => Graphe);
 
-      if Chemin_Est_Valide then
          Resultat := Calculer_Score
             (
                Chemin => Parametres.Chemin,
                Graphe => Graphe
             );
+      if Chemin_Est_Valide then
+         null;
       else
-         Resultat := Score_T'Last;
+         Resultat := Resultat + (Score_T'Last / 2);
       end if;
       return Resultat_T'(Score => Resultat);
    end Calculer;
