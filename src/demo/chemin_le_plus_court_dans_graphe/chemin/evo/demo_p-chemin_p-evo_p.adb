@@ -117,11 +117,11 @@ is
       Chemin_Est_Valide :=
          Est_Valide (Chemin => Parametres.Chemin, Graphe => Graphe);
 
-         Resultat := Calculer_Score
-            (
-               Chemin => Parametres.Chemin,
-               Graphe => Graphe
-            );
+      Resultat := Calculer_Score
+         (
+            Chemin => Parametres.Chemin,
+            Graphe => Graphe
+         );
       if Chemin_Est_Valide then
          null;
       else
@@ -171,7 +171,7 @@ begin
    Bloc_Init_Autres_Points :
    declare
       Taille_Chemin : constant Natural := Table_Sommets_T'Length;
-      Nb_Sommets    : constant Natural := ((Taille_Chemin**2) * 20) / 100;
+      Nb_Sommets    : constant Natural := ((Taille_Chemin**2) * 45) / 100;
 
       Depart : Sommets_T := Sommets_T'First;
       Arrive : Sommets_T := Sommets_T'Succ (Sommets_T'First);
@@ -187,7 +187,7 @@ begin
             and then
             not (Depart = Arrive)
          then
-            Graphe.Ajouter_Areste
+            Graphe.Ajouter_Areste_Orientee
                (
                   X => Depart,
                   Y => Arrive,
