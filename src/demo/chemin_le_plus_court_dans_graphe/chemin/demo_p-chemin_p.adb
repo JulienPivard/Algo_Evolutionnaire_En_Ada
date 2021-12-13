@@ -101,8 +101,6 @@ is
       (Chemin : in     Chemin_T)
       return Boolean
    is
-      type Apparition_Sommets_T is array (Sommets_T) of Boolean;
-
       Apparition_Sommets : Apparition_Sommets_T :=
          Apparition_Sommets_T'(others => False);
 

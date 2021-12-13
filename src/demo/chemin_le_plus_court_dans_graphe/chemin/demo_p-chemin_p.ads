@@ -93,9 +93,9 @@ private
    Premier : constant Sommets_T := Sommets_T'First;
    Dernier : constant Sommets_T := Sommets_T'Last;
 
-   type Tab_Ignore_T is array (Sommets_T) of Boolean;
+   type Apparition_Sommets_T is array (Sommets_T) of Boolean;
 
-   type Position_T   is range 1 .. Tab_Ignore_T'Length;
+   type Position_T   is range 1 .. Apparition_Sommets_T'Length;
 
    type Table_Sommets_T is array (Position_T) of Sommets_T;
 

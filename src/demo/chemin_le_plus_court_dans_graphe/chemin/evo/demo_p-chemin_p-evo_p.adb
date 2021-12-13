@@ -26,8 +26,6 @@ is
    procedure Generer
       (Parametres : in out Probleme_Chemin_T)
    is
-      type Apparition_Sommets_T is array (Sommets_T) of Boolean;
-
       Sommets_Deja_Utilise : Apparition_Sommets_T :=
          Apparition_Sommets_T'(others => False);
 
