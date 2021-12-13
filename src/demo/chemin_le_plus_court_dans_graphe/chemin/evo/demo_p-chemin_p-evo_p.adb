@@ -32,12 +32,14 @@ is
          Apparition_Sommets_T'(others => False);
 
       Suite_Chemin_Est_Ok : Boolean := False;
+      Chemin_Existe       : Boolean := False;
       Est_Une_Impasse     : Boolean := False;
 
       Nb_Tours : Natural := 0;
+      S : Sommets_T;
    begin
       Boucle_Construire_Chemin :
-      for S : Sommets_T of Parametres.Chemin.Sommets loop
+      for I in Parametres.Chemin.Sommets'Range loop
          S := Alea_Sommets_P.Random (Gen => Generateur_Sommets);
          Nb_Tours := 0;
 
@@ -47,6 +49,16 @@ is
             Est_Une_Impasse := Nb_Tours >= Parametres.Chemin.Sommets'Length;
             exit Boucle_Trouver_Sommet_Libre when Est_Une_Impasse;
 
+            if I = Parametres.Chemin.Sommets'First then
+               Chemin_Existe := True;
+            else
+               Chemin_Existe := Graphe_P.Sont_Adjacents
+                  (
+                     G => Graphe,
+                     X => Parametres.Chemin.Sommets (Position_T'Pred (I)),
+                     Y => S
+                  );
+            end if;
             Suite_Chemin_Est_Ok := not Sommets_Deja_Utilise (S);
             if Suite_Chemin_Est_Ok then
                Sommets_Deja_Utilise (S) := True;
@@ -60,6 +72,8 @@ is
 
             exit Boucle_Trouver_Sommet_Libre when Suite_Chemin_Est_Ok;
          end loop Boucle_Trouver_Sommet_Libre;
+
+         Parametres.Chemin.Sommets (I) := S;
       end loop Boucle_Construire_Chemin;
    end Generer;
    ---------------------------------------------------------------------------
