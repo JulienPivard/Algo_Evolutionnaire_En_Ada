@@ -59,7 +59,8 @@ is
                      Y => S
                   );
             end if;
-            Suite_Chemin_Est_Ok := not Sommets_Deja_Utilise (S);
+            Suite_Chemin_Est_Ok :=
+               not Sommets_Deja_Utilise (S) and then Chemin_Existe;
             if Suite_Chemin_Est_Ok then
                Sommets_Deja_Utilise (S) := True;
             else
