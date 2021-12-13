@@ -263,10 +263,18 @@ begin
    Trouver_Parametres
       (Nom => "X et Y", Min =>   "45.0, 50.0", Reduire_Affichage => True);
 
+   Bloc_Afficher_Score_Min :
+   declare
+      type Table_Sommets_T is array (Demo_P.Sommets_T) of Boolean;
+
+      Str_Min : constant String := Integer'Image (Table_Sommets_T'Length - 1);
+   begin
    Trouver_Chemin_Min
       (
          Nom               => "chemin",
-         Min               => "tous les sommets une fois (score 10)",
+         Min               =>
+            "tous les sommets une fois (score :" & Str_Min & ")",
          Reduire_Affichage => True
       );
+   end Bloc_Afficher_Score_Min;
 end Executer;
