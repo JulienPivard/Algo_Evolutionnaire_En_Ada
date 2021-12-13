@@ -31,7 +31,7 @@ is
       Sommets_Deja_Utilise : Apparition_Sommets_T :=
          Apparition_Sommets_T'(others => False);
 
-      Sortir_Boucle_Trouver_Sommet : Boolean := False;
+      Suite_Chemin_Est_Ok : Boolean := False;
    begin
       Boucle_Construire_Chemin :
       for S of Parametres.Chemin.Sommets loop
@@ -39,18 +39,18 @@ is
 
          Boucle_Trouver_Sommet_Libre :
          loop
-            Sortir_Boucle_Trouver_Sommet := not Sommets_Deja_Utilise (S);
-            if Sommets_Deja_Utilise (S) then
+            Suite_Chemin_Est_Ok := not Sommets_Deja_Utilise (S);
+            if Suite_Chemin_Est_Ok then
+               Sommets_Deja_Utilise (S) := True;
+            else
                if S = Sommets_T'Last then
                   S := Sommets_T'First;
                else
                   S := Sommets_T'Succ (S);
                end if;
-            else
-               Sommets_Deja_Utilise (S) := True;
             end if;
 
-            exit Boucle_Trouver_Sommet_Libre when Sortir_Boucle_Trouver_Sommet;
+            exit Boucle_Trouver_Sommet_Libre when Suite_Chemin_Est_Ok;
          end loop Boucle_Trouver_Sommet_Libre;
       end loop Boucle_Construire_Chemin;
    end Generer;
