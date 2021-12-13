@@ -269,12 +269,12 @@ begin
 
       Str_Min : constant String := Integer'Image (Table_Sommets_T'Length - 1);
    begin
-   Trouver_Chemin_Min
-      (
-         Nom               => "chemin",
-         Min               =>
-            "tous les sommets une fois (score :" & Str_Min & ")",
-         Reduire_Affichage => True
-      );
+      Trouver_Chemin_Min
+         (
+            Nom               => "chemin",
+            Min               =>
+               "tous les sommets une fois (score :" & Str_Min & ")",
+            Reduire_Affichage => True
+         );
    end Bloc_Afficher_Score_Min;
 end Executer;

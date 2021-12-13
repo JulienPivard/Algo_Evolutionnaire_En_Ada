@@ -95,7 +95,7 @@ private
 
    type Apparition_Sommets_T is array (Sommets_T) of Boolean;
 
-   type Position_T   is range 1 .. Apparition_Sommets_T'Length;
+   type Position_T is range 1 .. Apparition_Sommets_T'Length;
 
    type Table_Sommets_T is array (Position_T) of Sommets_T;
 
