@@ -112,11 +112,9 @@ is
    is
       Resultat : Score_T := Score_T'First;
 
-      Chemin_Est_Valide : Boolean;
-   begin
-      Chemin_Est_Valide :=
+      Chemin_Est_Valide : constant Boolean :=
          Est_Valide (Chemin => Parametres.Chemin, Graphe => Graphe);
-
+   begin
       Resultat := Calculer_Score
          (
             Chemin => Parametres.Chemin,
