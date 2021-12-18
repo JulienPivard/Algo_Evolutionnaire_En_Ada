@@ -81,7 +81,7 @@ is
       Score : Score_T := Score_T'First;
    begin
       Boucle_Parcours_Chemin :
-      for S of Chemin.Sommets (Parcours_T) loop
+      for S : Sommets_T of Chemin.Sommets (Parcours_T) loop
          Poids := Graphe.Lire_Valeur_Areste
             (
                X => Position_Actuelle,
@@ -107,7 +107,7 @@ is
       Sont_Uniques : Boolean := True;
    begin
       Boucle_Verifier_Chemin :
-      for S of Chemin.Sommets loop
+      for S : Sommets_T of Chemin.Sommets loop
          if Apparition_Sommets (S) then
             Sont_Uniques := False;
          end if;
@@ -128,7 +128,8 @@ is
    is
       subtype Indice_T is Position_T range Position_T'First .. Chemin.Pos_Fin;
    begin
-      return not (for all S of Chemin.Sommets (Indice_T) => Sommet /= S);
+      return not
+         (for all S : Sommets_T of Chemin.Sommets (Indice_T) => Sommet /= S);
    end Sommet_Est_Present;
    ---------------------------------------------------------------------------
 
