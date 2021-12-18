@@ -1,6 +1,6 @@
-with Demo_P.Graphe_P;
-
 with Ada.Numerics.Discrete_Random;
+
+with Demo_P.Graphe_P;
 
 package body Demo_P.Chemin_P.Evo_P
    with Spark_Mode => Off
