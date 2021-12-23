@@ -14,8 +14,8 @@ is
       Val_Arreste : String := " ";
    begin
       Ada.Text_IO.New_Line (Spacing => 1);
-      Afficher_Sommets;
 
+      Afficher_Sommets;
       Tracer_Ligne_Encadrement;
 
       Boucle_Parcourir_Ligne :
@@ -44,7 +44,6 @@ is
       end loop Boucle_Parcourir_Ligne;
 
       Tracer_Ligne_Encadrement;
-
       Afficher_Sommets;
    end Put_Line;
    ---------------------------------------------------------------------------
