@@ -15,7 +15,7 @@ is
    package Alea_Piece_P   is new Ada.Numerics.Discrete_Random
       (Result_Subtype => Piece_T);
    package Alea_Sommets_P is new Ada.Numerics.Discrete_Random
-      (Result_Subtype => Sommets_T);
+      (Result_Subtype => Sommet_T);
    package Alea_Poids_P   is new Ada.Numerics.Discrete_Random
       (Result_Subtype => Poids_Tmp_T);
 
@@ -35,7 +35,7 @@ is
       Est_Une_Impasse     : Boolean := False;
 
       Nb_Tours : Natural := 0;
-      S : Sommets_T;
+      S        : Sommet_T;
    begin
       Boucle_Construire_Chemin :
       for I in Parametres.Chemin.Sommets'Range loop
@@ -63,10 +63,10 @@ is
             if Suite_Chemin_Est_Ok then
                Sommets_Deja_Utilise (S) := True;
             else
-               if S = Sommets_T'Last then
-                  S := Sommets_T'First;
+               if S = Sommet_T'Last then
+                  S := Sommet_T'First;
                else
-                  S := Sommets_T'Succ (S);
+                  S := Sommet_T'Succ (S);
                end if;
             end if;
 
@@ -93,7 +93,7 @@ is
    is
       Piece    : Piece_T;
       Resultat : Probleme_Chemin_T;
-      Sommet   : Sommets_T;
+      Sommet   : Sommet_T;
 
       Position_Sommets_En_Double : Position_Sommets_En_Double_T;
       Apparition_Sommets         : Apparition_Sommets_T :=
@@ -128,8 +128,8 @@ is
 
          Bloc_Trouver_Sommet_Absent :
          declare
-            Sortir : Boolean   := False;
-            S      : Sommets_T := Sommets_T'First;
+            Sortir : Boolean  := False;
+            S      : Sommet_T := Sommet_T'First;
          begin
             Boucle_Remplacer_Sommets_En_Double :
             for P : Position_T of Position_Sommets_En_Double loop
@@ -138,9 +138,9 @@ is
                   Sortir :=
                      not Apparition_Sommets (S)
                      or else
-                     S = Sommets_T'Last;
+                     S = Sommet_T'Last;
                   exit Boucle_Trouver_Sommet_Absent when Sortir;
-                  S := Sommets_T'Succ (S);
+                  S := Sommet_T'Succ (S);
                end loop Boucle_Trouver_Sommet_Absent;
 
                Resultat.Chemin.Sommets (P) := S;
@@ -189,8 +189,8 @@ begin
 
    Bloc_Init_Diagonale :
    declare
-      Depart : Sommets_T := Sommets_T'First;
-      Arrive : Sommets_T := Sommets_T'Succ (Sommets_T'First);
+      Depart : Sommet_T := Sommet_T'First;
+      Arrive : Sommet_T := Sommet_T'Succ (Sommet_T'First);
    begin
       Boucle_Init_Diagonale :
       loop
@@ -201,15 +201,15 @@ begin
                V => 1
             );
 
-         exit Boucle_Init_Diagonale when Arrive = Sommets_T'Last;
+         exit Boucle_Init_Diagonale when Arrive = Sommet_T'Last;
 
-         Depart := Sommets_T'Succ (Depart);
-         Arrive := Sommets_T'Succ (Arrive);
+         Depart := Sommet_T'Succ (Depart);
+         Arrive := Sommet_T'Succ (Arrive);
       end loop Boucle_Init_Diagonale;
       Graphe.Ajouter_Areste
          (
-            X => Sommets_T'First,
-            Y => Sommets_T'Last,
+            X => Sommet_T'First,
+            Y => Sommet_T'Last,
             V => 1
          );
    end Bloc_Init_Diagonale;
@@ -219,8 +219,8 @@ begin
       Taille_Chemin : constant Natural := Table_Sommets_T'Length;
       Nb_Sommets    : constant Natural := ((Taille_Chemin**2) * 45) / 100;
 
-      Depart : Sommets_T := Sommets_T'First;
-      Arrive : Sommets_T := Sommets_T'Succ (Sommets_T'First);
+      Depart : Sommet_T := Sommet_T'First;
+      Arrive : Sommet_T := Sommet_T'Succ (Sommet_T'First);
 
       I : Natural := 0;
    begin

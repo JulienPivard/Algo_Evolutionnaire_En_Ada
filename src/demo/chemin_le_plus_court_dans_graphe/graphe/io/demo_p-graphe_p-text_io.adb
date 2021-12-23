@@ -5,7 +5,7 @@ package body Demo_P.Graphe_P.Text_IO
    with Spark_Mode => Off
 is
 
-   package Sommet_IO is new Ada.Text_IO.Enumeration_IO (Enum => Sommets_T);
+   package Sommet_IO is new Ada.Text_IO.Enumeration_IO (Enum => Sommet_T);
 
    ---------------------------------------------------------------------------
    procedure Put_Line
@@ -19,12 +19,12 @@ is
       Tracer_Ligne_Encadrement;
 
       Boucle_Parcourir_Ligne :
-      for S_L in Sommets_T loop
+      for S_L in Sommet_T loop
          Sommet_IO.Put   (Item => S_L);
          Ada.Text_IO.Put (Item => " | ");
 
          Boucle_Parcourir_Colonne :
-         for S_C in Sommets_T loop
+         for S_C in Sommet_T loop
             if Item.Sont_Adjacents (X => S_L, Y => S_C) then
                Val_Arreste := Ada.Strings.Fixed.Trim
                   (
@@ -58,7 +58,7 @@ is
       Ada.Text_IO.Put (Item => "  +-");
 
       Boucle_Separateur_Haut :
-      for S_L in Sommets_T loop
+      for S_L in Sommet_T loop
          Ada.Text_IO.Put (Item => "--");
       end loop Boucle_Separateur_Haut;
 
@@ -73,7 +73,7 @@ is
       Ada.Text_IO.Put (Item => "    ");
 
       Boucle_Afficher_Ligne :
-      for S_L in Sommets_T loop
+      for S_L in Sommet_T loop
          Sommet_IO.Put   (Item => S_L);
          Ada.Text_IO.Put (Item => " ");
       end loop Boucle_Afficher_Ligne;

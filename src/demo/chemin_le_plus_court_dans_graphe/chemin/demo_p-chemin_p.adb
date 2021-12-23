@@ -6,7 +6,7 @@ is
    procedure Ajouter
       (
          Chemin           : in out Chemin_T;
-         Sommet           : in     Sommets_T;
+         Sommet           : in     Sommet_T;
          Ajout_Est_Reussi :    out Boolean
       )
    is
@@ -76,12 +76,12 @@ is
 
       subtype Parcours_T is Position_T range Debut .. Position_T'Last;
 
-      Position_Actuelle : Sommets_T := Chemin.Sommets (Position_T'First);
+      Position_Actuelle : Sommet_T := Chemin.Sommets (Position_T'First);
       Poids : Graphe_P.Poids_Areste_T;
       Score : Score_T := Score_T'First;
    begin
       Boucle_Parcours_Chemin :
-      for S : Sommets_T of Chemin.Sommets (Parcours_T) loop
+      for S : Sommet_T of Chemin.Sommets (Parcours_T) loop
          Poids := Graphe.Lire_Valeur_Areste
             (
                X => Position_Actuelle,
@@ -107,7 +107,7 @@ is
       Sont_Uniques : Boolean := True;
    begin
       Boucle_Verifier_Chemin :
-      for S : Sommets_T of Chemin.Sommets loop
+      for S : Sommet_T of Chemin.Sommets loop
          if Apparition_Sommets (S) then
             Sont_Uniques := False;
          end if;
@@ -122,14 +122,14 @@ is
    function Sommet_Est_Present
       (
          Chemin : in     Chemin_T;
-         Sommet : in     Sommets_T
+         Sommet : in     Sommet_T
       )
       return Boolean
    is
       subtype Indice_T is Position_T range Position_T'First .. Chemin.Pos_Fin;
    begin
       return not
-         (for all S : Sommets_T of Chemin.Sommets (Indice_T) => Sommet /= S);
+         (for all S : Sommet_T of Chemin.Sommets (Indice_T) => Sommet /= S);
    end Sommet_Est_Present;
    ---------------------------------------------------------------------------
 

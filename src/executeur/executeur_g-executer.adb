@@ -265,7 +265,7 @@ begin
 
    Bloc_Afficher_Score_Min :
    declare
-      type Table_Sommets_T is array (Demo_P.Sommets_T) of Boolean;
+      type Table_Sommets_T is array (Demo_P.Sommet_T) of Boolean;
 
       Str_Min : constant String := Integer'Image (Table_Sommets_T'Length - 1);
    begin

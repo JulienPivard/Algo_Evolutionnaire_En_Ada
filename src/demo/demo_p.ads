@@ -14,7 +14,7 @@ package Demo_P
       Spark_Mode     => Off
 is
 
-   type Sommets_T is
+   type Sommet_T is
       (
          A, B, C, D, E, F, G, H, I, J, K
       );

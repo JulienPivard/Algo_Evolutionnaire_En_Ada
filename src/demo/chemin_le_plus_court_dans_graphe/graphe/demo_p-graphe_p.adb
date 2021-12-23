@@ -6,8 +6,8 @@ is
    function Sont_Adjacents
       (
          G : in     Graphe_T;
-         X : in     Sommets_T;
-         Y : in     Sommets_T
+         X : in     Sommet_T;
+         Y : in     Sommet_T
       )
       return Boolean
    is
@@ -21,14 +21,14 @@ is
    function Lister_Les_Voisins
       (
          G : in     Graphe_T;
-         X : in     Sommets_T
+         X : in     Sommet_T
       )
       return Voisins_T
    is
       Compteur : Natural := 0;
    begin
       Boucle_Compter_Nb_Voisins :
-      for I in Sommets_T loop
+      for I in Sommet_T loop
          if G.Matrice (X, I).Presente or else G.Matrice (I, X).Presente then
             Compteur := Compteur + 1;
          end if;
@@ -42,7 +42,7 @@ is
          Compteur := 0;
 
          Boucle_Recenser_Voisins :
-         for I in Sommets_T loop
+         for I in Sommet_T loop
             if G.Matrice (X, I).Presente or else G.Matrice (I, X).Presente then
                Compteur := Compteur + 1;
                Resultat (Compteur) := I;
@@ -58,8 +58,8 @@ is
    procedure Ajouter_Areste
       (
          G : in out Graphe_T;
-         X : in     Sommets_T;
-         Y : in     Sommets_T
+         X : in     Sommet_T;
+         Y : in     Sommet_T
       )
    is
       Areste : Areste_T renames G.Matrice (X, Y);
@@ -72,8 +72,8 @@ is
    procedure Ajouter_Areste
       (
          G : in out Graphe_T;
-         X : in     Sommets_T;
-         Y : in     Sommets_T;
+         X : in     Sommet_T;
+         Y : in     Sommet_T;
          V : in     Poids_Areste_T
       )
    is
@@ -91,8 +91,8 @@ is
    procedure Ajouter_Areste_Orientee
       (
          G : in out Graphe_T;
-         X : in     Sommets_T;
-         Y : in     Sommets_T;
+         X : in     Sommet_T;
+         Y : in     Sommet_T;
          V : in     Poids_Areste_T
       )
    is
@@ -107,8 +107,8 @@ is
    procedure Supprimer_Areste
       (
          G : in out Graphe_T;
-         X : in     Sommets_T;
-         Y : in     Sommets_T
+         X : in     Sommet_T;
+         Y : in     Sommet_T
       )
    is
       Areste : Areste_T renames G.Matrice (X, Y);
@@ -121,7 +121,7 @@ is
    function Lire_Valeur_Sommet
       (
          G : in     Graphe_T;
-         X : in     Sommets_T
+         X : in     Sommet_T
       )
       return Poids_Sommet_T
    is
@@ -134,7 +134,7 @@ is
    procedure Fixer_Valeur_Sommet
       (
          G : in out Graphe_T;
-         X : in     Sommets_T;
+         X : in     Sommet_T;
          V : in     Poids_Sommet_T
       )
    is
@@ -147,8 +147,8 @@ is
    function Lire_Valeur_Areste
       (
          G : in     Graphe_T;
-         X : in     Sommets_T;
-         Y : in     Sommets_T
+         X : in     Sommet_T;
+         Y : in     Sommet_T
       )
       return Poids_Areste_T
    is
@@ -162,8 +162,8 @@ is
    procedure Fixer_Valeur_Areste
       (
          G : in out Graphe_T;
-         X : in     Sommets_T;
-         Y : in     Sommets_T;
+         X : in     Sommet_T;
+         Y : in     Sommet_T;
          V : in     Poids_Areste_T
       )
    is

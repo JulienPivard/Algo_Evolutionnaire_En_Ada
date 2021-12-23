@@ -21,7 +21,7 @@ is
    procedure Ajouter
       (
          Chemin           : in out Chemin_T;
-         Sommet           : in     Sommets_T;
+         Sommet           : in     Sommet_T;
          Ajout_Est_Reussi :    out Boolean
       );
    --  Ajoute un sommet à la suite du chemin.
@@ -78,7 +78,7 @@ is
    function Sommet_Est_Present
       (
          Chemin : in     Chemin_T;
-         Sommet : in     Sommets_T
+         Sommet : in     Sommet_T
       )
       return Boolean;
    --  Vérifie si le sommet est présent dans le chemin.
@@ -90,14 +90,14 @@ is
 
 private
 
-   Premier : constant Sommets_T := Sommets_T'First;
-   Dernier : constant Sommets_T := Sommets_T'Last;
+   Premier : constant Sommet_T := Sommet_T'First;
+   Dernier : constant Sommet_T := Sommet_T'Last;
 
-   type Apparition_Sommets_T is array (Sommets_T) of Boolean;
+   type Apparition_Sommets_T is array (Sommet_T) of Boolean;
 
    type Position_T is range 1 .. Apparition_Sommets_T'Length;
 
-   type Table_Sommets_T is array (Position_T) of Sommets_T;
+   type Table_Sommets_T is array (Position_T) of Sommet_T;
 
    type Chemin_T is tagged
       record
