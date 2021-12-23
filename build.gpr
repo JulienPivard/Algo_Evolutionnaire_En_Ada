@@ -1,4 +1,4 @@
---  Dernière modification : Samedi 13 novembre[11] 2021
+--  Dernière modification : Jeudi 23 décembre[12] 2021
 --  Auteur : PIVARD Julien
 
 --  https://gcc.gnu.org/releases.html
@@ -190,6 +190,10 @@ project Build is
    --  https://docs.adacore.com/gprbuild-docs/html/gprbuild_ug.html
    ----------------------------------------------------------------------------
    package Naming is
+      --  Pour lier le nom dans le code et le nom du fichier de spec
+      --for Spec ("MyPack.MyChild") use "mypack.mychild.spec";
+      --  Même chose mais pour le corps.
+      --for Body ("MyPack.MyChild") use "mypack.mychild.body";
       case Sorte_D_Algo is
          when "seq" =>
             for Spec ("A_E_P.Algo_Evolutionnaire_G") use
@@ -245,13 +249,13 @@ project Build is
             --            ne peut pas importer une unité Preelaborate.
             --  -gnata : active les assertions. Pragma : assert, debug,
             --           Check, Precondition, et Postcondition
-            for Default_Switches ("Ada") use
-               Options & ("-g", "-O0", "-gnata", "-gnateP");
+            Options := Options & ("-g", "-O0", "-gnata", "-gnateP");
          when "release" =>
             --  -gnatn : Active les pragma Inline (optimisation)
-            for Default_Switches ("Ada") use Options & ("-O3", "-gnatn");
+            Options := Options & ("-O3", "-gnatn");
       end case;
 
+      for Default_Switches ("Ada")    use Options;
       for Local_Configuration_Pragmas use "./config/gnat.adc";
    end Compiler;
    ----------------------------------------------------------------------------
