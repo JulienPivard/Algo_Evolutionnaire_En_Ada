@@ -20,7 +20,10 @@ is
 private
 
    procedure Tracer_Ligne_Encadrement;
+   --  Trace une ligne horizontale de la bonne largeur
+   --  pour l'encadrement du graphe.
 
    procedure Afficher_Sommets;
+   --  Affiche tous les sommets sur une ligne
 
 end Demo_P.Graphe_P.Text_IO;
