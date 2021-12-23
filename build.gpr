@@ -6,7 +6,7 @@
 project Build is
 
    --  Les énumérations sont des types accepté.
-   type Mode_Compilation_T    is ("debug", "release");
+   type Mode_Compilation_T    is ("debug",  "dev", "release");
 
    type Verbeux_T             is ("non", "oui");
    type Strict_T              is ("non", "oui");
@@ -21,7 +21,7 @@ project Build is
    --  À utiliser avec
    --  -d pour afficher la progression et -p pour créer les dossier
    --  gprbuild -d -p -Pbuild.gpr -Xmode=release
-   Mode_Compilation  : Mode_Compilation_T := External ("mode",    "debug");
+   Mode_Compilation  : Mode_Compilation_T := External ("mode",    "dev");
    Verbeux           : Verbeux_T          := External ("verbeux", "non");
    Strict            : Strict_T           := External ("strict",  "non");
 
@@ -226,7 +226,7 @@ project Build is
          when "debug" =>
             --  -g : Active le mode debug.
             Options_Builder := Options_Builder & ("-g");
-         when "release" =>
+         when "release" | "dev" =>
             null;
       end case;
 
@@ -243,6 +243,13 @@ project Build is
    ----------------------------------------------------------------------------
    package Compiler is
       case Mode_Compilation is
+         when "dev" =>
+            --  -gnateP : Transforme les erreurs de catégorisation des
+            --            dépendances en avertissements. Une unité Pure
+            --            ne peut pas importer une unité Preelaborate.
+            --  -gnata : active les assertions. Pragma : assert, debug,
+            --           Check, Precondition, et Postcondition
+            Options := Options & ("-O0", "-gnata", "-gnateP");
          when "debug" =>
             --  -gnateP : Transforme les erreurs de catégorisation des
             --            dépendances en avertissements. Une unité Pure
@@ -317,6 +324,10 @@ project Build is
       end case;
       -----------------------------------------------
       case Mode_Compilation is
+         when "dev" =>
+            --  -E : Active le stockage de la pile d'appel
+            --       de l'exception.
+            Options_Binder := Options_Binder & ("-E");
          when "debug" =>
             --  -E : Active le stockage de la pile d'appel
             --       de l'exception.
@@ -360,7 +371,7 @@ project Build is
       case Mode_Compilation is
          when "debug" =>
             for Default_Switches ("Ada") use ("-g");
-         when "release" =>
+         when "release" | "dev" =>
             null;
       end case;
    end Linker;
