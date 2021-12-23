@@ -1,3 +1,4 @@
+with Ada.Containers.Formal_Doubly_Linked_Lists;
 with Ada.Numerics.Discrete_Random;
 
 with Demo_P.Graphe_P;
@@ -77,6 +78,11 @@ is
    end Generer;
    ---------------------------------------------------------------------------
 
+   package Position_Sommets_En_Double_P is new
+      Ada.Containers.Formal_Doubly_Linked_Lists (Element_Type => Position_T);
+   subtype Position_Sommets_En_Double_T is Position_Sommets_En_Double_P.List
+      (Capacity => Apparition_Sommets_T'Length);
+
    ---------------------------------------------------------------------------
    function Accoupler
       (
@@ -87,6 +93,11 @@ is
    is
       Piece    : Piece_T;
       Resultat : Probleme_Chemin_T;
+      Sommet   : Sommets_T;
+
+      Position_Sommets_En_Double : Position_Sommets_En_Double_T;
+      Apparition_Sommets         : Apparition_Sommets_T :=
+         Apparition_Sommets_T'(others => False);
    begin
       Boucle_Parcours_Chemins :
       for I in Position_T loop
@@ -100,6 +111,43 @@ is
                      Autre.Chemin.Sommets (I)
             );
       end loop Boucle_Parcours_Chemins;
+
+      if not Sommets_Sont_Uniques (Chemin => Resultat.Chemin) then
+         Boucle_Trouver_Sommets_En_Double :
+         for I in Position_T loop
+            Sommet := Resultat.Chemin.Sommets (I);
+            if Apparition_Sommets (Sommet) then
+               Position_Sommets_En_Double_P.Append
+                  (
+                     Container => Position_Sommets_En_Double,
+                     New_Item  => I
+                  );
+            end if;
+            Apparition_Sommets (Sommet) := True;
+         end loop Boucle_Trouver_Sommets_En_Double;
+
+         Bloc_Trouver_Sommet_Absent :
+         declare
+            Sortir : Boolean   := False;
+            S      : Sommets_T := Sommets_T'First;
+         begin
+            Boucle_Remplacer_Sommets_En_Double :
+            for P : Position_T of Position_Sommets_En_Double loop
+               Boucle_Trouver_Sommet_Absent :
+               loop
+                  Sortir :=
+                     not Apparition_Sommets (S)
+                     or else
+                     S = Sommets_T'Last;
+                  exit Boucle_Trouver_Sommet_Absent when Sortir;
+                  S := Sommets_T'Succ (S);
+               end loop Boucle_Trouver_Sommet_Absent;
+
+               Resultat.Chemin.Sommets (P) := S;
+               Apparition_Sommets (S) := True;
+            end loop Boucle_Remplacer_Sommets_En_Double;
+         end Bloc_Trouver_Sommet_Absent;
+      end if;
 
       return Resultat;
    end Accoupler;
