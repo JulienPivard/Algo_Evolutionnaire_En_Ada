@@ -17,4 +17,10 @@ is
    --  @param Item
    --  Le graphe à afficher.
 
+private
+
+   procedure Tracer_Ligne_Encadrement;
+
+   procedure Afficher_Sommets;
+
 end Demo_P.Graphe_P.Text_IO;
