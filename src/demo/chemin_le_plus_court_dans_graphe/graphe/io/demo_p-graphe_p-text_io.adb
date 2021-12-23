@@ -9,6 +9,8 @@ is
    procedure Put_Line
       (Item : in     Graphe_T)
    is
+      package Sommet_IO is new Ada.Text_IO.Enumeration_IO (Enum => Sommets_T);
+
       Val_Arreste : String := " ";
    begin
       Ada.Text_IO.New_Line (Spacing => 1);
