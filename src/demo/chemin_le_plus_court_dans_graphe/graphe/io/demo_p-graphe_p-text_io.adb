@@ -14,14 +14,7 @@ is
       Val_Arreste : String := " ";
    begin
       Ada.Text_IO.New_Line (Spacing => 1);
-      Ada.Text_IO.Put (Item => "    ");
-
-      Boucle_Afficher_Ligne :
-      for S_L in Sommets_T loop
-         Sommet_IO.Put   (Item => S_L);
-         Ada.Text_IO.Put (Item => " ");
-      end loop Boucle_Afficher_Ligne;
-      Ada.Text_IO.New_Line (Spacing => 1);
+      Afficher_Sommets;
 
       Tracer_Ligne_Encadrement;
 
@@ -52,13 +45,7 @@ is
 
       Tracer_Ligne_Encadrement;
 
-      Ada.Text_IO.Put (Item => "    ");
-      Boucle_Afficher_Ligne_Fin :
-      for S_L in Sommets_T loop
-         Sommet_IO.Put   (Item => S_L);
-         Ada.Text_IO.Put (Item => " ");
-      end loop Boucle_Afficher_Ligne_Fin;
-      Ada.Text_IO.New_Line (Spacing => 1);
+      Afficher_Sommets;
    end Put_Line;
    ---------------------------------------------------------------------------
 
