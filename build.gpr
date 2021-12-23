@@ -1,4 +1,4 @@
---  Dernière modification : Lundi 28 juin[06] 2021
+--  Dernière modification : Samedi 13 novembre[11] 2021
 --  Auteur : PIVARD Julien
 
 --  https://gcc.gnu.org/releases.html
@@ -182,9 +182,7 @@ project Build is
    --  http://docs.adacore.com/gnatdoc-docs/users_guide/_build/html/gnatdoc.htm
    ----------------------------------------------------------------------------
    package Documentation is
-
       for Documentation_Dir use "doc";
-
    end Documentation;
    ----------------------------------------------------------------------------
 
@@ -192,7 +190,6 @@ project Build is
    --  https://docs.adacore.com/gprbuild-docs/html/gprbuild_ug.html
    ----------------------------------------------------------------------------
    package Naming is
-
       case Sorte_D_Algo is
          when "seq" =>
             for Spec ("A_E_P.Algo_Evolutionnaire_G") use
@@ -205,14 +202,12 @@ project Build is
             for Body ("A_E_P.Algo_Evolutionnaire_G") use
                "a_e_p-algo_evolutionnaire_parallele_g.adb";
       end case;
-
    end Naming;
    ----------------------------------------------------------------------------
 
    --  Configuration pour gprbuild
    ----------------------------------------------------------------------------
    package Builder is
-
       --  -s : Active la recompilation si un drapeau change
       --  -m : Recompilation minimum.
       --  -k : Va le plus loin possible lors de la compilation même si elle
@@ -237,14 +232,12 @@ project Build is
       --  Pour changer le nom du binaire de client à executable après le use.
       for Executable ("client.adb") use Nom_Executable;
       --  for Executable_Suffix         use ".exe";
-
    end Builder;
    ----------------------------------------------------------------------------
 
    --  Configuration pour le compiler
    ----------------------------------------------------------------------------
    package Compiler is
-
       case Mode_Compilation is
          when "debug" =>
             --  -gnateP : Transforme les erreurs de catégorisation des
@@ -258,15 +251,14 @@ project Build is
             --  -gnatn : Active les pragma Inline (optimisation)
             for Default_Switches ("Ada") use Options & ("-O3", "-gnatn");
       end case;
-      for Local_Configuration_Pragmas use "./config/gnat.adc";
 
+      for Local_Configuration_Pragmas use "./config/gnat.adc";
    end Compiler;
    ----------------------------------------------------------------------------
 
    --  Configuration pour gnatxref
    ----------------------------------------------------------------------------
    package Cross_Reference is
-
       for Default_Switches ("Ada") use
          (
             "-d",
@@ -280,17 +272,14 @@ project Build is
             "-v"
             --  -v : Génère un fichier de tag utilisable par vim.
          );
-
    end Cross_Reference;
    ----------------------------------------------------------------------------
 
    --  Pour vérifier que les règles de codage sont bien suivis :
    ----------------------------------------------------------------------------
    package Check is
-
       for Default_Switches ("Ada") use
          ("-rules", "-from=config/regles_de_codage");
-
    end Check;
    ----------------------------------------------------------------------------
 
@@ -302,9 +291,7 @@ project Build is
    --  statistics    - Same as provers, plus timing and steps information
    ----------------------------------------------------------------------------
    package Prove is
-
       for Default_Switches ("Ada") use ("--report=fail");
-
    end Prove;
    ----------------------------------------------------------------------------
 
@@ -314,7 +301,6 @@ project Build is
    --  Configuration pour le binder
    ----------------------------------------------------------------------------
    package Binder is
-
       Options_Binder := ();
 
       case Verbeux is
@@ -361,21 +347,18 @@ project Build is
       end case;
 
       for Default_Switches ("Ada") use Options_Binder;
-
    end Binder;
    ----------------------------------------------------------------------------
 
    --  Configuration pour le Linker
    ----------------------------------------------------------------------------
    package Linker is
-
       case Mode_Compilation is
          when "debug" =>
             for Default_Switches ("Ada") use ("-g");
          when "release" =>
             null;
       end case;
-
    end Linker;
    ----------------------------------------------------------------------------
 
@@ -383,7 +366,6 @@ project Build is
    --  https://docs.adacore.com/gnat_ugn-docs/html/gnat_ugn/gnat_ugn/gnat_utility_programs.html#the-gnat-pretty-printer-gnatpp
    ----------------------------------------------------------------------------
    package Pretty_Printer is
-
       for Default_Switches ("Ada") use
          (
             "--alignment",
@@ -452,25 +434,20 @@ project Build is
             "-N"
             --  Pas de tabulation dans les commentaires.
          );
-
    end Pretty_Printer;
    ----------------------------------------------------------------------------
 
    --  Configuration pour GPS.
    ----------------------------------------------------------------------------
    package Ide is
-
       for Vcs_Kind use "Git";
-
    end Ide;
    ----------------------------------------------------------------------------
 
    --  Indique quel makefile utiliser.
    ----------------------------------------------------------------------------
    package Make is
-
       for Makefile use "makefile";
-
    end Make;
    ----------------------------------------------------------------------------
 
