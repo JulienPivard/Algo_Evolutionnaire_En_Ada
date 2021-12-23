@@ -1,6 +1,6 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Samedi 13 novembre[11] 2021
+# Dernière modification : Jeudi 23 décembre[12] 2021
 
 ###################
 # Point d'entrée #
@@ -8,7 +8,7 @@
 .PHONY: all
 all: compiler
 
-MAKEFILE_V	:= 2.4.1
+MAKEFILE_V	:= 2.4.2
 
 # Ajout du chemin du compilateur gnat dans le path
 GNAT_BIN_LINUX			:= /usr/gnat/bin
@@ -94,6 +94,8 @@ build: $(FAIRE_INITIALISATION)
 	@echo " │                  Lancement de la compilation                  │"
 	@echo " └───────────────────────────────────────────────────────────────┘"
 	$(CC) -P$(GPR) $(OPTGPR)
+	@echo " ─────────────────────────────────────────────────────────────────"
+	@echo " Résultat écrit dans [$(RESLT_COMPIL)]"
 	@echo " ─────────────────────────────────────────────────────────────────"
 
 ###################
