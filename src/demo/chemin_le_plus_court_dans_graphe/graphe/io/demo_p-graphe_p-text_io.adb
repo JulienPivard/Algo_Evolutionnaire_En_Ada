@@ -14,7 +14,7 @@ is
       Val_Arreste : String := " ";
    begin
       Ada.Text_IO.New_Line (Spacing => 1);
-      Ada.Text_IO.Put (Item => "  ");
+      Ada.Text_IO.Put (Item => "    ");
 
       Boucle_Afficher_Ligne :
       for S_L in Sommets_T loop
@@ -34,7 +34,7 @@ is
       Boucle_Parcourir_Ligne :
       for S_L in Sommets_T loop
          Sommet_IO.Put   (Item => S_L);
-         Ada.Text_IO.Put (Item => " ");
+         Ada.Text_IO.Put (Item => " | ");
 
          Boucle_Parcourir_Colonne :
          for S_C in Sommets_T loop
@@ -50,7 +50,7 @@ is
                Ada.Text_IO.Put (Item => "- ");
             end if;
          end loop Boucle_Parcourir_Colonne;
-         Ada.Text_IO.Put (Item => " ");
+         Ada.Text_IO.Put (Item => "| ");
          Sommet_IO.Put   (Item => S_L);
          Ada.Text_IO.New_Line (Spacing => 1);
       end loop Boucle_Parcourir_Ligne;
@@ -63,7 +63,7 @@ is
       Ada.Text_IO.Put (Item => "+");
       Ada.Text_IO.New_Line (Spacing => 1);
 
-      Ada.Text_IO.Put (Item => "  ");
+      Ada.Text_IO.Put (Item => "    ");
       Boucle_Afficher_Ligne_Fin :
       for S_L in Sommets_T loop
          Sommet_IO.Put   (Item => S_L);
