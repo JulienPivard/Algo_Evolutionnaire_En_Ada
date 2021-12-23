@@ -33,6 +33,8 @@ is
                      Side   => Ada.Strings.Both
                   );
                Ada.Text_IO.Put (Item => Val_Arreste & " ");
+            elsif S_L = S_C then
+               Ada.Text_IO.Put (Item => "* ");
             else
                Ada.Text_IO.Put (Item => "- ");
             end if;
