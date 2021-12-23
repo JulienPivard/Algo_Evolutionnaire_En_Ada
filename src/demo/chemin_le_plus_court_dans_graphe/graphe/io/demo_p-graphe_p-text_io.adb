@@ -23,13 +23,7 @@ is
       end loop Boucle_Afficher_Ligne;
       Ada.Text_IO.New_Line (Spacing => 1);
 
-      Ada.Text_IO.Put (Item => "  +-");
-      Boucle_Separateur_Haut :
-      for S_L in Sommets_T loop
-         Ada.Text_IO.Put (Item => "--");
-      end loop Boucle_Separateur_Haut;
-      Ada.Text_IO.Put (Item => "+");
-      Ada.Text_IO.New_Line (Spacing => 1);
+      Tracer_Ligne_Encadrement;
 
       Boucle_Parcourir_Ligne :
       for S_L in Sommets_T loop
@@ -56,13 +50,7 @@ is
          Ada.Text_IO.New_Line (Spacing => 1);
       end loop Boucle_Parcourir_Ligne;
 
-      Ada.Text_IO.Put (Item => "  +-");
-      Boucle_Separateur_Bas :
-      for S_L in Sommets_T loop
-         Ada.Text_IO.Put (Item => "--");
-      end loop Boucle_Separateur_Bas;
-      Ada.Text_IO.Put (Item => "+");
-      Ada.Text_IO.New_Line (Spacing => 1);
+      Tracer_Ligne_Encadrement;
 
       Ada.Text_IO.Put (Item => "    ");
       Boucle_Afficher_Ligne_Fin :
