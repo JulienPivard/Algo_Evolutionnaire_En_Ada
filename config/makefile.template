@@ -1,6 +1,6 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Jeudi 23 décembre[12] 2021
+# Dernière modification : Lundi 14 février[02] 2022
 
 ###################
 # Point d'entrée #
@@ -61,6 +61,7 @@ version:
 	$(COMPILATEUR) --version
 	gnatmake --version
 	gnat --version
+	gnatls -v
 
 ###################
 .PHONY: version_makefile
@@ -72,6 +73,7 @@ version_makefile:
 initialiser_sous_modules:
 	git submodule init
 	git submodule update
+	git submodule foreach git checkout master
 
 ###################
 .PHONY: maj_sous_modules
@@ -89,7 +91,8 @@ maj_sous_modules:
 ###################
 .PHONY: build
 build: $(FAIRE_INITIALISATION)
-	@echo "  "
+	@echo " "
+	gnatls -v
 	@echo " ┌───────────────────────────────────────────────────────────────┐"
 	@echo " │                  Lancement de la compilation                  │"
 	@echo " └───────────────────────────────────────────────────────────────┘"
