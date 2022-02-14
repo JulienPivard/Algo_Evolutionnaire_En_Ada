@@ -35,14 +35,10 @@ ifeq ($(NOMAPP), )
     $(info makefile.conf:24: ***    Le nom du programme [NOMAPP] est vide)
 endif
 
-# On vérifie que MODE_COMPILE vaut bien [true|false]
-ifneq ($(MODE_COMPILE), dev)
-  ifneq ($(MODE_COMPILE), deb)
-    ifneq ($(MODE_COMPILE), rel)
+# On vérifie que MODE_COMPILE vaut bien [dev|deb|rel]
+ifneq ($(MODE_COMPILE), $(filter $(MODE_COMPILE), dev deb rel))
       $(info makefile.conf:28: *** [MODE_COMPILE] doit être dev rel, ou deb)
       $(error Compilation impossible)
-    endif
-  endif
 endif
 
 # On vérifie que NIVEAU_OPTIMI vaut bien [defaut|0|1|2|3]
