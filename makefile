@@ -42,14 +42,14 @@ run: $(DEPEND)
 
 ###################
 .PHONY: compiler
-compiler: build
+compiler: makefile.conf build
 	@echo " ───────────────────────────────"
 	@echo " [OK] Compilation du programme : [ $(NOMAPP) ] terminé"
 	@echo "  "
 
 ###################
 .PHONY: prod
-prod: $(FAIRE_INITIALISATION)
+prod: makefile.conf $(FAIRE_INITIALISATION)
 	$(CC) -P$(GPR) $(OPT_GPR_PROD)
 	@echo " ─────────────────────────────────────────────────────────────────"
 	@echo " Résultat écrit dans [$(RESLT_COMPIL)]"
@@ -57,33 +57,33 @@ prod: $(FAIRE_INITIALISATION)
 
 ###################
 .PHONY: doc
-doc: $(FAIRE_INITIALISATION)
+doc: makefile.conf $(FAIRE_INITIALISATION)
 	gnatls -v
 	gnatdoc -P$(GPR) $(OPTGPR) $(OPTDOCUMENT)
 
 ###################
 .PHONY: prove
-prove: $(FAIRE_INITIALISATION)
+prove: makefile.conf $(FAIRE_INITIALISATION)
 	gnatprove -P$(GPR) $(OPTGPR) $(NIVEAU) $(RAPPORT) $(MODE_EXE)
 
 ###################
 .PHONY: check
-check: $(FAIRE_INITIALISATION)
+check: makefile.conf $(FAIRE_INITIALISATION)
 	gnatcheck -P$(GPR) $(OPTGPR) $(OPT_CHECK)
 
 ###################
 .PHONY: pretty
-pretty: $(FAIRE_INITIALISATION)
+pretty: makefile.conf $(FAIRE_INITIALISATION)
 	gnatpp -P$(GPR) $(Fichier)
 
 ###################
 .PHONY: cleandoc
-cleandoc:
+cleandoc: makefile.conf
 	$(RM) $(OPTRM) doc
 
 ###################
 .PHONY: help
-help:
+help: makefile.conf
 	@echo "Liste des commandes :"
 	@echo " - all			: Compile l'application."
 	@echo "    - build"
