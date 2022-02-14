@@ -13,3 +13,4 @@ tags
 .\#*\#
 
 # Autres fichiers hors du projet
+makefile.conf
