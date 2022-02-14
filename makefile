@@ -13,7 +13,7 @@ include ./config/makefile.fixe
 ifeq ($(wildcard makefile.conf), )
     include ./config/makefile.conf.tmpl
 else
-include ./makefile.conf
+    include ./makefile.conf
 endif
 include ./config/makefile.checks
 include ./config/makefile.template
@@ -25,6 +25,15 @@ ifeq ($(wildcard $(RESLT_COMPIL)), )
 else
     DEPEND	=
 endif
+
+###################
+config/makefile.conf.tmpl:
+
+###################
+makefile.conf: config/makefile.conf.tmpl
+	cp ./config/makefile.conf.tmpl ./makefile.conf
+	chmod u+w ./makefile.conf
+	@echo " "
 
 ###################
 .PHONY: run
