@@ -1,6 +1,6 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Lundi 14 février[02] 2022
+# Dernière modification : Mardi 22 février[02] 2022
 
 SHELL		:= /bin/sh
 .DEFAULT_GOAL	:= all
@@ -50,6 +50,7 @@ compiler: makefile.conf build
 ###################
 .PHONY: prod
 prod: makefile.conf $(FAIRE_INITIALISATION)
+	which $(COMPILATEUR)
 	$(CC) -P$(GPR) $(OPT_GPR_PROD)
 	@echo " ─────────────────────────────────────────────────────────────────"
 	@echo " Résultat écrit dans [$(RESLT_COMPIL)]"
@@ -58,23 +59,26 @@ prod: makefile.conf $(FAIRE_INITIALISATION)
 ###################
 .PHONY: doc
 doc: makefile.conf $(FAIRE_INITIALISATION)
-	gnatls -v
-	gnatdoc -P$(GPR) $(OPTGPR) $(OPTDOCUMENT)
+	which $(GNAT_DOC)
+	$(GNAT_DOC) -P$(GPR) $(OPTGPR) $(OPTDOCUMENT)
 
 ###################
 .PHONY: prove
 prove: makefile.conf $(FAIRE_INITIALISATION)
-	gnatprove -P$(GPR) $(OPTGPR) $(NIVEAU) $(RAPPORT) $(MODE_EXE)
+	which $(GNATPROVE)
+	$(GNATPROVE) -P$(GPR) $(OPTGPR) $(NIVEAU) $(RAPPORT) $(MODE_EXE)
 
 ###################
 .PHONY: check
 check: makefile.conf $(FAIRE_INITIALISATION)
-	gnatcheck -P$(GPR) $(OPTGPR) $(OPT_CHECK)
+	which $(GNATCHECK)
+	$(GNATCHECK) -P$(GPR) $(OPTGPR) $(OPT_CHECK)
 
 ###################
 .PHONY: pretty
 pretty: makefile.conf $(FAIRE_INITIALISATION)
-	gnatpp -P$(GPR) $(Fichier)
+	which $(GNATPP)
+	$(GNATPP) -P$(GPR) $(Fichier)
 
 ###################
 .PHONY: cleandoc
