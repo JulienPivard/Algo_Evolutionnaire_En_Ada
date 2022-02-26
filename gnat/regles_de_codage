@@ -50,7 +50,7 @@
 --  Signal tous de tests d'égalités entre deux flottants
 +R Float_Equality_Checks
 --  Procédure qui sont écriture avec le même style que des fonctions
-+R Function_Style_Procedures
+-R Function_Style_Procedures
 --  Définition de générique dans le corps d'un sous programme
 +R Generics_In_Subprograms
 --  Dans les paramètre le mot in doit être écrit explicitement
