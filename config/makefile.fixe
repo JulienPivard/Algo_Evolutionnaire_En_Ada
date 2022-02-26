@@ -1,6 +1,6 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Lundi 14 février[02] 2022
+# Dernière modification : Samedi 26 février[02] 2022
 
 ###############
 # Partie Fixe #
@@ -48,3 +48,11 @@ OPTGPR		= $(GPR_MODE) $(GPR_VERBEUX) $(GPR_STRICT) $(GPR_W_SONT_E) \
 		  $(GPR_ALGO_S_P)
 
 OPTCOMPTAGE	= -l #-w
+
+GNATCHECK	:= gnatcheck
+GNATLS		:= gnatls
+GNATMAKE	:= gnatmake
+GNATPP		:= gnatpp
+GNATPROVE	:= gnatprove
+GNAT_DOC	:= gnatdoc
+GNAT_GNAT	:= gnat
