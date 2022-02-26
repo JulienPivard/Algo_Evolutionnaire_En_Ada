@@ -123,7 +123,20 @@ private
          Actuel.Score <= Reference.Score + Seuil_De_Convergence
       );
 
+   pragma Annotate
+      (
+         gnatcheck,
+         Exempt_On,
+         "Global_Variables",
+         "N'est pas modifié apres initialisation"
+      );
    Graphe : Graphe_P.Graphe_T
       with Constant_After_Elaboration => True;
+   pragma Annotate
+      (
+         gnatcheck,
+         Exempt_Off,
+         "Global_Variables"
+      );
 
 end Demo_P.Chemin_P.Evo_P;

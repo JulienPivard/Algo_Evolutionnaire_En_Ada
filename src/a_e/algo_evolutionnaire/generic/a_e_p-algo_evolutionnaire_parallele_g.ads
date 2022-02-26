@@ -210,7 +210,20 @@ private
    --  Pour définir les tables de transfert
    --  de population entre les îlots voisin.
 
+   pragma Annotate
+      (
+         gnatcheck,
+         Exempt_On,
+         "Global_Variables",
+         "Objets protégé, obligatoirement globale car Ravenscar"
+      );
    Table_De_Demarreurs : Table_De_Demarreurs_T;
+   pragma Annotate
+      (
+         gnatcheck,
+         Exempt_Off,
+         "Global_Variables"
+      );
 
    -----------------------------
    protected type Transfert_T is
@@ -238,8 +251,21 @@ private
    --  Pour définir les tables de transfert
    --  de population entre les îlots voisin.
 
+   pragma Annotate
+      (
+         gnatcheck,
+         Exempt_On,
+         "Global_Variables",
+         "Objets protégé, obligatoirement globale car Ravenscar"
+      );
    Tables_De_Transfert : Tables_De_Transfert_T;
    --  Table de transfert de population.
+   pragma Annotate
+      (
+         gnatcheck,
+         Exempt_Off,
+         "Global_Variables"
+      );
 
    ---------------------------
    protected Controleur_Fin is
@@ -289,9 +315,22 @@ private
    --  Un îlot de population qui évolue en vase clôt jusqu'à ce qu'un
    --  échange ait lieu.
 
+   pragma Annotate
+      (
+         gnatcheck,
+         Exempt_On,
+         "Global_Variables",
+         "Tâches, obligatoirement globale car Ravenscar"
+      );
    Islot_1 : Islot_T (Id => 0);
    Islot_2 : Islot_T (Id => 1);
    Islot_3 : Islot_T (Id => 2);
    Islot_4 : Islot_T (Id => 3);
+   pragma Annotate
+      (
+         gnatcheck,
+         Exempt_Off,
+         "Global_Variables"
+      );
 
 end A_E_P.Algo_Evolutionnaire_G;

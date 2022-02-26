@@ -27,6 +27,8 @@ is
    procedure Generer
       (Parametres : in out Probleme_Chemin_T)
    is
+      subtype Pos_Tmp_T is Position_T range Parametres.Chemin.Sommets'Range;
+
       Sommets_Deja_Utilise : Apparition_Sommets_T :=
          Apparition_Sommets_T'(others => False);
 
@@ -38,7 +40,7 @@ is
       S        : Sommet_T;
    begin
       Boucle_Construire_Chemin :
-      for I in Parametres.Chemin.Sommets'Range loop
+      for I in Pos_Tmp_T loop
          S := Alea_Sommets_P.Random (Gen => Generateur_Sommets);
          Nb_Tours := 0;
 
@@ -168,9 +170,7 @@ is
             Chemin => Parametres.Chemin,
             Graphe => Graphe
          );
-      if Chemin_Est_Valide then
-         null;
-      else
+      if not Chemin_Est_Valide then
          Resultat := Resultat + (Score_T'Last / 2);
       end if;
       return Resultat_T'(Score => Resultat);
