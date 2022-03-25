@@ -1,6 +1,6 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Samedi 26 février[02] 2022
+# Dernière modification : Vendredi 25 mars[03] 2022
 
 ###############
 # Partie Fixe #
@@ -33,6 +33,8 @@ OPT_GPR_PROD	= $(NOM_OPT_MODE)=release \
 		  $(NOM_OPT_VERB)=non $(NOM_OPT_STRI)=non \
 		  $(NOM_OPT_STAK)=non $(NOM_OPT_ELAB)=non \
 		  $(NOM_NIV_OPTI)=defaut $(NOM_OPT_ALGO)=$(ALGO_CHOISI_S_P)
+
+RESLT_COMPIL_PROD	= ./bin/release/$(CHOISIR_ALGO_DE_RESOLUTION)/executable
 
 GPR_MODE	= $(NOM_OPT_MODE)=$(MODE)
 GPR_VERBEUX	= $(NOM_OPT_VERB)=$(VERBEUX)

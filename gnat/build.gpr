@@ -1,4 +1,4 @@
---  Dernière modification : Samedi 26 février[02] 2022
+--  Dernière modification : Vendredi 25 mars[03] 2022
 --  Auteur : PIVARD Julien
 
 --  https://gcc.gnu.org/releases.html
@@ -186,6 +186,7 @@ project Build is
    --  http://docs.adacore.com/gnatdoc-docs/users_guide/_build/html/gnatdoc.htm
    ----------------------------------------------------------------------------
    package Documentation is
+      for Ignored_Subprojects use ("gnatcoll");
       for Documentation_Dir use "../doc";
    end Documentation;
    ----------------------------------------------------------------------------

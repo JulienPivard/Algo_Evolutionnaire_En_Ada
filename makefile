@@ -1,6 +1,6 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Mardi 22 février[02] 2022
+# Dernière modification : Mercredi 09 mars[03] 2022
 
 SHELL		:= /bin/sh
 .DEFAULT_GOAL	:= all
@@ -53,7 +53,7 @@ prod: makefile.conf $(FAIRE_INITIALISATION)
 	which $(COMPILATEUR)
 	$(CC) -P$(GPR) $(OPT_GPR_PROD)
 	@echo " ─────────────────────────────────────────────────────────────────"
-	@echo " Résultat écrit dans [$(RESLT_COMPIL)]"
+	@echo " Résultat écrit dans [$(RESLT_COMPIL_PROD)]"
 	@echo " ─────────────────────────────────────────────────────────────────"
 
 ###################
