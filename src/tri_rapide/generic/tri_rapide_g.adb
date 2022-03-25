@@ -114,7 +114,7 @@ is
       subtype Index_Sous_Table_T is Indice_G_T range Premier .. Dernier;
 
       package Pivot_Aleatoire is new
-         Ada.Numerics.Discrete_Random (Index_Sous_Table_T);
+         Ada.Numerics.Discrete_Random (Result_Subtype => Index_Sous_Table_T);
 
       Generateur : Pivot_Aleatoire.Generator;
    begin
@@ -140,7 +140,6 @@ is
       Echanger (T => Tableau, P1 => Position_Pivot, P2 => Dernier);
 
       for I in Index_Sous_Table_T loop
-
          --  Si la valeur lu doit être à gauche du pivot,
          --  on l'échange avec le première valeur qui doit
          --  être à droite du pivot. Puis on déplace notre
@@ -150,7 +149,6 @@ is
 
             J := Indice_G_T'Succ (J);
          end if;
-
       end loop;
 
       --  On met le pivot à la limite entre les valeurs plus grande
