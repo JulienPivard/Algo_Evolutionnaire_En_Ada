@@ -17,7 +17,7 @@ is
       (Item : in     Probleme_Surface_T)
    is
    begin
-      Ada.Text_IO.Put        (Item => " | D : ");
+      Ada.Text_IO.Put        (Item => " | Diamètre (D) : ");
       Valeur_Diametre_IO.Put (Item => Item.Diametre);
    end Put_Parametres;
    ---------------------------------------------------------------------------
