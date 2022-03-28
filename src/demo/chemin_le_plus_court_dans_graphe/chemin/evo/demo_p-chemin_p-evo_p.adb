@@ -19,7 +19,6 @@ is
    package Alea_Poids_P   is new Ada.Numerics.Discrete_Random
       (Result_Subtype => Poids_Tmp_T);
 
-   Generateur_Piece   : Alea_Piece_P.Generator;
    Generateur_Sommets : Alea_Sommets_P.Generator;
    Generateur_Poids   : Alea_Poids_P.Generator;
 
@@ -93,6 +92,8 @@ is
       )
       return Probleme_Chemin_T
    is
+      Generateur_Piece : Alea_Piece_P.Generator;
+
       Piece    : Piece_T;
       Resultat : Probleme_Chemin_T;
       Sommet   : Sommet_T;
@@ -101,6 +102,8 @@ is
       Apparition_Sommets         : Apparition_Sommets_T :=
          Apparition_Sommets_T'(others => False);
    begin
+      Alea_Piece_P.Reset   (Gen => Generateur_Piece);
+
       Boucle_Parcours_Chemins :
       for I in Position_T loop
          Piece := Alea_Piece_P.Random (Gen => Generateur_Piece);
@@ -183,7 +186,6 @@ is
 
 begin
 
-   Alea_Piece_P.Reset   (Gen => Generateur_Piece);
    Alea_Sommets_P.Reset (Gen => Generateur_Sommets);
    Alea_Poids_P.Reset   (Gen => Generateur_Poids);
 
