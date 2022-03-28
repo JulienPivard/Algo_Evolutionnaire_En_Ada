@@ -12,11 +12,11 @@ is
    subtype Poids_Areste_T is Graphe_P.Poids_Areste_T;
    subtype Poids_Tmp_T    is Poids_Areste_T range 2 .. Poids_Areste_T'Last;
 
-   package Alea_Piece_P   is new Ada.Numerics.Discrete_Random
+   package Alea_Piece_P          is new Ada.Numerics.Discrete_Random
       (Result_Subtype => Piece_T);
-   package Alea_Sommets_P is new Ada.Numerics.Discrete_Random
+   package Alea_Sommets_P        is new Ada.Numerics.Discrete_Random
       (Result_Subtype => Sommet_T);
-   package Alea_Poids_P   is new Ada.Numerics.Discrete_Random
+   package Alea_Poids_P          is new Ada.Numerics.Discrete_Random
       (Result_Subtype => Poids_Tmp_T);
 
    Generateur_Sommets : Alea_Sommets_P.Generator;
@@ -40,7 +40,7 @@ is
    begin
       Boucle_Construire_Chemin :
       for I in Pos_Tmp_T loop
-         S := Alea_Sommets_P.Random (Gen => Generateur_Sommets);
+         S        := Alea_Sommets_P.Random (Gen => Generateur_Sommets);
          Nb_Tours := 0;
 
          Boucle_Trouver_Sommet_Libre :
@@ -92,17 +92,17 @@ is
       )
       return Probleme_Chemin_T
    is
-      Generateur_Piece : Alea_Piece_P.Generator;
+      Generateur_Piece          : Alea_Piece_P.Generator;
 
-      Piece    : Piece_T;
-      Resultat : Probleme_Chemin_T;
-      Sommet   : Sommet_T;
+      Piece          : Piece_T;
+      Resultat       : Probleme_Chemin_T;
+      Sommet         : Sommet_T;
 
       Position_Sommets_En_Double : Position_Sommets_En_Double_T;
       Apparition_Sommets         : Apparition_Sommets_T :=
          Apparition_Sommets_T'(others => False);
    begin
-      Alea_Piece_P.Reset   (Gen => Generateur_Piece);
+      Alea_Piece_P.Reset          (Gen => Generateur_Piece);
 
       Boucle_Parcours_Chemins :
       for I in Position_T loop
