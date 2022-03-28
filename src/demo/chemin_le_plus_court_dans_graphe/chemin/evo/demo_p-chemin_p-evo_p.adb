@@ -24,9 +24,9 @@ is
 
    ---------------------------------------------------------------------------
    procedure Generer
-      (Parametres : in out Probleme_Chemin_T)
+      (Pb_Chemin : in out Probleme_Chemin_T)
    is
-      subtype Pos_Tmp_T is Position_T range Parametres.Chemin.Sommets'Range;
+      subtype Pos_Tmp_T is Position_T range Pb_Chemin.Chemin.Sommets'Range;
 
       Sommets_Deja_Utilise : Apparition_Sommets_T :=
          Apparition_Sommets_T'(others => False);
@@ -46,16 +46,16 @@ is
          Boucle_Trouver_Sommet_Libre :
          loop
             Nb_Tours        := Nb_Tours + 1;
-            Est_Une_Impasse := Nb_Tours >= Parametres.Chemin.Sommets'Length;
+            Est_Une_Impasse := Nb_Tours >= Pb_Chemin.Chemin.Sommets'Length;
             exit Boucle_Trouver_Sommet_Libre when Est_Une_Impasse;
 
-            if I = Parametres.Chemin.Sommets'First then
+            if I = Pb_Chemin.Chemin.Sommets'First then
                Chemin_Existe := True;
             else
                Chemin_Existe := Graphe_P.Sont_Adjacents
                   (
                      G => Graphe,
-                     X => Parametres.Chemin.Sommets (Position_T'Pred (I)),
+                     X => Pb_Chemin.Chemin.Sommets (Position_T'Pred (I)),
                      Y => S
                   );
             end if;
@@ -74,7 +74,7 @@ is
             exit Boucle_Trouver_Sommet_Libre when Suite_Chemin_Est_Ok;
          end loop Boucle_Trouver_Sommet_Libre;
 
-         Parametres.Chemin.Sommets (I) := S;
+         Pb_Chemin.Chemin.Sommets (I) := S;
       end loop Boucle_Construire_Chemin;
    end Generer;
    ---------------------------------------------------------------------------
@@ -87,8 +87,8 @@ is
    ---------------------------------------------------------------------------
    function Accoupler
       (
-         Parametres : in     Probleme_Chemin_T;
-         Autre      : in     Probleme_Chemin_T
+         Premier_Chemin : in     Probleme_Chemin_T;
+         Seconds_Chemin : in     Probleme_Chemin_T
       )
       return Probleme_Chemin_T
    is
@@ -111,9 +111,9 @@ is
             (
                case Piece is
                   when Face =>
-                     Parametres.Chemin.Sommets (I),
+                     Premier_Chemin.Chemin.Sommets (I),
                   when Pile =>
-                     Autre.Chemin.Sommets (I)
+                     Seconds_Chemin.Chemin.Sommets (I)
             );
       end loop Boucle_Parcours_Chemins;
 
@@ -160,17 +160,17 @@ is
 
    ---------------------------------------------------------------------------
    function Calculer
-      (Parametres : in     Probleme_Chemin_T)
+      (Pb_Chemin : in     Probleme_Chemin_T)
       return Resultat_T
    is
       Resultat : Score_T := Score_T'First;
 
       Chemin_Est_Valide : constant Boolean :=
-         Est_Valide (Chemin => Parametres.Chemin, Graphe => Graphe);
+         Est_Valide (Chemin => Pb_Chemin.Chemin, Graphe => Graphe);
    begin
       Resultat := Calculer_Score
          (
-            Chemin => Parametres.Chemin,
+            Chemin => Pb_Chemin.Chemin,
             Graphe => Graphe
          );
       if not Chemin_Est_Valide then

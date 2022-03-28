@@ -16,35 +16,35 @@ is
    --  Le problème de chemin à résoudre.
 
    procedure Generer
-      (Parametres : in out Probleme_Chemin_T);
+      (Pb_Chemin : in out Probleme_Chemin_T);
    --  Génère des valeurs aléatoires pour les paramètres stocké.
-   --  @param Parametres
-   --  Les paramètres.
+   --  @param Pb_Chemin
+   --  Le chemin dans le graphe.
 
    function Accoupler
       (
-         Parametres : in     Probleme_Chemin_T;
-         Autre      : in     Probleme_Chemin_T
+         Premier_Chemin : in     Probleme_Chemin_T;
+         Seconds_Chemin : in     Probleme_Chemin_T
       )
       return Probleme_Chemin_T;
    --  Accouple deux paramètres pour obtenir un nouveau
    --  jeu de paramètres.
-   --  @param Parametres
-   --  Les paramètres, premier parent.
-   --  @param Autre
-   --  Les paramètres, second parent.
+   --  @param Premier_Chemin
+   --  Le premier chemin, premier parent.
+   --  @param Seconds_Chemin
+   --  Le second chemin, second parent.
    --  @return Le jeu de paramètres issus de la combinaison des parents.
 
    type Resultat_T is private;
    --  Stock le résultat des calculs.
 
    function Calculer
-      (Parametres : in     Probleme_Chemin_T)
+      (Pb_Chemin : in     Probleme_Chemin_T)
       return Resultat_T;
    --  Calcul la formule en utilisant les valeurs de ses
    --  paramètres comme entrées de la fonction de la formule.
-   --  @param Parametres
-   --  Les paramètres de la fonction.
+   --  @param Pb_Chemin
+   --  Le chemin dans le graphe.
    --  @return Le résultat du calcul de la formule.
 
    function "<"
