@@ -9,6 +9,15 @@ is
 
    type Piece_T is (Pile, Face);
 
+   type Choix_Mutation_T is
+      (
+         Debut_Debut,
+         Debut_Fin,
+         Fin_Debut,
+         Fin_Fin,
+         A_L_Unitee
+      );
+
    subtype Poids_Areste_T is Graphe_P.Poids_Areste_T;
    subtype Poids_Tmp_T    is Poids_Areste_T range 2 .. Poids_Areste_T'Last;
 
@@ -18,6 +27,8 @@ is
       (Result_Subtype => Sommet_T);
    package Alea_Poids_P          is new Ada.Numerics.Discrete_Random
       (Result_Subtype => Poids_Tmp_T);
+   package Alea_Choix_Mutation_P is new Ada.Numerics.Discrete_Random
+      (Result_Subtype => Choix_Mutation_T);
 
    Generateur_Sommets : Alea_Sommets_P.Generator;
    Generateur_Poids   : Alea_Poids_P.Generator;
@@ -84,6 +95,17 @@ is
    subtype Position_Sommets_En_Double_T is Position_Sommets_En_Double_P.List
       (Capacity => Apparition_Sommets_T'Length);
 
+   Nb_Valeurs        : constant := Position_T'Last - Position_T'First + 1;
+   Nb_Valeurs_Moitie : constant := Nb_Valeurs / 2;
+
+   Est_Pair : constant Boolean := (Nb_Valeurs mod 2) = 0;
+
+   Pos_Moitie       : constant := Position_T'First + Nb_Valeurs_Moitie;
+
+   Pos_Moitie_Basse : constant := Pos_Moitie - 1;
+   Pos_Moitie_Debut : constant := Pos_Moitie - (if Est_Pair then 1 else 0);
+   Pos_Moitie_Haute : constant := Pos_Moitie + (if Est_Pair then 0 else 1);
+
    ---------------------------------------------------------------------------
    function Accoupler
       (
@@ -92,18 +114,55 @@ is
       )
       return Probleme_Chemin_T
    is
+      subtype Debut_Chemin_Bas_T  is Position_T range
+         Position_T'First .. Pos_Moitie_Basse;
+      subtype Fin_Chemin_Haut_T   is Position_T range
+         Pos_Moitie       .. Position_T'Last;
+      subtype Debut_Chemin_Haut_T is Position_T range
+         Position_T'First .. Pos_Moitie_Debut;
+      subtype Fin_Chemin_Bas_T    is Position_T range
+         Pos_Moitie_Haute .. Position_T'Last;
+
       Generateur_Piece          : Alea_Piece_P.Generator;
+      Generateur_Choix_Mutation : Alea_Choix_Mutation_P.Generator;
 
       Piece          : Piece_T;
       Resultat       : Probleme_Chemin_T;
       Sommet         : Sommet_T;
+      Choix_Mutation : Choix_Mutation_T;
 
       Position_Sommets_En_Double : Position_Sommets_En_Double_T;
       Apparition_Sommets         : Apparition_Sommets_T :=
          Apparition_Sommets_T'(others => False);
    begin
       Alea_Piece_P.Reset          (Gen => Generateur_Piece);
+      Alea_Choix_Mutation_P.Reset (Gen => Generateur_Choix_Mutation);
 
+      Choix_Mutation :=
+         Alea_Choix_Mutation_P.Random (Gen => Generateur_Choix_Mutation);
+
+      case Choix_Mutation is
+         when Debut_Debut =>
+            Resultat.Chemin.Sommets (Debut_Chemin_Haut_T) :=
+               Premier_Chemin.Chemin.Sommets (Debut_Chemin_Haut_T);
+            Resultat.Chemin.Sommets (Fin_Chemin_Bas_T) :=
+               Seconds_Chemin.Chemin.Sommets (Debut_Chemin_Bas_T);
+         when Debut_Fin =>
+            Resultat.Chemin.Sommets (Debut_Chemin_Haut_T) :=
+               Premier_Chemin.Chemin.Sommets (Debut_Chemin_Haut_T);
+            Resultat.Chemin.Sommets (Fin_Chemin_Bas_T) :=
+               Seconds_Chemin.Chemin.Sommets (Fin_Chemin_Bas_T);
+         when Fin_Debut =>
+            Resultat.Chemin.Sommets (Debut_Chemin_Haut_T) :=
+               Premier_Chemin.Chemin.Sommets (Fin_Chemin_Haut_T);
+            Resultat.Chemin.Sommets (Fin_Chemin_Bas_T) :=
+               Seconds_Chemin.Chemin.Sommets (Debut_Chemin_Bas_T);
+         when Fin_Fin =>
+            Resultat.Chemin.Sommets (Debut_Chemin_Haut_T) :=
+               Premier_Chemin.Chemin.Sommets (Fin_Chemin_Haut_T);
+            Resultat.Chemin.Sommets (Fin_Chemin_Bas_T) :=
+               Seconds_Chemin.Chemin.Sommets (Fin_Chemin_Bas_T);
+         when A_L_Unitee =>
       Boucle_Parcours_Chemins :
       for I in Position_T loop
          Piece := Alea_Piece_P.Random (Gen => Generateur_Piece);
@@ -116,6 +175,7 @@ is
                      Seconds_Chemin.Chemin.Sommets (I)
             );
       end loop Boucle_Parcours_Chemins;
+      end case;
 
       if not Sommets_Sont_Uniques (Chemin => Resultat.Chemin) then
          Boucle_Trouver_Sommets_En_Double :
