@@ -163,18 +163,18 @@ is
             Resultat.Chemin.Sommets (Fin_Chemin_Bas_T) :=
                Seconds_Chemin.Chemin.Sommets (Fin_Chemin_Bas_T);
          when A_L_Unitee =>
-      Boucle_Parcours_Chemins :
-      for I in Position_T loop
-         Piece := Alea_Piece_P.Random (Gen => Generateur_Piece);
-         Resultat.Chemin.Sommets (I) :=
-            (
-               case Piece is
-                  when Face =>
-                     Premier_Chemin.Chemin.Sommets (I),
-                  when Pile =>
-                     Seconds_Chemin.Chemin.Sommets (I)
-            );
-      end loop Boucle_Parcours_Chemins;
+            Boucle_Parcours_Chemins :
+            for I in Position_T loop
+               Piece := Alea_Piece_P.Random (Gen => Generateur_Piece);
+               Resultat.Chemin.Sommets (I) :=
+                  (
+                     case Piece is
+                        when Face =>
+                           Premier_Chemin.Chemin.Sommets (I),
+                        when Pile =>
+                           Seconds_Chemin.Chemin.Sommets (I)
+                  );
+            end loop Boucle_Parcours_Chemins;
       end case;
 
       if not Sommets_Sont_Uniques (Chemin => Resultat.Chemin) then
