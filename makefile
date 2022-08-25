@@ -1,6 +1,6 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Mercredi 09 mars[03] 2022
+# Dernière modification : Lundi 13 juin[06] 2022
 
 SHELL		:= /bin/sh
 .DEFAULT_GOAL	:= all
@@ -9,14 +9,16 @@ SHELL		:= /bin/sh
 
 srcdir		:= .
 
-include ./config/makefile.fixe
+DOSSIER_MAKE	:= dossier_makefiles
+
+include ./$(DOSSIER_MAKE)/makefile.fixe
 ifeq ($(wildcard makefile.conf), )
-    include ./config/makefile.conf.tmpl
+    include ./$(DOSSIER_MAKE)/makefile.conf.tmpl
 else
     include ./makefile.conf
 endif
-include ./config/makefile.checks
-include ./config/makefile.template
+include ./$(DOSSIER_MAKE)/makefile.checks
+include ./dossier_makefiles/makefile.template
 
 # Vérifie si le binaire existe. Sinon il ajoute la cible de compilation
 # en dépendance.
@@ -27,11 +29,11 @@ else
 endif
 
 ###################
-config/makefile.conf.tmpl:
+$(DOSSIER_MAKE)/makefile.conf.tmpl:
 
 ###################
-makefile.conf: config/makefile.conf.tmpl
-	cp ./config/makefile.conf.tmpl ./makefile.conf
+makefile.conf: $(DOSSIER_MAKE)/makefile.conf.tmpl
+	cp ./$(DOSSIER_MAKE)/makefile.conf.tmpl ./makefile.conf
 	chmod u+w ./makefile.conf
 	@echo " "
 
