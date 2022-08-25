@@ -1,4 +1,4 @@
---  Dernière modification : Vendredi 25 mars[03] 2022
+--  Dernière modification : Vendredi 26 août[08] 2022
 --  Auteur : PIVARD Julien
 
 --  https://gcc.gnu.org/releases.html
@@ -41,6 +41,8 @@ project Build is
    Fichier_Principal := "client.adb";
    Nom_Executable    := "executable";
 
+   --  Le langage du code source de la librairie.
+   for Languages                 use ("Ada");
    --  Le nom du fichier qui contient la procédure principale.
    for Main                      use (Fichier_Principal);
 
@@ -80,7 +82,7 @@ project Build is
    --  t : Les espaces dans les lignes
    --  u : vérifie les lignes vide
    --  x : vérifie les parenthèses inutile
-   Options :=
+   Options_Compiler :=
       (
          "-gnatef",
          --  gnatef : est la pour afficher le chemin complet des
@@ -145,7 +147,8 @@ project Build is
    --       variété de record
    case Verbeux is
       when "oui" =>
-         Options := Options & ("-gnatu", "-gnatv", "-gnatR3");
+         Options_Compiler :=
+            Options_Compiler & ("-gnatu", "-gnatv", "-gnatR3");
       when "non" =>
          null;
    end case;
@@ -155,7 +158,7 @@ project Build is
    --           Elaborate_All dans le code.
    case Afficher_Ordre_Elaboration is
       when "oui" =>
-         Options := Options & ("-gnatel");
+         Options_Compiler := Options_Compiler & ("-gnatel");
       when "non" =>
          null;
    end case;
@@ -163,7 +166,7 @@ project Build is
    --  gnatg : applique -gnatwae et -gnatyg pour coller au style du code GNAT
    case Strict is
       when "oui" =>
-         Options := Options & ("-gnatg");
+         Options_Compiler := Options_Compiler & ("-gnatg");
       when "non" =>
          null;
    end case;
@@ -171,7 +174,7 @@ project Build is
    --  -gnatwe : Les avertissements deviennent des erreurs
    case Warn_Deviennent_Erreurs is
       when "oui" =>
-         Options := Options & ("-gnatwe");
+         Options_Compiler := Options_Compiler & ("-gnatwe");
       when "non" =>
          null;
    end case;
@@ -254,38 +257,38 @@ project Build is
             --            ne peut pas importer une unité Preelaborate.
             --  -gnata : active les assertions. Pragma : assert, debug,
             --           Check, Precondition, et Postcondition
-            Options := Options & ("-gnata", "-gnateP");
+            Options_Compiler := Options_Compiler & ("-gnata", "-gnateP");
          when "debug" =>
             --  -gnateP : Transforme les erreurs de catégorisation des
             --            dépendances en avertissements. Une unité Pure
             --            ne peut pas importer une unité Preelaborate.
             --  -gnata : active les assertions. Pragma : assert, debug,
             --           Check, Precondition, et Postcondition
-            Options := Options & ("-g", "-gnata", "-gnateP");
+            Options_Compiler := Options_Compiler & ("-g", "-gnata", "-gnateP");
          when "release" =>
             --  -gnatn : Active les pragma Inline (optimisation)
-            Options := Options & ("-gnatn");
+            Options_Compiler := Options_Compiler & ("-gnatn");
       end case;
 
       case Niveau_Optimisation is
          when "defaut" =>
             case Mode_Compilation is
                when "dev" | "debug" =>
-                  Options := Options & ("-O0");
+                  Options_Compiler := Options_Compiler & ("-O0");
                when "release"       =>
-                  Options := Options & ("-O3");
+                  Options_Compiler := Options_Compiler & ("-O3");
             end case;
          when "O0" =>
-            Options := Options & ("-O0");
+            Options_Compiler := Options_Compiler & ("-O0");
          when "O1" =>
-            Options := Options & ("-O1");
+            Options_Compiler := Options_Compiler & ("-O1");
          when "O2" =>
-            Options := Options & ("-O2");
+            Options_Compiler := Options_Compiler & ("-O2");
          when "O3" =>
-            Options := Options & ("-O3");
+            Options_Compiler := Options_Compiler & ("-O3");
       end case;
 
-      for Default_Switches ("Ada")    use Options;
+      for Default_Switches ("Ada")    use Options_Compiler;
       for Local_Configuration_Pragmas use "./gnat.adc";
    end Compiler;
    ----------------------------------------------------------------------------
