@@ -231,7 +231,7 @@ is
 
    package Population_Chemin_P is new A_E_P.Algo_Evolutionnaire_G
       (
-         Taille_Population      => Demo_P.Taille,
+         Taille_Population      => 1_000,
          Parametres_G_T         => Chemin_R.Probleme_Chemin_T,
          Generer                => Chemin_R.Generer,
          Accoupler              => Chemin_R.Accoupler,
