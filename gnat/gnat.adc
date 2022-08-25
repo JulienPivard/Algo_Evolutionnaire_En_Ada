@@ -1,5 +1,5 @@
 --  vim:filetype=ada
---  Dernière modification : Samedi 20 février[02] 2021
+--  Dernière modification : Mardi 03 mai[05] 2022
 --  Auteur : PIVARD Julien
 
 pragma Initialize_Scalars;
@@ -17,7 +17,7 @@ pragma Overflow_Mode
    );
 --  Permet de configurer le mode overflow des calculs intermédiaire.
 --   - Strict     : utilise le type de base pour faire les calculs
---                  intermédiaire.
+--                   intermédiaire.
 --   - Minimized  : utilise la plus grande représentation possible.
 --   - Eliminated : utilise la précision infinie. Attention au cout
 --                   d'exécution de ce type de calculs.
