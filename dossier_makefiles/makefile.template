@@ -1,6 +1,6 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Lundi 13 juin[06] 2022
+# Dernière modification : Vendredi 26 août[08] 2022
 
 ###################
 # Point d'entrée #
@@ -107,7 +107,7 @@ build: $(FAIRE_INITIALISATION)
 	@echo " └───────────────────────────────────────────────────────────────┘"
 	$(CC) -P$(GPR) $(OPTGPR)
 	@echo " ─────────────────────────────────────────────────────────────────"
-	@echo " Résultat écrit dans [$(RESLT_COMPIL)] en mode [ $(shell echo $(MODE) | tr '[:lower:]' '[:upper:]') ]"
+	@echo " Résultat écrit dans [$(RESLT_COMPIL)] en mode [ $(shell echo $(MODE) | tr '[:lower:]' '[:upper:]') ] [ $(shell echo $(ALGO_CHOISI_S_P) | tr '[:lower:]' '[:upper:]') ]"
 	@echo " ─────────────────────────────────────────────────────────────────"
 
 ###################
