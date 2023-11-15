@@ -54,7 +54,7 @@ generic
 --  Implémentation générique du tri rapide.
 --  @description
 --  Version la plus universel possible du tri rapide.
---  @group Tri rapide
+--  @group Tri
 package Tri_Rapide_G
    with
       Pure           => False,

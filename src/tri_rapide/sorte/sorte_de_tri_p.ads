@@ -3,7 +3,7 @@
 --  @description
 --  Fourni un moyen de contrôler la méthode utilisé
 --  pour choisir le pivot lors du tri rapide.
---  @group Selection Pivot
+--  @group Tri
 package Sorte_De_Tri_P
    with
       Pure           => True,

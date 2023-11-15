@@ -44,7 +44,7 @@ generic
 --  @description
 --  Version la plus universel possible du tri à bulle.
 --  Le tri se fait en partant de la fin du tableau.
---  @group Tri à bulle
+--  @group Tri
 package Tri_A_Bulle_G
    with Spark_Mode => Off
 is
