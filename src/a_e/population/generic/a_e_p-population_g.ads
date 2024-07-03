@@ -377,8 +377,8 @@ private
          Indice_G_T  => Indice_Population_T,
          Element_G_T => Individu_P.Individu_T,
          Table_G_T   => Table_Population_T,
-         Comparer    => Comparer_Maximiser,
-         Echanger    => Echanger
+         Comparer_G  => Comparer_Maximiser,
+         Echanger_G  => Echanger
       );
 
    package Tri_Rapide_Max_P is new Tri_Rapide_G
@@ -396,8 +396,8 @@ private
          Indice_G_T  => Indice_Population_T,
          Element_G_T => Individu_P.Individu_T,
          Table_G_T   => Table_Population_T,
-         Comparer    => Comparer_Minimiser,
-         Echanger    => Echanger
+         Comparer_G  => Comparer_Minimiser,
+         Echanger_G  => Echanger
       );
 
    package Tri_Rapide_Min_P is new Tri_Rapide_G

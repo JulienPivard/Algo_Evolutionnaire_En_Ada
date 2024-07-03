@@ -9,10 +9,11 @@ generic
    type Table_G_T   is array (Indice_G_T range <>) of Element_G_T;
    --  Un tableau d'éléments à trier.
 
-   with function Comparer
+   with function Comparer_G
       (
-         T              : in     Table_G_T;
-         Gauche, Droite : in     Indice_G_T
+         T      : in     Table_G_T;
+         Gauche : in     Indice_G_T;
+         Droite : in     Indice_G_T
       )
       return Boolean
    is <>;
@@ -26,10 +27,11 @@ generic
    --  La position de la valeur qui sera à droite dans la comparaison.
    --  @return Le résultat de la comparaison.
 
-   with procedure Echanger
+   with procedure Echanger_G
       (
-         T      : in out Table_G_T;
-         P1, P2 : in     Indice_G_T
+         T  : in out Table_G_T;
+         P1 : in     Indice_G_T;
+         P2 : in     Indice_G_T
       );
    --  Échange les deux cases désigné dans le tableau.
    --  @param T
