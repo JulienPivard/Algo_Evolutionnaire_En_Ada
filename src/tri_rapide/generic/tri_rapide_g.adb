@@ -38,8 +38,7 @@ is
          --  Placement du pivot.
          Position_Pivot :=
             (
-               if Sorte_De_Tri = Sorte_De_Tri_P.Deterministe
-               then
+               if Sorte_De_Tri = Sorte_De_Tri_P.Deterministe_E then
                   Choisir_Pivot_Deterministe
                      (
                         Premier => Premier,

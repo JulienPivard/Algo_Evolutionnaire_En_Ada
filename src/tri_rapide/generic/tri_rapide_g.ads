@@ -12,7 +12,7 @@ generic
    --  Un tableau d'éléments à trier.
 
    Sorte_De_Tri : Sorte_De_Tri_P.Sorte_De_Tri_T :=
-      Sorte_De_Tri_P.Deterministe;
+      Sorte_De_Tri_P.Deterministe_E;
    --  Permet de spécifier la méthode de sélection
    --  du pivot.
    --   - Soit déterministe : la valeur dans la

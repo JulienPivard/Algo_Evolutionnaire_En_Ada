@@ -12,11 +12,11 @@ package Sorte_De_Tri_P
       Spark_Mode     => Off
 is
 
-   type Sorte_De_Tri_T is (Deterministe, Aleatoire);
+   type Sorte_De_Tri_T is (Deterministe_E, Aleatoire_E);
    --  Détermine la façon dont le pivot sera choisi.
-   --  @value Deterministe
+   --  @value Deterministe_E
    --  Choix de pivot déterministe.
-   --  @value Aleatoire
+   --  @value Aleatoire_E
    --  Choix de pivot aléatoirement dans l'intervalle.
 
 end Sorte_De_Tri_P;

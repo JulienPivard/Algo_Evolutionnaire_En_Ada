@@ -391,7 +391,7 @@ private
 
    package Tri_Rapide_Max_P is new Tri_Rapide_G
       (
-         Sorte_De_Tri => Sorte_De_Tri_P.Aleatoire,
+         Sorte_De_Tri => Sorte_De_Tri_P.Aleatoire_E,
          Indice_G_T   => Indice_Population_T,
          Element_G_T  => Individu_P.Individu_T,
          Table_G_T    => Table_Population_T,
@@ -410,7 +410,7 @@ private
 
    package Tri_Rapide_Min_P is new Tri_Rapide_G
       (
-         Sorte_De_Tri => Sorte_De_Tri_P.Aleatoire,
+         Sorte_De_Tri => Sorte_De_Tri_P.Aleatoire_E,
          Indice_G_T   => Indice_Population_T,
          Element_G_T  => Individu_P.Individu_T,
          Table_G_T    => Table_Population_T,
