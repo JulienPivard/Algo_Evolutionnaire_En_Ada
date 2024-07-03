@@ -382,40 +382,40 @@ private
 
    package Tri_A_Bulle_Max_P is new Tri_A_Bulle_G
       (
-         Indice_G_T   => Indice_Population_T,
-         Element_G_T  => Individu_P.Individu_T,
-         Table_G_T    => Table_Population_T,
-         Comparer     => Comparer_Maximiser,
-         Echanger     => Echanger
+         Indice_G_T  => Indice_Population_T,
+         Element_G_T => Individu_P.Individu_T,
+         Table_G_T   => Table_Population_T,
+         Comparer    => Comparer_Maximiser,
+         Echanger    => Echanger
       );
 
    package Tri_Rapide_Max_P is new Tri_Rapide_G
       (
          Sorte_De_Tri => Sorte_De_Tri_P.Aleatoire_E,
-         Indice_G_T   => Indice_Population_T,
-         Element_G_T  => Individu_P.Individu_T,
-         Table_G_T    => Table_Population_T,
-         Comparer     => Comparer_Maximiser,
-         Echanger     => Echanger
+         Indice_G_T  => Indice_Population_T,
+         Element_G_T => Individu_P.Individu_T,
+         Table_G_T   => Table_Population_T,
+         Comparer_G  => Comparer_Maximiser,
+         Echanger_G  => Echanger
       );
 
    package Tri_A_Bulle_Min_P is new Tri_A_Bulle_G
       (
-         Indice_G_T   => Indice_Population_T,
-         Element_G_T  => Individu_P.Individu_T,
-         Table_G_T    => Table_Population_T,
-         Comparer     => Comparer_Minimiser,
-         Echanger     => Echanger
+         Indice_G_T  => Indice_Population_T,
+         Element_G_T => Individu_P.Individu_T,
+         Table_G_T   => Table_Population_T,
+         Comparer    => Comparer_Minimiser,
+         Echanger    => Echanger
       );
 
    package Tri_Rapide_Min_P is new Tri_Rapide_G
       (
          Sorte_De_Tri => Sorte_De_Tri_P.Aleatoire_E,
-         Indice_G_T   => Indice_Population_T,
-         Element_G_T  => Individu_P.Individu_T,
-         Table_G_T    => Table_Population_T,
-         Comparer     => Comparer_Minimiser,
-         Echanger     => Echanger
+         Indice_G_T  => Indice_Population_T,
+         Element_G_T => Individu_P.Individu_T,
+         Table_G_T   => Table_Population_T,
+         Comparer_G  => Comparer_Minimiser,
+         Echanger_G  => Echanger
       );
 
    type Trier_A is not null access

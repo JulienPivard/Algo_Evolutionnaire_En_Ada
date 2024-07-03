@@ -135,7 +135,7 @@ is
       J : Indice_G_T := Premier;
    begin
       --  On place le pivot à la fin du tableau.
-      Echanger
+      Echanger_G
          (
             T  => Tableau,
             P1 => Position_Pivot,
@@ -147,8 +147,8 @@ is
          --  on l'échange avec le première valeur qui doit
          --  être à droite du pivot. Puis on déplace notre
          --  marqueur.
-         if Comparer (T => Tableau, Gauche => I, Droite => Dernier) then
-            Echanger
+         if Comparer_G (T => Tableau, Gauche => I, Droite => Dernier) then
+            Echanger_G
                (
                   T  => Tableau,
                   P1 => I,
@@ -161,7 +161,7 @@ is
 
       --  On met le pivot à la limite entre les valeurs plus grande
       --  et plus petites.
-      Echanger
+      Echanger_G
          (
             T  => Tableau,
             P1 => Dernier,

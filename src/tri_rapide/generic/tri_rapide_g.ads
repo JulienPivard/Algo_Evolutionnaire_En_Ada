@@ -20,7 +20,7 @@ generic
    --   - soit aléatoire    : Une case est choisie
    --       au hasard dans le tableau.
 
-   with function Comparer
+   with function Comparer_G
       (
          T      : in     Table_G_T;
          Gauche : in     Indice_G_T;
@@ -38,7 +38,7 @@ generic
    --  La position de la valeur qui sera à droite dans la comparaison.
    --  @return Le résultat de la comparaison.
 
-   with procedure Echanger
+   with procedure Echanger_G
       (
          T  : in out Table_G_T;
          P1 : in     Indice_G_T;
