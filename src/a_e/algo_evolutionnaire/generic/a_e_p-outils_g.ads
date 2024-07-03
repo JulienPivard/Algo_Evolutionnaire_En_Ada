@@ -132,14 +132,12 @@ is
    --  La population.
 
    procedure Put_Line
-      (Item : in     Population_T)
-      with Inline => True;
+      (Item : in     Population_T);
    --  Affiche le contenu d'un tableau de valeurs.
    --  @param Item
    --  La population à afficher.
 
-   procedure Afficher_Details
-      with Inline => True;
+   procedure Afficher_Details;
    --  Affiche la répartition détaillé des populations,
    --  des morts, des naissances et des mutants.
 
@@ -162,8 +160,7 @@ is
    --  Nombre de tours sans divergences de la population.
 
    procedure Passer_A_La_Generation_Suivante
-      (Population : in out Population_T)
-      with Inline => True;
+      (Population : in out Population_T);
    --  Fait passer la population à la génération suivante.
    --  @param Population
    --  La population à faire évoluer.
@@ -179,8 +176,7 @@ is
          Population : in out Population_T;
          Migrants   : in     Migrants_T;
          Resultats  : in     Resultat_Tournois_T
-      )
-      with Inline => True;
+      );
    --  Accueil une population migrante dans notre population.
    --  @param Population
    --  La population.
@@ -194,8 +190,7 @@ is
          Population : in     Population_T;
          Migrants   :    out Migrants_T;
          Resultats  :    out Resultat_Tournois_T
-      )
-      with Inline => True;
+      );
    --  Sélectionne des individus pour les faire
    --  migrer hors de la population.
    --  @param Population

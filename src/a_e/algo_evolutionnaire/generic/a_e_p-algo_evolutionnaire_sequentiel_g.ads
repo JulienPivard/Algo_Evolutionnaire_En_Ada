@@ -140,21 +140,18 @@ is
    --  Le nombre de génération qu'il a fallut.
 
    procedure Initialiser
-      (Population : in out Population_T)
-      with Inline => True;
+      (Population : in out Population_T);
    --  Initialise les paramètres de toute une population.
    --  @param Population
    --  La population.
 
    procedure Put_Line
-      (Item : in     Population_T)
-      with Inline => True;
+      (Item : in     Population_T);
    --  Affiche le contenu d'un tableau de valeurs.
    --  @param Item
    --  La population à afficher.
 
-   procedure Afficher_Details
-      with Inline => True;
+   procedure Afficher_Details;
    --  Affiche la répartition détaillé des populations,
    --  des morts, des naissances et des mutants.
 

@@ -37,23 +37,20 @@ is
    --  dans le temps.
 
    procedure Initialiser
-      (Population : in out Population_T)
-      with Inline => True;
+      (Population : in out Population_T);
    --  Initialise les paramètres de toute une population.
    --  @param Population
    --  La population.
 
    procedure Remplacer_Morts
-      (Population : in out Population_T)
-      with Inline => True;
+      (Population : in out Population_T);
    --  Remplace les paramètres des individus trop loin du minimum
    --  par de nouveaux.
    --  @param Population
    --  La population total.
 
    procedure Calcul_Formule_Sur_Enfant
-      (Population : in out Population_T)
-      with Inline => True;
+      (Population : in out Population_T);
    --  Applique la formule à la population nouvellement née.
    --  Il est inutile de recalculer toutes les valeurs,
    --  seul les 25% dernières sont nouvelles.
@@ -68,8 +65,7 @@ is
    --  La population.
 
    procedure Trier
-      (Population : in out Population_T)
-      with Inline => True;
+      (Population : in out Population_T);
    --  Trie les individu d'une population en fonction
    --  de la valeur calculée de chaque individu.
    --  @param Population
@@ -279,8 +275,7 @@ private
    --  Les résultats des tournois.
 
    procedure Generer_Individus_Mutants
-      (Population : in out Population_T)
-      with Inline => True;
+      (Population : in out Population_T);
    --  Génère des individus en attribuant des valeurs
    --  aléatoire à leurs variables. Ils sont placé dans
    --  la dernière moitié des 25% dernières cases du tableau.
@@ -313,8 +308,7 @@ private
          Population     : in     Table_Population_T;
          Gauche, Droite : in     Indice_Population_T
       )
-      return Boolean
-      with Inline => True;
+      return Boolean;
    --  Compare deux individus.
    --  @param Population
    --  La population.
@@ -329,8 +323,7 @@ private
          Population     : in     Table_Population_T;
          Gauche, Droite : in     Indice_Population_T
       )
-      return Boolean
-      with Inline => True;
+      return Boolean;
    --  Compare deux individus.
    --  @param Population
    --  La population.
@@ -344,8 +337,7 @@ private
       (
          Population     : in out Table_Population_T;
          Gauche, Droite : in     Indice_Population_T
-      )
-      with Inline => True;
+      );
    --  Échange deux individus.
    --  @param Population
    --  La population.
@@ -419,7 +411,7 @@ private
       );
 
    type Trier_A is not null access procedure
-         (Tableau : in out Table_Population_T);
+      (Tableau : in out Table_Population_T);
    --  Pointeur sur la procédure de tri à utiliser.
 
    Trier_Individus : constant Trier_A :=

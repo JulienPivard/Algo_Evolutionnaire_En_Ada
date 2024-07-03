@@ -96,8 +96,7 @@ is
       (
          Individu : in out Individu_T;
          Valeur   : in     Resultat_Calcul_G_T
-      )
-      with Inline => True;
+      );
    --  Modifie le résultat stocké dans l'individu.
    --  @param Individu
    --  L'individu d'une population.
@@ -106,16 +105,14 @@ is
 
    function Lire_Resultat
       (Individu : in     Individu_T)
-      return Resultat_Calcul_G_T
-      with Inline => True;
+      return Resultat_Calcul_G_T;
    --  Lit le résultat stocké dans l'individu.
    --  @param Individu
    --  L'individu d'une population.
    --  @return La valeur du résultat.
 
    procedure Generer_Parametres
-      (Individu : in out Individu_T)
-      with Inline => True;
+      (Individu : in out Individu_T);
    --  Permet de générer de nouvelles valeurs pour chaque
    --  paramètres aléatoirement.
    --  @param Individu
@@ -126,8 +123,7 @@ is
          Individu : in     Individu_T;
          Autre    : in     Individu_T
       )
-      return Individu_T
-      with Inline => True;
+      return Individu_T;
    --  Accouple deux individus pour en obtenir un 3ieme.
    --  @param Individu
    --  Le premier membre du couple.
@@ -136,8 +132,7 @@ is
    --  @return Le résultat de l'union des deux Individu.
 
    procedure Appliquer_Formule
-      (Individu : in out Individu_T)
-      with Inline => True;
+      (Individu : in out Individu_T);
    --  Applique la formule sur l'individu.
    --  @param Individu
    --  L'individu.
@@ -147,8 +142,7 @@ is
          Reference : in     Individu_T;
          Actuel    : in     Individu_T
       )
-      return Boolean
-      with Inline => True;
+      return Boolean;
    --  Test si un individu est proche d'un individu de référence.
    --  Le résultat est utilisé pour connaitre le niveau de
    --  convergence génétique d'une population.
@@ -165,8 +159,7 @@ is
 
    function "<"
       (Gauche, Droite : in     Individu_T)
-      return Boolean
-      with Inline => True;
+      return Boolean;
    --  Compare deux individus.
    --  @param Gauche
    --  L'individu de gauche à comparer.
@@ -176,8 +169,7 @@ is
 
    function ">"
       (Gauche, Droite : in     Individu_T)
-      return Boolean
-      with Inline => True;
+      return Boolean;
    --  Compare deux individus.
    --  @param Gauche
    --  L'individu de gauche à comparer.

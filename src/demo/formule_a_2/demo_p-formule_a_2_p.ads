@@ -52,8 +52,7 @@ is
 
    function "<"
       (Gauche, Droite : in     Resultat_T)
-      return Boolean
-      with Inline => True;
+      return Boolean;
    --  Compare deux résultats.
    --  @param Gauche
    --  Le résultat à gauche de la comparaison.
@@ -63,8 +62,7 @@ is
 
    function ">"
       (Gauche, Droite : in     Resultat_T)
-      return Boolean
-      with Inline => True;
+      return Boolean;
    --  Compare deux résultats.
    --  @param Gauche
    --  Le résultat à gauche de la comparaison.
@@ -77,8 +75,7 @@ is
          Reference : in     Resultat_T;
          Actuel    : in     Resultat_T
       )
-      return Boolean
-      with Inline => True;
+      return Boolean;
    --  Le résultat actuel converge avec le résultat de référence.
    --  @param Reference
    --  Le résultat de référence.
