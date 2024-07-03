@@ -106,8 +106,8 @@ private
    package Valeur_Diametre_P is new A_E_P.Valeur_Param_Flottant_G
       (
          Valeur_Param_G_T => Diametre_T,
-         Debut_Intervalle =>    0.0 * Cm,
-         Fin_Intervalle   => 1100.0 * Cm
+         Debut_Intervalle =>     0.0 * Cm,
+         Fin_Intervalle   => 1_100.0 * Cm
       );
 
    type Probleme_Surface_T is
