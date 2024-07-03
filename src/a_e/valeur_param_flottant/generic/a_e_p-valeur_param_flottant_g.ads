@@ -11,8 +11,8 @@ generic
 --  Une valeur de paramètre.
 --  @description
 --  Stock la valeur d'un paramètre, ainsi que
---  l'intervalle de valeurs dans lequel elle
---  est valide, ou a un sens.
+--  l'intervalle de valeurs dans lequel il
+--  est valide, ou qu'il a un sens.
 --  @group Parametres
 package A_E_P.Valeur_Param_Flottant_G
    with Spark_Mode => Off
@@ -34,8 +34,8 @@ is
    pragma Compile_Time_Error
       (
          Debut_Intervalle >= Fin_Intervalle,
-         "La valeur de debut de l'intervalle doit etre inferieur " &
-         "a la valeur de fin d'intervalle"
+         "La valeur de debut de l'intervalle doit etre " &
+         "inferieur a la valeur de fin d'intervalle"
       );
 
    type Valeur_Param_T is private;

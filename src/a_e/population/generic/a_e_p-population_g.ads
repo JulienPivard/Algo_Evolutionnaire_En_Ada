@@ -418,8 +418,7 @@ private
          Echanger_G  => Echanger
       );
 
-   type Trier_A is not null access
-      procedure
+   type Trier_A is not null access procedure
          (Tableau : in out Table_Population_T);
    --  Pointeur sur la procédure de tri à utiliser.
 
@@ -427,14 +426,14 @@ private
       (
          if Objectif = Minimiser then
             (
-               if Taille_Population <= 1000 then
+               if Taille_Population <= 1_000 then
                   Tri_A_Bulle_Min_P.Tri_A_Bulle'Access
                else
                   Tri_Rapide_Min_P.Tri_Rapide'Access
             )
          else
             (
-               if Taille_Population <= 1000 then
+               if Taille_Population <= 1_000 then
                   Tri_A_Bulle_Max_P.Tri_A_Bulle'Access
                else
                   Tri_Rapide_Max_P.Tri_Rapide'Access
