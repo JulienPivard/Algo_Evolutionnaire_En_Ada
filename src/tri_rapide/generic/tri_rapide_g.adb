@@ -25,8 +25,9 @@ is
    ---------------------------------------------------------------------------
    procedure Tri_Rapide
       (
-         Tableau          : in out Table_G_T;
-         Premier, Dernier : in     Indice_G_T
+         Tableau : in out Table_G_T;
+         Premier : in     Indice_G_T;
+         Dernier : in     Indice_G_T
       )
    is
       use type Sorte_De_Tri_P.Sorte_De_Tri_T;
@@ -34,7 +35,6 @@ is
       Position_Pivot : Indice_G_T;
    begin
       if Premier < Dernier then
-
          --  Placement du pivot.
          Position_Pivot :=
             (
@@ -89,7 +89,6 @@ is
                   ),
                Dernier => Dernier
             );
-
       end if;
    end Tri_Rapide;
    ---------------------------------------------------------------------------
@@ -136,7 +135,12 @@ is
       J : Indice_G_T := Premier;
    begin
       --  On place le pivot à la fin du tableau.
-      Echanger (T => Tableau, P1 => Position_Pivot, P2 => Dernier);
+      Echanger
+         (
+            T  => Tableau,
+            P1 => Position_Pivot,
+            P2 => Dernier
+         );
 
       for I in Index_Sous_Table_T loop
          --  Si la valeur lu doit être à gauche du pivot,
@@ -144,7 +148,12 @@ is
          --  être à droite du pivot. Puis on déplace notre
          --  marqueur.
          if Comparer (T => Tableau, Gauche => I, Droite => Dernier) then
-            Echanger (T => Tableau, P1     => I, P2     => J);
+            Echanger
+               (
+                  T  => Tableau,
+                  P1 => I,
+                  P2 => J
+               );
 
             J := Indice_G_T'Succ (J);
          end if;
@@ -152,7 +161,12 @@ is
 
       --  On met le pivot à la limite entre les valeurs plus grande
       --  et plus petites.
-      Echanger (T => Tableau, P1 => Dernier, P2 => J);
+      Echanger
+         (
+            T  => Tableau,
+            P1 => Dernier,
+            P2 => J
+         );
       return J;
    end Repartir_Valeurs;
    ---------------------------------------------------------------------------

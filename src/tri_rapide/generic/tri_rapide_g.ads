@@ -22,8 +22,9 @@ generic
 
    with function Comparer
       (
-         T              : in     Table_G_T;
-         Gauche, Droite : in     Indice_G_T
+         T      : in     Table_G_T;
+         Gauche : in     Indice_G_T;
+         Droite : in     Indice_G_T
       )
       return Boolean
    is <>;
@@ -39,8 +40,9 @@ generic
 
    with procedure Echanger
       (
-         T      : in out Table_G_T;
-         P1, P2 : in     Indice_G_T
+         T  : in out Table_G_T;
+         P1 : in     Indice_G_T;
+         P2 : in     Indice_G_T
       );
    --  Échange les deux cases désigné dans le tableau.
    --  @param T
@@ -56,12 +58,10 @@ generic
 --  Version la plus universel possible du tri rapide.
 --  @group Tri
 package Tri_Rapide_G
-   with
-      Pure           => False,
-      Preelaborate   => False,
-      Elaborate_Body => False,
-      Spark_Mode     => Off
+   with Spark_Mode => Off
 is
+
+   pragma Elaborate_Body;
 
    procedure Tri_Rapide
       (Tableau : in out Table_G_T);
@@ -73,8 +73,9 @@ private
 
    procedure Tri_Rapide
       (
-         Tableau          : in out Table_G_T;
-         Premier, Dernier : in     Indice_G_T
+         Tableau : in out Table_G_T;
+         Premier : in     Indice_G_T;
+         Dernier : in     Indice_G_T
       );
    --  Lance le tri rapide sur une portion de tableau.
    --  @param Tableau
@@ -109,9 +110,10 @@ private
 
    function Repartir_Valeurs
       (
-         Tableau          : in out Table_G_T;
-         Premier, Dernier : in     Indice_G_T;
-         Position_Pivot   : in     Indice_G_T
+         Tableau        : in out Table_G_T;
+         Premier        : in     Indice_G_T;
+         Dernier        : in     Indice_G_T;
+         Position_Pivot : in     Indice_G_T
       )
       return Indice_G_T;
    --  Répartit les valeurs à gauche et à droite du pivot en
