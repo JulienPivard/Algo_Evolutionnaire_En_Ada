@@ -156,8 +156,10 @@ is
    --  Trie et vérifie la convergence de la population.
    --  @param Population
    --  Population à vérifier.
-   --  @param Tours_Sans_Divergences
+   --  @param NB_Tours_Sans_Divergences
    --  Nombre de tours sans divergences de la population.
+   --  @param NB_Tours_Sans_Amelioration
+   --  Le nombre de tours sans amélioration de la population.
 
    procedure Passer_A_La_Generation_Suivante
       (Population : in out Population_T);
