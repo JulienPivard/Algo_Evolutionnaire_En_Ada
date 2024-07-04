@@ -11,13 +11,13 @@ generic
    --  Les paramètres de la fonction à résoudre,
    --  c'est une représentation du génome d'un individu.
 
-   with procedure Generer
+   with procedure Generer_G
       (Parametres : in out Parametres_G_T);
    --  Génère des valeurs aléatoires pour les paramètres stocké.
    --  @param Parametres
    --  Les paramètres.
 
-   with function Accoupler
+   with function Accoupler_G
       (
          Parametres : in     Parametres_G_T;
          Autre      : in     Parametres_G_T
@@ -34,7 +34,7 @@ generic
    type Resultat_Calcul_G_T is private;
    --  Le résultat du calcul de la formule avec les valeurs des paramètres.
 
-   with function Calculer
+   with function Calculer_G
       (Parametres : in     Parametres_G_T)
       return Resultat_Calcul_G_T;
    --  Calcul la formule en utilisant les valeurs de ses
@@ -42,7 +42,7 @@ generic
    --  @param Parametres
    --  Les paramètres de la fonction.
 
-   with function Convergence_Adaptation
+   with function Convergence_Adaptation_G
       (
          Reference : in     Resultat_Calcul_G_T;
          Actuelle  : in     Resultat_Calcul_G_T
@@ -64,19 +64,19 @@ generic
    --  @param Actuelle
    --  La valeur à comparer à la référence.
 
-   with procedure Put_Parametres
+   with procedure Put_Parametres_G
       (Item : in     Parametres_G_T);
    --  Procédure d'affichage du contenu des paramètres.
    --  @param Item
    --  Les paramètres.
 
-   with procedure Put_Resultat
+   with procedure Put_Resultat_G
       (Item : in     Resultat_Calcul_G_T);
    --  Procédure d'affichage du contenu des résultats du calcul de la formule.
    --  @param Item
    --  Les résultats.
 
-   with procedure Afficher_Formule;
+   with procedure Afficher_Formule_G;
    --  Affiche la formule qui va être résolue.
 
    with function "<"
@@ -159,19 +159,19 @@ private
 
    package Outils_P is new A_E_P.Outils_G
       (
-         Taille_Population      => Taille_Population,
-         Parametres_G_T         => Parametres_G_T,
-         Generer                => Generer,
-         Accoupler              => Accoupler,
-         Resultat_Calcul_G_T    => Resultat_Calcul_G_T,
-         Calculer               => Calculer,
-         Convergence_Adaptation => Convergence_Adaptation,
-         Put_Parametres         => Put_Parametres,
-         Put_Resultat           => Put_Resultat,
-         Afficher_Formule       => Afficher_Formule,
-         "<"                    => "<",
-         ">"                    => ">",
-         Objectif               => Objectif
+         Taille_Population        => Taille_Population,
+         Parametres_G_T           => Parametres_G_T,
+         Generer_G                => Generer_G,
+         Accoupler_G              => Accoupler_G,
+         Resultat_Calcul_G_T      => Resultat_Calcul_G_T,
+         Calculer_G               => Calculer_G,
+         Convergence_Adaptation_G => Convergence_Adaptation_G,
+         Put_Parametres_G         => Put_Parametres_G,
+         Put_Resultat_G           => Put_Resultat_G,
+         Afficher_Formule_G       => Afficher_Formule_G,
+         "<"                      => "<",
+         ">"                      => ">",
+         Objectif                 => Objectif
       );
 
    type Population_T is

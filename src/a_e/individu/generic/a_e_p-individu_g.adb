@@ -29,7 +29,7 @@ is
       (Individu : in out Individu_T)
    is
    begin
-      Generer (Parametres => Individu.V_Param);
+      Generer_G (Parametres => Individu.V_Param);
    end Generer_Parametres;
    ---------------------------------------------------------------------------
 
@@ -43,7 +43,7 @@ is
    is
       Bebe : Individu_T;
    begin
-      Bebe.V_Param := Accoupler
+      Bebe.V_Param := Accoupler_G
             (
                Parametres => Individu.V_Param,
                Autre      => Autre.V_Param
@@ -57,7 +57,7 @@ is
       (Individu : in out Individu_T)
    is
    begin
-      Individu.V_Calcule := Calculer (Parametres => Individu.V_Param);
+      Individu.V_Calcule := Calculer_G (Parametres => Individu.V_Param);
    end Appliquer_Formule;
    ---------------------------------------------------------------------------
 
@@ -70,7 +70,7 @@ is
       return Boolean
    is
    begin
-      return Convergence
+      return Convergence_G
          (
             Reference => Reference.V_Calcule,
             Actuelle  => Actuel.V_Calcule

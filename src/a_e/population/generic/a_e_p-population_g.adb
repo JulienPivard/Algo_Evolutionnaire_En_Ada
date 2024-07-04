@@ -54,7 +54,7 @@ is
    procedure Organiser_Saison_Des_Amours
       (Population : in out Population_T)
    is
-      type Enfants_T is array (Nb_Tournois_T) of Individu_P.Individu_T;
+      type Enfants_T is array (Nb_Tournois_T) of Individu_G_P.Individu_T;
       --  Tableau des enfants conçus par les tournois successifs.
 
       I : Nb_Tournois_T := Nb_Tournois_T'First;
@@ -70,7 +70,7 @@ is
 
       Boucle_Tournois :
       for E of Resultat_Tournois loop
-         Enfants (I) := Individu_P.Accoupler
+         Enfants (I) := Individu_G_P.Accoupler
             (
                Individu => Population.Table (E.Pos_Gagnants),
                Autre    => Population.Table (E.Pos_Seconds)
@@ -82,7 +82,7 @@ is
       end loop Boucle_Tournois;
 
       for J in Nb_Tournois_T loop
-         Individu_P.Appliquer_Formule (Individu => Enfants (J));
+         Individu_G_P.Appliquer_Formule (Individu => Enfants (J));
          Population.Table (Resultat_Tournois (J).Pos_Perdants) := Enfants (J);
       end loop;
    end Organiser_Saison_Des_Amours;
@@ -104,7 +104,7 @@ is
          Est_Ameliore :    out Boolean
       )
    is
-      use type Individu_P.Individu_T;
+      use type Individu_G_P.Individu_T;
    begin
       Est_Ameliore :=
          (
@@ -129,16 +129,16 @@ is
       (Population : in     Population_T)
       return Boolean
    is
-      I_Ref : constant Individu_P.Individu_T :=
+      I_Ref : constant Individu_G_P.Individu_T :=
          Population.Table (Population.Table'First);
 
       function Converge
          (
-            Reference : in Individu_P.Individu_T := I_Ref;
-            Actuel    : in Individu_P.Individu_T
+            Reference : in Individu_G_P.Individu_T := I_Ref;
+            Actuel    : in Individu_G_P.Individu_T
          )
          return Boolean
-         renames Individu_P.Dans_Convergence;
+         renames Individu_G_P.Dans_Convergence;
    begin
       return (for all I in Intervalle_Survivants_T =>
          Converge (Actuel => Population.Table (I)));
@@ -326,7 +326,7 @@ is
                Alea_Survivants_P.Random (Gen => Generateur_Survivant);
          begin
             Population.Table (I) :=
-               Individu_P.Accoupler
+               Individu_G_P.Accoupler
                   (
                      Individu => Population.Table (Position_Parent_1),
                      Autre    => Population.Table (Position_Parent_2)
@@ -344,7 +344,7 @@ is
       --  Premier calcul de toutes la valeurs.
       Boucle_Calcul :
       for E of Population loop
-         Individu_P.Appliquer_Formule (Individu => E);
+         Individu_G_P.Appliquer_Formule (Individu => E);
       end loop Boucle_Calcul;
    end Appliquer_Formule;
    ---------------------------------------------------------------------------
@@ -356,7 +356,7 @@ is
    begin
       Boucle_Generation_Individus :
       for E of Population loop
-         Individu_P.Generer_Parametres (Individu => E);
+         Individu_G_P.Generer_Parametres (Individu => E);
       end loop Boucle_Generation_Individus;
    end Generer_Individus_Aleatoirement;
    ---------------------------------------------------------------------------
@@ -369,7 +369,7 @@ is
       )
       return Boolean
    is
-      use type Individu_P.Individu_T;
+      use type Individu_G_P.Individu_T;
    begin
       return Population (Gauche) < Population (Droite);
    end Comparer_Minimiser;
@@ -383,7 +383,7 @@ is
       )
       return Boolean
    is
-      use type Individu_P.Individu_T;
+      use type Individu_G_P.Individu_T;
    begin
       return Population (Gauche) > Population (Droite);
    end Comparer_Maximiser;
@@ -396,7 +396,7 @@ is
          Gauche, Droite : in     Indice_Population_T
       )
    is
-      Tmp : constant Individu_P.Individu_T := Population (Gauche);
+      Tmp : constant Individu_G_P.Individu_T := Population (Gauche);
    begin
       Population (Gauche) := Population (Droite);
       Population (Droite) := Tmp;

@@ -1,12 +1,12 @@
 generic
 
-   with procedure Put_Parametres
+   with procedure Put_Parametres_G
       (Item : in     Parametres_G_T);
    --  Procédure d'affichage du contenu des paramètres.
    --  @param Item
    --  Les paramètres.
 
-   with procedure Put_Resultat
+   with procedure Put_Resultat_G
       (Item : in     Resultat_Calcul_G_T);
    --  Procédure d'affichage du contenu des résultats du calcul de la formule.
    --  @param Item

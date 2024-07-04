@@ -22,7 +22,7 @@ is
    is
    begin
       Ada.Text_IO.Put (Item => "Formule : ");
-      Afficher_Formule;
+      Afficher_Formule_G;
       Population_IO.Put_Line (Item => Item.Pop);
    end Put_Line;
    ---------------------------------------------------------------------------

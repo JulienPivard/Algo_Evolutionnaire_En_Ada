@@ -11,7 +11,7 @@ generic
    Taille : Taille_Population_T;
    --  La taille de la population à faire évoluer.
 
-   with package Individu_P is new A_E_P.Individu_G (<>);
+   with package Individu_G_P is new A_E_P.Individu_G (<>);
    --  Un individu contenant La liste des paramètres
    --  à donner en entré de la fonction à optimiser.
 
@@ -133,7 +133,7 @@ private
 
    type Table_Population_T is
       array (Indice_Population_T range <>)
-      of Individu_P.Individu_T;
+      of Individu_G_P.Individu_T;
    --  Contient la population.
 
    Taille_Population : constant Indice_Population_T :=
@@ -356,7 +356,7 @@ private
       record
          Table           : Sous_Population_T;
          --  La totalité de la population.
-         Meilleur_Valeur : Individu_P.Individu_T;
+         Meilleur_Valeur : Individu_G_P.Individu_T;
          --  Le meilleur résultat trouvé dans la population.
       end record;
 
@@ -375,7 +375,7 @@ private
    package Tri_A_Bulle_Max_P is new Tri_A_Bulle_G
       (
          Indice_G_T  => Indice_Population_T,
-         Element_G_T => Individu_P.Individu_T,
+         Element_G_T => Individu_G_P.Individu_T,
          Table_G_T   => Table_Population_T,
          Comparer_G  => Comparer_Maximiser,
          Echanger_G  => Echanger
@@ -385,7 +385,7 @@ private
       (
          Sorte_De_Tri => Sorte_De_Tri_P.Aleatoire_E,
          Indice_G_T  => Indice_Population_T,
-         Element_G_T => Individu_P.Individu_T,
+         Element_G_T => Individu_G_P.Individu_T,
          Table_G_T   => Table_Population_T,
          Comparer_G  => Comparer_Maximiser,
          Echanger_G  => Echanger
@@ -394,7 +394,7 @@ private
    package Tri_A_Bulle_Min_P is new Tri_A_Bulle_G
       (
          Indice_G_T  => Indice_Population_T,
-         Element_G_T => Individu_P.Individu_T,
+         Element_G_T => Individu_G_P.Individu_T,
          Table_G_T   => Table_Population_T,
          Comparer_G  => Comparer_Minimiser,
          Echanger_G  => Echanger
@@ -404,7 +404,7 @@ private
       (
          Sorte_De_Tri => Sorte_De_Tri_P.Aleatoire_E,
          Indice_G_T  => Indice_Population_T,
-         Element_G_T => Individu_P.Individu_T,
+         Element_G_T => Individu_G_P.Individu_T,
          Table_G_T   => Table_Population_T,
          Comparer_G  => Comparer_Minimiser,
          Echanger_G  => Echanger

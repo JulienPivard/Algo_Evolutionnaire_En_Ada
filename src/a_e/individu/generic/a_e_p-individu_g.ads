@@ -2,13 +2,13 @@ generic
    type Parametres_G_T is private;
    --  Les paramètres qui représentent le génome de l'individu.
 
-   with procedure Generer
+   with procedure Generer_G
       (Parametres : in out Parametres_G_T);
    --  Génère des valeurs aléatoires pour les paramètres stocké.
    --  @param Parametres
    --  Les paramètres.
 
-   with function Accoupler
+   with function Accoupler_G
       (
          Parametres : in     Parametres_G_T;
          Autre      : in     Parametres_G_T
@@ -25,7 +25,7 @@ generic
    type Resultat_Calcul_G_T is private;
    --  Le résultat du calcul de la formule avec les valeurs des paramètres.
 
-   with function Calculer
+   with function Calculer_G
       (Parametres : in     Parametres_G_T)
       return Resultat_Calcul_G_T;
    --  Calcul la formule en utilisant les valeurs de ses
@@ -34,7 +34,7 @@ generic
    --  Les paramètres de la fonction.
    --  @return Le résultat du calcul de la fonction.
 
-   with function Convergence
+   with function Convergence_G
       (
          Reference : in     Resultat_Calcul_G_T;
          Actuelle  : in     Resultat_Calcul_G_T

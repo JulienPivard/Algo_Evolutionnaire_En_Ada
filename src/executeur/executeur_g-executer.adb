@@ -30,7 +30,7 @@ procedure Executer
 is
    ---------------------------------------------------------------------------
    generic
-      with package Population_P is new A_E_P.Algo_Evolutionnaire_G (<>);
+      with package Population_G_P is new A_E_P.Algo_Evolutionnaire_G (<>);
       --  La population à minimiser.
 
    procedure Determiner_Min
@@ -58,36 +58,36 @@ is
       use type A_E_P.Taille_Population_T;
 
       Taille : constant A_E_P.Taille_Population_T :=
-         Population_P.Taille_Population;
+         Population_G_P.Taille_Population;
 
-      Population : Population_P.Population_T;
+      Population : Population_G_P.Population_T;
       Debut, Fin : Ada.Real_Time.Time;
 
       NB_Generations : Natural := Natural'First;
    begin
       if not Reduire_Affichage then
-         Population_P.Afficher_Details;
+         Population_G_P.Afficher_Details;
       else
          Ada.Text_IO.Put_Line
             (
                Item => "Population   :" & A_E_P.Taille_Population_T'Image
-                  (Population_P.Taille_Population)
+                  (Population_G_P.Taille_Population)
             );
       end if;
 
-      Population_P.Initialiser (Population => Population);
+      Population_G_P.Initialiser (Population => Population);
 
       if Taille < 50 and then not Reduire_Affichage then
          Ada.Text_IO.Put_Line
             (Item => "========== Valeurs de départ ==========");
 
          Ada.Text_IO.New_Line    (Spacing => 1);
-         Population_P.Put_Line   (Item    => Population);
+         Population_G_P.Put_Line (Item    => Population);
          Ada.Text_IO.Put_Line    (Item    => "=======");
          Ada.Text_IO.New_Line    (Spacing => 1);
       end if;
 
-      Population_P.Faire_Evoluer
+      Population_G_P.Faire_Evoluer
          (
             Population      => Population,
             Debut           => Debut,
@@ -104,7 +104,7 @@ is
          (Item => "=======                                 =======");
       Ada.Text_IO.Put_Line
          (Item => "=======            Résultats            =======");
-      Population_P.Put_Line   (Item    => Population);
+      Population_G_P.Put_Line (Item    => Population);
       Ada.Text_IO.Put_Line    (Item    => "=======");
 
       Ada.Text_IO.Put_Line
@@ -134,20 +134,20 @@ is
 
    package Population_Surface_P is new A_E_P.Algo_Evolutionnaire_G
       (
-         Taille_Population      => Demo_P.Taille,
-         Parametres_G_T         => Surface_R.Probleme_Surface_T,
-         Generer                => Surface_R.Generer,
-         Accoupler              => Surface_R.Accoupler,
-         Resultat_Calcul_G_T    => Surface_R.Resultat_T,
-         Calculer               => Surface_R.Calculer,
-         Convergence_Adaptation => Surface_R.Resultats_Convergent,
-         Put_Parametres         => Surface_IO_R.Put_Parametres,
-         Put_Resultat           => Surface_IO_R.Put_Resultat,
-         Afficher_Formule       => Surface_IO_R.Afficher_Formule
+         Taille_Population        => Demo_P.Taille,
+         Parametres_G_T           => Surface_R.Probleme_Surface_T,
+         Generer_G                => Surface_R.Generer,
+         Accoupler_G              => Surface_R.Accoupler,
+         Resultat_Calcul_G_T      => Surface_R.Resultat_T,
+         Calculer_G               => Surface_R.Calculer,
+         Convergence_Adaptation_G => Surface_R.Resultats_Convergent,
+         Put_Parametres_G         => Surface_IO_R.Put_Parametres,
+         Put_Resultat_G           => Surface_IO_R.Put_Resultat,
+         Afficher_Formule_G       => Surface_IO_R.Afficher_Formule
       );
 
    procedure Min_Surface is new Determiner_Min
-      (Population_P => Population_Surface_P);
+      (Population_G_P => Population_Surface_P);
 
    --  Expérimentation avec une formule à un paramètre
    package Formule_1_R    renames Demo_P.Formule_A_1_P;
@@ -157,20 +157,20 @@ is
 
    package Population_Anonyme_1_P is new A_E_P.Algo_Evolutionnaire_G
       (
-         Taille_Population      => Demo_P.Taille,
-         Parametres_G_T         => Formule_1_R.Anonyme_T,
-         Generer                => Formule_1_R.Generer,
-         Accoupler              => Formule_1_R.Accoupler,
-         Resultat_Calcul_G_T    => Formule_1_R.Resultat_T,
-         Calculer               => Formule_1_R.Calculer,
-         Convergence_Adaptation => Formule_1_R.Resultats_Convergent,
-         Put_Parametres         => Formule_1_IO_R.Put_Parametres,
-         Put_Resultat           => Formule_1_IO_R.Put_Resultat,
-         Afficher_Formule       => Formule_1_IO_R.Afficher_Formule
+         Taille_Population        => Demo_P.Taille,
+         Parametres_G_T           => Formule_1_R.Anonyme_T,
+         Generer_G                => Formule_1_R.Generer,
+         Accoupler_G              => Formule_1_R.Accoupler,
+         Resultat_Calcul_G_T      => Formule_1_R.Resultat_T,
+         Calculer_G               => Formule_1_R.Calculer,
+         Convergence_Adaptation_G => Formule_1_R.Resultats_Convergent,
+         Put_Parametres_G         => Formule_1_IO_R.Put_Parametres,
+         Put_Resultat_G           => Formule_1_IO_R.Put_Resultat,
+         Afficher_Formule_G       => Formule_1_IO_R.Afficher_Formule
       );
 
    procedure Min_Anonyme_1 is new Determiner_Min
-      (Population_P => Population_Anonyme_1_P);
+      (Population_G_P => Population_Anonyme_1_P);
 
    --  Expérimentation avec une formule à deux paramètres
    package Formule_2_R    renames Demo_P.Formule_A_2_P;
@@ -180,20 +180,20 @@ is
 
    package Population_Anonyme_2_P is new A_E_P.Algo_Evolutionnaire_G
       (
-         Taille_Population      => Demo_P.Taille,
-         Parametres_G_T         => Formule_2_R.Anonyme_T,
-         Generer                => Formule_2_R.Generer,
-         Accoupler              => Formule_2_R.Accoupler,
-         Resultat_Calcul_G_T    => Formule_2_R.Resultat_T,
-         Calculer               => Formule_2_R.Calculer,
-         Convergence_Adaptation => Formule_2_R.Resultats_Convergent,
-         Put_Parametres         => Formule_2_IO_R.Put_Parametres,
-         Put_Resultat           => Formule_2_IO_R.Put_Resultat,
-         Afficher_Formule       => Formule_2_IO_R.Afficher_Formule
+         Taille_Population        => Demo_P.Taille,
+         Parametres_G_T           => Formule_2_R.Anonyme_T,
+         Generer_G                => Formule_2_R.Generer,
+         Accoupler_G              => Formule_2_R.Accoupler,
+         Resultat_Calcul_G_T      => Formule_2_R.Resultat_T,
+         Calculer_G               => Formule_2_R.Calculer,
+         Convergence_Adaptation_G => Formule_2_R.Resultats_Convergent,
+         Put_Parametres_G         => Formule_2_IO_R.Put_Parametres,
+         Put_Resultat_G           => Formule_2_IO_R.Put_Resultat,
+         Afficher_Formule_G       => Formule_2_IO_R.Afficher_Formule
       );
 
    procedure Min_Anonyme_2 is new Determiner_Min
-      (Population_P => Population_Anonyme_2_P);
+      (Population_G_P => Population_Anonyme_2_P);
 
    package Trouver_Val_Param_P is new Demo_P.Trouver_Param_Valeur_G
       (Objectif => 50.0);
@@ -208,20 +208,20 @@ is
 
    package Population_Trouver_Parametres_P is new A_E_P.Algo_Evolutionnaire_G
       (
-         Taille_Population      => Demo_P.Taille,
-         Parametres_G_T         => Trouver_R.Anonyme_T,
-         Generer                => Trouver_R.Generer,
-         Accoupler              => Trouver_R.Accoupler,
-         Resultat_Calcul_G_T    => Trouver_R.Resultat_T,
-         Calculer               => Trouver_R.Calculer,
-         Convergence_Adaptation => Trouver_R.Resultats_Convergent,
-         Put_Parametres         => Trouver_IO_R.Put_Parametres,
-         Put_Resultat           => Trouver_IO_R.Put_Resultat,
-         Afficher_Formule       => Trouver_IO_R.Afficher_Formule
+         Taille_Population        => Demo_P.Taille,
+         Parametres_G_T           => Trouver_R.Anonyme_T,
+         Generer_G                => Trouver_R.Generer,
+         Accoupler_G              => Trouver_R.Accoupler,
+         Resultat_Calcul_G_T      => Trouver_R.Resultat_T,
+         Calculer_G               => Trouver_R.Calculer,
+         Convergence_Adaptation_G => Trouver_R.Resultats_Convergent,
+         Put_Parametres_G         => Trouver_IO_R.Put_Parametres,
+         Put_Resultat_G           => Trouver_IO_R.Put_Resultat,
+         Afficher_Formule_G       => Trouver_IO_R.Afficher_Formule
       );
 
    procedure Trouver_Parametres is new Determiner_Min
-      (Population_P => Population_Trouver_Parametres_P);
+      (Population_G_P => Population_Trouver_Parametres_P);
 
    --  Expérimentation pour trouver le chemin le plus court dans un graph.
    package Chemin_R    renames Demo_P.Chemin_P.Evo_P;
@@ -231,20 +231,20 @@ is
 
    package Population_Chemin_P is new A_E_P.Algo_Evolutionnaire_G
       (
-         Taille_Population      => 1_000,
-         Parametres_G_T         => Chemin_R.Probleme_Chemin_T,
-         Generer                => Chemin_R.Generer,
-         Accoupler              => Chemin_R.Accoupler,
-         Resultat_Calcul_G_T    => Chemin_R.Resultat_T,
-         Calculer               => Chemin_R.Calculer,
-         Convergence_Adaptation => Chemin_R.Resultats_Convergent,
-         Put_Parametres         => Chemin_IO_R.Put_Parametres,
-         Put_Resultat           => Chemin_IO_R.Put_Resultat,
-         Afficher_Formule       => Chemin_IO_R.Afficher_Formule
+         Taille_Population        => 1_000,
+         Parametres_G_T           => Chemin_R.Probleme_Chemin_T,
+         Generer_G                => Chemin_R.Generer,
+         Accoupler_G              => Chemin_R.Accoupler,
+         Resultat_Calcul_G_T      => Chemin_R.Resultat_T,
+         Calculer_G               => Chemin_R.Calculer,
+         Convergence_Adaptation_G => Chemin_R.Resultats_Convergent,
+         Put_Parametres_G         => Chemin_IO_R.Put_Parametres,
+         Put_Resultat_G           => Chemin_IO_R.Put_Resultat,
+         Afficher_Formule_G       => Chemin_IO_R.Afficher_Formule
       );
 
    procedure Trouver_Chemin_Min is new Determiner_Min
-      (Population_P => Population_Chemin_P);
+      (Population_G_P => Population_Chemin_P);
 begin
    --  Ada.Text_IO.Put      (Item => "Procédure : [");
    --  Ada.Text_IO.Put      (Item => GNAT.Source_Info.Enclosing_Entity);

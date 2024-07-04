@@ -30,7 +30,7 @@ is
                Ada.Text_IO.Put (Item => "    ");
             end if;
 
-            Individu_IO.Put_Line (Item => E);
+            Individu_G_IO.Put_Line (Item => E);
 
             if I < Indice_Population_T'Last then
                I := I + 1;
@@ -38,7 +38,7 @@ is
          end loop;
       else
          Ada.Text_IO.Put (Item => "Minimum :");
-         Individu_IO.Put_Line
+         Individu_G_IO.Put_Line
             (Item => Item.Table (Item.Table'First));
       end if;
    end Put_Line;

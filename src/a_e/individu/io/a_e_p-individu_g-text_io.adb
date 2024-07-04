@@ -9,11 +9,11 @@ is
       (Item : in     Individu_T)
    is
    begin
-      Put_Parametres (Item => Item.V_Param);
+      Put_Parametres_G (Item => Item.V_Param);
 
       Ada.Text_IO.Put  (Item => " |<>| ");
 
-      Put_Resultat (Item => Item.V_Calcule);
+      Put_Resultat_G (Item => Item.V_Calcule);
 
       Ada.Text_IO.New_Line (Spacing => 1);
    end Put_Line;
