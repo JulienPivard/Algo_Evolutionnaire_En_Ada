@@ -13,12 +13,10 @@ generic
 --  une fonction à deux paramètres.
 --  @group Formule
 package Demo_P.Trouver_Param_Valeur_G
-   with
-      Pure           => False,
-      Preelaborate   => False,
-      Elaborate_Body => False,
-      Spark_Mode     => Off
+   with Spark_Mode => Off
 is
+
+   pragma Elaborate_Body;
 
    type Anonyme_T is private;
 
