@@ -126,7 +126,7 @@ is
       (
          Population     : in out Population_T;
          Debut, Fin     :    out Ada.Real_Time.Time;
-         Nb_Generations :    out Natural
+         NB_Generations :    out Natural
       );
    --  Fait évoluer la population jusqu'à atteindre la
    --  convergence de ses individus.
@@ -136,7 +136,7 @@ is
    --  Le chrono de début.
    --  @param Fin
    --  Le chrono de fin.
-   --  @param Nb_Generations
+   --  @param NB_Generations
    --  Le nombre de génération qu'il a fallut.
 
    procedure Initialiser
@@ -180,7 +180,7 @@ private
          --  La population.
       end record;
 
-   type Id_Islot_T is mod 2**2;
+   type ID_Islot_T is mod 2**2;
    --  Identifiant des îlots.
 
    -----------------------------
@@ -203,7 +203,7 @@ private
    end Demarreur_T;
    --  Contrôle le démarrage des îlots.
 
-   type Table_De_Demarreurs_T is array (Id_Islot_T) of Demarreur_T;
+   type Table_De_Demarreurs_T is array (ID_Islot_T) of Demarreur_T;
    --  Pour définir les tables de transfert
    --  de population entre les îlots voisin.
 
@@ -244,7 +244,7 @@ private
    end Transfert_T;
    --  Permet à une population de passer d'une île à une autre.
 
-   type Tables_De_Transfert_T is array (Id_Islot_T) of Transfert_T;
+   type Tables_De_Transfert_T is array (ID_Islot_T) of Transfert_T;
    --  Pour définir les tables de transfert
    --  de population entre les îlots voisin.
 
@@ -269,25 +269,25 @@ private
       entry Attendre_Fin
          (
             Population     :    out Population_T;
-            Nb_Generations :    out Natural
+            NB_Generations :    out Natural
          );
       --  Attend la fin de l'évolution.
       --  @param Population
       --  La population de l'îlot qui a fini d'évoluer.
-      --  @param Nb_Generations
+      --  @param NB_Generations
       --  Le nombre de générations que la population a passé à évoluer.
       procedure Signaler_Fin_Evolution
          (
-            Id             : in     Id_Islot_T;
+            ID             : in     ID_Islot_T;
             Population     : in     Population_T;
-            Nb_Generations : in     Natural
+            NB_Generations : in     Natural
          );
       --  Permet à un ilot de signaler qu'il a fini d'évoluer.
-      --  @param Id
+      --  @param ID
       --  L'identifiant de l'îlot qui a terminé d'évoluer.
       --  @param Population
       --  La population de l'îlot qui a fini d'évoluer.
-      --  @param Nb_Generations
+      --  @param NB_Generations
       --  Le nombre de générations que la population a passé à évoluer.
       function Un_Islot_A_Fini_D_Evoluer
          return Boolean;
@@ -296,9 +296,9 @@ private
    private
       Population_Local     : Population_T;
       --  La population qui a fini d'évoluer.
-      Id_Tasche_Finie      : Id_Islot_T   := Id_Islot_T'First;
+      ID_Tasche_Finie      : ID_Islot_T   := ID_Islot_T'First;
       --  L'identifiant de l'îlot qui a fini.
-      Nb_Generations_Local : Natural      := Natural'First;
+      NB_Generations_Local : Natural      := Natural'First;
       --  Le nombre de générations que la population a passé à évoluer.
       Evolution_Est_Finie  : Boolean      := False;
       --  L'évolution d'au moins une tâche est finie.
@@ -307,7 +307,7 @@ private
    --  quand au moins un îlot à fini d'évoluer.
 
    -----------------------------
-   task type Islot_T (Id : Id_Islot_T) is
+   task type Islot_T (ID : ID_Islot_T) is
    end Islot_T;
    --  Un îlot de population qui évolue en vase clôt jusqu'à ce qu'un
    --  échange ait lieu.
@@ -319,10 +319,10 @@ private
          "Global_Variables",
          "Tâches, obligatoirement globale car Ravenscar"
       );
-   Islot_1 : Islot_T (Id => 0);
-   Islot_2 : Islot_T (Id => 1);
-   Islot_3 : Islot_T (Id => 2);
-   Islot_4 : Islot_T (Id => 3);
+   Islot_1 : Islot_T (ID => 0);
+   Islot_2 : Islot_T (ID => 1);
+   Islot_3 : Islot_T (ID => 2);
+   Islot_4 : Islot_T (ID => 3);
    pragma Annotate
       (
          gnatcheck,

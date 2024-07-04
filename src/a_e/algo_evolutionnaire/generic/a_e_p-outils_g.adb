@@ -38,8 +38,8 @@ is
    procedure Trier_Et_Verifier
       (
          Population                 : in out Population_T;
-         Nb_Tours_Sans_Divergences  : in out Nb_Tours_Sans_Divergences_T;
-         Nb_Tours_Sans_Amelioration : in out Nb_Tours_Sans_Amelioration_T
+         NB_Tours_Sans_Divergences  : in out NB_Tours_Sans_Divergences_T;
+         NB_Tours_Sans_Amelioration : in out NB_Tours_Sans_Amelioration_T
       )
    is
       Est_Ameliore : Boolean;
@@ -50,9 +50,9 @@ is
       --  de la valeur minimum du tableau pendant 25 générations.
       --  Intervalle de convergence
       if Verifier_Convergence (Population => Population.Pop) then
-         Nb_Tours_Sans_Divergences := Nb_Tours_Sans_Divergences + 1;
+         NB_Tours_Sans_Divergences := NB_Tours_Sans_Divergences + 1;
       else
-         Nb_Tours_Sans_Divergences := 0;
+         NB_Tours_Sans_Divergences := 0;
       end if;
 
       Population_P.C_Est_Ameliore_Depuis_Gen_Precedente
@@ -61,9 +61,9 @@ is
             Est_Ameliore => Est_Ameliore
          );
       if Est_Ameliore then
-         Nb_Tours_Sans_Amelioration := 0;
+         NB_Tours_Sans_Amelioration := 0;
       else
-         Nb_Tours_Sans_Amelioration := Nb_Tours_Sans_Amelioration + 1;
+         NB_Tours_Sans_Amelioration := NB_Tours_Sans_Amelioration + 1;
       end if;
    end Trier_Et_Verifier;
    ---------------------------------------------------------------------------

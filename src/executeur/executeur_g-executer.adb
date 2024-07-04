@@ -63,7 +63,7 @@ is
       Population : Population_P.Population_T;
       Debut, Fin : Ada.Real_Time.Time;
 
-      Nb_Generations : Natural := Natural'First;
+      NB_Generations : Natural := Natural'First;
    begin
       if not Reduire_Affichage then
          Population_P.Afficher_Details;
@@ -92,7 +92,7 @@ is
             Population      => Population,
             Debut           => Debut,
             Fin             => Fin,
-            Nb_Generations  => Nb_Generations
+            NB_Generations  => NB_Generations
          );
 
       Ada.Text_IO.Put_Line
@@ -110,7 +110,7 @@ is
       Ada.Text_IO.Put_Line
          (
             Item => "Nombre de générations : " &
-               Natural'Image (Nb_Generations)
+               Natural'Image (NB_Generations)
          );
 
       --------------------------------------

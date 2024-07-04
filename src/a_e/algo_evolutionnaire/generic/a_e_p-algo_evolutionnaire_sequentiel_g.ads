@@ -126,7 +126,7 @@ is
       (
          Population     : in out Population_T;
          Debut, Fin     :    out Ada.Real_Time.Time;
-         Nb_Generations :    out Natural
+         NB_Generations :    out Natural
       );
    --  Fait évoluer la population jusqu'à atteindre la
    --  convergence de ses individus.

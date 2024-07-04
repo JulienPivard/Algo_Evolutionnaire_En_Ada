@@ -43,8 +43,7 @@ is
    is
       Bebe : Individu_T;
    begin
-      Bebe.V_Param :=
-         Accoupler
+      Bebe.V_Param := Accoupler
             (
                Parametres => Individu.V_Param,
                Autre      => Autre.V_Param

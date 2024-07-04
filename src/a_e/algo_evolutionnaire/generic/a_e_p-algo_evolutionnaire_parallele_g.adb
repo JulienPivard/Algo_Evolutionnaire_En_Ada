@@ -2,19 +2,19 @@ package body A_E_P.Algo_Evolutionnaire_G
    with Spark_Mode => Off
 is
 
-   use type Outils_P.Nb_Tours_Sans_Divergences_T;
-   use type Outils_P.Nb_Tours_Sans_Amelioration_T;
+   use type Outils_P.NB_Tours_Sans_Divergences_T;
+   use type Outils_P.NB_Tours_Sans_Amelioration_T;
 
    ---------------------------------------------------------------------------
    procedure Faire_Evoluer
       (
          Population     : in out Population_T;
          Debut, Fin     :    out Ada.Real_Time.Time;
-         Nb_Generations :    out Natural
+         NB_Generations :    out Natural
       )
    is
    begin
-      Nb_Generations := Natural'First;
+      NB_Generations := Natural'First;
       Debut          := Ada.Real_Time.Clock;
 
       Outils_P.Initialiser (Population => Population.Pop);
@@ -26,7 +26,7 @@ is
       Controleur_Fin.Attendre_Fin
          (
             Population     => Population,
-            Nb_Generations => Nb_Generations
+            NB_Generations => NB_Generations
          );
 
       Fin := Ada.Real_Time.Clock;
@@ -125,28 +125,28 @@ is
       entry Attendre_Fin
          (
             Population     :    out Population_T;
-            Nb_Generations :    out Natural
+            NB_Generations :    out Natural
          )
          when Evolution_Est_Finie
       is
       begin
          Population     := Population_Local;
-         Nb_Generations := Nb_Generations_Local;
+         NB_Generations := NB_Generations_Local;
       end Attendre_Fin;
       ------------------
 
       ------------------
       procedure Signaler_Fin_Evolution
          (
-            Id             : in     Id_Islot_T;
+            ID             : in     ID_Islot_T;
             Population     : in     Population_T;
-            Nb_Generations : in     Natural
+            NB_Generations : in     Natural
          )
       is
       begin
-         Id_Tasche_Finie      := Id;
+         ID_Tasche_Finie      := ID;
          Population_Local     := Population;
-         Nb_Generations_Local := Nb_Generations;
+         NB_Generations_Local := NB_Generations;
          Evolution_Est_Finie  := True;
 
          Boucle_Signaler_Fin_Evolution :
@@ -169,58 +169,58 @@ is
 
    ---------------------------------------------------------------------------
    task body Islot_T is
-      Demarreur  : Demarreur_T renames Table_De_Demarreurs (Id);
-      Sortie     : Transfert_T renames Tables_De_Transfert (Id + 1);
-      Entree     : Transfert_T renames Tables_De_Transfert (Id);
+      Demarreur  : Demarreur_T renames Table_De_Demarreurs (ID);
+      Sortie     : Transfert_T renames Tables_De_Transfert (ID + 1);
+      Entree     : Transfert_T renames Tables_De_Transfert (ID);
 
-      Nb_Generations : Natural;
+      NB_Generations : Natural;
       Migrants       : Outils_P.Migrants_T;
       Resultats      : Outils_P.Resultat_Tournois_T;
       Population     : Population_T;
 
-      Nb_Tours_Sans_Divergences  : Outils_P.Nb_Tours_Sans_Divergences_T  :=
-         Outils_P.Nb_Tours_Sans_Divergences_T'First;
-      Nb_Tours_Sans_Amelioration : Outils_P.Nb_Tours_Sans_Amelioration_T :=
-         Outils_P.Nb_Tours_Sans_Amelioration_T'First;
+      NB_Tours_Sans_Divergences  : Outils_P.NB_Tours_Sans_Divergences_T  :=
+         Outils_P.NB_Tours_Sans_Divergences_T'First;
+      NB_Tours_Sans_Amelioration : Outils_P.NB_Tours_Sans_Amelioration_T :=
+         Outils_P.NB_Tours_Sans_Amelioration_T'First;
 
       Evolution_Est_Finie : Boolean;
    begin
       Demarreur.Attendre (Population => Population);
 
-      Nb_Generations := Natural'First;
+      NB_Generations := Natural'First;
 
       Boucle_Generation_Successive :
       loop
          Outils_P.Trier_Et_Verifier
             (
                Population                 => Population.Pop,
-               Nb_Tours_Sans_Divergences  => Nb_Tours_Sans_Divergences,
-               Nb_Tours_Sans_Amelioration => Nb_Tours_Sans_Amelioration
+               NB_Tours_Sans_Divergences  => NB_Tours_Sans_Divergences,
+               NB_Tours_Sans_Amelioration => NB_Tours_Sans_Amelioration
             );
 
          Evolution_Est_Finie :=
             (
                (
-                  Nb_Tours_Sans_Divergences
+                  NB_Tours_Sans_Divergences
                   =
-                  Outils_P.Nb_Tours_Sans_Divergences_T'Last
+                  Outils_P.NB_Tours_Sans_Divergences_T'Last
                )
                or else
                (
-                  Nb_Tours_Sans_Amelioration
+                  NB_Tours_Sans_Amelioration
                   =
-                  Outils_P.Nb_Tours_Sans_Amelioration_T'Last
+                  Outils_P.NB_Tours_Sans_Amelioration_T'Last
                )
             );
          exit Boucle_Generation_Successive when Evolution_Est_Finie;
-         exit Boucle_Generation_Successive when Nb_Generations = Natural'Last;
+         exit Boucle_Generation_Successive when NB_Generations = Natural'Last;
 
-         Nb_Generations := Nb_Generations + 1;
+         NB_Generations := NB_Generations + 1;
 
          Outils_P.Passer_A_La_Generation_Suivante
             (Population => Population.Pop);
 
-         if (Nb_Generations mod 25) = 0 then
+         if (NB_Generations mod 25) = 0 then
             Outils_P.Selectionner_Migrants
                (
                   Population => Population.Pop,
@@ -245,9 +245,9 @@ is
       if not Controleur_Fin.Un_Islot_A_Fini_D_Evoluer then
          Controleur_Fin.Signaler_Fin_Evolution
             (
-               Id             => Id,
+               ID             => ID,
                Population     => Population,
-               Nb_Generations => Nb_Generations
+               NB_Generations => NB_Generations
             );
       end if;
    end Islot_T;

@@ -141,17 +141,17 @@ is
    --  Affiche la répartition détaillé des populations,
    --  des morts, des naissances et des mutants.
 
-   type Nb_Tours_Sans_Divergences_T  is range 0 .. 25;
+   type NB_Tours_Sans_Divergences_T  is range 0 .. 25;
    --  Nombre de tours sans divergences lors de l'évolution de la population.
-   type Nb_Tours_Sans_Amelioration_T is range 0 .. 100;
+   type NB_Tours_Sans_Amelioration_T is range 0 .. 100;
    --  Nombre de tours sans amélioration du meilleur individu
    --  lors de l'évolution de la population.
 
    procedure Trier_Et_Verifier
       (
          Population                 : in out Population_T;
-         Nb_Tours_Sans_Divergences  : in out Nb_Tours_Sans_Divergences_T;
-         Nb_Tours_Sans_Amelioration : in out Nb_Tours_Sans_Amelioration_T
+         NB_Tours_Sans_Divergences  : in out NB_Tours_Sans_Divergences_T;
+         NB_Tours_Sans_Amelioration : in out NB_Tours_Sans_Amelioration_T
       );
    --  Trie et vérifie la convergence de la population.
    --  @param Population

@@ -10,19 +10,19 @@ is
       (
          Population     : in out Population_T;
          Debut, Fin     :    out Ada.Real_Time.Time;
-         Nb_Generations :    out Natural
+         NB_Generations :    out Natural
       )
    is
-      Nb_Tours_Sans_Divergences  : Outils_P.Nb_Tours_Sans_Divergences_T  :=
+      NB_Tours_Sans_Divergences  : Outils_P.Nb_Tours_Sans_Divergences_T  :=
          Outils_P.Nb_Tours_Sans_Divergences_T'First;
-      Nb_Tours_Sans_Amelioration : Outils_P.Nb_Tours_Sans_Amelioration_T :=
+      NB_Tours_Sans_Amelioration : Outils_P.Nb_Tours_Sans_Amelioration_T :=
          Outils_P.Nb_Tours_Sans_Amelioration_T'First;
 
       Evolution_Est_Finie : Boolean;
    begin
       Outils_P.Initialiser (Population => Population.Pop);
 
-      Nb_Generations := Natural'First;
+      NB_Generations := Natural'First;
       Debut          := Ada.Real_Time.Clock;
 
       Boucle_Generation_Successive :
@@ -30,28 +30,28 @@ is
          Outils_P.Trier_Et_Verifier
             (
                Population                 => Population.Pop,
-               Nb_Tours_Sans_Divergences  => Nb_Tours_Sans_Divergences,
-               Nb_Tours_Sans_Amelioration => Nb_Tours_Sans_Amelioration
+               NB_Tours_Sans_Divergences  => NB_Tours_Sans_Divergences,
+               NB_Tours_Sans_Amelioration => NB_Tours_Sans_Amelioration
             );
 
          Evolution_Est_Finie :=
             (
                (
-                  Nb_Tours_Sans_Divergences
+                  NB_Tours_Sans_Divergences
                   =
                   Outils_P.Nb_Tours_Sans_Divergences_T'Last
                )
                or else
                (
-                  Nb_Tours_Sans_Amelioration
+                  NB_Tours_Sans_Amelioration
                   =
                   Outils_P.Nb_Tours_Sans_Amelioration_T'Last
                )
             );
          exit Boucle_Generation_Successive when Evolution_Est_Finie;
-         exit Boucle_Generation_Successive when Nb_Generations = Natural'Last;
+         exit Boucle_Generation_Successive when NB_Generations = Natural'Last;
 
-         Nb_Generations := Nb_Generations + 1;
+         NB_Generations := NB_Generations + 1;
 
          Outils_P.Passer_A_La_Generation_Suivante
             (Population => Population.Pop);
