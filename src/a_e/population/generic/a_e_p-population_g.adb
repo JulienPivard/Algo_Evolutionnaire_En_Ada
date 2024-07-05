@@ -325,10 +325,10 @@ is
                Alea_Survivants_P.Random (Gen => Generateur_Survivant);
          begin
             Population.Table (I) := Individu_G_P.Accoupler
-                  (
-                     Individu => Population.Table (Position_Parent_1),
-                     Autre    => Population.Table (Position_Parent_2)
-                  );
+               (
+                  Individu => Population.Table (Position_Parent_1),
+                  Autre    => Population.Table (Position_Parent_2)
+               );
          end Bloc_Moyenne_Parents;
       end loop Boucle_Accouplement_Valeurs;
    end Generer_Enfants_Accouplement;
