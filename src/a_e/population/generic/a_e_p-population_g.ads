@@ -15,7 +15,7 @@ generic
    --  Un individu contenant La liste des paramètres
    --  à donner en entré de la fonction à optimiser.
 
-   Objectif : Objectif_T := Minimiser;
+   Objectif : Objectif_T := Minimiser_E;
    --  Trouver les valeurs de paramètres qui vont
    --  minimiser ou maximiser le résultat de la fonction
 
@@ -416,7 +416,7 @@ private
 
    Trier_Individus : constant Trier_A :=
       (
-         if Objectif = Minimiser then
+         if Objectif = Minimiser_E then
             (
                if Taille_Population <= 1_000 then
                   Tri_A_Bulle_Min_P.Tri_A_Bulle'Access

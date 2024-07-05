@@ -18,11 +18,11 @@ is
    type Taille_Population_T is range 1 .. (2**63) - 1;
    --  L'intervalle de valeurs de la population.
 
-   type Objectif_T is (Maximiser, Minimiser);
+   type Objectif_T is (Maximiser_E, Minimiser_E);
    --  L'objectif à atteindre pour le résultat de la fonction.
-   --  @value Maximiser
+   --  @value Maximiser_E
    --  L'objectif est de maximiser le résultat de la fonction.
-   --  @value Minimiser
+   --  @value Minimiser_E
    --  L'objectif est de minimiser le résultat de la fonction.
 
 end A_E_P;

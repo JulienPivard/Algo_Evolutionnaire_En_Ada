@@ -103,7 +103,7 @@ generic
    --  Le résultat à droite de la comparaison.
    --  @return Gauche > Droite
 
-   Objectif : Objectif_T := Minimiser;
+   Objectif : Objectif_T := Minimiser_E;
    --  Trouver les valeurs de paramètres qui vont
    --  minimiser ou maximiser le résultat de la fonction
 

@@ -108,7 +108,7 @@ is
    begin
       Est_Ameliore :=
          (
-            if Objectif = Minimiser then
+            if Objectif = Minimiser_E then
                Population.Meilleur_Valeur
                >
                Population.Table (Population.Table'First)
@@ -208,11 +208,10 @@ is
          Resultat := Alea_Survivants_P.Random
             (Gen => Generateur_Survivant);
          Tous_Differents :=
-            Resultat /= Participants.Pos_Gagnants
-            and then
-            Resultat /= Participants.Pos_Seconds
-            and then
+            Resultat /= Participants.Pos_Gagnants and then
+            Resultat /= Participants.Pos_Seconds  and then
             Resultat /= Participants.Pos_Perdants;
+
          exit Boucle_Tirage when Tous_Differents;
       end loop Boucle_Tirage;
 
@@ -325,8 +324,7 @@ is
             Position_Parent_2 : constant Intervalle_Survivants_T :=
                Alea_Survivants_P.Random (Gen => Generateur_Survivant);
          begin
-            Population.Table (I) :=
-               Individu_G_P.Accoupler
+            Population.Table (I) := Individu_G_P.Accoupler
                   (
                      Individu => Population.Table (Position_Parent_1),
                      Autre    => Population.Table (Position_Parent_2)

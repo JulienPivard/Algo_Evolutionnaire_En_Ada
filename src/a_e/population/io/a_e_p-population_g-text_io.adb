@@ -15,7 +15,7 @@ is
    begin
       if Taille_Population <= 50 then
          for E of Item.Table loop
-            Indice_IO.Put      (Item => I, Width => 3);
+            Indice_IO.Put (Item => I, Width => 3);
 
             if I in Intervalle_Survivants_T then
                Ada.Text_IO.Put (Item => " S   ");
