@@ -26,6 +26,12 @@ is
       )
       return Boolean;
    --  Teste s'il y a une arête de x à y;
+   --  @param G
+   --  Le graph de sommets.
+   --  @param X
+   --  Le premier sommet.
+   --  @param Y
+   --  Le deuxième sommet.
 
    function Lister_Les_Voisins
       (
@@ -34,6 +40,10 @@ is
       )
       return Voisins_T;
    --  Liste les sommets qui sont adjacents à x;
+   --  @param G
+   --  Le graph de sommets.
+   --  @param X
+   --  Le sommet dont on veux lister les voisins.
 
    procedure Ajouter_Areste
       (
@@ -42,6 +52,12 @@ is
          Y : in     Sommet_T
       );
    --  Ajoute l'arête de x à y s'il n'y figure pas déjà;
+   --  @param G
+   --  Le graph de sommets.
+   --  @param X
+   --  Le premier sommet.
+   --  @param Y
+   --  Le deuxième sommet.
    procedure Ajouter_Areste
       (
          G : in out Graphe_T;
@@ -50,6 +66,14 @@ is
          V : in     Poids_Areste_T
       );
    --  Ajoute l'arête de x à y s'il n'y figure pas déjà;
+   --  @param G
+   --  Le graph de sommets.
+   --  @param X
+   --  Le premier sommet.
+   --  @param Y
+   --  Le deuxième sommet.
+   --  @param V
+   --  Le poids du lien entre les sommets.
    procedure Ajouter_Areste_Orientee
       (
          G : in out Graphe_T;
@@ -58,6 +82,14 @@ is
          V : in     Poids_Areste_T
       );
    --  Ajoute l'arête de x à y s'il n'y figure pas déjà;
+   --  @param G
+   --  Le graph de sommets.
+   --  @param X
+   --  Le premier sommet.
+   --  @param Y
+   --  Le deuxième sommet.
+   --  @param V
+   --  Le poids du lien entre les sommets.
    procedure Supprimer_Areste
       (
          G : in out Graphe_T;
@@ -65,6 +97,12 @@ is
          Y : in     Sommet_T
       );
    --  Supprime l’arête de x à y si elle existe;
+   --  @param G
+   --  Le graph de sommets.
+   --  @param X
+   --  Le premier sommet.
+   --  @param Y
+   --  Le deuxième sommet.
 
    function Lire_Valeur_Sommet
       (
@@ -73,6 +111,10 @@ is
       )
       return Poids_Sommet_T;
    --  Retourne la valeur associée à x;
+   --  @param G
+   --  Le graph de sommets.
+   --  @param X
+   --  Le premier sommet.
    procedure Fixer_Valeur_Sommet
       (
          G : in out Graphe_T;
@@ -80,6 +122,12 @@ is
          V : in     Poids_Sommet_T
       );
    --  Fixe la valeur de x à v.
+   --  @param G
+   --  Le graph de sommets.
+   --  @param X
+   --  Le premier sommet.
+   --  @param V
+   --  Le poids du lien entre les sommets.
 
    function Lire_Valeur_Areste
       (
@@ -89,6 +137,12 @@ is
       )
       return Poids_Areste_T;
    --  Retourne la valeur de l'arête (x, y);
+   --  @param G
+   --  Le graph de sommets.
+   --  @param X
+   --  Le premier sommet.
+   --  @param Y
+   --  Le deuxième sommet.
    procedure Fixer_Valeur_Areste
       (
          G : in out Graphe_T;
@@ -97,6 +151,14 @@ is
          V : in     Poids_Areste_T
       );
    --  Fixe à v la valeur de l’arête (x, y).
+   --  @param G
+   --  Le graph de sommets.
+   --  @param X
+   --  Le premier sommet.
+   --  @param Y
+   --  Le deuxième sommet.
+   --  @param V
+   --  Le poids du lien entre les sommets.
 
 private
 

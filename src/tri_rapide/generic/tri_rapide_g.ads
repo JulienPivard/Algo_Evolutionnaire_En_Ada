@@ -89,7 +89,7 @@ private
       (Premier, Dernier : in     Indice_G_T)
       return Indice_G_T;
    --  Choisi la position du pivot dans l'intervalle donné.
-   --  Le choix est fait de façon <strong>déterministe</strong>.
+   --  Le choix est fait de façon déterministe.
    --  @param Premier
    --  L'indice de la première case de l'intervalle.
    --  @param Dernier
@@ -100,8 +100,7 @@ private
       (Premier, Dernier : in     Indice_G_T)
       return Indice_G_T;
    --  Choisi la position du pivot dans l'intervalle donné.
-   --  Une valeur est choisie <strong>aléatoirement</strong>
-   --  dans l'intervalle.
+   --  Une valeur est choisie aléatoirement dans l'intervalle.
    --  @param Premier
    --  L'indice de la première case de l'intervalle.
    --  @param Dernier

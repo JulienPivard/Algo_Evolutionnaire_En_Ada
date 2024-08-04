@@ -79,7 +79,8 @@ is
    --  Le meilleur individu a changé depuis la dernière génération.
    --  @param Population
    --  La population.
-   --  @return Le meilleur individu a changé.
+   --  @param Est_Ameliore
+   --  Le meilleur individu a changé.
 
    function Verifier_Convergence
       (Population : in     Population_T)
@@ -413,6 +414,8 @@ private
    type Trier_A is not null access procedure
       (Tableau : in out Table_Population_T);
    --  Pointeur sur la procédure de tri à utiliser.
+   --  @param Tableau
+   --  Le tableau d'individus.
 
    Trier_Individus : constant Trier_A :=
       (

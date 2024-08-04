@@ -114,7 +114,7 @@ private
       return V_Param_T
    is (Valeur_X_P.Lire_Valeur (Parametre => P.X));
    --  Lit la valeur du paramètre X.
-   --  @param Parametres
+   --  @param P
    --  Les paramètres.
    --  @return La valeur du paramètre demandé.
 
@@ -123,13 +123,14 @@ private
       return V_Param_T
    is (Valeur_Y_P.Lire_Valeur (Parametre => P.Y));
    --  Lit la valeur du paramètre Y.
-   --  @param Parametres
+   --  @param P
    --  Les paramètres.
    --  @return La valeur du paramètre demandé.
 
    type Resultat_T is
       record
          Distance : V_Calcule_T := 0.0;
+         --  La distance entre deux individus.
          Valeur   : V_Calcule_T := 0.0;
          --  Le résultat du calcul de la formule.
       end record;
