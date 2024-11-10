@@ -227,10 +227,20 @@ private
          Put_Resultat_G   => Put_Resultat_G
       );
 
+   type Table_Population_T is
+      array (ID_Population_G_T range <>)
+      of Individu_P.Individu_T;
+   --  Contient la population.
+
+   procedure Trier
+      (Population : in out Table_Population_T);
+
    package Population_P  is new A_E_P.Population_G
       (
          ID_Population_G_T => ID_Population_G_T,
          Individu_G_P      => Individu_P,
+         Table_Population_G_T => Table_Population_T,
+         Trier_G              => Trier,
          Objectif_G        => Objectif_G
       );
    package Population_IO is new Population_P.Text_IO

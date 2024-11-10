@@ -346,7 +346,7 @@ is
 
    ---------------------------------------------------------------------------
    procedure Appliquer_Formule
-      (Population : in out Table_Population_T)
+      (Population : in out Table_Population_G_T)
    is
    begin
       --  Premier calcul de toutes la valeurs.
@@ -359,7 +359,7 @@ is
 
    ---------------------------------------------------------------------------
    procedure Generer_Individus_Aleatoirement
-      (Population : in out Table_Population_T)
+      (Population : in out Table_Population_G_T)
    is
    begin
       Boucle_Generation_Individus :
@@ -372,7 +372,7 @@ is
    ---------------------------------------------------------------------------
    function Comparer_Minimiser
       (
-         Population     : in     Table_Population_T;
+         Population     : in     Table_Population_G_T;
          Gauche, Droite : in     Indice_Population_T
       )
       return Boolean
@@ -386,7 +386,7 @@ is
    ---------------------------------------------------------------------------
    function Comparer_Maximiser
       (
-         Population     : in     Table_Population_T;
+         Population     : in     Table_Population_G_T;
          Gauche, Droite : in     Indice_Population_T
       )
       return Boolean
@@ -400,7 +400,7 @@ is
    ---------------------------------------------------------------------------
    procedure Echanger
       (
-         Population     : in out Table_Population_T;
+         Population     : in out Table_Population_G_T;
          Gauche, Droite : in     Indice_Population_T
       )
    is

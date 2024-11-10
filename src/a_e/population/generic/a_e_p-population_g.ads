@@ -7,12 +7,25 @@ pragma Elaborate_All (Tri_Rapide_G);
 pragma Elaborate_All (Tri_A_Bulle_G);
 
 generic
+
    type ID_Population_G_T is new Taille_Population_T;
    --  La taille de la population à faire évoluer.
 
    with package Individu_G_P is new A_E_P.Individu_G (<>);
    --  Un individu contenant La liste des paramètres
    --  à donner en entré de la fonction à optimiser.
+
+   type Table_Population_G_T is
+      array (ID_Population_G_T range <>)
+      of Individu_G_P.Individu_T;
+   --  Contient la population.
+
+   with procedure Trier_G
+      (Tableau : in out Table_Population_G_T);
+   --  Trie les individu d'une population en fonction
+   --  de la valeur calculée de chaque individu.
+   --  @param Population
+   --  La population à trier.
 
    Objectif_G : Objectif_T := Minimiser_E;
    --  Trouver les valeurs de paramètres qui vont
@@ -137,11 +150,6 @@ private
 
    subtype Indice_Population_T is ID_Population_G_T;
    --  Les indices de la table de population.
-
-   type Table_Population_T is
-      array (Indice_Population_T range <>)
-      of Individu_G_P.Individu_T;
-   --  Contient la population.
 
    Taille_Population : constant ID_Population_G_T :=
       (ID_Population_G_T'Last - ID_Population_G_T'First) + 1;
@@ -297,14 +305,14 @@ private
    --  La population.
 
    procedure Appliquer_Formule
-      (Population : in out Table_Population_T);
+      (Population : in out Table_Population_G_T);
    --  Applique une formule à toute une population.
    --  Le résultat sera conservé dans chaque individu.
    --  @param Population
    --  La population.
 
    procedure Generer_Individus_Aleatoirement
-      (Population : in out Table_Population_T);
+      (Population : in out Table_Population_G_T);
    --  Génère des individu avec des caractéristique
    --  choisie au hasard pour chaque case de la population.
    --  @param Population
@@ -312,7 +320,7 @@ private
 
    function Comparer_Minimiser
       (
-         Population     : in     Table_Population_T;
+         Population     : in     Table_Population_G_T;
          Gauche, Droite : in     Indice_Population_T
       )
       return Boolean;
@@ -327,7 +335,7 @@ private
 
    function Comparer_Maximiser
       (
-         Population     : in     Table_Population_T;
+         Population     : in     Table_Population_G_T;
          Gauche, Droite : in     Indice_Population_T
       )
       return Boolean;
@@ -342,7 +350,7 @@ private
 
    procedure Echanger
       (
-         Population     : in out Table_Population_T;
+         Population     : in out Table_Population_G_T;
          Gauche, Droite : in     Indice_Population_T
       );
    --  Échange deux individus.
@@ -375,10 +383,10 @@ private
    --  L'indice de la dernière case de l'intervalle.
    --  @return La position du pivot.
 
-   subtype Sous_Population_T is Table_Population_T (Indice_Population_T);
+   subtype Sous_Population_T is Table_Population_G_T (Indice_Population_T);
    --  Contient toute la population existante.
 
-   subtype Pop_Migrants_T    is Table_Population_T (Indice_Migrants_T);
+   subtype Pop_Migrants_T    is Table_Population_G_T (Indice_Migrants_T);
    --  Contient la population de migrants.
 
    type Population_T is
@@ -405,7 +413,7 @@ private
       (
          Indice_G_T  => Indice_Population_T,
          Element_G_T => Individu_G_P.Individu_T,
-         Table_G_T   => Table_Population_T,
+         Table_G_T   => Table_Population_G_T,
          Comparer_G  => Comparer_Maximiser,
          Echanger_G  => Echanger
       );
@@ -414,7 +422,7 @@ private
       (
          Indice_G_T      => Indice_Population_T,
          Element_G_T     => Individu_G_P.Individu_T,
-         Table_G_T       => Table_Population_T,
+         Table_G_T       => Table_Population_G_T,
          Comparer_G      => Comparer_Maximiser,
          Echanger_G      => Echanger,
          Choisir_Pivot_G => Choisir_Pivot_Aleatoire
@@ -424,7 +432,7 @@ private
       (
          Indice_G_T  => Indice_Population_T,
          Element_G_T => Individu_G_P.Individu_T,
-         Table_G_T   => Table_Population_T,
+         Table_G_T   => Table_Population_G_T,
          Comparer_G  => Comparer_Minimiser,
          Echanger_G  => Echanger
       );
@@ -433,14 +441,14 @@ private
       (
          Indice_G_T      => Indice_Population_T,
          Element_G_T     => Individu_G_P.Individu_T,
-         Table_G_T       => Table_Population_T,
+         Table_G_T       => Table_Population_G_T,
          Comparer_G      => Comparer_Minimiser,
          Echanger_G      => Echanger,
          Choisir_Pivot_G => Choisir_Pivot_Aleatoire
       );
 
    type Trier_A is not null access procedure
-      (Tableau : in out Table_Population_T);
+      (Tableau : in out Table_Population_G_T);
    --  Pointeur sur la procédure de tri à utiliser.
    --  @param Tableau
    --  Le tableau d'individus.
