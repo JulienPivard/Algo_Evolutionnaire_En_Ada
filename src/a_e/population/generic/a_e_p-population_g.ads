@@ -405,11 +405,11 @@ private
 
    package Tri_Rapide_Max_P is new Tri_Rapide_G
       (
-         Indice_G_T  => Indice_Population_T,
-         Element_G_T => Individu_G_P.Individu_T,
-         Table_G_T   => Table_Population_T,
-         Comparer_G  => Comparer_Maximiser,
-         Echanger_G  => Echanger,
+         Indice_G_T      => Indice_Population_T,
+         Element_G_T     => Individu_G_P.Individu_T,
+         Table_G_T       => Table_Population_T,
+         Comparer_G      => Comparer_Maximiser,
+         Echanger_G      => Echanger,
          Choisir_Pivot_G => Choisir_Pivot_Aleatoire
       );
 
@@ -424,11 +424,11 @@ private
 
    package Tri_Rapide_Min_P is new Tri_Rapide_G
       (
-         Indice_G_T  => Indice_Population_T,
-         Element_G_T => Individu_G_P.Individu_T,
-         Table_G_T   => Table_Population_T,
-         Comparer_G  => Comparer_Minimiser,
-         Echanger_G  => Echanger,
+         Indice_G_T      => Indice_Population_T,
+         Element_G_T     => Individu_G_P.Individu_T,
+         Table_G_T       => Table_Population_T,
+         Comparer_G      => Comparer_Minimiser,
+         Echanger_G      => Echanger,
          Choisir_Pivot_G => Choisir_Pivot_Aleatoire
       );
 
