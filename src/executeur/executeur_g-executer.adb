@@ -67,27 +67,27 @@ is
          Taille : constant A_E_P.Taille_Population_T :=
             Population_G_P.Lire_Taille (Population => Population);
       begin
-      if not Reduire_Affichage then
-         Population_G_P.Afficher_Details;
-      else
-         Ada.Text_IO.Put_Line
-            (
-               Item => "Population   :" &
-                  A_E_P.Taille_Population_T'Image (Taille)
-            );
-      end if;
+         if not Reduire_Affichage then
+            Population_G_P.Afficher_Details;
+         else
+            Ada.Text_IO.Put_Line
+               (
+                  Item => "Population   :" &
+                     A_E_P.Taille_Population_T'Image (Taille)
+               );
+         end if;
 
-      Population_G_P.Initialiser (Population => Population);
+         Population_G_P.Initialiser (Population => Population);
 
-      if Taille < 50 and then not Reduire_Affichage then
-         Ada.Text_IO.Put_Line
-            (Item => "========== Valeurs de départ ==========");
+         if Taille < 50 and then not Reduire_Affichage then
+            Ada.Text_IO.Put_Line
+               (Item => "========== Valeurs de départ ==========");
 
-         Ada.Text_IO.New_Line    (Spacing => 1);
-         Population_G_P.Put_Line (Item    => Population);
-         Ada.Text_IO.Put_Line    (Item    => "=======");
-         Ada.Text_IO.New_Line    (Spacing => 1);
-      end if;
+            Ada.Text_IO.New_Line    (Spacing => 1);
+            Population_G_P.Put_Line (Item    => Population);
+            Ada.Text_IO.Put_Line    (Item    => "=======");
+            Ada.Text_IO.New_Line    (Spacing => 1);
+         end if;
       end Bloc_Determiner_Reduction_Affichage;
 
       Population_G_P.Faire_Evoluer
