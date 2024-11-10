@@ -7,14 +7,14 @@ pragma Elaborate_All (Tri_Rapide_G);
 pragma Elaborate_All (Tri_A_Bulle_G);
 
 generic
-   Taille : Taille_Population_T;
+   Taille_G : Taille_Population_T;
    --  La taille de la population à faire évoluer.
 
    with package Individu_G_P is new A_E_P.Individu_G (<>);
    --  Un individu contenant La liste des paramètres
    --  à donner en entré de la fonction à optimiser.
 
-   Objectif : Objectif_T := Minimiser_E;
+   Objectif_G : Objectif_T := Minimiser_E;
    --  Trouver les valeurs de paramètres qui vont
    --  minimiser ou maximiser le résultat de la fonction
 
@@ -128,7 +128,7 @@ is
 private
 
    type Indice_Population_T is new Taille_Population_T range
-      Taille_Population_T'First .. Taille;
+      Taille_Population_T'First .. Taille_G;
    --  Les indices de la table de population.
 
    type Table_Population_T is
@@ -137,7 +137,7 @@ private
    --  Contient la population.
 
    Taille_Population : constant Indice_Population_T :=
-      Indice_Population_T (Taille);
+      Indice_Population_T (Taille_G);
    --  La population total d'individu.
    --  Chaque individu est une case du tableau.
 
@@ -440,7 +440,7 @@ private
 
    Trier_Individus : constant Trier_A :=
       (
-         if Objectif = Minimiser_E then
+         if Objectif_G = Minimiser_E then
             (
                if Taille_Population <= 1_000 then
                   Tri_A_Bulle_Min_P.Tri_A_Bulle'Access

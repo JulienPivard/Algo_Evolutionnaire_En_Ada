@@ -108,7 +108,7 @@ is
    begin
       Est_Ameliore :=
          (
-            if Objectif = Minimiser_E then
+            if Objectif_G = Minimiser_E then
                Population.Meilleur_Valeur
                >
                Population.Table (Population.Table'First)

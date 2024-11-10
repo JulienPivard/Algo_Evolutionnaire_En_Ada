@@ -44,7 +44,7 @@ is
    is
       Est_Ameliore : Boolean;
    begin
-      Trier (Population => Population.Pop);
+      Population_P.Trier (Population => Population.Pop);
 
       --  Toutes les valeurs survivantes doivent se trouver autour
       --  de la valeur minimum du tableau pendant 25 générations.

@@ -4,7 +4,7 @@ private with A_E_P.Outils_G;
 
 generic
 
-   Taille_Population : Taille_Population_T;
+   Taille_Population_G : Taille_Population_T;
    --  La taille de la population à faire évoluer.
 
    type Parametres_G_T is private;
@@ -103,7 +103,7 @@ generic
    --  Le résultat à droite de la comparaison.
    --  @return Gauche > Droite
 
-   Objectif : Objectif_T := Minimiser_E;
+   Objectif_G : Objectif_T := Minimiser_E;
    --  Trouver les valeurs de paramètres qui vont
    --  minimiser ou maximiser le résultat de la fonction
 
@@ -159,7 +159,7 @@ private
 
    package Outils_P is new A_E_P.Outils_G
       (
-         Taille_Population        => Taille_Population,
+         Taille_Population_G      => Taille_Population_G,
          Parametres_G_T           => Parametres_G_T,
          Generer_G                => Generer_G,
          Accoupler_G              => Accoupler_G,
@@ -171,7 +171,7 @@ private
          Afficher_Formule_G       => Afficher_Formule_G,
          "<"                      => "<",
          ">"                      => ">",
-         Objectif                 => Objectif
+         Objectif_G               => Objectif_G
       );
 
    type Population_T is

@@ -75,8 +75,8 @@ is
    begin
       Parametre.Valeur := Generateur_P.Generer_Flottant
          (
-            Borne_Inferieur => Debut_Intervalle,
-            Borne_Superieur => Fin_Intervalle
+            Borne_Inferieur => Debut_Intervalle_G,
+            Borne_Superieur => Fin_Intervalle_G
          );
    end Generer;
    ---------------------------------------------------------------------------
@@ -215,10 +215,10 @@ is
       (Parametre : in out Valeur_Param_T)
    is
    begin
-      if    Parametre.Valeur < Debut_Intervalle then
-         Parametre.Valeur := Debut_Intervalle;
-      elsif Parametre.Valeur > Fin_Intervalle   then
-         Parametre.Valeur := Fin_Intervalle;
+      if    Parametre.Valeur < Debut_Intervalle_G then
+         Parametre.Valeur := Debut_Intervalle_G;
+      elsif Parametre.Valeur > Fin_Intervalle_G   then
+         Parametre.Valeur := Fin_Intervalle_G;
       end if;
    end Verifier_Et_Ajuster_Borne_Valeur;
    ---------------------------------------------------------------------------

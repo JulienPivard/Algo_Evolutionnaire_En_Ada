@@ -65,7 +65,7 @@ is
    begin
       return R : Resultat_T do
          R.Valeur   := Calcul;
-         R.Distance := abs (Objectif - Calcul);
+         R.Distance := abs (Objectif_G - Calcul);
       end return;
    end Calculer;
    ---------------------------------------------------------------------------

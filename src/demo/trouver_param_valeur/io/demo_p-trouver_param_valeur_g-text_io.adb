@@ -10,13 +10,13 @@ is
 
    package Valeur_X_IO is new Valeur_X_P.Text_IO
       (
-         Put                 => Put,
-         Afficher_Intervalle => False
+         Put_G                 => Put,
+         Afficher_Intervalle_G => False
       );
    package Valeur_Y_IO is new Valeur_Y_P.Text_IO
       (
-         Put                 => Put,
-         Afficher_Intervalle => False
+         Put_G                 => Put,
+         Afficher_Intervalle_G => False
       );
 
    ---------------------------------------------------------------------------
@@ -65,7 +65,7 @@ is
       Ada.Text_IO.Put (Item => " |=> Objectif : ");
       V_Calcule_IO.Put
          (
-            Item => Objectif,
+            Item => Objectif_G,
             Fore => 1,
             Aft  => 3,
             Exp  => 0

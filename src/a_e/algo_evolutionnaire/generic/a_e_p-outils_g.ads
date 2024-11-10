@@ -7,7 +7,7 @@ private
 
 generic
 
-   Taille_Population : Taille_Population_T;
+   Taille_Population_G : Taille_Population_T;
    --  La taille de la population à faire évoluer.
 
    type Parametres_G_T is private;
@@ -106,7 +106,7 @@ generic
    --  Le résultat à droite de la comparaison.
    --  @return Gauche > Droite
 
-   Objectif : Objectif_T := Minimiser_E;
+   Objectif_G : Objectif_T := Minimiser_E;
    --  Trouver les valeurs de paramètres qui vont
    --  minimiser ou maximiser le résultat de la fonction
 
@@ -221,9 +221,9 @@ private
 
    package Population_P  is new A_E_P.Population_G
       (
-         Taille       => Taille_Population,
+         Taille_G     => Taille_Population_G,
          Individu_G_P => Individu_P,
-         Objectif     => Objectif
+         Objectif_G   => Objectif_G
       );
    package Population_IO is new Population_P.Text_IO
       (Individu_G_IO => Individu_IO);

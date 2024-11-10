@@ -8,8 +8,8 @@ package body Demo_P.Formule_A_2_P.Text_IO
    with Spark_Mode => Off
 is
 
-   package Valeur_X_IO is new Valeur_X_P.Text_IO (Put => Put);
-   package Valeur_Y_IO is new Valeur_Y_P.Text_IO (Put => Put);
+   package Valeur_X_IO is new Valeur_X_P.Text_IO (Put_G => Put);
+   package Valeur_Y_IO is new Valeur_Y_P.Text_IO (Put_G => Put);
 
    ---------------------------------------------------------------------------
    procedure Put_Parametres

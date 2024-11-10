@@ -2,9 +2,9 @@ generic
    type Valeur_Param_G_T is digits <>;
    --  Permet de spécifier la précision d'un paramètre.
 
-   Debut_Intervalle : Valeur_Param_G_T;
+   Debut_Intervalle_G : Valeur_Param_G_T;
    --  Le début de l'intervalle de valeurs.
-   Fin_Intervalle   : Valeur_Param_G_T;
+   Fin_Intervalle_G   : Valeur_Param_G_T;
    --  La fin de l'intervalle de valeurs.
 
 --  @summary
@@ -33,7 +33,7 @@ is
 
    pragma Compile_Time_Error
       (
-         Debut_Intervalle >= Fin_Intervalle,
+         Debut_Intervalle_G >= Fin_Intervalle_G,
          "La valeur de debut de l'intervalle doit etre " &
          "inferieur a la valeur de fin d'intervalle"
       );

@@ -87,16 +87,16 @@ private
 
    package Valeur_X_P is new A_E_P.Valeur_Param_Flottant_G
       (
-         Valeur_Param_G_T => V_Param_T,
-         Debut_Intervalle => -1.0,
-         Fin_Intervalle   => +100.0
+         Valeur_Param_G_T   => V_Param_T,
+         Debut_Intervalle_G => -1.0,
+         Fin_Intervalle_G   => +100.0
       );
 
    package Valeur_Y_P is new A_E_P.Valeur_Param_Flottant_G
       (
-         Valeur_Param_G_T => V_Param_T,
-         Debut_Intervalle => -2.0,
-         Fin_Intervalle   => +100.0
+         Valeur_Param_G_T   => V_Param_T,
+         Debut_Intervalle_G => -2.0,
+         Fin_Intervalle_G   => +100.0
       );
 
    type Anonyme_T is

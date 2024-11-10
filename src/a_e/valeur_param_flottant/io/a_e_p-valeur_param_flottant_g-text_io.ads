@@ -1,12 +1,12 @@
 generic
 
-   with procedure Put
+   with procedure Put_G
       (Item : in     Valeur_Param_G_T);
    --  Formatage de l'affichage de la valeur.
    --  @param Item
    --  La valeur du paramètre à afficher.
 
-   Afficher_Intervalle : Boolean := True;
+   Afficher_Intervalle_G : Boolean := True;
    --  Affiche l'intervalle de valeurs lié.
 
 --  @summary

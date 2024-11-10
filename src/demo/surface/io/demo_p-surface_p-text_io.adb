@@ -10,7 +10,7 @@ package body Demo_P.Surface_P.Text_IO
    with Spark_Mode => Off
 is
 
-   package Valeur_Diametre_IO is new Valeur_Diametre_P.Text_IO (Put => Put);
+   package Valeur_Diametre_IO is new Valeur_Diametre_P.Text_IO (Put_G => Put);
 
    ---------------------------------------------------------------------------
    procedure Put_Parametres

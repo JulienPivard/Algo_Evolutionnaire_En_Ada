@@ -9,12 +9,12 @@ is
       (Item : in     Valeur_Param_T)
    is
    begin
-      Put (Item => Item.Valeur);
-      if Afficher_Intervalle then
+      Put_G (Item => Item.Valeur);
+      if Afficher_Intervalle_G then
          Ada.Text_IO.Put (Item => " [");
-         Put (Item => Debut_Intervalle);
+         Put_G (Item => Debut_Intervalle_G);
          Ada.Text_IO.Put (Item => " .. ");
-         Put (Item => Fin_Intervalle);
+         Put_G (Item => Fin_Intervalle_G);
          Ada.Text_IO.Put (Item => "]");
       end if;
       Ada.Text_IO.Put (Item => " ");
