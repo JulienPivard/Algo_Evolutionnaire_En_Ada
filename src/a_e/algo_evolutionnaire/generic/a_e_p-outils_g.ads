@@ -7,7 +7,7 @@ private
 
 generic
 
-   Taille_Population_G : Taille_Population_T;
+   type ID_Population_G_T is new Taille_Population_T;
    --  La taille de la population à faire évoluer.
 
    type Parametres_G_T is private;
@@ -167,6 +167,14 @@ is
    --  @param Population
    --  La population à faire évoluer.
 
+   function Lire_Taille
+      (Population : in out Population_T)
+      return Taille_Population_T;
+   --  Lit la taille de la population.
+   --  @param Population
+   --  La population.
+   --  @return La taille de la population.
+
    type Migrants_T is private;
    --  La population de migrants d'une ile à une autre.
 
@@ -221,9 +229,9 @@ private
 
    package Population_P  is new A_E_P.Population_G
       (
-         Taille_G     => Taille_Population_G,
-         Individu_G_P => Individu_P,
-         Objectif_G   => Objectif_G
+         ID_Population_G_T => ID_Population_G_T,
+         Individu_G_P      => Individu_P,
+         Objectif_G        => Objectif_G
       );
    package Population_IO is new Population_P.Text_IO
       (Individu_G_IO => Individu_IO);

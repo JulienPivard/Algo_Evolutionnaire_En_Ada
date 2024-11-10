@@ -81,6 +81,16 @@ is
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
+   function Lire_Taille
+      (Population : in out Population_T)
+      return Taille_Population_T
+   is
+   begin
+      return Population_P.Lire_Taille (Population => Population.Pop);
+   end Lire_Taille;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
    procedure Accueillir_Migrants
       (
          Population : in out Population_T;

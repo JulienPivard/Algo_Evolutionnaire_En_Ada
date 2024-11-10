@@ -57,21 +57,23 @@ is
    is
       use type A_E_P.Taille_Population_T;
 
-      Taille : constant A_E_P.Taille_Population_T :=
-         Population_G_P.Taille_Population_G;
-
       Population : Population_G_P.Population_T;
       Debut, Fin : Ada.Real_Time.Time;
 
       NB_Generations : Natural := Natural'First;
    begin
+      Bloc_Determiner_Reduction_Affichage :
+      declare
+         Taille : constant A_E_P.Taille_Population_T :=
+            Population_G_P.Lire_Taille (Population => Population);
+      begin
       if not Reduire_Affichage then
          Population_G_P.Afficher_Details;
       else
          Ada.Text_IO.Put_Line
             (
-               Item => "Population   :" & A_E_P.Taille_Population_T'Image
-                  (Population_G_P.Taille_Population_G)
+               Item => "Population   :" &
+                  A_E_P.Taille_Population_T'Image (Taille)
             );
       end if;
 
@@ -86,6 +88,7 @@ is
          Ada.Text_IO.Put_Line    (Item    => "=======");
          Ada.Text_IO.New_Line    (Spacing => 1);
       end if;
+      end Bloc_Determiner_Reduction_Affichage;
 
       Population_G_P.Faire_Evoluer
          (
@@ -134,7 +137,7 @@ is
 
    package Population_Surface_P is new A_E_P.Algo_Evolutionnaire_G
       (
-         Taille_Population_G      => Demo_P.Taille,
+         ID_Population_G_T        => Demo_P.ID_Population_T,
          Parametres_G_T           => Surface_R.Probleme_Surface_T,
          Generer_G                => Surface_R.Generer,
          Accoupler_G              => Surface_R.Accoupler,
@@ -157,7 +160,7 @@ is
 
    package Population_Anonyme_1_P is new A_E_P.Algo_Evolutionnaire_G
       (
-         Taille_Population_G      => Demo_P.Taille,
+         ID_Population_G_T        => Demo_P.ID_Population_T,
          Parametres_G_T           => Formule_1_R.Anonyme_T,
          Generer_G                => Formule_1_R.Generer,
          Accoupler_G              => Formule_1_R.Accoupler,
@@ -180,7 +183,7 @@ is
 
    package Population_Anonyme_2_P is new A_E_P.Algo_Evolutionnaire_G
       (
-         Taille_Population_G      => Demo_P.Taille,
+         ID_Population_G_T        => Demo_P.ID_Population_T,
          Parametres_G_T           => Formule_2_R.Anonyme_T,
          Generer_G                => Formule_2_R.Generer,
          Accoupler_G              => Formule_2_R.Accoupler,
@@ -208,7 +211,7 @@ is
 
    package Population_Trouver_Parametres_P is new A_E_P.Algo_Evolutionnaire_G
       (
-         Taille_Population_G      => Demo_P.Taille,
+         ID_Population_G_T        => Demo_P.ID_Population_T,
          Parametres_G_T           => Trouver_R.Anonyme_T,
          Generer_G                => Trouver_R.Generer,
          Accoupler_G              => Trouver_R.Accoupler,
@@ -229,9 +232,11 @@ is
 
    use type Chemin_R.Resultat_T;
 
+   type ID_Pop_Chemin_T is new A_E_P.Taille_Population_T range 1 .. 1_000;
+
    package Population_Chemin_P is new A_E_P.Algo_Evolutionnaire_G
       (
-         Taille_Population_G      => 1_000,
+         ID_Population_G_T        => ID_Pop_Chemin_T,
          Parametres_G_T           => Chemin_R.Probleme_Chemin_T,
          Generer_G                => Chemin_R.Generer,
          Accoupler_G              => Chemin_R.Accoupler,

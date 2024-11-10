@@ -146,6 +146,16 @@ is
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
+   function Lire_Taille
+      (Population : in     Population_T)
+      return Taille_Population_T
+   is
+   begin
+      return Population.Table'Length;
+   end Lire_Taille;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
    procedure Accueillir_Migrants
       (
          Population : in out Population_T;

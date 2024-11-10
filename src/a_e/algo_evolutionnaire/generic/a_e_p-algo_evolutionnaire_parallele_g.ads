@@ -4,7 +4,7 @@ private with A_E_P.Outils_G;
 
 generic
 
-   Taille_Population_G : Taille_Population_T;
+   type ID_Population_G_T is new Taille_Population_T;
    --  La taille de la population à faire évoluer.
 
    type Parametres_G_T is private;
@@ -145,6 +145,14 @@ is
    --  @param Population
    --  La population.
 
+   function Lire_Taille
+      (Population : in out Population_T)
+      return Taille_Population_T;
+   --  Lit la taille de la population.
+   --  @param Population
+   --  La population.
+   --  @return La taille de la population.
+
    procedure Put_Line
       (Item : in     Population_T);
    --  Affiche le contenu d'un tableau de valeurs.
@@ -159,7 +167,7 @@ private
 
    package Outils_P is new A_E_P.Outils_G
       (
-         Taille_Population_G      => Taille_Population_G,
+         ID_Population_G_T        => ID_Population_G_T,
          Parametres_G_T           => Parametres_G_T,
          Generer_G                => Generer_G,
          Accoupler_G              => Accoupler_G,

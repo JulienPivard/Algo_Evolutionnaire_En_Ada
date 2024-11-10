@@ -7,7 +7,7 @@ pragma Elaborate_All (Tri_Rapide_G);
 pragma Elaborate_All (Tri_A_Bulle_G);
 
 generic
-   Taille_G : Taille_Population_T;
+   type ID_Population_G_T is new Taille_Population_T;
    --  La taille de la population à faire évoluer.
 
    with package Individu_G_P is new A_E_P.Individu_G (<>);
@@ -90,6 +90,14 @@ is
    --  La population.
    --  @return La population converge vers un même génome.
 
+   function Lire_Taille
+      (Population : in     Population_T)
+      return Taille_Population_T;
+   --  Lit la taille de la population.
+   --  @param Population
+   --  La population.
+   --  @return La taille de la population.
+
    type Migrants_T is private;
    --  La population de migrants d'une ile à une autre.
 
@@ -127,8 +135,7 @@ is
 
 private
 
-   type Indice_Population_T is new Taille_Population_T range
-      Taille_Population_T'First .. Taille_G;
+   subtype Indice_Population_T is ID_Population_G_T;
    --  Les indices de la table de population.
 
    type Table_Population_T is
@@ -136,8 +143,8 @@ private
       of Individu_G_P.Individu_T;
    --  Contient la population.
 
-   Taille_Population : constant Indice_Population_T :=
-      Indice_Population_T (Taille_G);
+   Taille_Population : constant ID_Population_G_T :=
+      (ID_Population_G_T'Last - ID_Population_G_T'First) + 1;
    --  La population total d'individu.
    --  Chaque individu est une case du tableau.
 
@@ -148,11 +155,11 @@ private
          "25 individus au minimum."
       );
 
-   Taille_Migrants   : constant Indice_Population_T := 8;
+   Taille_Migrants   : constant := 8;
 
-   Taille_Tournois   : constant Indice_Population_T := 8;
+   Taille_Tournois   : constant := 8;
 
-   Pop_A_Renouveler  : constant Indice_Population_T := 25;
+   Pop_A_Renouveler  : constant := 25;
 
    Nb_Survivants     : constant Indice_Population_T :=
       Taille_Population - ((Taille_Population * Pop_A_Renouveler) / 100);

@@ -71,6 +71,16 @@ is
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
+   function Lire_Taille
+      (Population : in out Population_T)
+      return Taille_Population_T
+   is
+   begin
+      return Outils_P.Lire_Taille (Population => Population.Pop);
+   end Lire_Taille;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
    procedure Put_Line
       (Item : in     Population_T)
    is

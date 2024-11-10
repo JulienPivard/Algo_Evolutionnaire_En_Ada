@@ -88,4 +88,7 @@ is
    Taille : constant := 250;
    --  La taille de la population.
 
+   type ID_Population_T is new A_E_P.Taille_Population_T range 1 .. Taille;
+   --  Taille de population pour les démos.
+
 end Demo_P;
