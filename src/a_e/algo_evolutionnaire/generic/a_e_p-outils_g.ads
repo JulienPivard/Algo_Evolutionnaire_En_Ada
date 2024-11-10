@@ -237,11 +237,11 @@ private
 
    package Population_P  is new A_E_P.Population_G
       (
-         ID_Population_G_T => ID_Population_G_T,
-         Individu_G_P      => Individu_P,
+         ID_Population_G_T    => ID_Population_G_T,
+         Individu_G_P         => Individu_P,
          Table_Population_G_T => Table_Population_T,
          Trier_G              => Trier,
-         Objectif_G        => Objectif_G
+         Objectif_G           => Objectif_G
       );
    package Population_IO is new Population_P.Text_IO
       (Individu_G_IO => Individu_IO);
