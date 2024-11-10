@@ -445,18 +445,20 @@ private
    --  @param Tableau
    --  Le tableau d'individus.
 
+   Seuil_Limite : constant := 1_000;
+
    Trier_Individus : constant Trier_A :=
       (
          if Objectif_G = Minimiser_E then
             (
-               if Taille_Population <= 1_000 then
+               if Taille_Population <= Seuil_Limite then
                   Tri_A_Bulle_Min_P.Tri_A_Bulle'Access
                else
                   Tri_Rapide_Min_P.Tri_Rapide'Access
             )
          else
             (
-               if Taille_Population <= 1_000 then
+               if Taille_Population <= Seuil_Limite then
                   Tri_A_Bulle_Max_P.Tri_A_Bulle'Access
                else
                   Tri_Rapide_Max_P.Tri_Rapide'Access
