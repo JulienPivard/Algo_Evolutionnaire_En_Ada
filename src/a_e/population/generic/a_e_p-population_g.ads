@@ -1,6 +1,5 @@
 with A_E_P.Individu_G;
 
-private with Sorte_De_Tri_P;
 private with Tri_Rapide_G;
 private with Tri_A_Bulle_G;
 
@@ -347,6 +346,28 @@ private
    --  @param Droite
    --  L'individu à échanger.
 
+   function Choisir_Pivot_Deterministe
+      (Premier, Dernier : in     Indice_Population_T)
+      return Indice_Population_T;
+   --  Choisi la position du pivot dans l'intervalle donné.
+   --  Le choix est fait de façon déterministe.
+   --  @param Premier
+   --  L'indice de la première case de l'intervalle.
+   --  @param Dernier
+   --  L'indice de la dernière case de l'intervalle.
+   --  @return La position du pivot.
+
+   function Choisir_Pivot_Aleatoire
+      (Premier, Dernier : in     Indice_Population_T)
+      return Indice_Population_T;
+   --  Choisi la position du pivot dans l'intervalle donné.
+   --  Une valeur est choisie aléatoirement dans l'intervalle.
+   --  @param Premier
+   --  L'indice de la première case de l'intervalle.
+   --  @param Dernier
+   --  L'indice de la dernière case de l'intervalle.
+   --  @return La position du pivot.
+
    subtype Sous_Population_T is Table_Population_T (Indice_Population_T);
    --  Contient toute la population existante.
 
@@ -384,12 +405,12 @@ private
 
    package Tri_Rapide_Max_P is new Tri_Rapide_G
       (
-         Sorte_De_Tri => Sorte_De_Tri_P.Aleatoire_E,
          Indice_G_T  => Indice_Population_T,
          Element_G_T => Individu_G_P.Individu_T,
          Table_G_T   => Table_Population_T,
          Comparer_G  => Comparer_Maximiser,
-         Echanger_G  => Echanger
+         Echanger_G  => Echanger,
+         Choisir_Pivot_G => Choisir_Pivot_Aleatoire
       );
 
    package Tri_A_Bulle_Min_P is new Tri_A_Bulle_G
@@ -403,12 +424,12 @@ private
 
    package Tri_Rapide_Min_P is new Tri_Rapide_G
       (
-         Sorte_De_Tri => Sorte_De_Tri_P.Aleatoire_E,
          Indice_G_T  => Indice_Population_T,
          Element_G_T => Individu_G_P.Individu_T,
          Table_G_T   => Table_Population_T,
          Comparer_G  => Comparer_Minimiser,
-         Echanger_G  => Echanger
+         Echanger_G  => Echanger,
+         Choisir_Pivot_G => Choisir_Pivot_Aleatoire
       );
 
    type Trier_A is not null access procedure

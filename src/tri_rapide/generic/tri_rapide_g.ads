@@ -1,5 +1,3 @@
-with Sorte_De_Tri_P;
-
 generic
 
    type Indice_G_T is (<>);
@@ -10,15 +8,6 @@ generic
 
    type Table_G_T   is array (Indice_G_T range <>) of Element_G_T;
    --  Un tableau d'éléments à trier.
-
-   Sorte_De_Tri : Sorte_De_Tri_P.Sorte_De_Tri_T :=
-      Sorte_De_Tri_P.Deterministe_E;
-   --  Permet de spécifier la méthode de sélection
-   --  du pivot.
-   --   - Soit déterministe : la valeur dans la
-   --       première case du tableau deviens pivot;
-   --   - soit aléatoire    : Une case est choisie
-   --       au hasard dans le tableau.
 
    with function Comparer_G
       (
@@ -52,6 +41,20 @@ generic
    --  @param P2
    --  La position de la deuxième valeur.
 
+   with function Choisir_Pivot_G
+      (
+         Premier : in     Indice_G_T;
+         Dernier : in     Indice_G_T
+      )
+      return Indice_G_T;
+   --  Choisit la position de la valeur qui servira de pivot, les
+   --  bornes de l'intervalle font partit des pivots possible.
+   --  @param Premier
+   --  La première valeur de l'intervalle de positions.
+   --  @param Dernier
+   --  La dernière valeur de l'intervalle de positions.
+   --  @return La position du pivot.
+
 --  @summary
 --  Implémentation générique du tri rapide.
 --  @description
@@ -61,7 +64,7 @@ package Tri_Rapide_G
    with Spark_Mode => Off
 is
 
-   pragma Elaborate_Body;
+   pragma Pure;
 
    procedure Tri_Rapide
       (Tableau : in out Table_G_T);
@@ -84,28 +87,6 @@ private
    --  L'indice de la première case de l'intervalle à trier.
    --  @param Dernier
    --  L'indice de la dernière case de l'intervalle à trier.
-
-   function Choisir_Pivot_Deterministe
-      (Premier, Dernier : in     Indice_G_T)
-      return Indice_G_T;
-   --  Choisi la position du pivot dans l'intervalle donné.
-   --  Le choix est fait de façon déterministe.
-   --  @param Premier
-   --  L'indice de la première case de l'intervalle.
-   --  @param Dernier
-   --  L'indice de la dernière case de l'intervalle.
-   --  @return La position du pivot.
-
-   function Choisir_Pivot_Aleatoire
-      (Premier, Dernier : in     Indice_G_T)
-      return Indice_G_T;
-   --  Choisi la position du pivot dans l'intervalle donné.
-   --  Une valeur est choisie aléatoirement dans l'intervalle.
-   --  @param Premier
-   --  L'indice de la première case de l'intervalle.
-   --  @param Dernier
-   --  L'indice de la dernière case de l'intervalle.
-   --  @return La position du pivot.
 
    function Repartir_Valeurs
       (

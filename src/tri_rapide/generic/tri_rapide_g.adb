@@ -1,5 +1,3 @@
-with Ada.Numerics.Discrete_Random;
-
 package body Tri_Rapide_G
    with Spark_Mode => Off
 is
@@ -30,26 +28,14 @@ is
          Dernier : in     Indice_G_T
       )
    is
-      use type Sorte_De_Tri_P.Sorte_De_Tri_T;
-
       Position_Pivot : Indice_G_T;
    begin
       if Premier < Dernier then
          --  Placement du pivot.
-         Position_Pivot :=
+         Position_Pivot := Choisir_Pivot_G
             (
-               if Sorte_De_Tri = Sorte_De_Tri_P.Deterministe_E then
-                  Choisir_Pivot_Deterministe
-                     (
-                        Premier => Premier,
-                        Dernier => Dernier
-                     )
-               else
-                  Choisir_Pivot_Aleatoire
-                     (
-                        Premier => Premier,
-                        Dernier => Dernier
-                     )
+               Premier => Premier,
+               Dernier => Dernier
             );
 
          --  Répartition des valeurs à gauche et à droite en
@@ -91,34 +77,6 @@ is
             );
       end if;
    end Tri_Rapide;
-   ---------------------------------------------------------------------------
-
-   ---------------------------------------------------------------------------
-   function Choisir_Pivot_Deterministe
-      (Premier, Dernier : in     Indice_G_T)
-      return Indice_G_T
-   is
-      pragma Unreferenced (Dernier);
-   begin
-      return Premier;
-   end Choisir_Pivot_Deterministe;
-   ---------------------------------------------------------------------------
-
-   ---------------------------------------------------------------------------
-   function Choisir_Pivot_Aleatoire
-      (Premier, Dernier : in     Indice_G_T)
-      return Indice_G_T
-   is
-      subtype Index_Sous_Table_T is Indice_G_T range Premier .. Dernier;
-
-      package Pivot_Aleatoire is new
-         Ada.Numerics.Discrete_Random (Result_Subtype => Index_Sous_Table_T);
-
-      Generateur : Pivot_Aleatoire.Generator;
-   begin
-      Pivot_Aleatoire.Reset (Gen => Generateur);
-      return Indice_G_T (Pivot_Aleatoire.Random (Gen => Generateur));
-   end Choisir_Pivot_Aleatoire;
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------

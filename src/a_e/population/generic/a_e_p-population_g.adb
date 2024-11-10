@@ -401,6 +401,34 @@ is
    end Echanger;
    ---------------------------------------------------------------------------
 
+   ---------------------------------------------------------------------------
+   function Choisir_Pivot_Deterministe
+      (Premier, Dernier : in     Indice_Population_T)
+      return Indice_Population_T
+   is
+      pragma Unreferenced (Dernier);
+   begin
+      return Premier;
+   end Choisir_Pivot_Deterministe;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   function Choisir_Pivot_Aleatoire
+      (Premier, Dernier : in     Indice_Population_T)
+      return Indice_Population_T
+   is
+      subtype ID_Sous_Table_T is Indice_Population_T range Premier .. Dernier;
+
+      package Pivot_Aleatoire is new
+         Ada.Numerics.Discrete_Random (Result_Subtype => ID_Sous_Table_T);
+
+      Generateur : Pivot_Aleatoire.Generator;
+   begin
+      Pivot_Aleatoire.Reset (Gen => Generateur);
+      return Pivot_Aleatoire.Random (Gen => Generateur);
+   end Choisir_Pivot_Aleatoire;
+   ---------------------------------------------------------------------------
+
 begin
 
    Alea_Survivants_P.Reset (Gen => Generateur_Survivant);
