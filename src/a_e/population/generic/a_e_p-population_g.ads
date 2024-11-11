@@ -164,10 +164,12 @@ private
       );
 
    Taille_Migrants   : constant := 8;
-
+   --  Pourcentage de la population qui sera renouvelé par la migration.
    Taille_Tournois   : constant := 8;
-
+   --  Le nombre de tournois organisé correspond au
+   --  pourcentage du nombre d'individu dans la population.
    Pop_A_Renouveler  : constant := 25;
+   --  La pourcentage de la population à renouveler à chaque génération.
 
    Nb_Survivants     : constant Indice_Population_T :=
       Taille_Population - ((Taille_Population * Pop_A_Renouveler) / 100);
