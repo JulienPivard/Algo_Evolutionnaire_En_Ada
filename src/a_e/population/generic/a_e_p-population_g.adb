@@ -104,20 +104,11 @@ is
          Est_Ameliore :    out Boolean
       )
    is
-      use type Individu_G_P.Individu_T;
    begin
-      Est_Ameliore :=
+      Est_Ameliore := Comparer_G
          (
-            case Objectif_G is
-               when Minimiser_E =>
-                  Population.Table (Population.Table'First)
-                  <
-                  Population.Meilleur_Valeur,
-
-               when Maximiser_E =>
-                  Population.Table (Population.Table'First)
-                  >
-                  Population.Meilleur_Valeur
+            Gauche => Population.Table (Population.Table'First),
+            Droite => Population.Meilleur_Valeur
          );
       if Est_Ameliore then
          Population.Meilleur_Valeur :=

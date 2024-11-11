@@ -21,9 +21,15 @@ generic
    --  @param Population
    --  La population à trier.
 
-   Objectif_G : Objectif_T := Minimiser_E;
-   --  Trouver les valeurs de paramètres qui vont
-   --  minimiser ou maximiser le résultat de la fonction
+   with function Comparer_G
+      (Gauche, Droite : in     Individu_G_P.Individu_T)
+      return Boolean;
+   --  Compare deux individus.
+   --  @param Gauche
+   --  L'individu à gauche de la comparaison.
+   --  @param Droite
+   --  L'individu à gauche de la comparaison.
+   --  @return Le résultat de la comparaison.
 
 --  @summary
 --  Opérations réalisable sur une population d'individu.

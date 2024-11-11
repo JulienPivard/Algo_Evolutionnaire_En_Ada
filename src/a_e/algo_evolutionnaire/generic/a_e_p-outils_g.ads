@@ -244,13 +244,26 @@ private
    --  @param Population
    --  La population à trier.
 
+   function Comparer
+      (
+         Gauche : in     Individu_P.Individu_T;
+         Droite : in     Individu_P.Individu_T
+      )
+      return Boolean;
+   --  Compare deux individus.
+   --  @param Gauche
+   --  L'individu à gauche de la comparaison.
+   --  @param Droite
+   --  L'individu à gauche de la comparaison.
+   --  @return Le résultat de la comparaison.
+
    package Population_P  is new A_E_P.Population_G
       (
          ID_Population_G_T    => ID_Population_G_T,
          Individu_G_P         => Individu_P,
          Table_Population_G_T => Table_Population_T,
          Trier_G              => Trier,
-         Objectif_G           => Objectif_G
+         Comparer_G           => Comparer
       );
    package Population_IO is new Population_P.Text_IO
       (Individu_G_IO => Individu_IO);
@@ -329,6 +342,23 @@ private
    --  @param Dernier
    --  L'indice de la dernière case de l'intervalle.
    --  @return La position du pivot.
+
+   type Comparateur_A is not null access function
+      (Gauche, Droite : in     Individu_P.Individu_T)
+      return Boolean;
+   --  Pointeur sur la fonction de comparaison d'individus.
+   --  @param Tableau
+   --  Le tableau d'individus.
+
+   Compareteur : constant Comparateur_A :=
+      (
+         case Objectif_G is
+            when Minimiser_E =>
+               Comparer_Minimiser'Access,
+            when Maximiser_E =>
+               Comparer_Maximiser'Access
+      );
+   --  Fonction de comparaison de deux individus.
 
    package Tri_A_Bulle_Max_P is new Tri_A_Bulle_G
       (

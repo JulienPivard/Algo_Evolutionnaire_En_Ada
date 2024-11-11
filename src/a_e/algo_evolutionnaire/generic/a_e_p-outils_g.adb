@@ -141,6 +141,23 @@ is
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
+   function Comparer
+      (
+         Gauche : in     Individu_P.Individu_T;
+         Droite : in     Individu_P.Individu_T
+      )
+      return Boolean
+   is
+   begin
+      return Compareteur
+         (
+            Gauche => Gauche,
+            Droite => Droite
+         );
+   end Comparer;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
    function Comparer_Minimiser
       (Gauche, Droite : in     Individu_P.Individu_T)
       return Boolean
