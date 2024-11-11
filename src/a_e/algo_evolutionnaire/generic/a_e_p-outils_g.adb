@@ -149,7 +149,7 @@ is
       return Boolean
    is
    begin
-      return Compareteur
+      return Comparateur
          (
             Gauche => Gauche,
             Droite => Droite

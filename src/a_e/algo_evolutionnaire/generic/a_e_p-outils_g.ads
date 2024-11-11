@@ -288,26 +288,6 @@ private
          --  Les résultats du tournois.
       end record;
 
-   function Comparer_Minimiser
-      (Gauche, Droite : in     Individu_P.Individu_T)
-      return Boolean;
-   --  Compare deux individus.
-   --  @param Gauche
-   --  L'individu à gauche de la comparaison.
-   --  @param Droite
-   --  L'individu à droite de la comparaison.
-   --  @return Vrais si l'individu de gauche est < à celui de droite.
-
-   function Comparer_Maximiser
-      (Gauche, Droite : in     Individu_P.Individu_T)
-      return Boolean;
-   --  Compare deux individus.
-   --  @param Gauche
-   --  L'individu à gauche de la comparaison.
-   --  @param Droite
-   --  L'individu à droite de la comparaison.
-   --  @return Vrais si l'individu de gauche est > à celui de droite.
-
    procedure Echanger
       (
          Population     : in out Table_Population_T;
@@ -342,23 +322,6 @@ private
    --  @param Dernier
    --  L'indice de la dernière case de l'intervalle.
    --  @return La position du pivot.
-
-   type Comparateur_A is not null access function
-      (Gauche, Droite : in     Individu_P.Individu_T)
-      return Boolean;
-   --  Pointeur sur la fonction de comparaison d'individus.
-   --  @param Tableau
-   --  Le tableau d'individus.
-
-   Compareteur : constant Comparateur_A :=
-      (
-         case Objectif_G is
-            when Minimiser_E =>
-               Comparer_Minimiser'Access,
-            when Maximiser_E =>
-               Comparer_Maximiser'Access
-      );
-   --  Fonction de comparaison de deux individus.
 
    package Tri_A_Bulle_Max_P is new Tri_A_Bulle_G
       (
@@ -431,6 +394,43 @@ private
       );
    --  La fonction de tri à utiliser. Dépend du contexte
    --  et de l'objectif visé.
+
+   function Comparer_Minimiser
+      (Gauche, Droite : in     Individu_P.Individu_T)
+      return Boolean;
+   --  Compare deux individus.
+   --  @param Gauche
+   --  L'individu à gauche de la comparaison.
+   --  @param Droite
+   --  L'individu à droite de la comparaison.
+   --  @return Vrais si l'individu de gauche est < à celui de droite.
+
+   function Comparer_Maximiser
+      (Gauche, Droite : in     Individu_P.Individu_T)
+      return Boolean;
+   --  Compare deux individus.
+   --  @param Gauche
+   --  L'individu à gauche de la comparaison.
+   --  @param Droite
+   --  L'individu à droite de la comparaison.
+   --  @return Vrais si l'individu de gauche est > à celui de droite.
+
+   type Comparateur_A is not null access function
+      (Gauche, Droite : in     Individu_P.Individu_T)
+      return Boolean;
+   --  Pointeur sur la fonction de comparaison d'individus.
+   --  @param Tableau
+   --  Le tableau d'individus.
+
+   Comparateur : constant Comparateur_A :=
+      (
+         case Objectif_G is
+            when Minimiser_E =>
+               Comparer_Minimiser'Access,
+            when Maximiser_E =>
+               Comparer_Maximiser'Access
+      );
+   --  Fonction de comparaison de deux individus.
 
    ---------------------------------------------------------------------------
    procedure Calcul_Formule_Sur_Enfant
