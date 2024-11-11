@@ -323,40 +323,21 @@ private
    --  L'indice de la dernière case de l'intervalle.
    --  @return La position du pivot.
 
-   package Tri_A_Bulle_Max_P is new Tri_A_Bulle_G
+   package Tri_A_Bulle_P is new Tri_A_Bulle_G
       (
          Indice_G_T  => ID_Population_G_T,
          Element_G_T => Individu_P.Individu_T,
          Table_G_T   => Table_Population_T,
-         Comparer_G  => Comparer_Maximiser,
+         Comparer_G  => Comparer,
          Echanger_G  => Echanger
       );
 
-   package Tri_Rapide_Max_P is new Tri_Rapide_G
+   package Tri_Rapide_P is new Tri_Rapide_G
       (
          Indice_G_T      => ID_Population_G_T,
          Element_G_T     => Individu_P.Individu_T,
          Table_G_T       => Table_Population_T,
-         Comparer_G      => Comparer_Maximiser,
-         Echanger_G      => Echanger,
-         Choisir_Pivot_G => Choisir_Pivot_Aleatoire
-      );
-
-   package Tri_A_Bulle_Min_P is new Tri_A_Bulle_G
-      (
-         Indice_G_T  => ID_Population_G_T,
-         Element_G_T => Individu_P.Individu_T,
-         Table_G_T   => Table_Population_T,
-         Comparer_G  => Comparer_Minimiser,
-         Echanger_G  => Echanger
-      );
-
-   package Tri_Rapide_Min_P is new Tri_Rapide_G
-      (
-         Indice_G_T      => ID_Population_G_T,
-         Element_G_T     => Individu_P.Individu_T,
-         Table_G_T       => Table_Population_T,
-         Comparer_G      => Comparer_Minimiser,
+         Comparer_G      => Comparer,
          Echanger_G      => Echanger,
          Choisir_Pivot_G => Choisir_Pivot_Aleatoire
       );
@@ -376,21 +357,10 @@ private
 
    Trier_Individus : constant Trier_A :=
       (
-         case Objectif_G is
-            when Minimiser_E =>
-               (
-                  if Taille_Population <= Seuil_Limite then
-                     Tri_A_Bulle_Min_P.Tri_A_Bulle'Access
-                  else
-                     Tri_Rapide_Min_P.Tri_Rapide'Access
-               ),
-            when Maximiser_E =>
-               (
-                  if Taille_Population <= Seuil_Limite then
-                     Tri_A_Bulle_Max_P.Tri_A_Bulle'Access
-                  else
-                     Tri_Rapide_Max_P.Tri_Rapide'Access
-               )
+         if Taille_Population <= Seuil_Limite then
+            Tri_A_Bulle_P.Tri_A_Bulle'Access
+         else
+            Tri_Rapide_P.Tri_Rapide'Access
       );
    --  La fonction de tri à utiliser. Dépend du contexte
    --  et de l'objectif visé.
