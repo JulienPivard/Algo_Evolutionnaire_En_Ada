@@ -158,28 +158,6 @@ is
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
-   function Comparer_Minimiser
-      (Gauche, Droite : in     Individu_P.Individu_T)
-      return Boolean
-   is
-      use type Individu_P.Individu_T;
-   begin
-      return Gauche < Droite;
-   end Comparer_Minimiser;
-   ---------------------------------------------------------------------------
-
-   ---------------------------------------------------------------------------
-   function Comparer_Maximiser
-      (Gauche, Droite : in     Individu_P.Individu_T)
-      return Boolean
-   is
-      use type Individu_P.Individu_T;
-   begin
-      return Gauche > Droite;
-   end Comparer_Maximiser;
-   ---------------------------------------------------------------------------
-
-   ---------------------------------------------------------------------------
    procedure Echanger
       (
          Population     : in out Table_Population_T;
@@ -219,6 +197,28 @@ is
       Pivot_Aleatoire.Reset (Gen => Generateur);
       return Pivot_Aleatoire.Random (Gen => Generateur);
    end Choisir_Pivot_Aleatoire;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   function Comparer_Minimiser
+      (Gauche, Droite : in     Individu_P.Individu_T)
+      return Boolean
+   is
+      use type Individu_P.Individu_T;
+   begin
+      return Gauche < Droite;
+   end Comparer_Minimiser;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   function Comparer_Maximiser
+      (Gauche, Droite : in     Individu_P.Individu_T)
+      return Boolean
+   is
+      use type Individu_P.Individu_T;
+   begin
+      return Gauche > Droite;
+   end Comparer_Maximiser;
    ---------------------------------------------------------------------------
 
 end A_E_P.Outils_G;
