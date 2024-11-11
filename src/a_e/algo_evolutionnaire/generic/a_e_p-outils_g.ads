@@ -240,6 +240,9 @@ private
 
    procedure Trier
       (Population : in out Table_Population_T);
+   --  Procédure pour trier une population d'individus.
+   --  @param Population
+   --  La population à trier.
 
    package Population_P  is new A_E_P.Population_G
       (
@@ -271,59 +274,6 @@ private
          Pop : Population_P.Resultat_Tournois_T;
          --  Les résultats du tournois.
       end record;
-
-   ---------------------------------------------------------------------------
-   procedure Calcul_Formule_Sur_Enfant
-      (Population : in out Population_P.Population_T)
-      renames
-      Population_P.Calcul_Formule_Sur_Enfant;
-   --  Applique la formule à la population nouvellement née.
-   --  Il est inutile de recalculer toutes les valeurs,
-   --  seul les 25% dernières sont nouvelles.
-   --  @param Population
-   --  La population.
-
-   ---------------------------------------------------------------------------
-   procedure Faire_Evoluer_Par_Tournoi
-      (Population : in out Population_P.Population_T)
-      renames
-      Population_P.Organiser_Saison_Des_Amours;
-   --  Organise des tournois dont le nombre correspond à environ 8%
-   --  du nombre d'individus, avec environ 8% d'individus.
-   --  @param Population
-   --  La population.
-
-   ---------------------------------------------------------------------------
-   procedure Remplacer_Morts
-      (Population : in out Population_P.Population_T)
-      renames
-      Population_P.Remplacer_Morts;
-   --  Remplace les paramètres des individus trop loin du minimum
-   --  par de nouveaux.
-   --  @param Population
-   --  La population total.
-
-   ---------------------------------------------------------------------------
-   procedure Trier
-      (Population : in out Population_P.Population_T)
-      renames
-      Population_P.Trier;
-   --  Trie les individu d'une population en fonction
-   --  de la valeur calculée de chaque individu.
-   --  @param Population
-   --  La population à trier.
-
-   ---------------------------------------------------------------------------
-   function Verifier_Convergence
-      (Population : in     Population_P.Population_T)
-      return Boolean
-      renames
-      Population_P.Verifier_Convergence;
-   --  Indique si la population converge vers un minimum ou non.
-   --  Synonyme de disparition de la diversité générique.
-   --  @param Population
-   --  La population.
-   --  @return La population converge vers un même génome.
 
    function Comparer_Minimiser
       (Gauche, Droite : in     Individu_P.Individu_T)
@@ -451,5 +401,58 @@ private
       );
    --  La fonction de tri à utiliser. Dépend du contexte
    --  et de l'objectif visé.
+
+   ---------------------------------------------------------------------------
+   procedure Calcul_Formule_Sur_Enfant
+      (Population : in out Population_P.Population_T)
+      renames
+      Population_P.Calcul_Formule_Sur_Enfant;
+   --  Applique la formule à la population nouvellement née.
+   --  Il est inutile de recalculer toutes les valeurs,
+   --  seul les 25% dernières sont nouvelles.
+   --  @param Population
+   --  La population.
+
+   ---------------------------------------------------------------------------
+   procedure Faire_Evoluer_Par_Tournoi
+      (Population : in out Population_P.Population_T)
+      renames
+      Population_P.Organiser_Saison_Des_Amours;
+   --  Organise des tournois dont le nombre correspond à environ 8%
+   --  du nombre d'individus, avec environ 8% d'individus.
+   --  @param Population
+   --  La population.
+
+   ---------------------------------------------------------------------------
+   procedure Remplacer_Morts
+      (Population : in out Population_P.Population_T)
+      renames
+      Population_P.Remplacer_Morts;
+   --  Remplace les paramètres des individus trop loin du minimum
+   --  par de nouveaux.
+   --  @param Population
+   --  La population total.
+
+   ---------------------------------------------------------------------------
+   procedure Trier
+      (Population : in out Population_P.Population_T)
+      renames
+      Population_P.Trier;
+   --  Trie les individu d'une population en fonction
+   --  de la valeur calculée de chaque individu.
+   --  @param Population
+   --  La population à trier.
+
+   ---------------------------------------------------------------------------
+   function Verifier_Convergence
+      (Population : in     Population_P.Population_T)
+      return Boolean
+      renames
+      Population_P.Verifier_Convergence;
+   --  Indique si la population converge vers un minimum ou non.
+   --  Synonyme de disparition de la diversité générique.
+   --  @param Population
+   --  La population.
+   --  @return La population converge vers un même génome.
 
 end A_E_P.Outils_G;

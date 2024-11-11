@@ -136,8 +136,8 @@ is
 
       function Converge
          (
-            Reference : in Individu_G_P.Individu_T := I_Ref;
-            Actuel    : in Individu_G_P.Individu_T
+            Reference : in     Individu_G_P.Individu_T := I_Ref;
+            Actuel    : in     Individu_G_P.Individu_T
          )
          return Boolean
          renames Individu_G_P.Dans_Convergence;
