@@ -93,7 +93,7 @@ is
       (Population : in out Population_T)
    is
    begin
-      Trier_Individus (Tableau => Population.Table);
+      Trier_G (Tableau => Population.Table);
    end Trier;
    ---------------------------------------------------------------------------
 
@@ -108,14 +108,16 @@ is
    begin
       Est_Ameliore :=
          (
-            if Objectif_G = Minimiser_E then
-               Population.Meilleur_Valeur
-               >
-               Population.Table (Population.Table'First)
-            else
-               Population.Meilleur_Valeur
-               <
-               Population.Table (Population.Table'First)
+            case Objectif_G is
+               when Minimiser_E =>
+                  Population.Table (Population.Table'First)
+                  <
+                  Population.Meilleur_Valeur,
+
+               when Maximiser_E =>
+                  Population.Table (Population.Table'First)
+                  >
+                  Population.Meilleur_Valeur
          );
       if Est_Ameliore then
          Population.Meilleur_Valeur :=
@@ -367,76 +369,6 @@ is
          Individu_G_P.Generer_Parametres (Individu => E);
       end loop Boucle_Generation_Individus;
    end Generer_Individus_Aleatoirement;
-   ---------------------------------------------------------------------------
-
-   ---------------------------------------------------------------------------
-   function Comparer_Minimiser
-      (
-         Population     : in     Table_Population_G_T;
-         Gauche, Droite : in     Indice_Population_T
-      )
-      return Boolean
-   is
-      use type Individu_G_P.Individu_T;
-   begin
-      return Population (Gauche) < Population (Droite);
-   end Comparer_Minimiser;
-   ---------------------------------------------------------------------------
-
-   ---------------------------------------------------------------------------
-   function Comparer_Maximiser
-      (
-         Population     : in     Table_Population_G_T;
-         Gauche, Droite : in     Indice_Population_T
-      )
-      return Boolean
-   is
-      use type Individu_G_P.Individu_T;
-   begin
-      return Population (Gauche) > Population (Droite);
-   end Comparer_Maximiser;
-   ---------------------------------------------------------------------------
-
-   ---------------------------------------------------------------------------
-   procedure Echanger
-      (
-         Population     : in out Table_Population_G_T;
-         Gauche, Droite : in     Indice_Population_T
-      )
-   is
-      Tmp : constant Individu_G_P.Individu_T := Population (Gauche);
-   begin
-      Population (Gauche) := Population (Droite);
-      Population (Droite) := Tmp;
-   end Echanger;
-   ---------------------------------------------------------------------------
-
-   ---------------------------------------------------------------------------
-   function Choisir_Pivot_Deterministe
-      (Premier, Dernier : in     Indice_Population_T)
-      return Indice_Population_T
-   is
-      pragma Unreferenced (Dernier);
-   begin
-      return Premier;
-   end Choisir_Pivot_Deterministe;
-   ---------------------------------------------------------------------------
-
-   ---------------------------------------------------------------------------
-   function Choisir_Pivot_Aleatoire
-      (Premier, Dernier : in     Indice_Population_T)
-      return Indice_Population_T
-   is
-      subtype ID_Sous_Table_T is Indice_Population_T range Premier .. Dernier;
-
-      package Pivot_Aleatoire is new
-         Ada.Numerics.Discrete_Random (Result_Subtype => ID_Sous_Table_T);
-
-      Generateur : Pivot_Aleatoire.Generator;
-   begin
-      Pivot_Aleatoire.Reset (Gen => Generateur);
-      return Pivot_Aleatoire.Random (Gen => Generateur);
-   end Choisir_Pivot_Aleatoire;
    ---------------------------------------------------------------------------
 
 begin

@@ -3,6 +3,12 @@ private with A_E_P.Population_G.Text_IO;
 private with A_E_P.Individu_G;
 private with A_E_P.Individu_G.Text_IO;
 
+private with Tri_Rapide_G;
+private with Tri_A_Bulle_G;
+
+pragma Elaborate_All (Tri_Rapide_G);
+pragma Elaborate_All (Tri_A_Bulle_G);
+
 private
 
 generic
@@ -318,5 +324,132 @@ private
    --  @param Population
    --  La population.
    --  @return La population converge vers un même génome.
+
+   function Comparer_Minimiser
+      (Gauche, Droite : in     Individu_P.Individu_T)
+      return Boolean;
+   --  Compare deux individus.
+   --  @param Gauche
+   --  L'individu à gauche de la comparaison.
+   --  @param Droite
+   --  L'individu à droite de la comparaison.
+   --  @return Vrais si l'individu de gauche est < à celui de droite.
+
+   function Comparer_Maximiser
+      (Gauche, Droite : in     Individu_P.Individu_T)
+      return Boolean;
+   --  Compare deux individus.
+   --  @param Gauche
+   --  L'individu à gauche de la comparaison.
+   --  @param Droite
+   --  L'individu à droite de la comparaison.
+   --  @return Vrais si l'individu de gauche est > à celui de droite.
+
+   procedure Echanger
+      (
+         Population     : in out Table_Population_T;
+         Gauche, Droite : in     ID_Population_G_T
+      );
+   --  Échange deux individus.
+   --  @param Population
+   --  La population.
+   --  @param Gauche
+   --  L'individu à échanger.
+   --  @param Droite
+   --  L'individu à échanger.
+
+   function Choisir_Pivot_Deterministe
+      (Premier, Dernier : in     ID_Population_G_T)
+      return ID_Population_G_T;
+   --  Choisi la position du pivot dans l'intervalle donné.
+   --  Le choix est fait de façon déterministe.
+   --  @param Premier
+   --  L'indice de la première case de l'intervalle.
+   --  @param Dernier
+   --  L'indice de la dernière case de l'intervalle.
+   --  @return La position du pivot.
+
+   function Choisir_Pivot_Aleatoire
+      (Premier, Dernier : in     ID_Population_G_T)
+      return ID_Population_G_T;
+   --  Choisi la position du pivot dans l'intervalle donné.
+   --  Une valeur est choisie aléatoirement dans l'intervalle.
+   --  @param Premier
+   --  L'indice de la première case de l'intervalle.
+   --  @param Dernier
+   --  L'indice de la dernière case de l'intervalle.
+   --  @return La position du pivot.
+
+   package Tri_A_Bulle_Max_P is new Tri_A_Bulle_G
+      (
+         Indice_G_T  => ID_Population_G_T,
+         Element_G_T => Individu_P.Individu_T,
+         Table_G_T   => Table_Population_T,
+         Comparer_G  => Comparer_Maximiser,
+         Echanger_G  => Echanger
+      );
+
+   package Tri_Rapide_Max_P is new Tri_Rapide_G
+      (
+         Indice_G_T      => ID_Population_G_T,
+         Element_G_T     => Individu_P.Individu_T,
+         Table_G_T       => Table_Population_T,
+         Comparer_G      => Comparer_Maximiser,
+         Echanger_G      => Echanger,
+         Choisir_Pivot_G => Choisir_Pivot_Aleatoire
+      );
+
+   package Tri_A_Bulle_Min_P is new Tri_A_Bulle_G
+      (
+         Indice_G_T  => ID_Population_G_T,
+         Element_G_T => Individu_P.Individu_T,
+         Table_G_T   => Table_Population_T,
+         Comparer_G  => Comparer_Minimiser,
+         Echanger_G  => Echanger
+      );
+
+   package Tri_Rapide_Min_P is new Tri_Rapide_G
+      (
+         Indice_G_T      => ID_Population_G_T,
+         Element_G_T     => Individu_P.Individu_T,
+         Table_G_T       => Table_Population_T,
+         Comparer_G      => Comparer_Minimiser,
+         Echanger_G      => Echanger,
+         Choisir_Pivot_G => Choisir_Pivot_Aleatoire
+      );
+
+   type Trier_A is not null access procedure
+      (Tableau : in out Table_Population_T);
+   --  Pointeur sur la procédure de tri à utiliser.
+   --  @param Tableau
+   --  Le tableau d'individus.
+
+   Taille_Population : constant ID_Population_G_T :=
+      (ID_Population_G_T'Last - ID_Population_G_T'First) + 1;
+   --  La population total d'individu.
+   --  Chaque individu est une case du tableau.
+
+   Seuil_Limite : constant := 1_000;
+
+   Trier_Individus : constant Trier_A :=
+      (
+         case Objectif_G is
+            when Minimiser_E =>
+               (
+                  if Taille_Population <= Seuil_Limite then
+                     Tri_A_Bulle_Min_P.Tri_A_Bulle'Access
+                  else
+                     Tri_Rapide_Min_P.Tri_Rapide'Access
+               ),
+            when Maximiser_E =>
+               (
+                  if Taille_Population <= Seuil_Limite then
+                     Tri_A_Bulle_Max_P.Tri_A_Bulle'Access
+                  else
+                     Tri_Rapide_Max_P.Tri_Rapide'Access
+               )
+      );
+   --  La fonction de tri à utiliser. Dépend du contexte
+   --  et de l'objectif visé.
 
 end A_E_P.Outils_G;

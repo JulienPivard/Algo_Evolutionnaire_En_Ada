@@ -11,20 +11,16 @@ generic
 
    with function Comparer_G
       (
-         T      : in     Table_G_T;
-         Gauche : in     Indice_G_T;
-         Droite : in     Indice_G_T
+         G : in     Element_G_T;
+         D : in     Element_G_T
       )
-      return Boolean
-   is <>;
+      return Boolean;
    --  Compare les valeurs contenu dans les deux cases
    --  désignée du tableau.
-   --  @param T
-   --  Le tableau de valeurs.
-   --  @param Gauche
-   --  La position de la valeur qui sera à gauche dans la comparaison.
-   --  @param Droite
-   --  La position de la valeur qui sera à droite dans la comparaison.
+   --  @param G
+   --  L'élément à gauche dans la comparaison.
+   --  @param D
+   --  L'élément à droite dans la comparaison.
    --  @return Le résultat de la comparaison.
 
    with procedure Echanger_G

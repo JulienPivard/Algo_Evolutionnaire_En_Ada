@@ -15,24 +15,16 @@ is
             subtype Indice_Tmp_T is Indice_G_T range
                Indice_G_T'Succ (Debut) .. Tableau'Last;
 
+            H : Indice_G_T;
+
             Echange : Boolean := False;
          begin
             Boucle_Tri_Bulle :
             for I in reverse Indice_Tmp_T loop
+               H := Indice_G_T'Pred (I);
                --  On cherche ici à minimiser le résultat.
-               if Comparer_G
-                     (
-                        T      => Tableau,
-                        Gauche => I,
-                        Droite => Indice_G_T'Pred (I)
-                     )
-               then
-                  Echanger_G
-                     (
-                        T  => Tableau,
-                        P1 => I,
-                        P2 => Indice_G_T'Pred (I)
-                     );
+               if Comparer_G (G => Tableau (I), D => Tableau (H)) then
+                  Echanger_G (T => Tableau, P1 => I, P2 => H);
 
                   --  On note qu'un échange à été fait et que donc le
                   --  tableau n'est potentiellement pas totalement trié.

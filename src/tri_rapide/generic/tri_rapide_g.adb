@@ -105,7 +105,7 @@ is
          --  on l'échange avec le première valeur qui doit
          --  être à droite du pivot. Puis on déplace notre
          --  marqueur.
-         if Comparer_G (T => Tableau, Gauche => I, Droite => Dernier) then
+         if Comparer_G (G => Tableau (I), D => Tableau (Dernier)) then
             Echanger_G
                (
                   T  => Tableau,

@@ -1,3 +1,4 @@
+with Ada.Numerics.Discrete_Random;
 with Ada.Text_IO;
 
 package body A_E_P.Outils_G
@@ -135,8 +136,72 @@ is
       (Population : in out Table_Population_T)
    is
    begin
-      null;
+      Trier_Individus (Tableau => Population);
    end Trier;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   function Comparer_Minimiser
+      (Gauche, Droite : in     Individu_P.Individu_T)
+      return Boolean
+   is
+      use type Individu_P.Individu_T;
+   begin
+      return Gauche < Droite;
+   end Comparer_Minimiser;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   function Comparer_Maximiser
+      (Gauche, Droite : in     Individu_P.Individu_T)
+      return Boolean
+   is
+      use type Individu_P.Individu_T;
+   begin
+      return Gauche > Droite;
+   end Comparer_Maximiser;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   procedure Echanger
+      (
+         Population     : in out Table_Population_T;
+         Gauche, Droite : in     ID_Population_G_T
+      )
+   is
+      Tmp : constant Individu_P.Individu_T := Population (Gauche);
+   begin
+      Population (Gauche) := Population (Droite);
+      Population (Droite) := Tmp;
+   end Echanger;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   function Choisir_Pivot_Deterministe
+      (Premier, Dernier : in     ID_Population_G_T)
+      return ID_Population_G_T
+   is
+      pragma Unreferenced (Dernier);
+   begin
+      return Premier;
+   end Choisir_Pivot_Deterministe;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   function Choisir_Pivot_Aleatoire
+      (Premier, Dernier : in     ID_Population_G_T)
+      return ID_Population_G_T
+   is
+      subtype ID_Sous_Table_T is ID_Population_G_T range Premier .. Dernier;
+
+      package Pivot_Aleatoire is new
+         Ada.Numerics.Discrete_Random (Result_Subtype => ID_Sous_Table_T);
+
+      Generateur : Pivot_Aleatoire.Generator;
+   begin
+      Pivot_Aleatoire.Reset (Gen => Generateur);
+      return Pivot_Aleatoire.Random (Gen => Generateur);
+   end Choisir_Pivot_Aleatoire;
    ---------------------------------------------------------------------------
 
 end A_E_P.Outils_G;
