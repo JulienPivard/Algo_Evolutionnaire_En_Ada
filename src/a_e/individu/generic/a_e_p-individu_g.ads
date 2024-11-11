@@ -1,4 +1,5 @@
 generic
+
    type Parametres_G_T is private;
    --  Les paramètres qui représentent le génome de l'individu.
 

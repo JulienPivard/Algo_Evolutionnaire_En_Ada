@@ -394,11 +394,10 @@ private
 
    Comparateur : constant Comparateur_A :=
       (
-         case Objectif_G is
-            when Minimiser_E =>
-               Comparer_Minimiser'Access,
-            when Maximiser_E =>
-               Comparer_Maximiser'Access
+         if Objectif_G = Minimiser_E then
+            Comparer_Minimiser'Access
+         else
+            Comparer_Maximiser'Access
       );
    --  Fonction de comparaison de deux individus.
 
