@@ -1,5 +1,4 @@
 with A_E_P;
-pragma Unreferenced (A_E_P);
 
 --  @summary
 --  Une petite collection de demos.
