@@ -1,4 +1,5 @@
 generic
+
    type Valeur_Param_G_T is digits <>;
    --  Permet de spécifier la précision d'un paramètre.
 
@@ -25,10 +26,16 @@ is
 
    pragma Compile_Time_Error
       (
-         Long_Long_Float (Valeur_Param_G_T'First) > Borne_Inf_Min
-         or else
-         Long_Long_Float (Valeur_Param_G_T'Last)  < Borne_Sup_Min,
-         "Erreur, l'intervalle de valeurs doit inclure 0.0 et 1.0"
+         Valeur_Param_G_T'First > Borne_Inf_Min,
+         "Erreur, la valeur MIN ne doit pas etre superieur a " &
+            Borne_Inf_Min'Universal_Literal_String
+      );
+
+   pragma Compile_Time_Error
+      (
+         Valeur_Param_G_T'Last  < Borne_Sup_Min,
+         "Erreur, la valeur MAX ne doit pas etre inferieur a " &
+            Borne_Sup_Min'Universal_Literal_String
       );
 
    pragma Compile_Time_Error

@@ -92,7 +92,7 @@ private
 
    Cm : System.Dim.Mks.Length renames System.Dim.Mks.cm;
 
-   Volume : constant System.Dim.Mks.Mks_Type := 160.0 * (Cm ** 3);
+   Volume : constant System.Dim.Mks.Mks_Type := 160.0 * (Cm**3);
 
    subtype Diametre_T is System.Dim.Mks.Length;
    subtype Surface_T  is System.Dim.Mks.Mks_Type
